@@ -46,7 +46,7 @@ export default function Main() {
         content: data.script || "Không có phản hồi.",
       };
       setMessages((prev) => [...prev, botMessage]);
-    } catch (error) {
+    } catch {
       const botMessage: Message = {
         role: "bot",
         content: "Lỗi khi lấy phản hồi, vui lòng thử lại.",
