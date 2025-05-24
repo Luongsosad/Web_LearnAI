@@ -13,6 +13,12 @@ const groqClient = new Groq({
   apiKey: process.env.GROQ_API_KEY,
 });
 
+interface ApiResponse {
+  transcription?: string;
+  error?: string;
+  details?: string;
+}
+
 function parseForm(req: NextApiRequest): Promise<{ fields: formidable.Fields; files: formidable.Files }> {
   const form = formidable({ multiples: false });
   return new Promise((resolve, reject) => {
@@ -23,28 +29,28 @@ function parseForm(req: NextApiRequest): Promise<{ fields: formidable.Fields; fi
   });
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<ApiResponse>) {
   try {
     if (req.method !== "POST") {
-      return res.status(405).json({ error: "Method not allowed" });
+      return res.status(405).json({ error: "Phương thức không được hỗ trợ" });
     }
 
     const { files } = await parseForm(req);
     const audioFile = Array.isArray(files.audioFile) ? files.audioFile[0] : files.audioFile;
 
     if (!audioFile) {
-      return res.status(400).json({ error: "No audio file uploaded" });
+      return res.status(400).json({ error: "Không có file âm thanh được tải lên" });
     }
 
     const supportedFormats = ["audio/wav", "audio/mp3", "audio/flac", "audio/mpeg", "audio/m4a", "audio/ogg", "audio/webm"];
     if (!audioFile.mimetype || !supportedFormats.includes(audioFile.mimetype)) {
-      return res.status(400).json({ error: `Unsupported audio format: ${audioFile.mimetype || "unknown"}` });
+      return res.status(400).json({ error: `Định dạng âm thanh không được hỗ trợ: ${audioFile.mimetype || "không xác định"}` });
     }
 
     const stats = await fs.stat(audioFile.filepath);
     const maxSize = 25 * 1024 * 1024; // 25MB
     if (stats.size > maxSize) {
-      return res.status(400).json({ error: `Audio file too large: ${stats.size} bytes, max ${maxSize} bytes` });
+      return res.status(400).json({ error: `File âm thanh quá lớn: ${stats.size} bytes, tối đa ${maxSize} bytes` });
     }
 
     const buffer = await fs.readFile(audioFile.filepath);
@@ -53,7 +59,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       type: audioFile.mimetype || "audio/wav",
     });
 
-    console.log("Sending file to Groq API:", {
+    console.log("Gửi file đến Groq API:", {
       name: file.name,
       size: file.size,
       type: file.type,
@@ -63,15 +69,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       file,
       model: "whisper-large-v3",
       response_format: "json",
-    //   language: "vi", // Điều chỉnh ngôn ngữ nếu cần
+      // language: "vi", // Bỏ comment nếu cần chỉ định ngôn ngữ tiếng Việt
     });
 
     return res.status(200).json({ transcription: transcription.text });
-  } catch (error: any) {
-    console.error("Error processing transcription:", error.message, error.response?.data);
-    return res.status(error.response?.status || 400).json({
-      error: "Transcription failed",
-      details: error.response?.data?.error?.message || error.message,
+  } catch (error) {
+    // Thay 'any' bằng 'Error'
+    console.error("Lỗi khi xử lý phiên âm:", (error as Error).message);
+    return res.status(500).json({
+      error: "Phiên âm thất bại",
+      details: (error as Error).message,
     });
   }
 }
