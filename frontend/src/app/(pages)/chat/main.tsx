@@ -32,7 +32,7 @@ export default function Main() {
     setText("");
 
     try {
-      const res = await fetch("/api/groqChat", {
+      const res = await fetch("/api/gemeniChat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: text.trim() }),
@@ -113,9 +113,10 @@ export default function Main() {
               value={text}
               onInput={handleInput}
               onKeyDown={handleKeyDown}
+              onFocus={() => textareaRef.current?.scrollIntoView({ behavior: "smooth" })}
               rows={1}
               placeholder="Hỏi bất kỳ điều gì"
-              className="w-full bg-transparent resize-none overflow-hidden text-white placeholder-gray-400 focus:outline-none text-sm pt-2"
+              className="w-full bg-transparent resize-none overflow-hidden text-white placeholder-gray-400 focus:outline-none text-base pt-2"
             />
           </div>
           <div className="flex w-full justify-between pb-1">
@@ -135,3 +136,133 @@ export default function Main() {
     </div>
   );
 }
+
+
+
+
+// "use client";
+// import React, { useState, useRef, useEffect } from "react";
+
+// export default function Main() {
+//   const [audioFile, setAudioFile] = useState<File | null>(null);
+//   const [transcript, setTranscript] = useState("");
+//   const [loading, setLoading] = useState(false);
+
+//   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//     if (e.target.files && e.target.files[0]) {
+//       setAudioFile(e.target.files[0]);
+//       setTranscript("");
+//     }
+//   };
+
+//   const handleUpload = async () => {
+//     if (!audioFile) return alert("Vui lòng chọn tệp âm thanh");
+
+//     setLoading(true);
+
+//     const formData = new FormData();
+//     formData.append("audioFile", audioFile); // Đổi từ "file" thành "audioFile"
+
+//     try {
+//       const res = await fetch("/api/groqAudio", {
+//         method: "POST",
+//         body: formData,
+//       });
+
+//       if (!res.ok) {
+//         const errorData = await res.json();
+//         throw new Error(errorData.details || "Lỗi khi gọi API");
+//       }
+
+//       const data = await res.json();
+//       setTranscript(data.transcription || "Không nhận diện được âm thanh");
+//     } catch (error: any) {
+//       setTranscript(`Lỗi khi chuyển âm thanh thành text: ${error.message}`);
+//       console.error("Error:", error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <input type="file" accept="audio/*" onChange={handleFileChange} />
+//       <button onClick={handleUpload} disabled={loading}>
+//         {loading ? "Đang xử lý..." : "Chuyển âm thanh thành text"}
+//       </button>
+//       {transcript && <p>Kết quả: {transcript}</p>}
+//     </div>
+//   );
+// }
+
+
+
+// "use client";
+// import React, { useState } from "react";
+
+// export default function Main() {
+//   const [text, setText] = useState("");
+//   const [audioUrl, setAudioUrl] = useState("");
+//   const [loading, setLoading] = useState(false);
+//   const [error, setError] = useState("");
+
+//   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+//     setText(e.target.value);
+//     setError("");
+//     setAudioUrl("");
+//   };
+
+//   const handleGenerateSpeech = async () => {
+//     if (!text.trim()) return alert("Vui lòng nhập văn bản");
+
+//     setLoading(true);
+//     setError("");
+
+//     try {
+//       const res = await fetch("/api/googleTts", {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({ text }),
+//       });
+
+//       if (!res.ok) {
+//         const errorData = await res.json();
+//         throw new Error(errorData.details || `API error: ${res.status}`);
+//       }
+
+//       const audioBlob = await res.blob();
+//       const audioUrl = URL.createObjectURL(audioBlob);
+//       setAudioUrl(audioUrl);
+//     } catch (error: any) {
+//       setError(`Lỗi khi tạo âm thanh: ${error.message}`);
+//       console.error("Error in handleGenerateSpeech:", error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <div style={{ padding: "20px", maxWidth: "600px", margin: "0 auto" }}>
+//       <h2>Chuyển văn bản thành giọng nói (Google TTS)</h2>
+//       <textarea
+//         value={text}
+//         onChange={handleTextChange}
+//         placeholder="Nhập văn bản cần chuyển thành giọng nói (hỗ trợ tiếng Việt và tiếng Anh)"
+//         rows={5}
+//         style={{ width: "100%", marginBottom: "10px" }}
+//       />
+//       <button onClick={handleGenerateSpeech} disabled={loading}>
+//         {loading ? "Đang xử lý..." : "Tạo âm thanh"}
+//       </button>
+//       {audioUrl && (
+//         <div style={{ marginTop: "20px" }}>
+//           <p>Âm thanh được tạo:</p>
+//           <audio controls src={audioUrl} />
+//         </div>
+//       )}
+//       {error && <p style={{ color: "red" }}>{error}</p>}
+//     </div>
+//   );
+// }
