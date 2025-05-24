@@ -65,7 +65,7 @@ export default function Main() {
   }, [messages]);
 
   return (
-    <div className="flex flex-col max-h-screen text-white">
+    <div className="flex flex-col max-h-screen text-white overflow-hidden custom-scroll">
       {/* Header - Cố định ở trên */}
       <div className="fixed top-0 left-0 w-full bg-[#111111]">
         <div className="flex items-center justify-between px-4 py-3 border-b border-gray-700">
