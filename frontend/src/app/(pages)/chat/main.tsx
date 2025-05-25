@@ -30,10 +30,10 @@ export default function Main() {
     setText("");
 
     try {
-      const res = await fetch("/api/gemeniChat", {
+      const res = await fetch("/api/groqChat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: text.trim() }),
+        body: JSON.stringify({ prompt: text.trim(), history: messages.slice(-20) }), // Gửi lịch sử tin nhắn
       });
 
       if (!res.ok) throw new Error("Lỗi API");
@@ -77,7 +77,7 @@ export default function Main() {
       </div>
 
       <div className="mt-[82px] mb-[100px] flex-1 flex flex-col px-4 py-4 overflow-y-auto h-full space-y-4 custom-scroll bg-[#111111]">
-         {messages.length === 0 ? (
+        {messages.length === 0 ? (
           <div className="flex flex-col justify-center h-[360px] items-center text-center text-gray-400 flex-grow">
             <h1 className="text-2xl font-medium">Chào Lương?</h1>
             <h1 className="text-2xl font-medium">Tôi có thể giúp gì cho bạn?</h1>
@@ -86,10 +86,11 @@ export default function Main() {
           messages.map((msg, idx) => (
             <div
               key={idx}
-              className={`whitespace-pre-line ${msg.role === "user"
-                ? "rounded-3xl p-3 pt-2 pb-2 max-w-[70%] bg-[#323232d9] self-end text-white"
-                : "p-1 self-start text-gray-300"
-                }`}
+              className={`whitespace-pre-line ${
+                msg.role === "user"
+                  ? "rounded-3xl p-3 pt-2 pb-2 max-w-[70%] bg-[#323232d9] self-end text-white"
+                  : "p-1 self-start text-gray-300"
+              }`}
             >
               {msg.content}
             </div>
@@ -99,7 +100,6 @@ export default function Main() {
         {/* div ẩn để scroll tới */}
         <div ref={messagesEndRef} />
       </div>
-
 
       {/* Input - Cố định ở dưới */}
       <div className="fixed bottom-0 left-0 w-full z-10 px-3 py-2 bg-[#111111]">
