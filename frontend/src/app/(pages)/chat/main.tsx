@@ -1,22 +1,40 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
-import { Plus, Settings2, Mic, Send, Copy, RefreshCw } from "lucide-react";
+import { Plus, Settings2, Mic, Send, Copy, RefreshCw, Home, List, X } from "lucide-react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
+import { SessionStorage } from "@/storage/sessionStorage";
 
 type Message = {
   role: "user" | "bot";
   content: string;
 };
 
+interface User {
+  username: string;
+  email: string;
+  token: string;
+}
+
 export default function Main() {
+  const cancelAudioRef = useRef(false);
+  const [user, setUser] = useState<User | null>(null);
   const [text, setText] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [isThinking, setIsThinking] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
+  const [isProcessingAudio, setIsProcessingAudio] = useState(false); // Thêm trạng thái xử lý âm thanh
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
+  const router = useRouter();
+
+  // Lấy dữ liệu từ sessionStorage khi component mount
+  useEffect(() => {
+    const storedUser = SessionStorage.getUser();
+    setUser(storedUser);
+  }, []);
 
   const handleInput = (e: React.FormEvent<HTMLTextAreaElement>) => {
     const textarea = textareaRef.current;
@@ -49,7 +67,6 @@ export default function Main() {
     setIsThinking(true);
 
     try {
-      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/ping`);
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/chat`,
         {
@@ -99,82 +116,106 @@ export default function Main() {
     }
   };
 
-  const toggleRecording = async () => {
-    if (!isRecording) {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        mediaRecorderRef.current = new MediaRecorder(stream);
-        audioChunksRef.current = [];
+  const startRecording = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorderRef.current = new MediaRecorder(stream);
+      audioChunksRef.current = [];
 
-        mediaRecorderRef.current.ondataavailable = (event) => {
-          audioChunksRef.current.push(event.data);
-        };
+      mediaRecorderRef.current.ondataavailable = (event) => {
+        audioChunksRef.current.push(event.data);
+      };
 
-        mediaRecorderRef.current.onstop = async () => {
-          const audioBlob = new Blob(audioChunksRef.current, { type: "audio/webm" });
-          const formData = new FormData();
-          formData.append("audioFile", audioBlob, "recording.webm");
+      mediaRecorderRef.current.onstop = async () => {
+        // Kiểm tra nếu đã hủy ghi âm
+        if (cancelAudioRef.current) {
+          cancelAudioRef.current = false;
+          return;
+        }
+        setIsProcessingAudio(true); // Bật trạng thái xử lý âm thanh
 
-          try {
-            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/audio`, formData, {
-              headers: { "Content-Type": "multipart/form-data" },
-            });
+        const audioBlob = new Blob(audioChunksRef.current, { type: "audio/webm" });
+        const formData = new FormData();
+        formData.append("audioFile", audioBlob, "recording.webm");
 
-            if (res.status !== 200) throw new Error("Lỗi chuyển đổi âm thanh");
+        try {
+          const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/audio`, formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+          });
 
-            const transcribedText = res.data.text || "";
-            if (transcribedText) {
-              await sendMessage(transcribedText);
-            } else {
-              setMessages((prev) => [
-                ...prev,
-                { role: "bot", content: "Không thể chuyển đổi âm thanh thành văn bản." },
-              ]);
-            }
-          } catch (error) {
-            console.error("Lỗi khi gửi âm thanh:", error);
+          if (res.status !== 200) throw new Error("Lỗi chuyển đổi âm thanh");
+
+          const transcribedText = res.data.text || "";
+          if (transcribedText) {
+            setIsProcessingAudio(false);
+            await sendMessage(transcribedText);
+          } else {
             setMessages((prev) => [
               ...prev,
-              { role: "bot", content: "Lỗi khi xử lý âm thanh, vui lòng thử lại." },
+              { role: "bot", content: "Không thể chuyển đổi âm thanh thành văn bản." },
             ]);
           }
-        };
+        } catch (error) {
+          console.error("Lỗi khi gửi âm thanh:", error);
+          setMessages((prev) => [
+            ...prev,
+            { role: "bot", content: "Lỗi khi xử lý âm thanh, vui lòng thử lại." },
+          ]);
+        }
+      };
 
-        mediaRecorderRef.current.start();
-        setIsRecording(true);
-      } catch (error) {
-        console.error("Lỗi khi truy cập micro:", error);
-        setMessages((prev) => [
-          ...prev,
-          { role: "bot", content: "Lỗi khi truy cập micro, vui lòng kiểm tra quyền truy cập." },
-        ]);
-      }
-    } else {
-      mediaRecorderRef.current?.stop();
-      mediaRecorderRef.current?.stream.getTracks().forEach((track) => track.stop());
+      mediaRecorderRef.current.start();
+      setIsRecording(true);
+    } catch (error) {
+      console.error("Lỗi khi truy cập micro:", error);
+      setMessages((prev) => [
+        ...prev,
+        { role: "bot", content: "Lỗi khi truy cập micro, vui lòng kiểm tra quyền truy cập." },
+      ]);
+    }
+  };
+
+  const stopRecording = () => {
+    if (mediaRecorderRef.current) {
+      mediaRecorderRef.current.stop();
+      mediaRecorderRef.current.stream.getTracks().forEach((track) => track.stop());
+      setIsRecording(false);
+    }
+  };
+
+  const cancelRecording = () => {
+    if (mediaRecorderRef.current) {
+      cancelAudioRef.current = true;
+      mediaRecorderRef.current.stop();
+      mediaRecorderRef.current.stream.getTracks().forEach((track) => track.stop());
+      audioChunksRef.current = [];
       setIsRecording(false);
     }
   };
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [messages, isThinking, isProcessingAudio]);
 
   return (
     <div className="flex flex-col max-h-screen text-white overflow-hidden custom-scroll">
       <div className="fixed top-0 left-0 w-full bg-[#111111]">
         <div className="flex items-center justify-between px-4 py-3 border-b border-gray-700">
-          <div className="w-6 h-6 border Rounded-full border-white" />
+          <button className="text-gray-200 hover:text-white" onClick={() => console.log("Open menu")}>
+            <List size={24} />
+          </button>
           <div className="text-xl font-semibold">Learning By AI</div>
-          <div className="w-6 h-6 border rounded-full border-white" />
+          <button className="text-gray-200 hover:text-white" onClick={() => router.push("/")}>
+            <Home size={24} />
+          </button>
         </div>
-        <div className="text-center text-sm text-gray-400 mt-2">Bộ nhớ đã lưu đã đầy</div>
+        <div className="text-center text-sm text-gray-400 mt-1 mb-1">Bộ nhớ đã lưu đã đầy</div>
       </div>
 
       <div className="mt-[82px] mb-[100px] flex-1 flex flex-col px-4 py-4 overflow-y-auto h-full space-y-4 custom-scroll bg-[#111111] pb-7">
         {messages.length === 0 ? (
           <div className="flex flex-col justify-center h-[360px] items-center text-center text-gray-400 flex-grow">
-            <h1 className="text-2xl font-medium">Chào Lương?</h1>
+            <h1 className="text-2xl font-medium mb-2">Chào {user?.username ? user.username : "bạn"}?</h1>
             <h1 className="text-2xl font-medium">Tôi có thể giúp gì cho bạn?</h1>
           </div>
         ) : (
@@ -213,13 +254,40 @@ export default function Main() {
             Đang suy nghĩ câu trả lời...
           </div>
         )}
-        {isRecording && (
+        {isProcessingAudio && (
           <div className="p-1 self-start text-gray-400 italic">
-            Đang ghi âm...
+            Đang xử lý âm thanh...
           </div>
         )}
         <div ref={messagesEndRef} />
       </div>
+
+      {isRecording && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-[#171717] p-6 rounded-xl shadow-lg border border-[#262626] flex flex-col items-center">
+            <div className="flex items-center mb-4">
+              <Mic size={24} className="text-red-500 animate-pulse mr-2" />
+              <span className="text-lg text-white">Đang ghi âm...</span>
+            </div>
+            <div className="flex gap-3 w-full text-sm justify-center text-center mt-2">
+              <button
+                onClick={cancelRecording}
+                className="justify-center w-[100px] bg-red-500 hover:bg-red-600 text-white py-2 px-2 rounded-lg flex items-center"
+              >
+                <X size={16} className="mr-2" />
+                Hủy
+              </button>
+              <button
+                onClick={stopRecording}
+                className="justify-center w-[100px] bg-green-500 hover:bg-green-600 text-white py-2 px-2 rounded-lg flex items-center"
+              >
+                <Send size={16} className="mr-2" />
+                Hoàn tất
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="fixed bottom-0 left-0 w-full z-10 px-3 py-2 bg-[#111111]">
         <div className="flex flex-col items-end gap-4 bg-[#202020] rounded-2xl px-4 py-2">
@@ -245,13 +313,14 @@ export default function Main() {
             </div>
             <div className="flex gap-3">
               <button
-                onClick={toggleRecording}
-                aria-label={isRecording ? "Dừng ghi âm" : "Bắt đầu ghi âm"}
+                onClick={startRecording}
+                aria-label="Bắt đầu ghi âm"
                 className="text-white"
+                disabled={isRecording}
               >
                 <Mic
                   size={20}
-                  className={isRecording ? "text-red-500 animate-pulse" : "text-white"}
+                  className={isRecording ? "text-gray-500" : "text-white"}
                 />
               </button>
               <button onClick={() => sendMessage()} aria-label="Gửi tin nhắn" className="flex gap-3">
@@ -262,7 +331,5 @@ export default function Main() {
         </div>
       </div>
     </div>
-
-
   );
 }

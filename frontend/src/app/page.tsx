@@ -1,8 +1,8 @@
-import Chat from './(pages)/chat/page'
+import DashBoard from './(pages)/dashBoard/main'
 export default function Home() {
   return (
     <div>
-      <Chat />
+      <DashBoard />
     </div>
   );
 }
