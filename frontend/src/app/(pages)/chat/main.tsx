@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
 import { Plus, Settings2, Mic, Send } from "lucide-react";
+import axios from "axios";
 
 type Message = {
   role: "user" | "bot";
@@ -30,21 +31,27 @@ export default function Main() {
     setText("");
 
     try {
-      const res = await fetch("/api/groqChat", {
-        method: "POST",
+      // Kiểm tra API có sẵn bằng ping
+      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/ping`);
+
+      // Gửi yêu cầu POST tới endpoint /chat
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/chat`, {
+        prompt: text.trim(),
+        history: messages.slice(-20), // Giới hạn 20 tin nhắn cuối
+      }, {
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt: text.trim(), history: messages.slice(-20) }), // Gửi lịch sử tin nhắn
       });
 
-      if (!res.ok) throw new Error("Lỗi API");
+      // Kiểm tra trạng thái phản hồi
+      if (res.status !== 200) throw new Error("Lỗi API");
 
-      const data = await res.json();
       const botMessage: Message = {
         role: "bot",
-        content: data.script || "Không có phản hồi.",
+        content: res.data.script || "Không có phản hồi.",
       };
       setMessages((prev) => [...prev, botMessage]);
-    } catch {
+    } catch (error) {
+      console.error("Lỗi khi gọi API:", error);
       const botMessage: Message = {
         role: "bot",
         content: "Lỗi khi lấy phản hồi, vui lòng thử lại.",
@@ -86,11 +93,10 @@ export default function Main() {
           messages.map((msg, idx) => (
             <div
               key={idx}
-              className={`whitespace-pre-line ${
-                msg.role === "user"
+              className={`whitespace-pre-line ${msg.role === "user"
                   ? "rounded-3xl p-3 pt-2 pb-2 max-w-[70%] bg-[#323232d9] self-end text-white"
                   : "p-1 self-start text-gray-300"
-              }`}
+                }`}
             >
               {msg.content}
             </div>
