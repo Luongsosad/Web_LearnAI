@@ -14,7 +14,7 @@ export default function Main() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const [username] = useState("");
 
   const handleLogin = () => {
     const user: User = {
