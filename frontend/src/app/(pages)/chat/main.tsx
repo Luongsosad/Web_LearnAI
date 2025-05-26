@@ -23,14 +23,13 @@ export default function Main() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isThinking, setIsThinking] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
-  const [isProcessingAudio, setIsProcessingAudio] = useState(false); // Thêm trạng thái xử lý âm thanh
+  const [isProcessingAudio, setIsProcessingAudio] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
   const router = useRouter();
 
-  // Lấy dữ liệu từ sessionStorage khi component mount
   useEffect(() => {
     const storedUser = SessionStorage.getUser();
     setUser(storedUser);
@@ -62,6 +61,11 @@ export default function Main() {
       const userMessage: Message = { role: "user", content: inputPrompt };
       setMessages((prev) => [...prev, userMessage]);
       setText("");
+      // Đặt lại chiều cao của textarea
+      const textarea = textareaRef.current;
+      if (textarea) {
+        textarea.style.height = "auto";
+      }
     }
 
     setIsThinking(true);
@@ -127,12 +131,11 @@ export default function Main() {
       };
 
       mediaRecorderRef.current.onstop = async () => {
-        // Kiểm tra nếu đã hủy ghi âm
         if (cancelAudioRef.current) {
           cancelAudioRef.current = false;
           return;
         }
-        setIsProcessingAudio(true); // Bật trạng thái xử lý âm thanh
+        setIsProcessingAudio(true);
 
         const audioBlob = new Blob(audioChunksRef.current, { type: "audio/webm" });
         const formData = new FormData();
@@ -161,6 +164,8 @@ export default function Main() {
             ...prev,
             { role: "bot", content: "Lỗi khi xử lý âm thanh, vui lòng thử lại." },
           ]);
+        } finally {
+          setIsProcessingAudio(false);
         }
       };
 
@@ -227,7 +232,7 @@ export default function Main() {
                 : "p-1 self-start text-gray-300"
                 }`}
             >
-              <div className="flex-1">{msg.content}</div>
+              <div className="flex-1 whitespace-pre-line break-words">{msg.content}</div>
               {msg.role === "bot" && idx === messages.length - 1 && (
                 <div className="flex gap-2 mt-2">
                   <button
