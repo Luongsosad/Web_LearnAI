@@ -17,8 +17,12 @@ function Edit() {
     }, []);
 
     return (
-        <div className="overflow-hidden h-screen">
-            <Main />
+        <div className="overflow-hidden h-screen flex w-full mx-auto custom-scroll">
+            <div className="w-[0] md:w-[25%]"></div>
+            <div className="w-full h-screen md:w-[50%]">
+                <Main />
+            </div>
+            <div className="w-[0] md:w-[25%]"></div>
         </div>
     );
 }

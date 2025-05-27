@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { MessageCircle, BookOpen, HelpCircle, Mic, LogOut } from "lucide-react";
+import { MessageCircle, BookOpen, HelpCircle, Mic, LogOut, Headphones, Library } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { SessionStorage } from "@/storage/sessionStorage";
 
@@ -79,6 +79,42 @@ export default function Main() {
             </div>
           </div>
 
+          {/* AI Voice Conversation */}
+          <div
+            className="flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
+            onClick={() => handleServiceClick("/ai-voice-conversation")}
+          >
+            <Headphones className="w-6 h-6 text-orange-400 mr-4" />
+            <div>
+              <h3 className="text-lg font-semibold text-white">Luyện giao tiếp AI</h3>
+              <p className="text-gray-400 text-sm">Luyện nói tiếng Anh trực tiếp với AI qua hội thoại.</p>
+            </div>
+          </div>
+
+          {/* Pronunciation Practice */}
+          <div
+            className="flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
+            onClick={() => handleServiceClick("/pronunciation")}
+          >
+            <Mic className="w-6 h-6 text-blue-400 mr-4" />
+            <div>
+              <h3 className="text-lg font-semibold text-white">Kiểm tra phát âm</h3>
+              <p className="text-gray-400 text-sm">Ghi âm và so sánh phát âm của bạn với người bản xứ.</p>
+            </div>
+          </div>
+
+          {/* Bilingual Stories */}
+          <div
+            className="flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
+            onClick={() => handleServiceClick("/bilingual-stories")}
+          >
+            <Library className="w-6 h-6 text-purple-400 mr-4" />
+            <div>
+              <h3 className="text-lg font-semibold text-white">Đọc truyện song ngữ</h3>
+              <p className="text-gray-400 text-sm">Cải thiện kỹ năng đọc với truyện song ngữ Anh-Việt.</p>
+            </div>
+          </div>
+
           {/* Flashcards */}
           <div
             className="flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
@@ -100,18 +136,6 @@ export default function Main() {
             <div>
               <h3 className="text-lg font-semibold text-white">Bài tập trắc nghiệm</h3>
               <p className="text-gray-400 text-sm">Kiểm tra kiến thức của bạn với các câu hỏi trắc nghiệm.</p>
-            </div>
-          </div>
-
-          {/* Pronunciation Practice */}
-          <div
-            className="flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
-            onClick={() => handleServiceClick("/pronunciation")}
-          >
-            <Mic className="w-6 h-6 text-blue-400 mr-4" />
-            <div>
-              <h3 className="text-lg font-semibold text-white">Kiểm tra phát âm</h3>
-              <p className="text-gray-400 text-sm">Ghi âm và so sánh phát âm của bạn với người bản xứ.</p>
             </div>
           </div>
         </div>

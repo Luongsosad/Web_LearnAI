@@ -203,13 +203,13 @@ export default function Main() {
   }, [messages, isThinking, isProcessingAudio]);
 
   return (
-    <div className="flex flex-col max-h-screen text-white overflow-hidden custom-scroll">
+    <div className="w-full flex flex-col h-screen text-white overflow-hidden custom-scroll">
       <div className="fixed top-0 left-0 w-full bg-[#111111]">
         <div className="flex items-center justify-between px-4 py-3 border-b border-gray-700">
           <button className="text-gray-200 hover:text-white" onClick={() => console.log("Open menu")}>
             <List size={24} />
           </button>
-          <div className="text-xl font-semibold">Learning By AI</div>
+          <div className="text-xl font-semibold">Chat with AI</div>
           <button className="text-gray-200 hover:text-white" onClick={() => router.push("/")}>
             <Home size={24} />
           </button>
@@ -217,7 +217,7 @@ export default function Main() {
         <div className="text-center text-sm text-gray-400 mt-1 mb-1">Bộ nhớ đã lưu đã đầy</div>
       </div>
 
-      <div className="mt-[82px] mb-[100px] flex-1 flex flex-col px-4 py-4 overflow-y-auto h-full space-y-4 custom-scroll bg-[#111111] pb-7">
+      <div className="mt-[82px] mb-[0px] flex-1 flex flex-col px-4 py-4 overflow-y-auto h-full space-y-4 custom-scroll bg-[#111111] pb-7">
         {messages.length === 0 ? (
           <div className="flex flex-col justify-center h-[360px] items-center text-center text-gray-400 flex-grow">
             <h1 className="text-2xl font-medium mb-2">Chào {user?.username ? user.username : "bạn"}?</h1>
@@ -294,7 +294,7 @@ export default function Main() {
         </div>
       )}
 
-      <div className="fixed bottom-0 left-0 w-full z-10 px-3 py-2 bg-[#111111]">
+      <div className="bottom-0 left-0 w-full z-10 px-3 py-2 bg-[#111111]">
         <div className="flex flex-col items-end gap-4 bg-[#202020] rounded-2xl px-4 py-2">
           <div className="flex-1 w-full">
             <textarea
