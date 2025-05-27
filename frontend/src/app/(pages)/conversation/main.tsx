@@ -59,18 +59,13 @@ export default function Main() {
 
     if (isRegenerate) {
       setMessages((prev) => prev.slice(0, -1));
-    } else {
-      const userMessage: Message = { role: "user", content: inputPrompt };
-      setMessages((prev) => [...prev, userMessage]);
-      setTopic("");
-      setSelectedTopic(inputPrompt); // Lưu chủ đề đã chọn
     }
 
     setIsThinking(true);
 
     try {
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/chat`,
+        `${process.env.NEXT_PUBLIC_API_URL}/chat/communicate`,
         {
           prompt: inputPrompt,
           history: messages.slice(-20),
@@ -82,18 +77,10 @@ export default function Main() {
 
       if (res.status !== 200) throw new Error("Lỗi API");
 
-      const ttsRes = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/tts`,
-        { text: res.data.script },
-        { headers: { "Content-Type": "application/json" } }
-      );
-
-      if (ttsRes.status !== 200) throw new Error("Lỗi API TTS");
-
       const botMessage: Message = {
         role: "bot",
         content: res.data.script || "Không có phản hồi.",
-        audioUrl: ttsRes.data.audioUrl || "",
+        audioUrl: res.data.audioUrl || "",
       };
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
@@ -121,9 +108,11 @@ export default function Main() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey  && !isRecording && topic.trim() !== "") { 
       e.preventDefault();
       sendMessage();
+      setTopic("");
+      setSelectedTopic(topic);
     }
   };
 
@@ -257,7 +246,11 @@ export default function Main() {
                 {suggestedTopics.map((topic, idx) => (
                   <button
                     key={idx}
-                    onClick={() => sendMessage(topic)}
+                    onClick={() => {
+                      sendMessage(topic);
+                      setTopic("");
+                      setSelectedTopic(topic);
+                    }}
                     className="px-3 py-1 bg-[#323232d9] rounded-lg text-sm text-white hover:bg-[#4a4a4a]"
                   >
                     {topic}
@@ -376,7 +369,11 @@ export default function Main() {
                     {suggestedTopics.map((suggestedTopic, idx) => (
                       <button
                         key={idx}
-                        onClick={() => sendMessage(suggestedTopic)}
+                        onClick={() => {
+                          sendMessage(suggestedTopic);
+                          setTopic("");
+                          setSelectedTopic(suggestedTopic);
+                        }}
                         className="px-3 py-1 bg-[#323232d9] rounded-lg text-sm text-white hover:bg-[#4a4a4a]"
                       >
                         {suggestedTopic}
@@ -405,7 +402,7 @@ export default function Main() {
                   className={isRecording ? "text-gray-500" : "text-white"}
                 />
               </button>
-              {selectedTopic && (
+              {!selectedTopic && (
                 <button onClick={() => sendMessage()} aria-label="Gửi tin nhắn" className="flex gap-3">
                   <Send size={20} className="text-white" />
                 </button>
