@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
-import { Plus, Settings2, Mic, Send, Copy, RefreshCw, Home, List, X, Volume2, Edit2 } from "lucide-react";
+import { Plus, Settings2, Mic, Send, Copy, RefreshCw, Home, List, X, Volume2, Edit2, Languages, Check } from "lucide-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { SessionStorage } from "@/storage/sessionStorage";
@@ -8,6 +8,7 @@ import { SessionStorage } from "@/storage/sessionStorage";
 type Message = {
   role: "user" | "bot";
   content: string;
+  translatedContent?: string;
   audioUrl?: string;
 };
 
@@ -30,15 +31,21 @@ export default function Main() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
+  const [audioCurrent, setAudioCurrent] = useState<string | null>(null);
+  const playAudioRef = useRef<HTMLAudioElement | null>(null);
+  const [showTranslated, setShowTranslated] = useState(false);
+  const [message, setMessage] = useState<Message | null>(null);
   const router = useRouter();
 
   // Danh sách gợi ý chủ đề
   const suggestedTopics = [
-    "Luyện nói về du lịch",
+    "Ước mơ và mục tiêu",
+    "Sở thích và đam mê",
     "Thảo luận về công nghệ",
-    "Học từ vựng về công việc",
     "Giao tiếp hàng ngày",
     "Chuẩn bị phỏng vấn",
+    "Chia sẻ kinh nghiệm du lịch",
+    "Tìm hiểu về văn hóa",
   ];
 
   useEffect(() => {
@@ -77,9 +84,13 @@ export default function Main() {
 
       if (res.status !== 200) throw new Error("Lỗi API");
 
+      if (res.data.audioUrl) {
+        playAudio(res.data.audioUrl);
+      }
       const botMessage: Message = {
         role: "bot",
         content: res.data.script || "Không có phản hồi.",
+        translatedContent: res.data.translatedScript || "",
         audioUrl: res.data.audioUrl || "",
       };
       setMessages((prev) => [...prev, botMessage]);
@@ -108,13 +119,25 @@ export default function Main() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && !e.shiftKey  && !isRecording && topic.trim() !== "") { 
+    if (e.key === "Enter" && !e.shiftKey && !isRecording && topic.trim() !== "") {
       e.preventDefault();
+      handleTopic(topic.trim());
       sendMessage();
-      setTopic("");
-      setSelectedTopic(topic);
     }
   };
+
+  const handleTopic = (topic: string) => {
+    const userMessage: Message = { role: "user", content: topic };
+    setMessages((prev) => [...prev, userMessage]);
+    setTopic("");
+    setSelectedTopic(topic);
+  }
+
+  const translateMessage = async (message: Message) => {
+    if (!message.content) return;  
+    setMessage(message);
+    setShowTranslated(true); 
+  }
 
   const startRecording = async () => {
     try {
@@ -208,12 +231,20 @@ export default function Main() {
   };
 
   const playAudio = (audioUrl?: string) => {
+    if (playAudioRef.current) {
+      playAudioRef.current.pause(); // Dừng phát âm thanh trước đó nếu có
+    }
     if (!audioUrl) {
       console.error("Không có URL âm thanh để phát");
       return;
     }
     const audio = new Audio(audioUrl);
+    playAudioRef.current = audio; // Lưu audio mới vào ref
+    setAudioCurrent(audioUrl);
     audio.play().catch((err) => console.error("Lỗi phát âm thanh:", err));
+    audio.onended = () => {
+      setAudioCurrent(null);
+    };
   };
 
   useEffect(() => {
@@ -239,7 +270,7 @@ export default function Main() {
         {messages.length === 0 ? (
           <div className="flex flex-col justify-center h-[360px] items-center text-center text-gray-400 flex-grow">
             <h1 className="text-2xl font-medium mb-2">Chào {user?.username ? user.username : "bạn"}?</h1>
-            <h1 className="text-2xl font-medium">Tôi có thể giúp gì cho bạn?</h1>
+            <h1 className="text-2xl font-medium">Chọn chủ đề để bắt đầu nói chuyện nào?</h1>
             <div className="mt-4">
               <h3 className="text-lg font-semibold text-gray-300 mb-2">Gợi ý chủ đề:</h3>
               <div className="flex flex-wrap gap-2 justify-center">
@@ -247,9 +278,8 @@ export default function Main() {
                   <button
                     key={idx}
                     onClick={() => {
+                      handleTopic(topic);
                       sendMessage(topic);
-                      setTopic("");
-                      setSelectedTopic(topic);
                     }}
                     className="px-3 py-1 bg-[#323232d9] rounded-lg text-sm text-white hover:bg-[#4a4a4a]"
                   >
@@ -268,16 +298,28 @@ export default function Main() {
                 : "p-1 self-start text-gray-300"
                 }`}
             >
-              <div className="flex-1 whitespace-pre-line break-words">{msg.content}</div>
-              {msg.audioUrl && (
-                <button
-                  onClick={() => playAudio(msg.audioUrl)}
-                  aria-label="Phát âm thanh"
-                  className="p-1 text-gray-400 hover:text-white mt-2"
-                >
-                  <Volume2 size={16} />
-                </button>
-              )}
+              <div className={`flex-1 whitespace-pre-line ${msg.role === "user" ? 'break-words' : ''}`}>{msg.content}</div>
+              <div className="flex gap-2">
+                {msg.audioUrl && (
+                  <button
+                    onClick={() => playAudio(msg.audioUrl)}
+                    aria-label="Phát âm thanh"
+                    className={`p-1 hover:text-white mt-2 ${audioCurrent === msg.audioUrl ? 'text-red-500' : 'text-gray-400'}`}
+                  >
+                    <Volume2 size={16} />
+                  </button>
+                )}
+                {msg.translatedContent && (
+                  <button
+                    onClick={() => translateMessage(msg)}
+                    aria-label="Phát âm thanh"
+                    className={`p-1 hover:text-white text-gray-400 mt-2 pb-0}`}
+                  >
+                    <Languages size={16} />
+                  </button>
+                )}
+
+              </div>
               {msg.role === "bot" && idx === messages.length - 1 && (
                 <div className="flex gap-2 mt-2">
                   <button
@@ -339,6 +381,25 @@ export default function Main() {
         </div>
       )}
 
+      {showTranslated && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="w-[80%] md:w-[768px] bg-[#171717] p-5 rounded-xl shadow-lg border border-[#262626] flex flex-col items-center">
+            <div className="flex w-full items-center mb-2">
+              <span className="text-sm w-full text-white">{message?.translatedContent}</span>
+            </div>
+            <div className="flex gap-3 w-full text-xs justify-end text-center mt-2">
+              <button
+                onClick={() => setShowTranslated(false)}
+                className="justify-center w-[100px] bg-[#202020] hover:bg-[#2c2c2c] text-white py-2 px-2 rounded-lg flex items-center"
+              >
+              <Check size={14} className="mr-1"/>
+                Done
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="fixed bottom-0 w-full md:w-[768px] z-10 px-3 py-2 bg-[#111111]">
         <div className="flex flex-col items-end gap-4 bg-[#202020] rounded-2xl px-4 py-2">
           <div className="flex-1 w-full">
@@ -350,8 +411,8 @@ export default function Main() {
                   aria-label="Thay đổi chủ đề"
                   className="p-2 bg-[#323232d9] rounded-lg text-sm text-white hover:bg-[#4a4a4a] flex items-center"
                 >
-                  <Edit2 size={16} className="mr-2" />
-                  Thay đổi chủ đề
+                  <Edit2 size={16} className="" />
+                  <p className="hidden md:inline md:ml-2">Thay đổi chủ đề</p>
                 </button>
               </div>
             ) : (
@@ -361,18 +422,17 @@ export default function Main() {
                   value={topic}
                   onChange={(e) => setTopic(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Nhập hoặc chọn chủ đề giao tiếp"
+                  placeholder="Nhập chủ đề bạn muốn giao tiếp cùng AI..."
                   className="w-full bg-transparent text-white placeholder-gray-400 focus:outline-none text-base p-2"
                 />
-                {messages.length === 0 && (
+                {/* {messages.length === 0 && (
                   <div className="flex flex-wrap gap-2 mt-2">
                     {suggestedTopics.map((suggestedTopic, idx) => (
                       <button
                         key={idx}
                         onClick={() => {
+                          handleTopic(suggestedTopic);
                           sendMessage(suggestedTopic);
-                          setTopic("");
-                          setSelectedTopic(suggestedTopic);
                         }}
                         className="px-3 py-1 bg-[#323232d9] rounded-lg text-sm text-white hover:bg-[#4a4a4a]"
                       >
@@ -380,7 +440,7 @@ export default function Main() {
                       </button>
                     ))}
                   </div>
-                )}
+                )} */}
               </>
             )}
           </div>
@@ -403,7 +463,11 @@ export default function Main() {
                 />
               </button>
               {!selectedTopic && (
-                <button onClick={() => sendMessage()} aria-label="Gửi tin nhắn" className="flex gap-3">
+                <button onClick={() => {
+                  if (topic.trim() === "") return;
+                  handleTopic(topic.trim());
+                  sendMessage()
+                }} aria-label="Gửi tin nhắn" className="flex gap-3">
                   <Send size={20} className="text-white" />
                 </button>
               )}

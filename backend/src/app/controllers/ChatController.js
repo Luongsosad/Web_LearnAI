@@ -1,3 +1,4 @@
+import { Transcriptions } from 'groq-sdk/resources/audio/transcriptions.mjs';
 import { generateScript } from '../../services/GroqChat.js';
 import { synthesizeGradioSpeech } from '../../services/TTS.js';
 
@@ -36,8 +37,34 @@ export const synthesizeCommunicate = async (req, res) => {
   }
   try {
     const result = await generateScript(prompt, history, 'communicate');
-    const Audio = await synthesizeGradioSpeech(result.script);
-    return res.status(200).json({ script: result.script, audioUrl: Audio });
+
+    // // Tách tiếng Anh và tiếng Việt
+    // const fullText = result.script;
+    // const match = fullText.match(/^(.*?)(?:\s*\((.*?)\))?$/s);
+
+    // let englishText = fullText;
+    // let vietnameseTranslation = '';
+
+    // if (match) {
+    //   englishText = match[1].trim();
+    //   vietnameseTranslation = match[2]?.trim() || '';
+    // }
+
+    // Lấy tất cả phần trong dấu ngoặc đơn
+    const matches = result.script.match(/\((.*?)\)/gs); // 's' để bắt xuống dòng
+
+    // Ghép lại làm bản dịch
+    const vietnameseTranslation = matches ? matches.map(m => m.slice(1, -1).trim()).join(' ') : '';
+
+    // Loại bỏ tất cả phần trong dấu ngoặc đơn khỏi đoạn gốc
+    const englishText = result.script.replace(/\s*\(.*?\)/gs, '').trim();
+    console.log("fullText:", result.script);
+    console.log('Kịch bản tiếng Anh:', englishText);
+    console.log('Phiên dịch tiếng Việt:', vietnameseTranslation);
+
+    const Audio = await synthesizeGradioSpeech(englishText);
+
+    return res.status(200).json({ script: englishText, translatedScript: vietnameseTranslation, audioUrl: Audio });
   }
   catch (error) {
     console.error('Lỗi controller:', error);
