@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
-import { Plus, Settings2, Mic, Send, Copy, RefreshCw, Home, List, X } from "lucide-react";
+import { Plus, Settings2, Mic, Send, Copy, RefreshCw, Home, List, X, Volume2, Edit2 } from "lucide-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { SessionStorage } from "@/storage/sessionStorage";
@@ -8,6 +8,7 @@ import { SessionStorage } from "@/storage/sessionStorage";
 type Message = {
   role: "user" | "bot";
   content: string;
+  audioUrl?: string;
 };
 
 interface User {
@@ -19,30 +20,31 @@ interface User {
 export default function Main() {
   const cancelAudioRef = useRef(false);
   const [user, setUser] = useState<User | null>(null);
-  const [text, setText] = useState("");
+  const [topic, setTopic] = useState("");
+  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [isThinking, setIsThinking] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [isProcessingAudio, setIsProcessingAudio] = useState(false);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const topicInputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
   const router = useRouter();
 
+  // Danh sách gợi ý chủ đề
+  const suggestedTopics = [
+    "Luyện nói về du lịch",
+    "Thảo luận về công nghệ",
+    "Học từ vựng về công việc",
+    "Giao tiếp hàng ngày",
+    "Chuẩn bị phỏng vấn",
+  ];
+
   useEffect(() => {
     const storedUser = SessionStorage.getUser();
     setUser(storedUser);
   }, []);
-
-  const handleInput = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    const textarea = textareaRef.current;
-    if (textarea) {
-      textarea.style.height = "auto";
-      textarea.style.height = `${textarea.scrollHeight}px`;
-    }
-    setText(e.currentTarget.value);
-  };
 
   const copyToClipboard = (content: string) => {
     navigator.clipboard.writeText(content).then(
@@ -52,7 +54,7 @@ export default function Main() {
   };
 
   const sendMessage = async (prompt?: string, isRegenerate: boolean = false) => {
-    const inputPrompt = prompt || text.trim();
+    const inputPrompt = prompt || topic.trim();
     if (!inputPrompt) return;
 
     if (isRegenerate) {
@@ -60,12 +62,8 @@ export default function Main() {
     } else {
       const userMessage: Message = { role: "user", content: inputPrompt };
       setMessages((prev) => [...prev, userMessage]);
-      setText("");
-      // Đặt lại chiều cao của textarea
-      const textarea = textareaRef.current;
-      if (textarea) {
-        textarea.style.height = "auto";
-      }
+      setTopic("");
+      setSelectedTopic(inputPrompt); // Lưu chủ đề đã chọn
     }
 
     setIsThinking(true);
@@ -84,9 +82,18 @@ export default function Main() {
 
       if (res.status !== 200) throw new Error("Lỗi API");
 
+      const ttsRes = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/tts`,
+        { text: res.data.script },
+        { headers: { "Content-Type": "application/json" } }
+      );
+
+      if (ttsRes.status !== 200) throw new Error("Lỗi API TTS");
+
       const botMessage: Message = {
         role: "bot",
         content: res.data.script || "Không có phản hồi.",
+        audioUrl: ttsRes.data.audioUrl || "",
       };
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
@@ -113,7 +120,7 @@ export default function Main() {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
@@ -151,6 +158,12 @@ export default function Main() {
           const transcribedText = res.data.text || "";
           if (transcribedText) {
             setIsProcessingAudio(false);
+            const userMessage: Message = {
+              role: "user",
+              content: transcribedText,
+              audioUrl: URL.createObjectURL(audioBlob),
+            };
+            setMessages((prev) => [...prev, userMessage]);
             await sendMessage(transcribedText);
           } else {
             setMessages((prev) => [
@@ -198,6 +211,22 @@ export default function Main() {
     }
   };
 
+  const changeTopic = () => {
+    setMessages([]); // Xóa lịch sử tin nhắn
+    setSelectedTopic(null); // Reset chủ đề
+    setTopic(""); // Xóa nội dung ô input
+    audioChunksRef.current = []; // Xóa dữ liệu audio
+  };
+
+  const playAudio = (audioUrl?: string) => {
+    if (!audioUrl) {
+      console.error("Không có URL âm thanh để phát");
+      return;
+    }
+    const audio = new Audio(audioUrl);
+    audio.play().catch((err) => console.error("Lỗi phát âm thanh:", err));
+  };
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isThinking, isProcessingAudio]);
@@ -209,12 +238,12 @@ export default function Main() {
           <button className="text-gray-200 hover:text-white" onClick={() => console.log("Open menu")}>
             <List size={24} />
           </button>
-          <div className="text-xl font-semibold">Chat with AI</div>
+          <div className="text-xl font-semibold">Communicate with AI</div>
           <button className="text-gray-200 hover:text-white" onClick={() => router.push("/")}>
             <Home size={24} />
           </button>
         </div>
-        <div className="text-center text-sm text-gray-400 mt-1 mb-1">Leaning By AI</div>
+        <div className="text-center text-sm text-gray-400 mt-1 mb-1">Learning By AI</div>
       </div>
 
       <div className="mt-[82px] mb-[100px] flex-1 flex flex-col px-4 py-4 overflow-y-auto h-full space-y-4 custom-scroll bg-[#111111] pb-7">
@@ -222,6 +251,20 @@ export default function Main() {
           <div className="flex flex-col justify-center h-[360px] items-center text-center text-gray-400 flex-grow">
             <h1 className="text-2xl font-medium mb-2">Chào {user?.username ? user.username : "bạn"}?</h1>
             <h1 className="text-2xl font-medium">Tôi có thể giúp gì cho bạn?</h1>
+            <div className="mt-4">
+              <h3 className="text-lg font-semibold text-gray-300 mb-2">Gợi ý chủ đề:</h3>
+              <div className="flex flex-wrap gap-2 justify-center">
+                {suggestedTopics.map((topic, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => sendMessage(topic)}
+                    className="px-3 py-1 bg-[#323232d9] rounded-lg text-sm text-white hover:bg-[#4a4a4a]"
+                  >
+                    {topic}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         ) : (
           messages.map((msg, idx) => (
@@ -233,6 +276,15 @@ export default function Main() {
                 }`}
             >
               <div className="flex-1 whitespace-pre-line break-words">{msg.content}</div>
+              {msg.audioUrl && (
+                <button
+                  onClick={() => playAudio(msg.audioUrl)}
+                  aria-label="Phát âm thanh"
+                  className="p-1 text-gray-400 hover:text-white mt-2"
+                >
+                  <Volume2 size={16} />
+                </button>
+              )}
               {msg.role === "bot" && idx === messages.length - 1 && (
                 <div className="flex gap-2 mt-2">
                   <button
@@ -297,18 +349,43 @@ export default function Main() {
       <div className="absolute bottom-0 left-0 w-full z-10 px-3 py-2 bg-[#111111]">
         <div className="flex flex-col items-end gap-4 bg-[#202020] rounded-2xl px-4 py-2">
           <div className="flex-1 w-full">
-            <textarea
-              ref={textareaRef}
-              value={text}
-              onInput={handleInput}
-              onKeyDown={handleKeyDown}
-              onFocus={() => {
-                textareaRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-              }}
-              rows={1}
-              placeholder="Hỏi bất kỳ điều gì"
-              className="w-full bg-transparent resize-none overflow-hidden text-white placeholder-gray-400 focus:outline-none text-base pt-2"
-            />
+            {selectedTopic ? (
+              <div className="flex items-center justify-between w-full">
+                <span className="text-white text-base p-2">{selectedTopic}</span>
+                <button
+                  onClick={changeTopic}
+                  aria-label="Thay đổi chủ đề"
+                  className="p-2 bg-[#323232d9] rounded-lg text-sm text-white hover:bg-[#4a4a4a] flex items-center"
+                >
+                  <Edit2 size={16} className="mr-2" />
+                  Thay đổi chủ đề
+                </button>
+              </div>
+            ) : (
+              <>
+                <input
+                  ref={topicInputRef}
+                  value={topic}
+                  onChange={(e) => setTopic(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Nhập hoặc chọn chủ đề giao tiếp"
+                  className="w-full bg-transparent text-white placeholder-gray-400 focus:outline-none text-base p-2"
+                />
+                {messages.length === 0 && (
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {suggestedTopics.map((suggestedTopic, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => sendMessage(suggestedTopic)}
+                        className="px-3 py-1 bg-[#323232d9] rounded-lg text-sm text-white hover:bg-[#4a4a4a]"
+                      >
+                        {suggestedTopic}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </>
+            )}
           </div>
           <div className="flex w-full justify-between pb-1">
             <div className="flex gap-2">
@@ -328,9 +405,11 @@ export default function Main() {
                   className={isRecording ? "text-gray-500" : "text-white"}
                 />
               </button>
-              <button onClick={() => sendMessage()} aria-label="Gửi tin nhắn" className="flex gap-3">
-                <Send size={20} className="text-white" />
-              </button>
+              {selectedTopic && (
+                <button onClick={() => sendMessage()} aria-label="Gửi tin nhắn" className="flex gap-3">
+                  <Send size={20} className="text-white" />
+                </button>
+              )}
             </div>
           </div>
         </div>

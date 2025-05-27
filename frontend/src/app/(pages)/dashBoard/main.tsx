@@ -82,7 +82,7 @@ export default function Main() {
           {/* AI Voice Conversation */}
           <div
             className="flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
-            onClick={() => handleServiceClick("/ai-voice-conversation")}
+            onClick={() => handleServiceClick("/conversation")}
           >
             <Headphones className="w-6 h-6 text-orange-400 mr-4" />
             <div>
