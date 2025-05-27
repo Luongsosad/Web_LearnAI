@@ -346,7 +346,7 @@ export default function Main() {
         </div>
       )}
 
-      <div className="absolute bottom-0 left-0 w-full z-10 px-3 py-2 bg-[#111111]">
+      <div className="fixed bottom-0 w-full md:w-[768px] z-10 px-3 py-2 bg-[#111111]">
         <div className="flex flex-col items-end gap-4 bg-[#202020] rounded-2xl px-4 py-2">
           <div className="flex-1 w-full">
             {selectedTopic ? (

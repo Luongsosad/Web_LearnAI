@@ -19,7 +19,7 @@ function Edit() {
     return (
         <div className="overflow-hidden h-screen flex w-full mx-auto custom-scroll">
             <div className="w-[0] md:w-full"></div>
-            <div className="w-full h-screen md:min-w-[768px] relative">
+            <div className="w-full h-screen md:min-w-[768px]">
                 <Main />
             </div>
             <div className="w-[0] md:w-full"></div>
