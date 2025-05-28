@@ -84,15 +84,17 @@ export default function Main() {
 
       if (res.status !== 200) throw new Error("Lỗi API");
 
-      if (res.data.audioUrl) {
-        playAudio(res.data.audioUrl);
-      }
       const botMessage: Message = {
         role: "bot",
         content: res.data.script || "Không có phản hồi.",
         translatedContent: res.data.translatedScript || "",
         audioUrl: res.data.audioUrl || "",
       };
+
+      if (res.data.audioUrl) {
+        playAudio(res.data.audioUrl);
+      }
+
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
       console.error("Lỗi khi gọi API:", error);
@@ -109,6 +111,12 @@ export default function Main() {
   };
 
   const regenerateMessage = () => {
+    if (playAudioRef.current) {
+      playAudioRef.current.pause();
+      playAudioRef.current.src = "";
+      playAudioRef.current = null;
+      setAudioCurrent(null);
+    }
     const lastUserMessage = messages
       .slice()
       .reverse()
@@ -134,12 +142,18 @@ export default function Main() {
   }
 
   const translateMessage = async (message: Message) => {
-    if (!message.content) return;  
+    if (!message.content) return;
     setMessage(message);
-    setShowTranslated(true); 
+    setShowTranslated(true);
   }
 
   const startRecording = async () => {
+    if (playAudioRef.current) {
+      playAudioRef.current.pause();
+      playAudioRef.current.src = "";
+      playAudioRef.current = null;
+      setAudioCurrent(null);
+    }
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       mediaRecorderRef.current = new MediaRecorder(stream);
@@ -232,7 +246,10 @@ export default function Main() {
 
   const playAudio = (audioUrl?: string) => {
     if (playAudioRef.current) {
-      playAudioRef.current.pause(); // Dừng phát âm thanh trước đó nếu có
+      playAudioRef.current.pause();
+      playAudioRef.current.src = "";
+      playAudioRef.current = null;
+      setAudioCurrent(null);
     }
     if (!audioUrl) {
       console.error("Không có URL âm thanh để phát");
@@ -244,6 +261,7 @@ export default function Main() {
     audio.play().catch((err) => console.error("Lỗi phát âm thanh:", err));
     audio.onended = () => {
       setAudioCurrent(null);
+      playAudioRef.current = null;
     };
   };
 
@@ -392,7 +410,7 @@ export default function Main() {
                 onClick={() => setShowTranslated(false)}
                 className="justify-center w-[100px] bg-[#202020] hover:bg-[#2c2c2c] text-white py-2 px-2 rounded-lg flex items-center"
               >
-              <Check size={14} className="mr-1"/>
+                <Check size={14} className="mr-1" />
                 Done
               </button>
             </div>
