@@ -57,7 +57,8 @@ export const synthesizeCommunicate = async (req, res) => {
     const vietnameseTranslation = matches ? matches.map(m => m.slice(1, -1).trim()).join(' ') : '';
 
     // Loại bỏ tất cả phần trong dấu ngoặc đơn khỏi đoạn gốc
-    const englishText = result.script.replace(/\s*\(.*?\)/gs, '').trim();
+    let englishText = result.script.replace(/\s*\(.*?\)/gs, '').trim();
+    englishText = englishText.replace(/"/g, '').trim();
     console.log("fullText:", result.script);
     console.log('Kịch bản tiếng Anh:', englishText);
     console.log('Phiên dịch tiếng Việt:', vietnameseTranslation);

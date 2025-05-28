@@ -86,7 +86,7 @@ export default function Main() {
           >
             <Headphones className="w-6 h-6 text-orange-400 mr-4" />
             <div>
-              <h3 className="text-lg font-semibold text-white">Luyện giao tiếp AI</h3>
+              <h3 className="text-lg font-semibold text-white">Luyện giao tiếp với AI</h3>
               <p className="text-gray-400 text-sm">Luyện nói tiếng Anh trực tiếp với AI qua hội thoại.</p>
             </div>
           </div>
