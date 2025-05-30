@@ -214,7 +214,7 @@ export default function Main() {
             <Home size={24} />
           </button>
         </div>
-        <div className="text-center text-sm text-gray-400 mt-1 mb-1">Leaning By AI</div>
+        <div className="text-center text-sm text-gray-400 mt-1 mb-1">Leaning by AI</div>
       </div>
 
       <div className="mt-[82px] mb-[100px] flex-1 flex flex-col px-4 py-4 overflow-y-auto h-full space-y-4 custom-scroll bg-[#111111] pb-7">

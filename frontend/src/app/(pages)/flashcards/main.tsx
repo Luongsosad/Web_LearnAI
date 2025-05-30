@@ -118,7 +118,7 @@ export default function Vocabulary() {
             <Home size={24} />
           </button>
         </div>
-        <div className="text-center text-sm text-gray-400 mt-1 mb-1">Học bằng AI</div>
+        <div className="text-center text-sm text-gray-400 mt-1 mb-1">Learning by AI</div>
       </div>
 
       <div className="max-w-3xl mx-auto w-full mt-[72px] md:mt-[82px]">
