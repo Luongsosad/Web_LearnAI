@@ -270,7 +270,7 @@ export default function Main() {
   }, [messages, isThinking, isProcessingAudio]);
 
   return (
-    <div className="w-full flex flex-col h-screen text-white overflow-hidden custom-scroll">
+    <div className="w-full flex flex-col h-screen text-white overflow-hidden">
       <div className="fixed top-0 left-0 w-full bg-[#111111]">
         <div className="flex items-center justify-between px-4 py-3 border-b border-gray-700">
           <button className="text-gray-200 hover:text-white" onClick={() => console.log("Open menu")}>

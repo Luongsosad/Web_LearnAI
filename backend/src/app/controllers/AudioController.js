@@ -1,5 +1,6 @@
 import formidable from 'formidable';
 import { generateTextFromAudio } from '../../services/GroqAudioToText.js';
+import { synthesizeGradioSpeech } from '../../services/TTS.js';
 
 // Hàm parseForm để xử lý file upload
 function parseForm(req) {
@@ -36,6 +37,29 @@ export const synthesizeAudio = async (req, res) => {
       return res.status(400).json(result);
     }
     return res.status(200).json(result);
+  } catch (error) {
+    console.error('Lỗi controller:', error.message);
+    return res.status(500).json({ error: 'Lỗi server khi xử lý phiên âm.' });
+  }
+};
+
+export const synthesizeTTS = async (req, res) => {
+  try {
+    // Kiểm tra phương thức
+    if (req.method !== 'POST') {
+      return res.status(405).json({ error: 'Phương thức không được hỗ trợ.' });
+    }
+    const { text } = req.body;
+
+    // Kiểm tra prompt    
+    if (!text || typeof text !== 'string' || text.trim() === '') {
+      return res.status(400).json({ error: 'Thiếu nội dung.' });
+    }
+
+    const Audio = await synthesizeGradioSpeech(text);
+
+    return res.status(200).json({ audioUrl: Audio });
+
   } catch (error) {
     console.error('Lỗi controller:', error.message);
     return res.status(500).json({ error: 'Lỗi server khi xử lý phiên âm.' });
