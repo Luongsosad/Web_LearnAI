@@ -3,7 +3,6 @@ import React from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import Main from './main'
-import { div } from 'framer-motion/client';
 function Edit() {
     useEffect(() => {
         const awake = async () => {

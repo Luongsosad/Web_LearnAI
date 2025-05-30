@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { ArrowLeft, Lamp, Sidebar, Volume2 } from "lucide-react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import FlagCard from './tabFlagCard';
 import Test from './tabTest';
 import { useSidebarStore } from "@/storage/sidebarState";
@@ -34,7 +33,6 @@ export default function Vocabulary() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [tab, setTab] = useState(0); // 0: Chọn loại từ vựng, 1: Chọn chủ đề, 2: Danh sách từ vựng, 3: Test, 4: Flag Card
-  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {

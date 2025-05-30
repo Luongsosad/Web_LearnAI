@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
+  LucideIcon,
   MessageCircle,
   BookOpen,
   Mic,
@@ -126,7 +127,7 @@ function NavItem({
   label,
   onClick,
 }: {
-  icon: any;
+  icon: LucideIcon;
   label: string;
   onClick: () => void;
 }) {

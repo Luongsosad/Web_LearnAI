@@ -2,7 +2,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Plus, Settings2, Mic, Send, Copy, RefreshCw, Sidebar, X, History } from "lucide-react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import { SessionStorage } from "@/storage/sessionStorage";
 import { useSidebarStore } from "@/storage/sidebarState";
 
@@ -30,7 +29,6 @@ export default function Main() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
-  const router = useRouter();
 
   useEffect(() => {
     const storedUser = SessionStorage.getUser();

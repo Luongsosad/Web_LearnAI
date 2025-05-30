@@ -2,7 +2,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Plus, Settings2, Mic, Send, Copy, RefreshCw, History, Sidebar, X, Volume2, Edit2, Languages, Check } from "lucide-react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import { SessionStorage } from "@/storage/sessionStorage";
 import { useSidebarStore } from "@/storage/sidebarState";
 
@@ -37,7 +36,6 @@ export default function Main() {
   const playAudioRef = useRef<HTMLAudioElement | null>(null);
   const [showTranslated, setShowTranslated] = useState(false);
   const [message, setMessage] = useState<Message | null>(null);
-  const router = useRouter();
 
   // Danh sách gợi ý chủ đề
   const suggestedTopics = [
