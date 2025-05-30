@@ -176,10 +176,10 @@ export default function Test({ vocabularyData, setVocabularyData, selectedTest, 
 							Tổng số từ: {totalWords} | Đã thuộc: {learnedCount} | Chưa thuộc: {unlearnedCount}
 						</div>
 						<button
-							onClick={() => setTab(1)} // Return to category list
+							onClick={() => setTab(2)} // Return to category list
 							className="p-2 bg-blue-500 hover:bg-blue-600 rounded-lg text-white mt-4"
 						>
-							Quay lại danh sách chủ đề
+							Quay lại danh sách
 						</button>
 					</motion.div>
 				)}

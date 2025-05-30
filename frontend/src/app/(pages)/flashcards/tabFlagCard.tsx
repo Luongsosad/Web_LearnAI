@@ -183,15 +183,15 @@ export default function FlagCard({ vocabularyData, setVocabularyData, selectedTe
                                 Chưa thuộc: {unlearnedCount}
                             </div>
                         </div>
-                        {/* <button
+                        <button
                             onClick={() => {
                                 setShuffledWords([]);
-                                setTab(1); // Return to category list
+                                setTab(2); // Return to category list
                             }}
                             className="p-2 bg-blue-500 hover:bg-blue-600 rounded-lg text-white mt-4"
                         >
-                            Quay lại danh sách chủ đề
-                        </button> */}
+                            Quay lại danh sách
+                        </button>
                     </motion.div>
                 )}
             </AnimatePresence>
