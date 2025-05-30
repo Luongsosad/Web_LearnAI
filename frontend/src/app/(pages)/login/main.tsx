@@ -23,7 +23,7 @@ export default function Main() {
       token: "fake-token-123",
     };
     SessionStorage.saveUser(user); // Lưu vào sessionStorage
-    router.push("/");
+    window.location.href = "/";
   };
 
   return (

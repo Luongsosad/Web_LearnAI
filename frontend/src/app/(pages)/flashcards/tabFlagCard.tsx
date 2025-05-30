@@ -135,7 +135,7 @@ export default function FlagCard({ vocabularyData, setVocabularyData, selectedTe
                         onClick={() => toggleFlipCard(currentWordIndex)}
                         {...handlers}
                     >
-                        <div className={`card min-w-[300px] min-h-[400px] ${flippedCards.includes(currentWordIndex) ? "flipped" : ""}`}>
+                        <div className={`card min-w-[300px] min-h-[360px] ${flippedCards.includes(currentWordIndex) ? "flipped" : ""}`}>
                             <div className="card-front">
                                 <div className="text-2xl font-semibold text-center">
                                     {shuffledWords[currentWordIndex]["Từ vựng"]}

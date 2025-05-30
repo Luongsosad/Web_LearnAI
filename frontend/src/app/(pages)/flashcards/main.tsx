@@ -1,10 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { ArrowLeft, Home, List, Volume2 } from "lucide-react";
+import { ArrowLeft, Lamp, Sidebar, Volume2 } from "lucide-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import FlagCard from './tabFlagCard';
 import Test from './tabTest';
+import { useSidebarStore } from "@/storage/sidebarState";
 
 interface Word {
   STT: number;
@@ -27,6 +28,7 @@ interface VocabularyData {
 }
 
 export default function Vocabulary() {
+  const { toggle } = useSidebarStore();
   const [vocabularyData, setVocabularyData] = useState<VocabularyData>({ TOEIC_Vocabulary: [] });
   const [selectedTest, setSelectedTest] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -110,12 +112,12 @@ export default function Vocabulary() {
 
       <div className="fixed top-0 left-0 w-full bg-[#111111]">
         <div className="flex items-center justify-between px-4 py-3 border-b border-gray-700">
-          <button className="text-gray-200 hover:text-white" onClick={() => console.log("Mở menu")}>
-            <List size={24} />
+          <button className="text-gray-200 hover:text-white" onClick={() => toggle()}>
+            <Sidebar size={24} />
           </button>
           <div className="text-xl font-semibold">Thẻ ghi nhớ</div>
-          <button className="text-gray-200 hover:text-white" onClick={() => router.push("/")}>
-            <Home size={24} />
+          <button className="text-gray-200 hover:text-white" onClick={() => console.log("Lamp")}>
+            <Lamp size={24} />
           </button>
         </div>
         <div className="text-center text-sm text-gray-400 mt-1 mb-1">Learning by AI</div>
@@ -159,7 +161,7 @@ export default function Vocabulary() {
             </div>
             <h2 className="text-xl font-semibold text-gray-400">Danh sách chủ đề</h2>
             <div className="overflow-hidden custom-scroll overflow-y-auto max-h-screen w-full flex-col">
-              <div className="mb-[200px]">
+              <div className="mb-[400px]">
                 {vocabularyData[selectedTest!]?.map((category: Category) => (
                   <button
                     key={category.Category}
@@ -210,7 +212,7 @@ export default function Vocabulary() {
             </div>
             {tab === 2 && <div className="flex gap-2 mb-1">
               <button
-                onClick={() => setTab(3)}
+                onClick={() => setTab(2)}
                 className="p-2 bg-green-500 hover:bg-green-600 rounded-lg text-white w-fit"
               >
                 Chế độ kiểm tra
@@ -224,7 +226,7 @@ export default function Vocabulary() {
             </div>}
             {tab === 2 ?
               <div className="overflow-hidden custom-scroll overflow-y-auto max-h-screen w-full flex-col">
-                <div className="mb-[224px]">
+                <div className="mb-[400px]">
                   {vocabularyData[selectedTest!]?.find((cat: Category) => cat.Category === selectedCategory)?.Words.map((word: Word) => (
                     <div key={word.STT} className="p-4 bg-[#323232] rounded-lg mb-3">
                       <div className="flex items-center gap-2">

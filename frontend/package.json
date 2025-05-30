@@ -22,7 +22,8 @@
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
     "react-swipeable": "^7.0.2",
-    "swipeable": "^1.0.5"
+    "swipeable": "^1.0.5",
+    "zustand": "^5.0.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

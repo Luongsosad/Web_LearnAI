@@ -1,9 +1,10 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
-import { Plus, Settings2, Mic, Send, Copy, RefreshCw, Home, List, X, Volume2, Edit2, Languages, Check } from "lucide-react";
+import { Plus, Settings2, Mic, Send, Copy, RefreshCw, History, Sidebar, X, Volume2, Edit2, Languages, Check } from "lucide-react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { SessionStorage } from "@/storage/sessionStorage";
+import { useSidebarStore } from "@/storage/sidebarState";
 
 type Message = {
   role: "user" | "bot";
@@ -19,6 +20,7 @@ interface User {
 }
 
 export default function Main() {
+  const { toggle } = useSidebarStore();
   const cancelAudioRef = useRef(false);
   const [user, setUser] = useState<User | null>(null);
   const [topic, setTopic] = useState("");
@@ -273,12 +275,12 @@ export default function Main() {
     <div className="w-full flex flex-col h-screen text-white overflow-hidden">
       <div className="fixed top-0 left-0 w-full bg-[#111111]">
         <div className="flex items-center justify-between px-4 py-3 border-b border-gray-700">
-          <button className="text-gray-200 hover:text-white" onClick={() => console.log("Open menu")}>
-            <List size={24} />
+          <button className="text-gray-200 hover:text-white" onClick={() => toggle()}>
+            <Sidebar size={24} />
           </button>
           <div className="text-xl font-semibold">Communicate with AI</div>
-          <button className="text-gray-200 hover:text-white" onClick={() => router.push("/")}>
-            <Home size={24} />
+          <button className="text-gray-200 hover:text-white" onClick={() => console.log("History")}>
+            <History size={24} />
           </button>
         </div>
         <div className="text-center text-sm text-gray-400 mt-1 mb-1">Learning by AI</div>
