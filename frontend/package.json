@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "cross-env PORT=9999 next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -14,12 +14,15 @@
     "@reduxjs/toolkit": "^2.8.2",
     "axios": "^1.9.0",
     "formidable": "^3.5.4",
+    "framer-motion": "^12.15.0",
     "groq-sdk": "^0.22.0",
     "lucide-react": "^0.511.0",
     "next": "^15.1.8",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-redux": "^9.2.0"
+    "react-redux": "^9.2.0",
+    "react-swipeable": "^7.0.2",
+    "swipeable": "^1.0.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -27,6 +30,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cross-env": "^7.0.3",
     "eslint": "^9",
     "eslint-config-next": "15.1.8",
     "postcss": "^8",

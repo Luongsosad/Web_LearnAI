@@ -1,0 +1,4454 @@
+{
+    "TOEIC_Vocabulary": [
+        {
+            "Category": "Contract (Hợp đồng)",
+            "Words": [
+                {
+                    "STT": 1,
+                    "Từ vựng": "abide by",
+                    "Phiên âm": "/əˈbaɪd baɪ/",
+                    "Nghĩa": "tuân thủ, tuân theo",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 2,
+                    "Từ vựng": "agreement",
+                    "Phiên âm": "/əˈɡriː.mənt/",
+                    "Nghĩa": "sự thỏa thuận, hợp đồng (= contract)",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 3,
+                    "Từ vựng": "assurance",
+                    "Phiên âm": "/əˈʃʊr.əns/",
+                    "Nghĩa": "sự đảm bảo (n), đảm bảo (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 4,
+                    "Từ vựng": "cancellation",
+                    "Phiên âm": "/ˌkæn.səlˈeɪ.ʃən/",
+                    "Nghĩa": "sự hủy bỏ, chấm dứt",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 5,
+                    "Từ vựng": "determine",
+                    "Phiên âm": "/dɪˈtɜːrmɪn/",
+                    "Nghĩa": "xác định",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 6,
+                    "Từ vựng": "engage",
+                    "Phiên âm": "/ɪnˈɡeɪdʒ/",
+                    "Nghĩa": "tham dự",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 7,
+                    "Từ vựng": "establish",
+                    "Phiên âm": "/ɪˈstæblɪʃ/",
+                    "Nghĩa": "thành lập, thiết lập",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 8,
+                    "Từ vựng": "obligate",
+                    "Phiên âm": "/ˈɑːblɪɡeɪt/",
+                    "Nghĩa": "bắt buộc",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 9,
+                    "Từ vựng": "party",
+                    "Phiên âm": "/ˈpɑːrti/",
+                    "Nghĩa": "bên (tham gia hợp đồng)",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 10,
+                    "Từ vựng": "provision",
+                    "Phiên âm": "/prəˈvɪʒ.ən/",
+                    "Nghĩa": "sự cung cấp, chu cấp, điều khoản",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 11,
+                    "Từ vựng": "resolve",
+                    "Phiên âm": "/rɪˈzɔːlv/",
+                    "Nghĩa": "giải quyết, quyết định",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 12,
+                    "Từ vựng": "specific",
+                    "Phiên âm": "/spəˈsɪf.ɪk/",
+                    "Nghĩa": "cụ thể",
+                    "Loại từ": "adj"
+                }
+            ]
+        },
+        {
+            "Category": "Marketing (Tiếp thị)",
+            "Words": [
+                {
+                    "STT": 13,
+                    "Từ vựng": "attract",
+                    "Phiên âm": "/əˈtrækt/",
+                    "Nghĩa": "thu hút, hấp dẫn",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 14,
+                    "Từ vựng": "compare",
+                    "Phiên âm": "/kəmˈper/",
+                    "Nghĩa": "so sánh, đối chiếu",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 15,
+                    "Từ vựng": "competition",
+                    "Phiên âm": "/ˌkɑːm.pəˈtɪʃ.ən/",
+                    "Nghĩa": "sự cạnh tranh, cuộc thi",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 16,
+                    "Từ vựng": "consume",
+                    "Phiên âm": "/kənˈsjuːm/",
+                    "Nghĩa": "tiêu thụ, sử dụng",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 17,
+                    "Từ vựng": "convince",
+                    "Phiên âm": "/kənˈvɪns/",
+                    "Nghĩa": "thuyết phục",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 18,
+                    "Từ vựng": "inspiration",
+                    "Phiên âm": "/ˌɪn.spəˈreɪ.ʃən/",
+                    "Nghĩa": "nguồn cảm hứng",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 19,
+                    "Từ vựng": "market",
+                    "Phiên âm": "/ˈmɑːrkɪt/",
+                    "Nghĩa": "thị trường",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 20,
+                    "Từ vựng": "persuasion",
+                    "Phiên âm": "/pɚˈsweɪ.ʒən/",
+                    "Nghĩa": "sự thuyết phục",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 21,
+                    "Từ vựng": "productive",
+                    "Phiên âm": "/prəˈdʌk.tɪv/",
+                    "Nghĩa": "năng suất",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 22,
+                    "Từ vựng": "satisfaction",
+                    "Phiên âm": "/ˌsæt̬.ɪsˈfæk.ʃən/",
+                    "Nghĩa": "sự hài lòng",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 23,
+                    "Từ vựng": "currently",
+                    "Phiên âm": "/ˈkɝː.ənt.li/",
+                    "Nghĩa": "hiện thời, hiện nay",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 24,
+                    "Từ vựng": "fad",
+                    "Phiên âm": "/fæd/",
+                    "Nghĩa": "mốt nhất thời",
+                    "Loại từ": "n"
+                }
+            ]
+        },
+        {
+            "Category": "Warranties (Bảo hành)",
+            "Words": [
+                {
+                    "STT": 25,
+                    "Từ vựng": "characteristic",
+                    "Phiên âm": "/ˌker.ək.təˈrɪs.tɪk/",
+                    "Nghĩa": "đặc thù (adj), đặc trưng, đặc điểm (n)",
+                    "Loại từ": "adj, n"
+                },
+                {
+                    "STT": 26,
+                    "Từ vựng": "consequence",
+                    "Phiên âm": "/ˈkɑːnsɪkwens/",
+                    "Nghĩa": "kết quả, hậu quả",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 27,
+                    "Từ vựng": "cover",
+                    "Phiên âm": "/ˈkʌvər/",
+                    "Nghĩa": "che phủ, bao gồm",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 28,
+                    "Từ vựng": "expiration",
+                    "Phiên âm": "/ˌek.spəˈreɪ.ʃən/",
+                    "Nghĩa": "sự hết hạn",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 29,
+                    "Từ vựng": "frequently",
+                    "Phiên âm": "/ˈfriːkwəntli/",
+                    "Nghĩa": "thường xuyên",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 30,
+                    "Từ vựng": "imply",
+                    "Phiên âm": "/ɪmˈplaɪ/",
+                    "Nghĩa": "ngụ ý, hàm ý",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 31,
+                    "Từ vựng": "promise",
+                    "Phiên âm": "/ˈprɑːmɪs/",
+                    "Nghĩa": "lời hứa, sự cam đoan (n), hứa, cam kết (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 32,
+                    "Từ vựng": "reputation",
+                    "Phiên âm": "/ˌrepjuˈteɪʃn/",
+                    "Nghĩa": "danh tiếng, thanh danh",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 33,
+                    "Từ vựng": "require",
+                    "Phiên âm": "/rɪˈkwaɪər/",
+                    "Nghĩa": "đòi hỏi, yêu cầu",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 34,
+                    "Từ vựng": "variety",
+                    "Phiên âm": "/vəˈraɪəti/",
+                    "Nghĩa": "sự đa dạng",
+                    "Loại từ": "n"
+                }
+            ]
+        },
+        {
+            "Category": "Business Planning (Kế hoạch kinh doanh)",
+            "Words": [
+                {
+                    "STT": 35,
+                    "Từ vựng": "address",
+                    "Phiên âm": "/əˈdres/",
+                    "Nghĩa": "trình bày (v), bài diễn văn (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 36,
+                    "Từ vựng": "avoid",
+                    "Phiên âm": "/əˈvɔɪd/",
+                    "Nghĩa": "phòng tránh, ngăn ngừa",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 37,
+                    "Từ vựng": "demonstrate",
+                    "Phiên âm": "/ˈdemənstreɪt/",
+                    "Nghĩa": "chứng minh, giải thích",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 38,
+                    "Từ vựng": "develop",
+                    "Phiên âm": "/dɪˈveləp/",
+                    "Nghĩa": "phát triển",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 39,
+                    "Từ vựng": "evaluate",
+                    "Phiên âm": "/ɪˈvæljueɪt/",
+                    "Nghĩa": "đánh giá, ước lượng",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 40,
+                    "Từ vựng": "gather",
+                    "Phiên âm": "/ˈɡæðər/",
+                    "Nghĩa": "tập hợp, thu thập",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 41,
+                    "Từ vựng": "offer",
+                    "Phiên âm": "/ˈɔːfər/",
+                    "Nghĩa": "đề xuất, đề nghị",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 42,
+                    "Từ vựng": "primarily",
+                    "Phiên âm": "/praɪˈmerəli/",
+                    "Nghĩa": "ưu tiên, chủ yếu",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 43,
+                    "Từ vựng": "risk",
+                    "Phiên âm": "/rɪsk/",
+                    "Nghĩa": "rủi ro, nguy cơ",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 44,
+                    "Từ vựng": "strategy",
+                    "Phiên âm": "/ˈstrætədʒi/",
+                    "Nghĩa": "chiến lược",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 45,
+                    "Từ vựng": "strengthen",
+                    "Phiên âm": "/ˈstreŋθn/",
+                    "Nghĩa": "làm mạnh, củng cố",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 46,
+                    "Từ vựng": "substitution",
+                    "Phiên âm": "/ˌsʌb.stəˈtuː.ʃən/",
+                    "Nghĩa": "sự thay thế (= replacement)",
+                    "Loại từ": "n"
+                }
+            ]
+        },
+        {
+            "Category": "Conferences (Hội nghị)",
+            "Words": [
+                {
+                    "STT": 47,
+                    "Từ vựng": "accommodate",
+                    "Phiên âm": "/əˈkɑːmədeɪt/",
+                    "Nghĩa": "cung cấp chỗ",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 48,
+                    "Từ vựng": "arrangement",
+                    "Phiên âm": "/əˈreɪndʒ.mənt/",
+                    "Nghĩa": "sự sắp xếp, sắp đặt",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 49,
+                    "Từ vựng": "association",
+                    "Phiên âm": "/əˌsoʊ.siˈeɪ.ʃən/",
+                    "Nghĩa": "liên hiệp, đoàn thể (= organization), sự liên hiệp",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 50,
+                    "Từ vựng": "attend",
+                    "Phiên âm": "/əˈtend/",
+                    "Nghĩa": "tham gia, tham dự",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 51,
+                    "Từ vựng": "get in touch with somebody",
+                    "Phiên âm": "",
+                    "Nghĩa": "liên lạc với ai, kết nối với ai (= connect)",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 52,
+                    "Từ vựng": "hold",
+                    "Phiên âm": "/hoʊld/",
+                    "Nghĩa": "tiến hành, tổ chức (= organize), chứa, đựng (= contain)",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 53,
+                    "Từ vựng": "location",
+                    "Phiên âm": "/loʊˈkeɪ.ʃən/",
+                    "Nghĩa": "vị trí, địa điểm",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 54,
+                    "Từ vựng": "overcrowded",
+                    "Phiên âm": "/ˌoʊvərˈkraʊdɪd/",
+                    "Nghĩa": "quá đông đúc, chật kín",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 55,
+                    "Từ vựng": "register",
+                    "Phiên âm": "/ˈredʒɪstər/",
+                    "Nghĩa": "hồ sơ, sổ sách (n), đăng ký (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 56,
+                    "Từ vựng": "select",
+                    "Phiên âm": "/sɪˈlekt/",
+                    "Nghĩa": "lựa chọn",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 57,
+                    "Từ vựng": "session",
+                    "Phiên âm": "/ˈseʃn/",
+                    "Nghĩa": "cuộc họp",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 58,
+                    "Từ vựng": "take part in",
+                    "Phiên âm": "/teɪk pɑːrt ɪn/",
+                    "Nghĩa": "tham gia vào",
+                    "Loại từ": "v"
+                }
+            ]
+        },
+        {
+            "Category": "Computers (Máy tính)",
+            "Words": [
+                {
+                    "STT": 59,
+                    "Từ vựng": "access",
+                    "Phiên âm": "/ˈækses/",
+                    "Nghĩa": "truy cập (v), quyền truy cập (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 60,
+                    "Từ vựng": "allocate",
+                    "Phiên âm": "/ˈæləkeɪt/",
+                    "Nghĩa": "phân phát, cấp cho",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 61,
+                    "Từ vựng": "compatible with something",
+                    "Phiên âm": "/kəmˈpætəbl/",
+                    "Nghĩa": "tương thích, tương xứng với cái gì",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 62,
+                    "Từ vựng": "delete",
+                    "Phiên âm": "/dɪˈliːt/",
+                    "Nghĩa": "xóa (= remove)",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 63,
+                    "Từ vựng": "display",
+                    "Phiên âm": "/dɪˈspleɪ/",
+                    "Nghĩa": "sự trưng bày, vật trưng bày (n), trưng bày, hiển thị (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 64,
+                    "Từ vựng": "duplicate",
+                    "Phiên âm": "/ˈduː.plə.keɪt/",
+                    "Nghĩa": "sao chép, nhân đôi (v), bản sao (n)",
+                    "Loại từ": "v, n"
+                },
+                {
+                    "STT": 65,
+                    "Từ vựng": "failure",
+                    "Phiên âm": "/ˈfeɪ.ljɚ/",
+                    "Nghĩa": "sự thất bại",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 66,
+                    "Từ vựng": "figure out",
+                    "Phiên âm": "/ˈfɪɡjər aʊt/",
+                    "Nghĩa": "hiểu ra, tìm ra",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 67,
+                    "Từ vựng": "ignore",
+                    "Phiên âm": "/ɪɡˈnɔːr/",
+                    "Nghĩa": "phớt lờ",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 68,
+                    "Từ vựng": "search",
+                    "Phiên âm": "/sɜːrtʃ/",
+                    "Nghĩa": "sự tìm kiếm (n), tìm kiếm (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 69,
+                    "Từ vựng": "shut down",
+                    "Phiên âm": "/ʃʌt daʊn/",
+                    "Nghĩa": "tắt",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 70,
+                    "Từ vựng": "warning",
+                    "Phiên âm": "/ˈwɔːr.nɪŋ/",
+                    "Nghĩa": "lời cảnh báo, sự cảnh báo",
+                    "Loại từ": "n"
+                }
+            ]
+        },
+        {
+            "Category": "Office Technology (Công nghệ văn phòng)",
+            "Words": [
+                {
+                    "STT": 71,
+                    "Từ vựng": "affordable",
+                    "Phiên âm": "/əˈfɔːr.də.bəl/",
+                    "Nghĩa": "có khả năng chi trả, phải chăng",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 72,
+                    "Từ vựng": "as needed",
+                    "Phiên âm": "/æz niːdɪd/",
+                    "Nghĩa": "khi cần thiết",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 73,
+                    "Từ vựng": "capacity",
+                    "Phiên âm": "/kəˈpæsəti/",
+                    "Nghĩa": "sức chứa, dung lượng",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 74,
+                    "Từ vựng": "durable",
+                    "Phiên âm": "/ˈdʊrəbl/",
+                    "Nghĩa": "bền",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 75,
+                    "Từ vựng": "be in charge of",
+                    "Phiên âm": "/ɪn tʃɑːrdʒ əv/",
+                    "Nghĩa": "chịu trách nhiệm về",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 76,
+                    "Từ vựng": "initiative",
+                    "Phiên âm": "/ɪˈnɪʃ.ə.t̬ɪv/",
+                    "Nghĩa": "sáng kiến, sự chủ động, thế chủ động",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 77,
+                    "Từ vựng": "physically",
+                    "Phiên âm": "/ˈfɪz.ɪ.kəl.i/",
+                    "Nghĩa": "về mặt thể chất",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 78,
+                    "Từ vựng": "provider",
+                    "Phiên âm": "/prəˈvaɪ.dɚ/",
+                    "Nghĩa": "nhà cung cấp (= supplier)",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 79,
+                    "Từ vựng": "recur",
+                    "Phiên âm": "/rɪˈkɜːr/",
+                    "Nghĩa": "tái diễn",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 80,
+                    "Từ vựng": "reduction",
+                    "Phiên âm": "/rɪˈdʌk.ʃən/",
+                    "Nghĩa": "sự giảm sút",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 81,
+                    "Từ vựng": "stay on top of",
+                    "Phiên âm": "/steɪ ɔːn tɑːp əv/",
+                    "Nghĩa": "nắm bắt tình hình",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 82,
+                    "Từ vựng": "stock",
+                    "Phiên âm": "/stɑːk/",
+                    "Nghĩa": "hàng tồn, cổ phần (n), tích trữ (v)",
+                    "Loại từ": "n, v"
+                }
+            ]
+        },
+        {
+            "Category": "Office Procedures (Thủ tục văn phòng)",
+            "Words": [
+                {
+                    "STT": 83,
+                    "Từ vựng": "appreciation",
+                    "Phiên âm": "/əˌpriː.ʃiˈeɪ.ʃən/",
+                    "Nghĩa": "sự cảm kích, sự ghi nhận",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 84,
+                    "Từ vựng": "bring in",
+                    "Phiên âm": "/brɪŋ ɪn/",
+                    "Nghĩa": "dẫn đến tuyển dụng, thuê",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 85,
+                    "Từ vựng": "casually",
+                    "Phiên âm": "/ˈkæʒ.uː.ə.li/",
+                    "Nghĩa": "bình thường",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 86,
+                    "Từ vựng": "code",
+                    "Phiên âm": "/koʊd/",
+                    "Nghĩa": "quy tắc, luật lệ",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 87,
+                    "Từ vựng": "expose",
+                    "Phiên âm": "/ɪkˈspoʊz/",
+                    "Nghĩa": "phơi bày, bộc lộ",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 88,
+                    "Từ vựng": "glimpse",
+                    "Phiên âm": "/ɡlɪmps/",
+                    "Nghĩa": "liếc, nhìn thoáng qua (v), cái nhìn thoáng qua (n)",
+                    "Loại từ": "v, n"
+                },
+                {
+                    "STT": 89,
+                    "Từ vựng": "be made of",
+                    "Phiên âm": "/bi meɪd əv/",
+                    "Nghĩa": "làm bằng (chất liệu), bao gồm (= consist of)",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 90,
+                    "Từ vựng": "out of",
+                    "Phiên âm": "/aʊt əv/",
+                    "Nghĩa": "hết, không còn",
+                    "Loại từ": "prep"
+                },
+                {
+                    "STT": 91,
+                    "Từ vựng": "outdated",
+                    "Phiên âm": "/aʊtˈdeɪtɪd/",
+                    "Nghĩa": "lỗi thời, lạc hậu",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 92,
+                    "Từ vựng": "practice",
+                    "Phiên âm": "/ˈpræktɪs/",
+                    "Nghĩa": "luyện tập (v), sự luyện tập (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 93,
+                    "Từ vựng": "reinforce",
+                    "Phiên âm": "/ˌriːɪnˈfɔːrs/",
+                    "Nghĩa": "tăng cường, củng cố",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 94,
+                    "Từ vựng": "verbally",
+                    "Phiên âm": "/ˈvɝː.bəl.i/",
+                    "Nghĩa": "bằng lời nói",
+                    "Loại từ": "adv"
+                }
+            ]
+        },
+        {
+            "Category": "Electronics (Điện tử)",
+            "Words": [
+                {
+                    "STT": 95,
+                    "Từ vựng": "device",
+                    "Phiên âm": "/dɪˈvaɪs/",
+                    "Nghĩa": "thiết bị, máy móc",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 96,
+                    "Từ vựng": "facilitate",
+                    "Phiên âm": "/fəˈsɪlɪteɪt/",
+                    "Nghĩa": "làm cho dễ dàng",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 97,
+                    "Từ vựng": "network",
+                    "Phiên âm": "/ˈnetwɜːrk/",
+                    "Nghĩa": "mạng lưới (n), kết nối (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 98,
+                    "Từ vựng": "popularity",
+                    "Phiên âm": "/ˌpɑː.pjəˈler.ə.t̬i/",
+                    "Nghĩa": "tính phổ biến",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 99,
+                    "Từ vựng": "process",
+                    "Phiên âm": "/ˈprɑːses/",
+                    "Nghĩa": "quá trình (n), xử lý (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 100,
+                    "Từ vựng": "replace",
+                    "Phiên âm": "/rɪˈpleɪs/",
+                    "Nghĩa": "thay thế (= substitute)",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 101,
+                    "Từ vựng": "revolution",
+                    "Phiên âm": "/ˌrev.əˈluː.ʃən/",
+                    "Nghĩa": "cuộc cách mạng",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 102,
+                    "Từ vựng": "sharp",
+                    "Phiên âm": "/ʃɑːrp/",
+                    "Nghĩa": "thông minh, sắc bén, nhọn",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 103,
+                    "Từ vựng": "skill",
+                    "Phiên âm": "/skɪl/",
+                    "Nghĩa": "kỹ năng",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 104,
+                    "Từ vựng": "software",
+                    "Phiên âm": "/ˈsɔːftwer/",
+                    "Nghĩa": "phần mềm",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 105,
+                    "Từ vựng": "store",
+                    "Phiên âm": "/stɔːr/",
+                    "Nghĩa": "lưu trữ, chứa",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 106,
+                    "Từ vựng": "technical",
+                    "Phiên âm": "/ˈteknɪkl/",
+                    "Nghĩa": "thuộc về kỹ thuật, chuyên môn",
+                    "Loại từ": "adj"
+                }
+            ]
+        },
+        {
+            "Category": "Correspondences (Thư tín)",
+            "Words": [
+                {
+                    "STT": 107,
+                    "Từ vựng": "assemble",
+                    "Phiên âm": "/əˈsembl/",
+                    "Nghĩa": "lắp ráp, thu thập",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 108,
+                    "Từ vựng": "beforehand",
+                    "Phiên âm": "/bɪˈfɔːrhænd/",
+                    "Nghĩa": "trước, có sẵn",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 109,
+                    "Từ vựng": "complication",
+                    "Phiên âm": "/ˌkɑːm.pləˈkeɪ.ʃən/",
+                    "Nghĩa": "sự phức tạp",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 110,
+                    "Từ vựng": "courier",
+                    "Phiên âm": "/ˈkʊriər/",
+                    "Nghĩa": "người đưa thư",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 111,
+                    "Từ vựng": "distribute",
+                    "Phiên âm": "/dɪˈstrɪb.juːt/",
+                    "Nghĩa": "phân phát",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 112,
+                    "Từ vựng": "express",
+                    "Phiên âm": "/ɪkˈspres/",
+                    "Nghĩa": "nhanh, hỏa tốc",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 113,
+                    "Từ vựng": "fold",
+                    "Phiên âm": "/foʊld/",
+                    "Nghĩa": "gấp lại",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 114,
+                    "Từ vựng": "layout",
+                    "Phiên âm": "/ˈleɪaʊt/",
+                    "Nghĩa": "cách trình bày, sự bố trí",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 115,
+                    "Từ vựng": "mention",
+                    "Phiên âm": "/ˈmenʃn/",
+                    "Nghĩa": "đề cập (v), sự đề cập (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 116,
+                    "Từ vựng": "petition",
+                    "Phiên âm": "/pəˈtɪʃn/",
+                    "Nghĩa": "kiến nghị (v), đơn kiến nghị (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 117,
+                    "Từ vựng": "proof",
+                    "Phiên âm": "/pruːf/",
+                    "Nghĩa": "bằng chứng (n) (= evidence), chứng minh (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 118,
+                    "Từ vựng": "revise",
+                    "Phiên âm": "/rɪˈvaɪz/",
+                    "Nghĩa": "sửa lại, xem lại",
+                    "Loại từ": "v"
+                }
+            ]
+        },
+        {
+            "Category": "Job Advertising and Recruiting (Mô tả công việc và Tuyển dụng)",
+            "Words": [
+                {
+                    "STT": 119,
+                    "Từ vựng": "abundant",
+                    "Phiên âm": "/əˈbʌndənt/",
+                    "Nghĩa": "nhiều, dư thừa",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 120,
+                    "Từ vựng": "accomplishment",
+                    "Phiên âm": "/əˈkɑːm.plɪʃ.mənt/",
+                    "Nghĩa": "thành tựu",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 121,
+                    "Từ vựng": "bring together",
+                    "Phiên âm": "/brɪŋ təˈɡeðə/",
+                    "Nghĩa": "gộp lại (= gather)",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 122,
+                    "Từ vựng": "candidate",
+                    "Phiên âm": "/ˈkændɪdət/",
+                    "Nghĩa": "ứng viên, thí sinh",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 123,
+                    "Từ vựng": "come up with",
+                    "Phiên âm": "/kʌm ʌp wɪθ/",
+                    "Nghĩa": "đưa ra, nghĩ ra",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 124,
+                    "Từ vựng": "commensurate with",
+                    "Phiên âm": "/kəˈmenʃərət wɪð/",
+                    "Nghĩa": "tương xứng với",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 125,
+                    "Từ vựng": "match",
+                    "Phiên âm": "/mætʃ/",
+                    "Nghĩa": "hợp, xứng (v), sự tương xứng (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 126,
+                    "Từ vựng": "profile",
+                    "Phiên âm": "/ˈproʊfaɪl/",
+                    "Nghĩa": "lý lịch",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 127,
+                    "Từ vựng": "qualification",
+                    "Phiên âm": "/kwɑː.lə.fəˈkeɪ.ʃən/",
+                    "Nghĩa": "năng lực, trình độ, tố chất",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 128,
+                    "Từ vựng": "recruit",
+                    "Phiên âm": "/rɪˈkruːt/",
+                    "Nghĩa": "tuyển dụng (v), nhân viên mới (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 129,
+                    "Từ vựng": "submit",
+                    "Phiên âm": "/səbˈmɪt/",
+                    "Nghĩa": "nộp",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 130,
+                    "Từ vựng": "time-consuming",
+                    "Phiên âm": "/ˈtaɪmkənsuː.mɪŋ/",
+                    "Nghĩa": "tốn thời gian",
+                    "Loại từ": "adj"
+                }
+            ]
+        },
+        {
+            "Category": "Applying and Interviewing (Ứng tuyển và Phỏng vấn)",
+            "Words": [
+                {
+                    "STT": 131,
+                    "Từ vựng": "ability",
+                    "Phiên âm": "/əˈbɪləti/",
+                    "Nghĩa": "khả năng, năng lực",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 132,
+                    "Từ vựng": "apply for",
+                    "Phiên âm": "/əˈplaɪ foː/",
+                    "Nghĩa": "ứng tuyển vào",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 133,
+                    "Từ vựng": "background",
+                    "Phiên âm": "/ˈbækɡraʊnd/",
+                    "Nghĩa": "lý lịch, nền tảng",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 134,
+                    "Từ vựng": "be ready for",
+                    "Phiên âm": "",
+                    "Nghĩa": "sẵn sàng cho",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 135,
+                    "Từ vựng": "call in",
+                    "Phiên âm": "/kɔːl ɪn/",
+                    "Nghĩa": "mời tới, gọi vào làm việc",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 136,
+                    "Từ vựng": "confidence",
+                    "Phiên âm": "/ˈkɑːnfɪdəns/",
+                    "Nghĩa": "sự tự tin",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 137,
+                    "Từ vựng": "constantly",
+                    "Phiên âm": "/ˈkɑːn.stənt.li/",
+                    "Nghĩa": "liên tục, không ngừng",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 138,
+                    "Từ vựng": "expert",
+                    "Phiên âm": "/ˈekspɜːrt/",
+                    "Nghĩa": "chuyên gia, chuyên viên (n), chuyên môn (adj)",
+                    "Loại từ": "n, adj"
+                },
+                {
+                    "STT": 139,
+                    "Từ vựng": "follow up",
+                    "Phiên âm": "/ˈfɑːloʊ ʌp/",
+                    "Nghĩa": "bám sát, tiếp tục việc gì đó",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 140,
+                    "Từ vựng": "hesitate",
+                    "Phiên âm": "/ˈhezɪteɪt/",
+                    "Nghĩa": "lưỡng lự, do dự",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 141,
+                    "Từ vựng": "interview",
+                    "Phiên âm": "/ˈɪntərvjuː/",
+                    "Nghĩa": "buổi phỏng vấn (n), phỏng vấn (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 142,
+                    "Từ vựng": "present",
+                    "Phiên âm": "/prɪˈzent/",
+                    "Nghĩa": "có mặt (adj), trình bày, nêu ra (v)",
+                    "Loại từ": "v, adj"
+                },
+                {
+                    "STT": 143,
+                    "Từ vựng": "weaken",
+                    "Phiên âm": "/ˈwiːkən/",
+                    "Nghĩa": "làm yếu đi",
+                    "Loại từ": "v"
+                }
+            ]
+        },
+        {
+            "Category": "Hiring and Training (Tuyển dụng và Đào tạo)",
+            "Words": [
+                {
+                    "STT": 144,
+                    "Từ vựng": "conduct",
+                    "Phiên âm": "/kənˈdʌkt/",
+                    "Nghĩa": "tiến hành, thực hiện",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 145,
+                    "Từ vựng": "generate",
+                    "Phiên âm": "/ˈdʒenəreɪt/",
+                    "Nghĩa": "tạo ra, sản xuất ra",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 146,
+                    "Từ vựng": "hire",
+                    "Phiên âm": "/ˈhaɪər/",
+                    "Nghĩa": "thuê, mướn (v), nhân viên, người làm thuê (n)",
+                    "Loại từ": "v, n"
+                },
+                {
+                    "STT": 147,
+                    "Từ vựng": "keep up with",
+                    "Phiên âm": "/kiːp ʌp wɪθ/",
+                    "Nghĩa": "theo kịp",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 148,
+                    "Từ vựng": "look up to somebody",
+                    "Phiên âm": "/lʊk ʌp tuː/",
+                    "Nghĩa": "tôn trọng, ngưỡng mộ ai đó",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 149,
+                    "Từ vựng": "mentor",
+                    "Phiên âm": "/ˈmentɔːr/",
+                    "Nghĩa": "cố vấn",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 150,
+                    "Từ vựng": "on track",
+                    "Phiên âm": "/ɔːn træk/",
+                    "Nghĩa": "theo đúng kế hoạch",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 151,
+                    "Từ vựng": "reject",
+                    "Phiên âm": "/rɪˈdʒekt/",
+                    "Nghĩa": "đồ thừa, phế phẩm (n), từ chối (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 152,
+                    "Từ vựng": "set up",
+                    "Phiên âm": "/set ʌp/",
+                    "Nghĩa": "thiết lập, sắp xếp",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 153,
+                    "Từ vựng": "success",
+                    "Phiên âm": "/səkˈses/",
+                    "Nghĩa": "sự thành công",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 154,
+                    "Từ vựng": "train",
+                    "Phiên âm": "/treɪn/",
+                    "Nghĩa": "đào tạo, huấn luyện",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 155,
+                    "Từ vựng": "update",
+                    "Phiên âm": "/ˌʌpˈdeɪt/",
+                    "Nghĩa": "cập nhật (v), thông tin mới nhất (n)",
+                    "Loại từ": "n, v"
+                }
+            ]
+        },
+        {
+            "Category": "Salaries and Benefits (Lương và Phúc lợi)",
+            "Words": [
+                {
+                    "STT": 156,
+                    "Từ vựng": "be aware of",
+                    "Phiên âm": "/biː əˈwer ɒv/",
+                    "Nghĩa": "biết được, nhận thức được",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 157,
+                    "Từ vựng": "basis",
+                    "Phiên âm": "/ˈbeɪsɪs/",
+                    "Nghĩa": "cơ sở, căn cứ",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 158,
+                    "Từ vựng": "benefit",
+                    "Phiên âm": "/ˈbenɪfɪt/",
+                    "Nghĩa": "lợi ích, phúc lợi",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 159,
+                    "Từ vựng": "compensate",
+                    "Phiên âm": "/ˈkɑːmpenseɪt/",
+                    "Nghĩa": "đền bù, bồi thường (= make up for)",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 160,
+                    "Từ vựng": "delicate",
+                    "Phiên âm": "/ˈdel.ə.kət/",
+                    "Nghĩa": "tế nhị, khôn khéo, tinh vi, tinh xảo",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 161,
+                    "Từ vựng": "eligible",
+                    "Phiên âm": "/ˈelɪdʒəbl/",
+                    "Nghĩa": "đủ tiêu chuẩn (= qualified)",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 162,
+                    "Từ vựng": "flexibly",
+                    "Phiên âm": "/ˈflek.sə.bli/",
+                    "Nghĩa": "một cách linh hoạt",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 163,
+                    "Từ vựng": "negotiate",
+                    "Phiên âm": "/nɪˈɡoʊʃieɪt/",
+                    "Nghĩa": "đàm phán, thương lượng",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 164,
+                    "Từ vựng": "retire",
+                    "Phiên âm": "/rɪˈtaɪər/",
+                    "Nghĩa": "nghỉ hưu",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 165,
+                    "Từ vựng": "vest in",
+                    "Phiên âm": "/vest ɪn/",
+                    "Nghĩa": "trao quyền cho ai",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 166,
+                    "Từ vựng": "wage",
+                    "Phiên âm": "/weɪdʒ/",
+                    "Nghĩa": "lương theo giờ",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 167,
+                    "Từ vựng": "raise",
+                    "Phiên âm": "/reɪz/",
+                    "Nghĩa": "tăng lên (v), sự tăng trưởng (n)",
+                    "Loại từ": "n, v"
+                }
+            ]
+        },
+        {
+            "Category": "Promotions, Pensions and Awards (Thăng tiến, Lương hưu và Giải thưởng)",
+            "Words": [
+                {
+                    "STT": 168,
+                    "Từ vựng": "achievement",
+                    "Phiên âm": "/əˈtʃiːv.mənt/",
+                    "Nghĩa": "thành tựu (= accomplishment)",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 169,
+                    "Từ vựng": "contribute",
+                    "Phiên âm": "/kənˈtrɪbjuːt/",
+                    "Nghĩa": "đóng góp",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 170,
+                    "Từ vựng": "dedicate to",
+                    "Phiên âm": "/ˈdedɪkeɪt tuː/",
+                    "Nghĩa": "cống hiến cho",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 171,
+                    "Từ vựng": "looking forward to V-ing",
+                    "Phiên âm": "/lʊk ˈfɔːrwərd tuː/",
+                    "Nghĩa": "trông mong, mong đợi",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 172,
+                    "Từ vựng": "look to somebody",
+                    "Phiên âm": "/lʊk tuː/",
+                    "Nghĩa": "trông cậy vào ai",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 173,
+                    "Từ vựng": "loyal",
+                    "Phiên âm": "/ˈlɔɪ.əl/",
+                    "Nghĩa": "trung thành",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 174,
+                    "Từ vựng": "merit",
+                    "Phiên âm": "/ˈmerɪt/",
+                    "Nghĩa": "xứng đáng, có công (v), công lao (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 175,
+                    "Từ vựng": "obviously",
+                    "Phiên âm": "/ˈɑːb.vi.əs.li/",
+                    "Nghĩa": "rõ ràng, hiển nhiên",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 176,
+                    "Từ vựng": "productive",
+                    "Phiên âm": "/prəˈdʌk.tɪv/",
+                    "Nghĩa": "có hiệu quả, có năng suất",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 177,
+                    "Từ vựng": "promote",
+                    "Phiên âm": "/prəˈmoʊt/",
+                    "Nghĩa": "đẩy mạnh, thăng chức",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 178,
+                    "Từ vựng": "recognition",
+                    "Phiên âm": "/ˌrek.əɡˈnɪʃ.ən/",
+                    "Nghĩa": "sự công nhận",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 179,
+                    "Từ vựng": "value",
+                    "Phiên âm": "/ˈvæljuː/",
+                    "Nghĩa": "định giá (v), giá trị (n)",
+                    "Loại từ": "n, v"
+                }
+            ]
+        },
+        {
+            "Category": "Shopping (Mua sắm)",
+            "Words": [
+                {
+                    "STT": 180,
+                    "Từ vựng": "bargain",
+                    "Phiên âm": "/ˈbɑːrɡən/",
+                    "Nghĩa": "món hời (n), mặc cả (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 181,
+                    "Từ vựng": "bear",
+                    "Phiên âm": "/ber/",
+                    "Nghĩa": "chịu đựng, cam chịu",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 182,
+                    "Từ vựng": "behavior",
+                    "Phiên âm": "/bɪˈheɪ.vjər/",
+                    "Nghĩa": "thái độ, hành vi",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 183,
+                    "Từ vựng": "checkout",
+                    "Phiên âm": "/ˈtʃek aʊt/",
+                    "Nghĩa": "quầy thanh toán, thủ tục thanh toán",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 184,
+                    "Từ vựng": "comfort",
+                    "Phiên âm": "/ˈkʌmfərt/",
+                    "Nghĩa": "sự thoải mái (n), an ủi (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 185,
+                    "Từ vựng": "expand",
+                    "Phiên âm": "/ɪkˈspænd/",
+                    "Nghĩa": "mở rộng",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 186,
+                    "Từ vựng": "explore",
+                    "Phiên âm": "/ɪkˈsplɔːr/",
+                    "Nghĩa": "khám phá, thăm dò",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 187,
+                    "Từ vựng": "item",
+                    "Phiên âm": "/ˈaɪtəm/",
+                    "Nghĩa": "món hàng, món đồ",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 188,
+                    "Từ vựng": "mandatory",
+                    "Phiên âm": "/ˈmændətɔːri/",
+                    "Nghĩa": "bắt buộc",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 189,
+                    "Từ vựng": "merchandise",
+                    "Phiên âm": "/ˈmɜːrtʃəndaɪz/",
+                    "Nghĩa": "buôn bán (v), hàng hóa (n) (= goods)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 190,
+                    "Từ vựng": "strictly",
+                    "Phiên âm": "/ˈstrɪkt.li/",
+                    "Nghĩa": "một cách nghiêm khắc",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 191,
+                    "Từ vựng": "trend",
+                    "Phiên âm": "/trend/",
+                    "Nghĩa": "xu hướng",
+                    "Loại từ": "n"
+                }
+            ]
+        },
+        {
+            "Category": "Ordering Supplies (Đặt hàng nhà cung cấp)",
+            "Words": [
+                {
+                    "STT": 192,
+                    "Từ vựng": "diversify",
+                    "Phiên âm": "/daɪˈvɜːrsɪfaɪ/",
+                    "Nghĩa": "đa dạng hóa",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 193,
+                    "Từ vựng": "consistent",
+                    "Phiên âm": "/kənˈsɪstənt/",
+                    "Nghĩa": "đều đặn, nhất quán",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 194,
+                    "Từ vựng": "enterprise",
+                    "Phiên âm": "/ˈentərpraɪz/",
+                    "Nghĩa": "dự án lớn, doanh nghiệp",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 195,
+                    "Từ vựng": "essentially",
+                    "Phiên âm": "/ɪˈsen.ʃəl.i/",
+                    "Nghĩa": "một cách thiết yếu, về cơ bản",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 196,
+                    "Từ vựng": "function",
+                    "Phiên âm": "/ˈfʌŋkʃn/",
+                    "Nghĩa": "có vai trò (v), nhiệm vụ, chức năng (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 197,
+                    "Từ vựng": "maintain",
+                    "Phiên âm": "/meɪnˈteɪn/",
+                    "Nghĩa": "duy trì",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 198,
+                    "Từ vựng": "obtain",
+                    "Phiên âm": "/əbˈteɪn/",
+                    "Nghĩa": "đạt được, giành được",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 199,
+                    "Từ vựng": "prerequisite",
+                    "Phiên âm": "/ˌpriːˈrekwəzɪt/",
+                    "Nghĩa": "điều kiện tiên quyết",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 200,
+                    "Từ vựng": "quality",
+                    "Phiên âm": "/ˈkwɑːləti/",
+                    "Nghĩa": "chất lượng (sản phẩm), phẩm chất (người)",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 201,
+                    "Từ vựng": "source",
+                    "Phiên âm": "/sɔːrs/",
+                    "Nghĩa": "nguồn",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 202,
+                    "Từ vựng": "stationery",
+                    "Phiên âm": "/ˈsteɪʃəneri/",
+                    "Nghĩa": "văn phòng phẩm",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 203,
+                    "Từ vựng": "smooth",
+                    "Phiên âm": "/smuːð/",
+                    "Nghĩa": "suôn sẻ, trơn tru",
+                    "Loại từ": "adj"
+                }
+            ]
+        },
+        {
+            "Category": "Shipping (Vận chuyển)",
+            "Words": [
+                {
+                    "STT": 204,
+                    "Từ vựng": "carrier",
+                    "Phiên âm": "/ˈkæriər/",
+                    "Nghĩa": "người vận chuyển, bên vận chuyển",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 205,
+                    "Từ vựng": "inventory",
+                    "Phiên âm": "/ˈɪnvəntɔːri/",
+                    "Nghĩa": "bản kiểm kê hàng hóa, hàng tồn",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 206,
+                    "Từ vựng": "accurately",
+                    "Phiên âm": "/ˈæk.jɚ.ət.li/",
+                    "Nghĩa": "một cách chính xác",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 207,
+                    "Từ vựng": "catalogue",
+                    "Phiên âm": "/ˈkætəlɔːɡ/",
+                    "Nghĩa": "bản liệt kê, danh mục sản phẩm",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 208,
+                    "Từ vựng": "fulfill",
+                    "Phiên âm": "/fʊlˈfɪl/",
+                    "Nghĩa": "hoàn thành",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 209,
+                    "Từ vựng": "integral",
+                    "Phiên âm": "/ˈɪn.t̬ə.ɡrəl/",
+                    "Nghĩa": "không thể thiếu",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 210,
+                    "Từ vựng": "minimize",
+                    "Phiên âm": "/ˈmɪnɪmaɪz/",
+                    "Nghĩa": "giảm thiểu",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 211,
+                    "Từ vựng": "on hand",
+                    "Phiên âm": "/ɒn hænd/",
+                    "Nghĩa": "có sẵn (= available)",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 212,
+                    "Từ vựng": "ship",
+                    "Phiên âm": "/ʃɪp/",
+                    "Nghĩa": "vận chuyển",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 213,
+                    "Từ vựng": "sufficiently",
+                    "Phiên âm": "/səˈfɪʃ.ənt.li/",
+                    "Nghĩa": "đủ",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 214,
+                    "Từ vựng": "supply",
+                    "Phiên âm": "/səˈplaɪ/",
+                    "Nghĩa": "nguồn cung, sự cung cấp (n), cung cấp (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 215,
+                    "Từ vựng": "receive",
+                    "Phiên âm": "/rɪˈsiːv/",
+                    "Nghĩa": "nhận",
+                    "Loại từ": "v"
+                }
+            ]
+        },
+        {
+            "Category": "Invoices (Hóa đơn)",
+            "Words": [
+                {
+                    "STT": 216,
+                    "Từ vựng": "charge",
+                    "Phiên âm": "/tʃɑːrdʒ/",
+                    "Nghĩa": "tiền phí (n), tính phí (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 217,
+                    "Từ vựng": "compile",
+                    "Phiên âm": "/kəmˈpaɪl/",
+                    "Nghĩa": "biên soạn, soạn",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 218,
+                    "Từ vựng": "customer",
+                    "Phiên âm": "/ˈkʌstəmər/",
+                    "Nghĩa": "khách mua hàng",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 219,
+                    "Từ vựng": "discount",
+                    "Phiên âm": "/ˈdɪskaʊnt/",
+                    "Nghĩa": "sự giảm giá (n), giảm giá (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 220,
+                    "Từ vựng": "dispute",
+                    "Phiên âm": "/dɪˈspjuːt/",
+                    "Nghĩa": "tranh cãi",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 221,
+                    "Từ vựng": "efficient",
+                    "Phiên âm": "/ɪˈfɪʃ.ənt/",
+                    "Nghĩa": "hiệu quả (= effective)",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 222,
+                    "Từ vựng": "estimate",
+                    "Phiên âm": "/ˈestɪmeɪt/",
+                    "Nghĩa": "ước tính",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 223,
+                    "Từ vựng": "impose",
+                    "Phiên âm": "/ɪmˈpoʊz/",
+                    "Nghĩa": "áp đặt, ép buộc",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 224,
+                    "Từ vựng": "mistake",
+                    "Phiên âm": "/mɪˈsteɪk/",
+                    "Nghĩa": "lỗi, nhầm lẫn",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 225,
+                    "Từ vựng": "prompt",
+                    "Phiên âm": "/ˈprɑːmpt/",
+                    "Nghĩa": "nhanh, đúng giờ (= punctual)",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 226,
+                    "Từ vựng": "rectify",
+                    "Phiên âm": "/ˈrektɪfaɪ/",
+                    "Nghĩa": "sửa chữa, sửa lỗi",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 227,
+                    "Từ vựng": "terms",
+                    "Phiên âm": "/tɜːrmz/",
+                    "Nghĩa": "điều khoản (hợp đồng)",
+                    "Loại từ": "n"
+                }
+            ]
+        },
+        {
+            "Category": "Inventory (Hàng hóa)",
+            "Words": [
+                {
+                    "STT": 228,
+                    "Từ vựng": "adjustment",
+                    "Phiên âm": "/əˈdʒʌst.mənt/",
+                    "Nghĩa": "sự điều chỉnh",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 229,
+                    "Từ vựng": "automatic",
+                    "Phiên âm": "/ˌɑː.t̬əˈmæt̬.ɪk/",
+                    "Nghĩa": "tự động",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 230,
+                    "Từ vựng": "crucial",
+                    "Phiên âm": "/ˈkruːʃl/",
+                    "Nghĩa": "cốt yếu, quan trọng",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 231,
+                    "Từ vựng": "discrepancy",
+                    "Phiên âm": "/dɪsˈkrepənsi/",
+                    "Nghĩa": "sự khác nhau, không nhất quán",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 232,
+                    "Từ vựng": "disturb",
+                    "Phiên âm": "/dɪˈstɜːrb/",
+                    "Nghĩa": "làm phiền, quấy rầy",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 233,
+                    "Từ vựng": "reflection",
+                    "Phiên âm": "/rɪˈflek.ʃən/",
+                    "Nghĩa": "sự phản chiếu",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 234,
+                    "Từ vựng": "run",
+                    "Phiên âm": "/rʌn/",
+                    "Nghĩa": "điều hành, vận hành",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 235,
+                    "Từ vựng": "scan",
+                    "Phiên âm": "/skæn/",
+                    "Nghĩa": "đọc lướt, xem lướt",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 236,
+                    "Từ vựng": "subtract",
+                    "Phiên âm": "/səbˈtrækt/",
+                    "Nghĩa": "trừ đi",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 237,
+                    "Từ vựng": "tedium",
+                    "Phiên âm": "/ˈtiːdiəm/",
+                    "Nghĩa": "sự buồn tẻ, sự nhạt nhẽo",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 238,
+                    "Từ vựng": "verify",
+                    "Phiên âm": "/ˈverɪfaɪ/",
+                    "Nghĩa": "xác minh, kiểm chứng",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 239,
+                    "Từ vựng": "install",
+                    "Phiên âm": "/ɪnˈstɔːl/",
+                    "Nghĩa": "lắp đặt, cài đặt",
+                    "Loại từ": "v"
+                }
+            ]
+        },
+        {
+            "Category": "Banking (Giao dịch ngân hàng)",
+            "Words": [
+                {
+                    "STT": 240,
+                    "Từ vựng": "accept",
+                    "Phiên âm": "/əkˈsept/",
+                    "Nghĩa": "nhận, chấp nhận",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 241,
+                    "Từ vựng": "balance",
+                    "Phiên âm": "/ˈbæləns/",
+                    "Nghĩa": "sự cân bằng, số dư tài khoản",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 242,
+                    "Từ vựng": "borrow",
+                    "Phiên âm": "/ˈbɑːroʊ/",
+                    "Nghĩa": "vay, mượn",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 243,
+                    "Từ vựng": "cautiously",
+                    "Phiên âm": "/ˈkɑː.ʃəs.li/",
+                    "Nghĩa": "một cách cẩn thận",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 244,
+                    "Từ vựng": "deduct",
+                    "Phiên âm": "/dɪˈdʌkt/",
+                    "Nghĩa": "khấu trừ",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 245,
+                    "Từ vựng": "dividend",
+                    "Phiên âm": "/ˈdɪvɪdend/",
+                    "Nghĩa": "cổ tức, tiền lãi cổ phần",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 246,
+                    "Từ vựng": "down payment",
+                    "Phiên âm": "/daʊn ˈpeɪmənt/",
+                    "Nghĩa": "tiền cọc, tiền trả trước",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 247,
+                    "Từ vựng": "mortgage",
+                    "Phiên âm": "/ˈmɔːrɡɪdʒ/",
+                    "Nghĩa": "sự cầm cố, sự thế chấp (n), cầm cố, thế chấp (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 248,
+                    "Từ vựng": "restricted",
+                    "Phiên âm": "/rɪˈstrɪktɪd/",
+                    "Nghĩa": "bị hạn chế (= limited)",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 249,
+                    "Từ vựng": "signature",
+                    "Phiên âm": "/ˈsɪɡ.nə.tʃɚ/",
+                    "Nghĩa": "chữ ký",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 250,
+                    "Từ vựng": "take out",
+                    "Phiên âm": "/teɪk aʊt/",
+                    "Nghĩa": "rút tiền",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 251,
+                    "Từ vựng": "transaction",
+                    "Phiên âm": "/trænˈzæk.ʃən/",
+                    "Nghĩa": "giao dịch",
+                    "Loại từ": "n"
+                }
+            ]
+        },
+        {
+            "Category": "Accounting (Kế toán)",
+            "Words": [
+                {
+                    "STT": 252,
+                    "Từ vựng": "accounting",
+                    "Phiên âm": "/əˈkaʊntɪŋ/",
+                    "Nghĩa": "công việc kế toán",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 253,
+                    "Từ vựng": "accumulate",
+                    "Phiên âm": "/əˈkjuːmjəleɪt/",
+                    "Nghĩa": "tích lũy, gom góp",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 254,
+                    "Từ vựng": "asset",
+                    "Phiên âm": "/ˈæset/",
+                    "Nghĩa": "tài sản",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 255,
+                    "Từ vựng": "audit",
+                    "Phiên âm": "/ˈɔːdɪt/",
+                    "Nghĩa": "kiểm toán",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 256,
+                    "Từ vựng": "budget",
+                    "Phiên âm": "/ˈbʌdʒɪt/",
+                    "Nghĩa": "lên ngân sách (v), ngân sách (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 257,
+                    "Từ vựng": "build up",
+                    "Phiên âm": "/bɪld ʌp/",
+                    "Nghĩa": "tăng cường, phát triển dần",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 258,
+                    "Từ vựng": "client",
+                    "Phiên âm": "/ˈklaɪənt/",
+                    "Nghĩa": "khách hàng",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 259,
+                    "Từ vựng": "debt",
+                    "Phiên âm": "/det/",
+                    "Nghĩa": "món nợ, khoản nợ",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 260,
+                    "Từ vựng": "outstanding",
+                    "Phiên âm": "/aʊtˈstændɪŋ/",
+                    "Nghĩa": "chưa giải quyết, chưa thanh toán",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 261,
+                    "Từ vựng": "profitable",
+                    "Phiên âm": "/ˈprɑː.fɪ.t̬ə.bəl/",
+                    "Nghĩa": "có lời",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 262,
+                    "Từ vựng": "reconcile",
+                    "Phiên âm": "/ˈrekənsaɪl/",
+                    "Nghĩa": "hòa giải",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 263,
+                    "Từ vựng": "turnover",
+                    "Phiên âm": "/ˈtɜːrnoʊvər/",
+                    "Nghĩa": "doanh thu, doanh số",
+                    "Loại từ": "n"
+                }
+            ]
+        },
+        {
+            "Category": "Investments (Đầu tư)",
+            "Words": [
+                {
+                    "STT": 264,
+                    "Từ vựng": "aggressive",
+                    "Phiên âm": "/əˈɡresɪv/",
+                    "Nghĩa": "hùng hổ, xông xáo",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 265,
+                    "Từ vựng": "attitude",
+                    "Phiên âm": "/ˈætɪtuːd/",
+                    "Nghĩa": "thái độ",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 266,
+                    "Từ vựng": "commit",
+                    "Phiên âm": "/kəˈmɪt/",
+                    "Nghĩa": "cam kết",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 267,
+                    "Từ vựng": "conservative",
+                    "Phiên âm": "/kənˈsɝː.və.t̬ɪv/",
+                    "Nghĩa": "thận trọng, bảo thủ",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 268,
+                    "Từ vựng": "fund",
+                    "Phiên âm": "/fʌnd/",
+                    "Nghĩa": "tài trợ (v), quỹ (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 269,
+                    "Từ vựng": "invest",
+                    "Phiên âm": "/ɪnˈvest/",
+                    "Nghĩa": "đầu tư",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 270,
+                    "Từ vựng": "long-term",
+                    "Phiên âm": "/ˌlɔːŋ ˈtɜːrm/",
+                    "Nghĩa": "dài hạn",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 271,
+                    "Từ vựng": "portfolio",
+                    "Phiên âm": "/pɔːrtˈfoʊlioʊ/",
+                    "Nghĩa": "danh mục đầu tư",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 272,
+                    "Từ vựng": "pull out",
+                    "Phiên âm": "/pʊl aʊt/",
+                    "Nghĩa": "rút (đầu tư)",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 273,
+                    "Từ vựng": "resource",
+                    "Phiên âm": "/ˈriːsɔːrs/",
+                    "Nghĩa": "nguồn tài nguyên, nguồn vốn",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 274,
+                    "Từ vựng": "return",
+                    "Phiên âm": "/rɪˈtɜːrn/",
+                    "Nghĩa": "lợi nhuận",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 275,
+                    "Từ vựng": "wisely",
+                    "Phiên âm": "/ˈwaɪz.li/",
+                    "Nghĩa": "một cách khôn ngoan",
+                    "Loại từ": "adv"
+                }
+            ]
+        },
+        {
+            "Category": "Financial Statements (Báo cáo tài chính)",
+            "Words": [
+                {
+                    "STT": 276,
+                    "Từ vựng": "desire",
+                    "Phiên âm": "/dɪˈzaɪər/",
+                    "Nghĩa": "khao khát (v), sự khao khát (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 277,
+                    "Từ vựng": "detail",
+                    "Phiên âm": "/ˈdiːteɪl/",
+                    "Nghĩa": "chi tiết, tỉ mỉ",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 278,
+                    "Từ vựng": "forecast",
+                    "Phiên âm": "/ˈfɔːrkæst/",
+                    "Nghĩa": "dự báo (v), sự dự đoán (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 279,
+                    "Từ vựng": "level",
+                    "Phiên âm": "/ˈlevl/",
+                    "Nghĩa": "cấp bậc, mức",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 280,
+                    "Từ vựng": "overall",
+                    "Phiên âm": "/ˌoʊvərˈɔːl/",
+                    "Nghĩa": "toàn bộ, chung, tổng quát",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 281,
+                    "Từ vựng": "perspective",
+                    "Phiên âm": "/pərˈspektɪv/",
+                    "Nghĩa": "viễn cảnh, cách nhìn nhận",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 282,
+                    "Từ vựng": "project",
+                    "Phiên âm": "/prəˈdʒekt/",
+                    "Nghĩa": "dự án (n), ước đoán (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 283,
+                    "Từ vựng": "realistic",
+                    "Phiên âm": "/ˌriː.əˈlɪs.tɪk/",
+                    "Nghĩa": "thực tế",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 284,
+                    "Từ vựng": "target",
+                    "Phiên âm": "/ˈtɑːrɡɪt/",
+                    "Nghĩa": "nhắm vào",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 285,
+                    "Từ vựng": "translation",
+                    "Phiên âm": "/trænzˈleɪ.ʃən/",
+                    "Nghĩa": "bản dịch thuật, sự phiên dịch (về ngôn ngữ)",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 286,
+                    "Từ vựng": "typically",
+                    "Phiên âm": "/ˈtɪp.ɪ.kəl.i/",
+                    "Nghĩa": "tiêu biểu, điển hình",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 287,
+                    "Từ vựng": "yield",
+                    "Phiên âm": "/jiːld/",
+                    "Nghĩa": "sản lượng (n), sản xuất, cung cấp (v)",
+                    "Loại từ": "n, v"
+                }
+            ]
+        },
+        {
+            "Category": "Taxes (Thuế)",
+            "Words": [
+                {
+                    "STT": 288,
+                    "Từ vựng": "calculation",
+                    "Phiên âm": "/ˌkæl.kjəˈleɪ.ʃən/",
+                    "Nghĩa": "sự tính toán, sự dự trù",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 289,
+                    "Từ vựng": "deadline",
+                    "Phiên âm": "/ˈdedlaɪn/",
+                    "Nghĩa": "hạn chót",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 290,
+                    "Từ vựng": "file",
+                    "Phiên âm": "/faɪl/",
+                    "Nghĩa": "đệ trình, nộp, sắp xếp (giấy tờ)",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 291,
+                    "Từ vựng": "fill out",
+                    "Phiên âm": "/fɪl aʊt/",
+                    "Nghĩa": "điền vào (giấy tờ)",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 292,
+                    "Từ vựng": "give up",
+                    "Phiên âm": "/ɡɪv ʌp/",
+                    "Nghĩa": "từ bỏ",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 293,
+                    "Từ vựng": "joint",
+                    "Phiên âm": "/dʒɔɪnt/",
+                    "Nghĩa": "chung, cùng",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 294,
+                    "Từ vựng": "owe",
+                    "Phiên âm": "/oʊ/",
+                    "Nghĩa": "mắc nợ, mang ơn",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 295,
+                    "Từ vựng": "penalty",
+                    "Phiên âm": "/ˈpen.əl.ti/",
+                    "Nghĩa": "khoản tiền phạt, hình phạt",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 296,
+                    "Từ vựng": "preparation",
+                    "Phiên âm": "/ˌprep.əˈreɪ.ʃən/",
+                    "Nghĩa": "sự chuẩn bị",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 297,
+                    "Từ vựng": "refund",
+                    "Phiên âm": "/rɪˈfʌnd/",
+                    "Nghĩa": "sự hoàn lại (n), hoàn lại (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 298,
+                    "Từ vựng": "spouse",
+                    "Phiên âm": "/spaʊs/",
+                    "Nghĩa": "vợ/chồng",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 299,
+                    "Từ vựng": "withhold",
+                    "Phiên âm": "/wɪðˈhoʊld/",
+                    "Nghĩa": "giữ lại",
+                    "Loại từ": "v"
+                }
+            ]
+        },
+        {
+            "Category": "Property and Departments (Tài sản và Phòng ban)",
+            "Words": [
+                {
+                    "STT": 300,
+                    "Từ vựng": "adjacent",
+                    "Phiên âm": "/əˈdʒeɪsnt/",
+                    "Nghĩa": "liền kề, kế bên",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 301,
+                    "Từ vựng": "collaboration",
+                    "Phiên âm": "/kəˌlæb.əˈreɪ.ʃən/",
+                    "Nghĩa": "sự cộng tác",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 302,
+                    "Từ vựng": "concentrate on",
+                    "Phiên âm": "/ˈkɑːnsntreɪt ɑːn/",
+                    "Nghĩa": "tập trung vào (= focus on)",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 303,
+                    "Từ vựng": "conducive",
+                    "Phiên âm": "/kənˈdjuːsɪv/",
+                    "Nghĩa": "có lợi",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 304,
+                    "Từ vựng": "disruption",
+                    "Phiên âm": "/dɪsˈrʌp.ʃən/",
+                    "Nghĩa": "sự phá vỡ, sự hỗn loạn",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 305,
+                    "Từ vựng": "hamper",
+                    "Phiên âm": "/ˈhæmpər/",
+                    "Nghĩa": "gây cản trở",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 306,
+                    "Từ vựng": "inconsiderate",
+                    "Phiên âm": "/ˌɪnkənˈsɪdərət/",
+                    "Nghĩa": "sơ suất, thiếu thận trọng",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 307,
+                    "Từ vựng": "lobby",
+                    "Phiên âm": "/ˈlɑːbi/",
+                    "Nghĩa": "hành lang, tiền sảnh",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 308,
+                    "Từ vựng": "move up",
+                    "Phiên âm": "/muːv ʌp/",
+                    "Nghĩa": "thăng tiến, tiến lên",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 309,
+                    "Từ vựng": "open to",
+                    "Phiên âm": "/ˈoʊpən tu/",
+                    "Nghĩa": "sẵn sàng đón nhận điều gì",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 310,
+                    "Từ vựng": "scrutiny",
+                    "Phiên âm": "/ˈskruː.t̬ən.i/",
+                    "Nghĩa": "sự nghiên cứu kỹ lưỡng",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 311,
+                    "Từ vựng": "opt",
+                    "Phiên âm": "/ɑːpt/",
+                    "Nghĩa": "chọn lựa",
+                    "Loại từ": "v"
+                }
+            ]
+        },
+        {
+            "Category": "Board Meetings and Committees (Họp Hội đồng và Phòng ban)",
+            "Words": [
+                {
+                    "STT": 312,
+                    "Từ vựng": "adhere to",
+                    "Phiên âm": "/ədˈhɪr tu/",
+                    "Nghĩa": "tuân thủ",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 313,
+                    "Từ vựng": "agenda",
+                    "Phiên âm": "/əˈdʒendə/",
+                    "Nghĩa": "chương trình hội nghị",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 314,
+                    "Từ vựng": "bring up",
+                    "Phiên âm": "/brɪŋ ʌp/",
+                    "Nghĩa": "nêu ra, đề cập tới",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 315,
+                    "Từ vựng": "conclude",
+                    "Phiên âm": "/kənˈkluːd/",
+                    "Nghĩa": "kết thúc, kết luận",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 316,
+                    "Từ vựng": "go ahead",
+                    "Phiên âm": "/ɡoʊ əˈhed/",
+                    "Nghĩa": "tiếp tục",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 317,
+                    "Từ vựng": "goal",
+                    "Phiên âm": "/ɡoʊl/",
+                    "Nghĩa": "mục tiêu",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 318,
+                    "Từ vựng": "lengthy",
+                    "Phiên âm": "/ˈleŋθi/",
+                    "Nghĩa": "dài, lâu",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 319,
+                    "Từ vựng": "matter",
+                    "Phiên âm": "/ˈmætər/",
+                    "Nghĩa": "vấn đề",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 320,
+                    "Từ vựng": "periodically",
+                    "Phiên âm": "/ˌpɪriˈɑdɪkli/",
+                    "Nghĩa": "định kỳ",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 321,
+                    "Từ vựng": "priority",
+                    "Phiên âm": "/praɪˈɔːrəti/",
+                    "Nghĩa": "quyền ưu tiên, sự ưu tiên",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 322,
+                    "Từ vựng": "progress",
+                    "Phiên âm": "/ˈprəʊɡres/",
+                    "Nghĩa": "phát triển, tiến bộ (v), sự phát triển, sự tiến bộ (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 323,
+                    "Từ vựng": "waste",
+                    "Phiên âm": "/weɪst/",
+                    "Nghĩa": "lãng phí (v), sự lãng phí (n)",
+                    "Loại từ": "n, v"
+                }
+            ]
+        },
+        {
+            "Category": "Product Development (Phát triển sản phẩm)",
+            "Words": [
+                {
+                    "STT": 324,
+                    "Từ vựng": "anxious",
+                    "Phiên âm": "/ˈæŋkʃəs/",
+                    "Nghĩa": "lo lắng",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 325,
+                    "Từ vựng": "ascertain",
+                    "Phiên âm": "/ˌæsəˈteɪn/",
+                    "Nghĩa": "xác định, chắc chắn",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 326,
+                    "Từ vựng": "assume",
+                    "Phiên âm": "/əˈsjuːm/",
+                    "Nghĩa": "đảm đương, gánh vác",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 327,
+                    "Từ vựng": "decade",
+                    "Phiên âm": "/ˈdekeɪd/",
+                    "Nghĩa": "thập kỷ",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 328,
+                    "Từ vựng": "examine",
+                    "Phiên âm": "/ɪɡˈzæmɪn/",
+                    "Nghĩa": "khảo sát",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 329,
+                    "Từ vựng": "experiment",
+                    "Phiên âm": "/ɪkˈsperɪmənt/",
+                    "Nghĩa": "làm thí nghiệm (v), cuộc thử nghiệm (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 330,
+                    "Từ vựng": "logical",
+                    "Phiên âm": "/ˈlɒdʒɪkəl/",
+                    "Nghĩa": "hợp lý",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 331,
+                    "Từ vựng": "research",
+                    "Phiên âm": "/rɪˈsɜːtʃ/",
+                    "Nghĩa": "nghiên cứu (v), việc nghiên cứu (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 332,
+                    "Từ vựng": "responsibility",
+                    "Phiên âm": "/rɪˌspɒnsəˈbɪlɪti/",
+                    "Nghĩa": "trách nhiệm, bổn phận",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 333,
+                    "Từ vựng": "solve",
+                    "Phiên âm": "/sɒlv/",
+                    "Nghĩa": "giải quyết",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 334,
+                    "Từ vựng": "supervisor",
+                    "Phiên âm": "/ˈsuːpəvaɪzə(r)/",
+                    "Nghĩa": "người giám sát",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 335,
+                    "Từ vựng": "systematic",
+                    "Phiên âm": "/ˌsɪstəˈmætɪk/",
+                    "Nghĩa": "có hệ thống",
+                    "Loại từ": "adj"
+                }
+            ]
+        },
+        {
+            "Category": "Quality Control (Quản trị chất lượng)",
+            "Words": [
+                {
+                    "STT": 336,
+                    "Từ vựng": "brand",
+                    "Phiên âm": "/brænd/",
+                    "Nghĩa": "thương hiệu, nhãn hàng",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 337,
+                    "Từ vựng": "conform to",
+                    "Phiên âm": "/kənˈfɔːm tu/",
+                    "Nghĩa": "phù hợp với",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 338,
+                    "Từ vựng": "defect",
+                    "Phiên âm": "/ˈdiːfekt/",
+                    "Nghĩa": "nhược điểm",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 339,
+                    "Từ vựng": "enhance",
+                    "Phiên âm": "/ɪnˈhæns/",
+                    "Nghĩa": "nâng cao",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 340,
+                    "Từ vựng": "garment",
+                    "Phiên âm": "/ˈɡɑːmənt/",
+                    "Nghĩa": "quần áo",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 341,
+                    "Từ vựng": "inspect",
+                    "Phiên âm": "/ɪnˈspekt/",
+                    "Nghĩa": "kiểm tra, xem xét",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 342,
+                    "Từ vựng": "perceptive",
+                    "Phiên âm": "/pəˈseptɪv/",
+                    "Nghĩa": "tinh tường, sâu sắc",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 343,
+                    "Từ vựng": "repel",
+                    "Phiên âm": "/rɪˈpel/",
+                    "Nghĩa": "đẩy lùi (khách hàng)",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 344,
+                    "Từ vựng": "take back",
+                    "Phiên âm": "/teɪk bæk/",
+                    "Nghĩa": "trả lại, lấy lại",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 345,
+                    "Từ vựng": "throw out",
+                    "Phiên âm": "/θrəʊ aʊt/",
+                    "Nghĩa": "loại bỏ",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 346,
+                    "Từ vựng": "uniformly",
+                    "Phiên âm": "/ˈjuːnɪfɔːmli/",
+                    "Nghĩa": "giống nhau, đồng bộ",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 347,
+                    "Từ vựng": "wrinkle",
+                    "Phiên âm": "/ˈrɪŋkl/",
+                    "Nghĩa": "nếp nhăn",
+                    "Loại từ": "n"
+                }
+            ]
+        },
+        {
+            "Category": "Renting and Leasing (Thuê và Cho thuê)",
+            "Words": [
+                {
+                    "STT": 348,
+                    "Từ vựng": "apprehensive",
+                    "Phiên âm": "/ˌæprɪˈhensɪv/",
+                    "Nghĩa": "e ngại",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 349,
+                    "Từ vựng": "circumstance",
+                    "Phiên âm": "/ˈsɜːkəmstæns/",
+                    "Nghĩa": "hoàn cảnh, tình huống",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 350,
+                    "Từ vựng": "condition",
+                    "Phiên âm": "/kənˈdɪʃn/",
+                    "Nghĩa": "điều kiện, tình trạng",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 351,
+                    "Từ vựng": "due to",
+                    "Phiên âm": "/djuː tu/",
+                    "Nghĩa": "bởi vì, nhờ có",
+                    "Loại từ": "prep"
+                },
+                {
+                    "STT": 352,
+                    "Từ vựng": "fluctuate",
+                    "Phiên âm": "/ˈflʌktʃueɪt/",
+                    "Nghĩa": "dao động, thay đổi thất thường",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 353,
+                    "Từ vựng": "get out of",
+                    "Phiên âm": "/ɡet aʊt əv/",
+                    "Nghĩa": "ra khỏi, thoát khỏi",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 354,
+                    "Từ vựng": "indicator",
+                    "Phiên âm": "/ˈɪndɪkeɪtə(r)/",
+                    "Nghĩa": "dấu hiệu",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 355,
+                    "Từ vựng": "lease",
+                    "Phiên âm": "/liːs/",
+                    "Nghĩa": "hợp đồng cho thuê (n), cho thuê (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 356,
+                    "Từ vựng": "lock into",
+                    "Phiên âm": "/lɒk ˈɪntu/",
+                    "Nghĩa": "ràng buộc",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 357,
+                    "Từ vựng": "occupy",
+                    "Phiên âm": "/ˈɒkjupaɪ/",
+                    "Nghĩa": "chiếm hữu",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 358,
+                    "Từ vựng": "tenant",
+                    "Phiên âm": "/ˈtenənt/",
+                    "Nghĩa": "người thuê",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 359,
+                    "Từ vựng": "subject to",
+                    "Phiên âm": "/ˈsʌbdʒɪkt tu/",
+                    "Nghĩa": "tuân thủ, lệ thuộc vào",
+                    "Loại từ": "v"
+                }
+            ]
+        },
+        {
+            "Category": "Selecting a Restaurant (Chọn nhà hàng)",
+            "Words": [
+                {
+                    "STT": 360,
+                    "Từ vựng": "appeal",
+                    "Phiên âm": "/əˈpiːl/",
+                    "Nghĩa": "sức cuốn hút",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 361,
+                    "Từ vựng": "arrive",
+                    "Phiên âm": "/əˈraɪv/",
+                    "Nghĩa": "đến",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 362,
+                    "Từ vựng": "compromise",
+                    "Phiên âm": "/ˈkɒmprəmaɪz/",
+                    "Nghĩa": "thỏa hiệp (v), sự thỏa hiệp (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 363,
+                    "Từ vựng": "daring",
+                    "Phiên âm": "/ˈdeərɪŋ/",
+                    "Nghĩa": "cả gan, táo bạo",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 364,
+                    "Từ vựng": "familiar with",
+                    "Phiên âm": "/fəˈmɪliə wɪð/",
+                    "Nghĩa": "quen thuộc với",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 365,
+                    "Từ vựng": "guide",
+                    "Phiên âm": "/ɡaɪd/",
+                    "Nghĩa": "hướng dẫn viên (n), hướng dẫn, chỉ đường (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 366,
+                    "Từ vựng": "majority",
+                    "Phiên âm": "/məˈdʒɒrəti/",
+                    "Nghĩa": "đa số",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 367,
+                    "Từ vựng": "mix",
+                    "Phiên âm": "/mɪks/",
+                    "Nghĩa": "trộn, pha lẫn",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 368,
+                    "Từ vựng": "rely on",
+                    "Phiên âm": "/rɪˈlaɪ ɒn/",
+                    "Nghĩa": "dựa vào",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 369,
+                    "Từ vựng": "secure",
+                    "Phiên âm": "/sɪˈkjʊə(r)/",
+                    "Nghĩa": "bảo vệ (v), an toàn, bảo đảm (adj)",
+                    "Loại từ": "v, adj"
+                },
+                {
+                    "STT": 370,
+                    "Từ vựng": "subjective",
+                    "Phiên âm": "/səbˈdʒektɪv/",
+                    "Nghĩa": "mang tính chủ quan",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 371,
+                    "Từ vựng": "suggestion",
+                    "Phiên âm": "/səˈdʒestʃən/",
+                    "Nghĩa": "đề nghị, gợi ý",
+                    "Loại từ": "n"
+                }
+            ]
+        },
+        {
+            "Category": "Eating Out (Đi ăn ngoài)",
+            "Words": [
+                {
+                    "STT": 372,
+                    "Từ vựng": "appetite",
+                    "Phiên âm": "/ˈæpɪtaɪt/",
+                    "Nghĩa": "sự thèm ăn",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 373,
+                    "Từ vựng": "complete",
+                    "Phiên âm": "/kəmˈpliːt/",
+                    "Nghĩa": "hoàn thành",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 374,
+                    "Từ vựng": "excite",
+                    "Phiên âm": "/ɪkˈsaɪt/",
+                    "Nghĩa": "kích thích",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 375,
+                    "Từ vựng": "flavor",
+                    "Phiên âm": "/ˈfleɪvə(r)/",
+                    "Nghĩa": "hương vị, mùi vị",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 376,
+                    "Từ vựng": "foreign",
+                    "Phiên âm": "/ˈfɒrən/",
+                    "Nghĩa": "thuộc nước ngoài",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 377,
+                    "Từ vựng": "ingredient",
+                    "Phiên âm": "/ɪnˈɡriːdiənt/",
+                    "Nghĩa": "thành phần",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 378,
+                    "Từ vựng": "judge",
+                    "Phiên âm": "/dʒʌdʒ/",
+                    "Nghĩa": "thẩm phán (n), bình phẩm, phán xét (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 379,
+                    "Từ vựng": "mix-up",
+                    "Phiên âm": "/ˈmɪks ʌp/",
+                    "Nghĩa": "sự lộn xộn, cuộc ẩu đả",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 380,
+                    "Từ vựng": "patron",
+                    "Phiên âm": "/ˈpeɪtrən/",
+                    "Nghĩa": "khách quen",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 381,
+                    "Từ vựng": "predict",
+                    "Phiên âm": "/prɪˈdɪkt/",
+                    "Nghĩa": "dự đoán",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 382,
+                    "Từ vựng": "randomly",
+                    "Phiên âm": "/ˈrændəmli/",
+                    "Nghĩa": "tình cờ, ngẫu nhiên",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 383,
+                    "Từ vựng": "remind",
+                    "Phiên âm": "/rɪˈmaɪnd/",
+                    "Nghĩa": "nhắc nhở",
+                    "Loại từ": "v"
+                }
+            ]
+        },
+        {
+            "Category": "Ordering Lunch (Đặt bữa trưa)",
+            "Words": [
+                {
+                    "STT": 384,
+                    "Từ vựng": "burden",
+                    "Phiên âm": "/ˈbɜːdn/",
+                    "Nghĩa": "gánh nặng (n), tạo gánh nặng (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 385,
+                    "Từ vựng": "commonly",
+                    "Phiên âm": "/ˈkɒmənli/",
+                    "Nghĩa": "thông thường",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 386,
+                    "Từ vựng": "delivery",
+                    "Phiên âm": "/dɪˈlɪvəri/",
+                    "Nghĩa": "sự giao hàng",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 387,
+                    "Từ vựng": "elegance",
+                    "Phiên âm": "/ˈelɪɡəns/",
+                    "Nghĩa": "sự thanh lịch",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 388,
+                    "Từ vựng": "fall to",
+                    "Phiên âm": "/fɔːl tuː/",
+                    "Nghĩa": "rơi vào tay (nói về trách nhiệm)",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 389,
+                    "Từ vựng": "impress",
+                    "Phiên âm": "/ɪmˈpres/",
+                    "Nghĩa": "gây ấn tượng",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 390,
+                    "Từ vựng": "individual",
+                    "Phiên âm": "/ˌɪndɪˈvɪdʒuəl/",
+                    "Nghĩa": "cá nhân, riêng lẻ",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 391,
+                    "Từ vựng": "reasonable",
+                    "Phiên âm": "/ˈriːznəbl/",
+                    "Nghĩa": "hợp lý, phải chăng",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 392,
+                    "Từ vựng": "multiple",
+                    "Phiên âm": "/ˈmʌltɪpl/",
+                    "Nghĩa": "nhiều (adj), làm tăng lên (v)",
+                    "Loại từ": "adj, v"
+                },
+                {
+                    "STT": 393,
+                    "Từ vựng": "narrow",
+                    "Phiên âm": "/ˈnærəʊ/",
+                    "Nghĩa": "chật hẹp (adj), thu hẹp (v)",
+                    "Loại từ": "adj, v"
+                },
+                {
+                    "STT": 394,
+                    "Từ vựng": "pick up",
+                    "Phiên âm": "/pɪk ʌp/",
+                    "Nghĩa": "nhận hàng tại chỗ",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 395,
+                    "Từ vựng": "settle",
+                    "Phiên âm": "/ˈsetl/",
+                    "Nghĩa": "thanh toán",
+                    "Loại từ": "v"
+                }
+            ]
+        },
+        {
+            "Category": "Cooking As A Career (Nấu ăn là sự nghiệp)",
+            "Words": [
+                {
+                    "STT": 396,
+                    "Từ vựng": "accustom to",
+                    "Phiên âm": "/əˈkʌstəm tuː/",
+                    "Nghĩa": "làm quen với",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 397,
+                    "Từ vựng": "apprentice",
+                    "Phiên âm": "/əˈprentɪs/",
+                    "Nghĩa": "người học việc",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 398,
+                    "Từ vựng": "culinary",
+                    "Phiên âm": "/ˈkʌlɪneri/",
+                    "Nghĩa": "thuộc về nấu nướng",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 399,
+                    "Từ vựng": "demanding",
+                    "Phiên âm": "/dɪˈmændɪŋ/",
+                    "Nghĩa": "khó khăn, yêu cầu cao",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 400,
+                    "Từ vựng": "draw",
+                    "Phiên âm": "/drɔː/",
+                    "Nghĩa": "thu hút, lôi cuốn",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 401,
+                    "Từ vựng": "incorporate",
+                    "Phiên âm": "/ɪnˈkɔːpəreɪt/",
+                    "Nghĩa": "sát nhập",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 402,
+                    "Từ vựng": "influx",
+                    "Phiên âm": "/ˈɪnflʌks/",
+                    "Nghĩa": "dòng người chảy vào",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 403,
+                    "Từ vựng": "method",
+                    "Phiên âm": "/ˈmeθəd/",
+                    "Nghĩa": "phương pháp",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 404,
+                    "Từ vựng": "methodical",
+                    "Phiên âm": "/məˈθɒdɪkl/",
+                    "Nghĩa": "làm việc có hệ thống (tính cách)",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 405,
+                    "Từ vựng": "procedure",
+                    "Phiên âm": "/prəˈsiːdʒə(r)/",
+                    "Nghĩa": "quy trình",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 406,
+                    "Từ vựng": "outlet",
+                    "Phiên âm": "/ˈaʊtlet/",
+                    "Nghĩa": "cách thể hiện",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 407,
+                    "Từ vựng": "profession",
+                    "Phiên âm": "/prəˈfeʃn/",
+                    "Nghĩa": "chuyên môn",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 408,
+                    "Từ vựng": "relinquish",
+                    "Phiên âm": "/rɪlɪŋkɪʃ/",
+                    "Nghĩa": "từ bỏ",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 409,
+                    "Từ vựng": "theme",
+                    "Phiên âm": "/θiːm/",
+                    "Nghĩa": "đề tài, chủ đề",
+                    "Loại từ": "n"
+                }
+            ]
+        },
+        {
+            "Category": "Events (Sự kiện)",
+            "Words": [
+                {
+                    "STT": 410,
+                    "Từ vựng": "assist",
+                    "Phiên âm": "/əˈsɪst/",
+                    "Nghĩa": "hỗ trợ",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 411,
+                    "Từ vựng": "support",
+                    "Phiên âm": "/səˈpɔːrt/",
+                    "Nghĩa": "ủng hộ, khuyến khích",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 412,
+                    "Từ vựng": "coordinate",
+                    "Phiên âm": "/kəʊˈɔːrdɪneɪt/",
+                    "Nghĩa": "phối hợp",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 413,
+                    "Từ vựng": "dimension",
+                    "Phiên âm": "/daɪˈmenʃn/",
+                    "Nghĩa": "kích thước",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 414,
+                    "Từ vựng": "general",
+                    "Phiên âm": "/ˈdʒenrəl/",
+                    "Nghĩa": "chung, tổng quát",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 415,
+                    "Từ vựng": "ideal",
+                    "Phiên âm": "/aɪˈdiːəl/",
+                    "Nghĩa": "lý tưởng",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 416,
+                    "Từ vựng": "exact",
+                    "Phiên âm": "/ɪɡˈzækt/",
+                    "Nghĩa": "chính xác",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 417,
+                    "Từ vựng": "lead time",
+                    "Phiên âm": "/liːd taɪm/",
+                    "Nghĩa": "thời gian tiến hành",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 418,
+                    "Từ vựng": "proximity",
+                    "Phiên âm": "/prɒkˈsɪməti/",
+                    "Nghĩa": "sự gần (về không gian, thời gian)",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 419,
+                    "Từ vựng": "regulation",
+                    "Phiên âm": "/ˌreɡjəˈleɪʃn/",
+                    "Nghĩa": "quy định",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 420,
+                    "Từ vựng": "site",
+                    "Phiên âm": "/saɪt/",
+                    "Nghĩa": "địa điểm (xây dựng)",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 421,
+                    "Từ vựng": "stage",
+                    "Phiên âm": "/steɪdʒ/",
+                    "Nghĩa": "trình diễn",
+                    "Loại từ": "v"
+                }
+            ]
+        },
+        {
+            "Category": "General Travel (Du lịch)",
+            "Words": [
+                {
+                    "STT": 422,
+                    "Từ vựng": "agency",
+                    "Phiên âm": "/ˈeɪdʒənsi/",
+                    "Nghĩa": "công ty đại diện, môi giới",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 423,
+                    "Từ vựng": "announce",
+                    "Phiên âm": "/əˈnaʊns/",
+                    "Nghĩa": "thông báo",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 424,
+                    "Từ vựng": "beverage",
+                    "Phiên âm": "/ˈbevərɪdʒ/",
+                    "Nghĩa": "đồ uống",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 425,
+                    "Từ vựng": "board",
+                    "Phiên âm": "/bɔːrd/",
+                    "Nghĩa": "lên tàu, xe",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 426,
+                    "Từ vựng": "claim",
+                    "Phiên âm": "/kleɪm/",
+                    "Nghĩa": "cho là, khẳng định là",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 427,
+                    "Từ vựng": "delay",
+                    "Phiên âm": "/dɪˈleɪ/",
+                    "Nghĩa": "trì hoãn",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 428,
+                    "Từ vựng": "depart",
+                    "Phiên âm": "/dɪˈpɑːrt/",
+                    "Nghĩa": "khởi hành",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 429,
+                    "Từ vựng": "embark",
+                    "Phiên âm": "/ɪmˈbɑːrk/",
+                    "Nghĩa": "lên tàu",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 430,
+                    "Từ vựng": "itinerary",
+                    "Phiên âm": "/aɪˈtɪnəreri/",
+                    "Nghĩa": "lịch trình, hành trình",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 431,
+                    "Từ vựng": "luggage",
+                    "Phiên âm": "/ˈlʌɡɪdʒ/",
+                    "Nghĩa": "hành lý",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 432,
+                    "Từ vựng": "prohibit",
+                    "Phiên âm": "/prəˈhɪbɪt/",
+                    "Nghĩa": "cấm, ngăn chặn",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 433,
+                    "Từ vựng": "validate",
+                    "Phiên âm": "/ˈvælɪdeɪt/",
+                    "Nghĩa": "phê duyệt",
+                    "Loại từ": "v"
+                }
+            ]
+        },
+        {
+            "Category": "Airlines (Hàng không)",
+            "Words": [
+                {
+                    "STT": 434,
+                    "Từ vựng": "deal with",
+                    "Phiên âm": "/diːl wɪð/",
+                    "Nghĩa": "giải quyết, đối mặt với",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 435,
+                    "Từ vựng": "destination",
+                    "Phiên âm": "/ˌdestɪˈneɪʃn/",
+                    "Nghĩa": "điểm đến",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 436,
+                    "Từ vựng": "distinguish",
+                    "Phiên âm": "/dɪˈstɪŋɡwɪʃ/",
+                    "Nghĩa": "phân biệt",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 437,
+                    "Từ vựng": "economize",
+                    "Phiên âm": "/ɪˈkɒnəmaɪz/",
+                    "Nghĩa": "tiết kiệm",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 438,
+                    "Từ vựng": "equivalent",
+                    "Phiên âm": "/ɪˈkwɪvələnt/",
+                    "Nghĩa": "tương đương",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 439,
+                    "Từ vựng": "excursion",
+                    "Phiên âm": "/ɪkˈskɜːʒn/",
+                    "Nghĩa": "chuyến tham quan",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 440,
+                    "Từ vựng": "expense",
+                    "Phiên âm": "/ɪkˈspens/",
+                    "Nghĩa": "chi phí",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 441,
+                    "Từ vựng": "extend",
+                    "Phiên âm": "/ɪkˈstend/",
+                    "Nghĩa": "gia hạn, kéo dài",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 442,
+                    "Từ vựng": "prospective",
+                    "Phiên âm": "/prəˈspektɪv/",
+                    "Nghĩa": "có triển vọng, có khả năng",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 443,
+                    "Từ vựng": "situation",
+                    "Phiên âm": "/ˌsɪtʃuˈeɪʃn/",
+                    "Nghĩa": "tình huống",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 444,
+                    "Từ vựng": "substance",
+                    "Phiên âm": "/ˈsʌbstəns/",
+                    "Nghĩa": "chất",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 445,
+                    "Từ vựng": "economy class",
+                    "Phiên âm": "/ɪˈkɒnəmi klæs/",
+                    "Nghĩa": "hạng phổ thông trên máy bay",
+                    "Loại từ": "n"
+                }
+            ]
+        },
+        {
+            "Category": "Trains (Xe lửa)",
+            "Words": [
+                {
+                    "STT": 446,
+                    "Từ vựng": "comprehensive",
+                    "Phiên âm": "/ˌkɒmprɪˈhensɪv/",
+                    "Nghĩa": "toàn diện, đầy đủ",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 447,
+                    "Từ vựng": "deluxe",
+                    "Phiên âm": "/dɪˈlʌks/",
+                    "Nghĩa": "sang trọng, cao cấp",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 448,
+                    "Từ vựng": "directory",
+                    "Phiên âm": "/daɪˈrektəri/",
+                    "Nghĩa": "sách hướng dẫn",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 449,
+                    "Từ vựng": "duration",
+                    "Phiên âm": "/djʊˈreɪʃn/",
+                    "Nghĩa": "khoảng thời gian",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 450,
+                    "Từ vựng": "entitle",
+                    "Phiên âm": "/ɪnˈtaɪtl/",
+                    "Nghĩa": "cho phép",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 451,
+                    "Từ vựng": "fare",
+                    "Phiên âm": "/feə(r)/",
+                    "Nghĩa": "tiền vé",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 452,
+                    "Từ vựng": "offset",
+                    "Phiên âm": "/ˈɒfset/",
+                    "Nghĩa": "bù lại",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 453,
+                    "Từ vựng": "operate",
+                    "Phiên âm": "/ˈɒpəreɪt/",
+                    "Nghĩa": "hoạt động, vận hành",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 454,
+                    "Từ vựng": "punctual",
+                    "Phiên âm": "/ˈpʌŋktʃuəl/",
+                    "Nghĩa": "đúng giờ",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 455,
+                    "Từ vựng": "relatively",
+                    "Phiên âm": "/ˈrelətɪvli/",
+                    "Nghĩa": "tương đối",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 456,
+                    "Từ vựng": "remainder",
+                    "Phiên âm": "/rɪˈmeɪndə(r)/",
+                    "Nghĩa": "phần còn lại",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 457,
+                    "Từ vựng": "remote",
+                    "Phiên âm": "/rɪˈməʊt/",
+                    "Nghĩa": "xa xôi, hẻo lánh",
+                    "Loại từ": "adj"
+                }
+            ]
+        },
+        {
+            "Category": "Hotels (Khách sạn)",
+            "Words": [
+                {
+                    "STT": 458,
+                    "Từ vựng": "advance",
+                    "Phiên âm": "/ədˈvæns/",
+                    "Nghĩa": "tiến bộ, tiến tới",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 459,
+                    "Từ vựng": "chain",
+                    "Phiên âm": "/tʃeɪn/",
+                    "Nghĩa": "chuỗi (doanh nghiệp)",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 460,
+                    "Từ vựng": "check in",
+                    "Phiên âm": "/tʃek ɪn/",
+                    "Nghĩa": "làm thủ tục (nhận phòng, nhận vé)",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 461,
+                    "Từ vựng": "confirm",
+                    "Phiên âm": "/kənˈfɜːm/",
+                    "Nghĩa": "xác nhận, chứng thực",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 462,
+                    "Từ vựng": "expect",
+                    "Phiên âm": "/ɪkˈspekt/",
+                    "Nghĩa": "mong đợi",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 463,
+                    "Từ vựng": "housekeeper",
+                    "Phiên âm": "/ˈhaʊskiːpə(r)/",
+                    "Nghĩa": "nhân viên dọn phòng",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 464,
+                    "Từ vựng": "notify",
+                    "Phiên âm": "/ˈnəʊtɪfaɪ/",
+                    "Nghĩa": "thông báo",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 465,
+                    "Từ vựng": "preclude",
+                    "Phiên âm": "/prɪˈkluːd/",
+                    "Nghĩa": "ngăn cản",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 466,
+                    "Từ vựng": "quote",
+                    "Phiên âm": "/kwəʊt/",
+                    "Nghĩa": "lời trích dẫn",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 467,
+                    "Từ vựng": "rate",
+                    "Phiên âm": "/reɪt/",
+                    "Nghĩa": "tỷ lệ, mức giá",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 468,
+                    "Từ vựng": "reserve",
+                    "Phiên âm": "/rɪˈzɜːv/",
+                    "Nghĩa": "đặt chỗ",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 469,
+                    "Từ vựng": "serve",
+                    "Phiên âm": "/sɜːv/",
+                    "Nghĩa": "phục vụ",
+                    "Loại từ": "v"
+                }
+            ]
+        },
+        {
+            "Category": "Car Rentals (Thuê ô tô)",
+            "Words": [
+                {
+                    "STT": 470,
+                    "Từ vựng": "coincide",
+                    "Phiên âm": "/ˌkəʊɪnˈsaɪd/",
+                    "Nghĩa": "trùng hợp, đồng thời",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 471,
+                    "Từ vựng": "confusion",
+                    "Phiên âm": "/kənˈfjuːʒn/",
+                    "Nghĩa": "sự bối rối",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 472,
+                    "Từ vựng": "contact",
+                    "Phiên âm": "/ˈkɒntækt/",
+                    "Nghĩa": "liên hệ",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 473,
+                    "Từ vựng": "disappoint",
+                    "Phiên âm": "/ˌdɪsəˈpɔɪnt/",
+                    "Nghĩa": "gây thất vọng",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 474,
+                    "Từ vựng": "guarantee",
+                    "Phiên âm": "/ˌɡærənˈtiː/",
+                    "Nghĩa": "bảo đảm (v), sự bảo đảm (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 475,
+                    "Từ vựng": "intend",
+                    "Phiên âm": "/ɪnˈtend/",
+                    "Nghĩa": "dự định, có ý định",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 476,
+                    "Từ vựng": "license",
+                    "Phiên âm": "/ˈlaɪsns/",
+                    "Nghĩa": "cấp phép",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 477,
+                    "Từ vựng": "nervous",
+                    "Phiên âm": "/ˈnɜːvəs/",
+                    "Nghĩa": "lo lắng, bồn chồn",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 478,
+                    "Từ vựng": "request",
+                    "Phiên âm": "/rɪˈkwest/",
+                    "Nghĩa": "yêu cầu (v), lời yêu cầu (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 479,
+                    "Từ vựng": "tempt",
+                    "Phiên âm": "/tempt/",
+                    "Nghĩa": "lôi kéo, thuyết phục",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 480,
+                    "Từ vựng": "thrill",
+                    "Phiên âm": "/θrɪl/",
+                    "Nghĩa": "hồi hộp, xúc động (v), cảm giác hồi hộp (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 481,
+                    "Từ vựng": "tier",
+                    "Phiên âm": "/tɪə(r)/",
+                    "Nghĩa": "hàng, tầng",
+                    "Loại từ": "n"
+                }
+            ]
+        },
+        {
+            "Category": "Movies (Phim ảnh)",
+            "Words": [
+                {
+                    "STT": 482,
+                    "Từ vựng": "attain",
+                    "Phiên âm": "/əˈteɪn/",
+                    "Nghĩa": "đạt được (mục đích)",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 483,
+                    "Từ vựng": "combine",
+                    "Phiên âm": "/kəmˈbaɪn/",
+                    "Nghĩa": "kết hợp, cộng lại",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 484,
+                    "Từ vựng": "continue",
+                    "Phiên âm": "/kənˈtɪnjuː/",
+                    "Nghĩa": "tiếp tục",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 485,
+                    "Từ vựng": "description",
+                    "Phiên âm": "/dɪˈskrɪpʃn/",
+                    "Nghĩa": "sự mô tả",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 486,
+                    "Từ vựng": "disperse",
+                    "Phiên âm": "/dɪˈspɜːs/",
+                    "Nghĩa": "giải tán",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 487,
+                    "Từ vựng": "entertain",
+                    "Phiên âm": "/ˌentəˈteɪn/",
+                    "Nghĩa": "giải trí, tiếp đãi",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 488,
+                    "Từ vựng": "influence",
+                    "Phiên âm": "/ˈɪnfluəns/",
+                    "Nghĩa": "sự ảnh hưởng (n), ảnh hưởng (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 489,
+                    "Từ vựng": "range",
+                    "Phiên âm": "/reɪndʒ/",
+                    "Nghĩa": "phạm vi",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 490,
+                    "Từ vựng": "release",
+                    "Phiên âm": "/rɪˈliːs/",
+                    "Nghĩa": "công chiếu (v), sự công chiếu (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 491,
+                    "Từ vựng": "represent",
+                    "Phiên âm": "/ˌreprɪˈzent/",
+                    "Nghĩa": "tượng trưng, đại diện",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 492,
+                    "Từ vựng": "separate",
+                    "Phiên âm": "/ˈsepəreɪt/",
+                    "Nghĩa": "tách rời, chia",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 493,
+                    "Từ vựng": "successive",
+                    "Phiên âm": "/səkˈsesɪv/",
+                    "Nghĩa": "liên tiếp",
+                    "Loại từ": "adj"
+                }
+            ]
+        },
+        {
+            "Category": "Theater (Nhà hát)",
+            "Words": [
+                {
+                    "STT": 494,
+                    "Từ vựng": "acting",
+                    "Phiên âm": "/ˈæktɪŋ/",
+                    "Nghĩa": "tạm thay thế trách nhiệm (adj), diễn xuất (n)",
+                    "Loại từ": "n, adj"
+                },
+                {
+                    "STT": 495,
+                    "Từ vựng": "approach",
+                    "Phiên âm": "/əˈprəʊtʃ/",
+                    "Nghĩa": "tiếp cận",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 496,
+                    "Từ vựng": "audience",
+                    "Phiên âm": "/ˈɔːdiəns/",
+                    "Nghĩa": "khán giả (xem trực tiếp)",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 497,
+                    "Từ vựng": "create",
+                    "Phiên âm": "/kriˈeɪt/",
+                    "Nghĩa": "tạo ra",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 498,
+                    "Từ vựng": "dialogue",
+                    "Phiên âm": "/ˈdaɪəlɒɡ/",
+                    "Nghĩa": "cuộc đối thoại",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 499,
+                    "Từ vựng": "element",
+                    "Phiên âm": "/ˈelɪmənt/",
+                    "Nghĩa": "yếu tố",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 500,
+                    "Từ vựng": "experience",
+                    "Phiên âm": "/ɪkˈspɪəriəns/",
+                    "Nghĩa": "kinh nghiệm",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 501,
+                    "Từ vựng": "occur",
+                    "Phiên âm": "/əˈkɜː(r)/",
+                    "Nghĩa": "diễn ra, xảy ra",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 502,
+                    "Từ vựng": "perform",
+                    "Phiên âm": "/pəˈfɔːm/",
+                    "Nghĩa": "biểu diễn, trình diễn",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 503,
+                    "Từ vựng": "rehearse",
+                    "Phiên âm": "/rɪˈhɜːs/",
+                    "Nghĩa": "diễn tập",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 504,
+                    "Từ vựng": "review",
+                    "Phiên âm": "/rɪˈvjuː/",
+                    "Nghĩa": "bài phê bình (n), xem xét lại (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 505,
+                    "Từ vựng": "sell out",
+                    "Phiên âm": "/sel aʊt/",
+                    "Nghĩa": "bán hết",
+                    "Loại từ": "v"
+                }
+            ]
+        },
+        {
+            "Category": "Music (Âm nhạc)",
+            "Words": [
+                {
+                    "STT": 506,
+                    "Từ vựng": "available",
+                    "Phiên âm": "/əˈveɪləbl/",
+                    "Nghĩa": "sẵn có",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 507,
+                    "Từ vựng": "broaden",
+                    "Phiên âm": "/ˈbrɔːdn/",
+                    "Nghĩa": "mở rộng",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 508,
+                    "Từ vựng": "categorize",
+                    "Phiên âm": "/ˈkætəɡəraɪz/",
+                    "Nghĩa": "phân loại",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 509,
+                    "Từ vựng": "disparate",
+                    "Phiên âm": "/ˈdɪspərət/",
+                    "Nghĩa": "khác biệt hoàn toàn",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 510,
+                    "Từ vựng": "divide",
+                    "Phiên âm": "/dɪˈvaɪd/",
+                    "Nghĩa": "phân chia",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 511,
+                    "Từ vựng": "favor",
+                    "Phiên âm": "/ˈfeɪvə(r)/",
+                    "Nghĩa": "thích hơn",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 512,
+                    "Từ vựng": "instinct",
+                    "Phiên âm": "/ˈɪnstɪŋkt/",
+                    "Nghĩa": "bản năng",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 513,
+                    "Từ vựng": "live",
+                    "Phiên âm": "/laɪv/",
+                    "Nghĩa": "trực tiếp (buổi diễn)",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 514,
+                    "Từ vựng": "reason",
+                    "Phiên âm": "/ˈriːzn/",
+                    "Nghĩa": "lý do",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 515,
+                    "Từ vựng": "relaxation",
+                    "Phiên âm": "/ˌriːlækˈseɪʃn/",
+                    "Nghĩa": "sự thư giãn",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 516,
+                    "Từ vựng": "taste",
+                    "Phiên âm": "/teɪst/",
+                    "Nghĩa": "thị hiếu, gu (thẩm mỹ)",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 517,
+                    "Từ vựng": "urge",
+                    "Phiên âm": "/ɜːdʒ/",
+                    "Nghĩa": "thôi thúc (v), sự thôi thúc (n)",
+                    "Loại từ": "n, v"
+                }
+            ]
+        },
+        {
+            "Category": "Museums (Bảo tàng)",
+            "Words": [
+                {
+                    "STT": 518,
+                    "Từ vựng": "acquire",
+                    "Phiên âm": "/əˈkwaɪə(r)/",
+                    "Nghĩa": "có được, mua được, tiếp thu (kiến thức)",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 519,
+                    "Từ vựng": "admire",
+                    "Phiên âm": "/ədˈmaɪə(r)/",
+                    "Nghĩa": "ngưỡng mộ",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 520,
+                    "Từ vựng": "collection",
+                    "Phiên âm": "/kəˈlekʃn/",
+                    "Nghĩa": "bộ sưu tập",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 521,
+                    "Từ vựng": "criticism",
+                    "Phiên âm": "/ˈkrɪtɪsɪzəm/",
+                    "Nghĩa": "sự phê bình",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 522,
+                    "Từ vựng": "express",
+                    "Phiên âm": "/ɪkˈspres/",
+                    "Nghĩa": "biểu lộ, bày tỏ",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 523,
+                    "Từ vựng": "fashion",
+                    "Phiên âm": "/ˈfæʃn/",
+                    "Nghĩa": "thời trang",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 524,
+                    "Từ vựng": "leisure",
+                    "Phiên âm": "/ˈleʒə(r)/",
+                    "Nghĩa": "thời gian rảnh",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 525,
+                    "Từ vựng": "respond",
+                    "Phiên âm": "/rɪˈspɒnd/",
+                    "Nghĩa": "trả lời, phản ứng lại",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 526,
+                    "Từ vựng": "schedule",
+                    "Phiên âm": "/ˈskedʒuːl/",
+                    "Nghĩa": "lịch trình, kế hoạch (n), lên kế hoạch (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 527,
+                    "Từ vựng": "significant",
+                    "Phiên âm": "/sɪɡˈnɪfɪkənt/",
+                    "Nghĩa": "quan trọng, có ý nghĩa",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 528,
+                    "Từ vựng": "specialize in",
+                    "Phiên âm": "/ˈspeʃəlaɪz ɪn/",
+                    "Nghĩa": "chuyên về (lĩnh vực gì, làm gì)",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 529,
+                    "Từ vựng": "spectrum",
+                    "Phiên âm": "/ˈspektrəm/",
+                    "Nghĩa": "quang phổ, dải âm thanh",
+                    "Loại từ": "n"
+                }
+            ]
+        },
+        {
+            "Category": "Media (Truyền thông)",
+            "Words": [
+                {
+                    "STT": 530,
+                    "Từ vựng": "assignment",
+                    "Phiên âm": "/əˈsaɪnmənt/",
+                    "Nghĩa": "bài tập, nhiệm vụ",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 531,
+                    "Từ vựng": "constitute",
+                    "Phiên âm": "/ˈkɒnstɪtjuːt/",
+                    "Nghĩa": "cấu thành, tạo thành",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 532,
+                    "Từ vựng": "decisive",
+                    "Phiên âm": "/dɪˈsaɪsɪv/",
+                    "Nghĩa": "quyết đoán",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 533,
+                    "Từ vựng": "disseminate",
+                    "Phiên âm": "/dɪˈsemɪneɪt/",
+                    "Nghĩa": "truyền bá",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 534,
+                    "Từ vựng": "impact",
+                    "Phiên âm": "/ˈɪmpækt/",
+                    "Nghĩa": "sự tác động",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 535,
+                    "Từ vựng": "in-depth",
+                    "Phiên âm": "/ɪn depθ/",
+                    "Nghĩa": "kỹ càng, triệt để",
+                    "Loại từ": "idiom"
+                },
+                {
+                    "STT": 536,
+                    "Từ vựng": "investigate",
+                    "Phiên âm": "/ɪnˈvestɪɡeɪt/",
+                    "Nghĩa": "điều tra, theo dõi",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 537,
+                    "Từ vựng": "link",
+                    "Phiên âm": "/lɪŋk/",
+                    "Nghĩa": "mối liên hệ (n), liên kết (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 538,
+                    "Từ vựng": "politician",
+                    "Phiên âm": "/ˌpɒlɪˈtɪʃn/",
+                    "Nghĩa": "chính trị gia",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 539,
+                    "Từ vựng": "subscribe to",
+                    "Phiên âm": "/səbˈskraɪb tu/",
+                    "Nghĩa": "đặt mua dài hạn, quyên góp",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 540,
+                    "Từ vựng": "thorough",
+                    "Phiên âm": "/ˈθʌrə/",
+                    "Nghĩa": "kỹ lưỡng, tỉ mỉ",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 541,
+                    "Từ vựng": "choosy",
+                    "Phiên âm": "/ˈtʃuːzi/",
+                    "Nghĩa": "kén chọn",
+                    "Loại từ": "adj"
+                }
+            ]
+        },
+        {
+            "Category": "Dentist’s Office (Phòng khám nha khoa)",
+            "Words": [
+                {
+                    "STT": 542,
+                    "Từ vựng": "catch up",
+                    "Phiên âm": "/kætʃ ʌp/",
+                    "Nghĩa": "bắt kịp với",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 543,
+                    "Từ vựng": "distract",
+                    "Phiên âm": "/dɪˈstrækt/",
+                    "Nghĩa": "làm xao nhãng",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 544,
+                    "Từ vựng": "encourage",
+                    "Phiên âm": "/ɪnˈkʌrɪdʒ/",
+                    "Nghĩa": "khuyến khích",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 545,
+                    "Từ vựng": "evident",
+                    "Phiên âm": "/ˈevɪdənt/",
+                    "Nghĩa": "hiển nhiên, rõ ràng",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 546,
+                    "Từ vựng": "habit",
+                    "Phiên âm": "/ˈhæbɪt/",
+                    "Nghĩa": "thói quen",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 547,
+                    "Từ vựng": "illuminate",
+                    "Phiên âm": "/ɪˈluːmɪneɪt/",
+                    "Nghĩa": "chiếu sáng",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 548,
+                    "Từ vựng": "irritate",
+                    "Phiên âm": "/ˈɪrɪteɪt/",
+                    "Nghĩa": "làm bực mình",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 549,
+                    "Từ vựng": "overview",
+                    "Phiên âm": "/ˈəʊvəvjuː/",
+                    "Nghĩa": "cái nhìn khái quát",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 550,
+                    "Từ vựng": "position",
+                    "Phiên âm": "/pəˈzɪʃn/",
+                    "Nghĩa": "vị trí, chỗ",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 551,
+                    "Từ vựng": "regular",
+                    "Phiên âm": "/ˈreɡjələ(r)/",
+                    "Nghĩa": "thường xuyên",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 552,
+                    "Từ vựng": "restore",
+                    "Phiên âm": "/rɪˈstɔː(r)/",
+                    "Nghĩa": "khôi phục",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 553,
+                    "Từ vựng": "aware",
+                    "Phiên âm": "/əˈweə(r)/",
+                    "Nghĩa": "biết, nhận thức",
+                    "Loại từ": "adj"
+                }
+            ]
+        },
+        {
+            "Category": "Doctor’s Office (Phòng khám bác sĩ)",
+            "Words": [
+                {
+                    "STT": 554,
+                    "Từ vựng": "annual",
+                    "Phiên âm": "/ˈænjuəl/",
+                    "Nghĩa": "hàng năm",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 555,
+                    "Từ vựng": "appoint",
+                    "Phiên âm": "/əˈpɔɪnt/",
+                    "Nghĩa": "ấn định (ngày giờ, nơi chốn)",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 556,
+                    "Từ vựng": "assess",
+                    "Phiên âm": "/əˈses/",
+                    "Nghĩa": "đánh giá",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 557,
+                    "Từ vựng": "diagnose",
+                    "Phiên âm": "/ˌdaɪəɡˈnəʊz/",
+                    "Nghĩa": "chẩn đoán",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 558,
+                    "Từ vựng": "effective",
+                    "Phiên âm": "/ɪˈfektɪv/",
+                    "Nghĩa": "hiệu quả",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 559,
+                    "Từ vựng": "instrument",
+                    "Phiên âm": "/ˈɪnstrəmənt/",
+                    "Nghĩa": "dụng cụ, thiết bị",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 560,
+                    "Từ vựng": "manage",
+                    "Phiên âm": "/ˈmænɪdʒ/",
+                    "Nghĩa": "kiểm soát, quản lý",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 561,
+                    "Từ vựng": "prevent",
+                    "Phiên âm": "/prɪˈvent/",
+                    "Nghĩa": "ngăn chặn",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 562,
+                    "Từ vựng": "recommend",
+                    "Phiên âm": "/ˌrekəˈmend/",
+                    "Nghĩa": "đề nghị, gợi ý",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 563,
+                    "Từ vựng": "record",
+                    "Phiên âm": "/rɪˈkɔːd/",
+                    "Nghĩa": "ghi chép lại",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 564,
+                    "Từ vựng": "serious",
+                    "Phiên âm": "/ˈsɪəriəs/",
+                    "Nghĩa": "nghiêm trọng, nặng",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 565,
+                    "Từ vựng": "prevention is better than cure",
+                    "Phiên âm": "",
+                    "Nghĩa": "phòng bệnh hơn chữa bệnh",
+                    "Loại từ": "idiom"
+                }
+            ]
+        },
+        {
+            "Category": "Health Insurance (Bảo hiểm sức khỏe)",
+            "Words": [
+                {
+                    "STT": 566,
+                    "Từ vựng": "alternative",
+                    "Phiên âm": "/ɔːlˈtɜːnətɪv/",
+                    "Nghĩa": "thay thế, khác",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 567,
+                    "Từ vựng": "aspect",
+                    "Phiên âm": "/ˈæspekt/",
+                    "Nghĩa": "khía cạnh",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 568,
+                    "Từ vựng": "concern",
+                    "Phiên âm": "/kənˈsɜːn/",
+                    "Nghĩa": "bận tâm, lo lắng (v), mối quan tâm, lo lắng (n)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 569,
+                    "Từ vựng": "emphasize",
+                    "Phiên âm": "/ˈemfəsaɪz/",
+                    "Nghĩa": "nhấn mạnh",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 570,
+                    "Từ vựng": "incur",
+                    "Phiên âm": "/ɪnˈkɜː(r)/",
+                    "Nghĩa": "gánh chịu",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 571,
+                    "Từ vựng": "personnel",
+                    "Phiên âm": "/ˌpɜːsəˈnel/",
+                    "Nghĩa": "nhân sự",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 572,
+                    "Từ vựng": "policy",
+                    "Phiên âm": "/ˈpɒləsi/",
+                    "Nghĩa": "chính sách",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 573,
+                    "Từ vựng": "portion",
+                    "Phiên âm": "/ˈpɔːʃn/",
+                    "Nghĩa": "phần",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 574,
+                    "Từ vựng": "regardless",
+                    "Phiên âm": "/rɪˈɡɑːdləs/",
+                    "Nghĩa": "bất chấp",
+                    "Loại từ": "adv"
+                },
+                {
+                    "STT": 575,
+                    "Từ vựng": "reimburse",
+                    "Phiên âm": "/ˌriːɪmˈbɜːs/",
+                    "Nghĩa": "hoàn trả",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 576,
+                    "Từ vựng": "suit",
+                    "Phiên âm": "/suːt/",
+                    "Nghĩa": "hợp với",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 577,
+                    "Từ vựng": "treat",
+                    "Phiên âm": "/triːt/",
+                    "Nghĩa": "chữa trị",
+                    "Loại từ": "v"
+                }
+            ]
+        },
+        {
+            "Category": "Hospitals (Bệnh viện)",
+            "Words": [
+                {
+                    "STT": 578,
+                    "Từ vựng": "accompany",
+                    "Phiên âm": "/əˈkʌmpəni/",
+                    "Nghĩa": "đi cùng",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 579,
+                    "Từ vựng": "admit",
+                    "Phiên âm": "/ədˈmɪt/",
+                    "Nghĩa": "cho vào, cho phép",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 580,
+                    "Từ vựng": "authorize",
+                    "Phiên âm": "/ˈɔːθəraɪz/",
+                    "Nghĩa": "ủy quyền",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 581,
+                    "Từ vựng": "designate",
+                    "Phiên âm": "/ˈdezɪɡneɪt/",
+                    "Nghĩa": "chỉ rõ",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 582,
+                    "Từ vựng": "escort",
+                    "Phiên âm": "/ˈeskɔːt/",
+                    "Nghĩa": "người hộ tống",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 583,
+                    "Từ vựng": "identify",
+                    "Phiên âm": "/aɪˈdentɪfaɪ/",
+                    "Nghĩa": "nhận diện",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 584,
+                    "Từ vựng": "permission",
+                    "Phiên âm": "/pəˈmɪʃn/",
+                    "Nghĩa": "sự chấp thuận",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 585,
+                    "Từ vựng": "pertinent",
+                    "Phiên âm": "/ˈpɜːtnənt/",
+                    "Nghĩa": "có liên quan",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 586,
+                    "Từ vựng": "procedure",
+                    "Phiên âm": "/prəˈsiːdʒə(r)/",
+                    "Nghĩa": "quy trình",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 587,
+                    "Từ vựng": "result",
+                    "Phiên âm": "/rɪˈzʌlt/",
+                    "Nghĩa": "kết quả",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 588,
+                    "Từ vựng": "statement",
+                    "Phiên âm": "/ˈsteɪtmənt/",
+                    "Nghĩa": "bản tường trình, báo cáo",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 589,
+                    "Từ vựng": "surgery",
+                    "Phiên âm": "/ˈsɜːdʒəri/",
+                    "Nghĩa": "ca phẫu thuật",
+                    "Loại từ": "n"
+                }
+            ]
+        },
+        {
+            "Category": "Pharmacy (Hiệu thuốc)",
+            "Words": [
+                {
+                    "STT": 590,
+                    "Từ vựng": "consultation",
+                    "Phiên âm": "/ˌkɒnslˈteɪʃn/",
+                    "Nghĩa": "việc bàn bạc, hội ý",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 591,
+                    "Từ vựng": "convenient",
+                    "Phiên âm": "/kənˈviːniənt/",
+                    "Nghĩa": "thuận tiện",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 592,
+                    "Từ vựng": "detect",
+                    "Phiên âm": "/dɪˈtekt/",
+                    "Nghĩa": "tìm ra, phát hiện ra",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 593,
+                    "Từ vựng": "factor",
+                    "Phiên âm": "/ˈfæktə(r)/",
+                    "Nghĩa": "yếu tố",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 594,
+                    "Từ vựng": "interaction",
+                    "Phiên âm": "/ˌɪntərˈækʃn/",
+                    "Nghĩa": "sự tương tác",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 595,
+                    "Từ vựng": "limit",
+                    "Phiên âm": "/ˈlɪmɪt/",
+                    "Nghĩa": "giới hạn, định mức",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 596,
+                    "Từ vựng": "monitor",
+                    "Phiên âm": "/ˈmɒnɪtə(r)/",
+                    "Nghĩa": "giám sát",
+                    "Loại từ": "v"
+                },
+                {
+                    "STT": 597,
+                    "Từ vựng": "potential",
+                    "Phiên âm": "/pəˈtenʃl/",
+                    "Nghĩa": "tiềm năng",
+                    "Loại từ": "adj"
+                },
+                {
+                    "STT": 598,
+                    "Từ vựng": "sample",
+                    "Phiên âm": "/ˈsæmpl/",
+                    "Nghĩa": "mẫu thử",
+                    "Loại từ": "n"
+                },
+                {
+                    "STT": 599,
+                    "Từ vựng": "sense",
+                    "Phiên âm": "/sens/",
+                    "Nghĩa": "khả năng phán đoán (n), cảm thấy (v)",
+                    "Loại từ": "n, v"
+                },
+                {
+                    "STT": 600,
+                    "Từ vựng": "volunteer",
+                    "Phiên âm": "/ˌvɒlənˈtɪə(r)/",
+                    "Nghĩa": "tình nguyện (v), tình nguyện viên (n)",
+                    "Loại từ": "n, v"
+                }
+            ]
+        }
+    ]
+}

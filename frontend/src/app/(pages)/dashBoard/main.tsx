@@ -35,7 +35,7 @@ export default function Main() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen text-white bg-[#0f0f0f] overflow-hidden custom-scroll">
+    <div className="flex flex-col max-h-screen text-white bg-[#0f0f0f]">
       {/* Header */}
       <div className="flex items-center justify-between p-4 bg-[#121111] border-b border-gray-700">
         <h1 className="text-xl font-bold">Learning By AI</h1>
@@ -62,7 +62,8 @@ export default function Main() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 p-5">
+      <div className="custom-scroll">
+        <div className="flex-1 p-5 min-h-full">
         <h2 className="text-xl font-semibold text-gray-300 mb-4">Chào mừng bạn đến với ứng dụng Learning By AI</h2>
         <p className="text-gray-400 mb-5">Khám phá các tính năng học tập thông minh:</p>
 
@@ -144,6 +145,7 @@ export default function Main() {
       {/* Footer */}
       <div className="p-4 bg-[#111111] border-t border-gray-700 text-center">
         <p className="text-sm text-gray-500">© 2025 Learning By AI. All rights reserved.</p>
+      </div>
       </div>
     </div>
   );

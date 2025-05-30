@@ -34,7 +34,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </Head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-hidden custom-scroll`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-hidden`}
       >
         {children}
       </body>
