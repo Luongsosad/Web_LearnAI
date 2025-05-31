@@ -3,6 +3,8 @@ import React from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import Main from './main'
+import { ProtectedRoute } from '@/components/ProtectedRoute';
+
 function Edit() {
     useEffect(() => {
         const awake = async () => {
@@ -17,15 +19,17 @@ function Edit() {
     }, []);
 
     return (
-        <div>
-            <div className="overflow-hidden h-screen flex w-full mx-auto custom-scroll">
-                <div className="w-[0] md:w-full"></div>
-                <div className="w-full h-screen md:min-w-[768px]">
-                    <Main />
+        <ProtectedRoute>
+            <div>
+                <div className="overflow-hidden h-screen flex w-full mx-auto custom-scroll">
+                    <div className="w-[0] md:w-full"></div>
+                    <div className="w-full h-screen md:min-w-[768px]">
+                        <Main />
+                    </div>
+                    <div className="w-[0] md:w-full"></div>
                 </div>
-                <div className="w-[0] md:w-full"></div>
             </div>
-        </div>
+        </ProtectedRoute>
     );
 }
 

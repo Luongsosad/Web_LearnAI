@@ -13,9 +13,10 @@ type Message = {
 };
 
 interface User {
+  id: number;
   username: string;
   email: string;
-  token: string;
+  role: string;
 }
 
 export default function Main() {
@@ -79,6 +80,7 @@ export default function Main() {
         },
         {
           headers: { "Content-Type": "application/json" },
+          withCredentials: true,
         }
       );
 
@@ -177,6 +179,7 @@ export default function Main() {
         try {
           const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/audio`, formData, {
             headers: { "Content-Type": "multipart/form-data" },
+            withCredentials: true,
           });
 
           if (res.status !== 200) throw new Error("Lỗi chuyển đổi âm thanh");

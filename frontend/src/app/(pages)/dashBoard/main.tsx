@@ -4,22 +4,46 @@ import { MessageCircle, BookOpen, HelpCircle, Mic, Headphones, Library, Sidebar 
 import { useRouter } from "next/navigation";
 import { SessionStorage } from "@/storage/sessionStorage";
 import { useSidebarStore } from "@/storage/sidebarState";
-
-interface User {
-  username: string;
-  email: string;
-  token: string;
-}
+import User from '@/types/User';
+import axios, { AxiosError } from 'axios';
 
 export default function Main() {
   const { toggle } = useSidebarStore();
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
 
+  const getProfile = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/a/profile`,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      if (res.status !== 200) throw new Error("Lỗi API");
+
+      if (res.data.user) {
+        SessionStorage.saveUser(res.data.user);
+        setUser(res.data.user);
+      }
+    } catch (err) {
+      const error = err as AxiosError<{ message: string }>;
+      console.log(error);
+
+      SessionStorage.clearUser();
+      return;
+    }
+  }
+
   // Lấy dữ liệu từ sessionStorage khi component mount
   useEffect(() => {
     const storedUser = SessionStorage.getUser();
-    setUser(storedUser);
+    if (!storedUser) {
+      getProfile();
+    } else {
+      setUser(storedUser);
+    }
   }, []);
 
   const handleServiceClick = (path: string) => {
@@ -32,17 +56,22 @@ export default function Main() {
 
 
   return (
-    <div className="flex flex-col max-h-screen text-white bg-[#0f0f0f] w-full">
+    <div className="flex flex-col max-h-screen text-white w-full">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 p-3 bg-[#121111] border-b border-gray-700">
-        <button className="text-gray-200 hover:text-white" onClick={() => toggle()}>
-          <Sidebar size={24} />
-        </button>
+        <div className="md:w-[40%]">
+          <button className="text-gray-200 hover:text-white" onClick={() => toggle()}>
+            <Sidebar size={24} />
+          </button>
+        </div>
         <h1 className="text-xl font-bold">Learning by AI</h1>
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 md:w-[40%] justify-end">
           {user?.username ? (
             <div className="flex items-center space-x-4">
-              <span className="text-gray-300">{user.username || "bạn"}</span>
+              <span className="text-gray-300 truncate overflow-hidden whitespace-nowrap max-w-[100px] md:whitespace-normal md:overflow-visible md:max-w-none md:truncate-0">
+                {user.username || "bạn"}
+              </span>
+
             </div>
           ) : (
             <button
@@ -53,6 +82,7 @@ export default function Main() {
             </button>
           )}
         </div>
+
       </div>
 
       {/* Main Content */}
@@ -60,7 +90,6 @@ export default function Main() {
         <div className="flex-1 p-5">
           <h2 className="text-xl font-semibold text-gray-300 mb-2">Chào mừng bạn đến với ứng dụng Learning By AI</h2>
           <p className="text-gray-400 mb-3">Khám phá các tính năng học tập thông minh:</p>
-
           <div className="grid gap-3 md:grid-cols-1">
             {/* Chat with AI */}
             <div

@@ -38,7 +38,7 @@ export default function Vocabulary() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/data/vocabulary`);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/data/vocabulary`, { withCredentials: true, });
         const updatedData = Object.keys(res.data).reduce((acc: VocabularyData, test: string) => {
           acc[test] = res.data[test].map((cat: Category) => ({
             ...cat,
@@ -75,7 +75,10 @@ export default function Vocabulary() {
               const res = await axios.post(
                 `${process.env.NEXT_PUBLIC_API_URL}/audio/voice`,
                 { text: word["Từ vựng"] },
-                { headers: { "Content-Type": "application/json" } }
+                {
+                  headers: { "Content-Type": "application/json" },
+                  withCredentials: true,
+                }
               );
               if (res.status === 200 && res.data.audioUrl) {
                 updatedWords[i] = { ...word, Audio: res.data.audioUrl };

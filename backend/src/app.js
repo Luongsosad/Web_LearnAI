@@ -4,7 +4,10 @@ import morgan from 'morgan'; // Module ghi log
 import session from 'express-session';
 import bodyParser from 'body-parser'; // Xử lý dữ liệu từ các yêu cầu HTTP
 import cors from 'cors'; // Middleware CORS
+import passport from './app/config/passport.js';
+import cookieParser from 'cookie-parser';
 
+import pool from './app/config/database.js';
 // Load biến môi trường từ file .env
 import dotenv from 'dotenv';
 dotenv.config({ path: './app/config/.env' });
@@ -19,6 +22,7 @@ app.use(cors({
   origin: [process.env.FRONTEND_URL], // Thêm các domain bạn muốn
   methods: ['GET', 'POST'], // Chỉ cho phép GET và POST
   allowedHeaders: ['Content-Type'], // Chỉ cho phép header Content-Type
+  credentials: true
 }));
 
 // Middleware session
@@ -37,9 +41,22 @@ app.use(morgan('combined')); // Cấu hình ghi log HTTP requests
 app.use(express.json({ limit: '100mb' }));
 app.use(express.urlencoded({ extended: true, limit: '100mb' }));
 
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(cookieParser());
+
 // Kiểm tra xem .env có được load thành công không
 console.log('Environment variables loaded:');
 console.log(`PORT: ${process.env.PORT}`);
+
+// Kiểm tra kết nối với PostgreSQL
+pool.connect((err, client, release) => {
+    if (err) {
+        return console.error('Kết nối đến PostgreSQL thất bại!', err);
+    }
+    console.log('Kết nối đến PostgreSQL thành công!');
+    release();
+});
 
 // Route init
 route(app);

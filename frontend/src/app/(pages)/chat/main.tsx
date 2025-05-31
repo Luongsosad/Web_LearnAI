@@ -4,17 +4,12 @@ import { Plus, Settings2, Mic, Send, Copy, RefreshCw, Sidebar, X, History } from
 import axios from "axios";
 import { SessionStorage } from "@/storage/sessionStorage";
 import { useSidebarStore } from "@/storage/sidebarState";
+import User from '@/types/User';
 
 type Message = {
   role: "user" | "bot";
   content: string;
 };
-
-interface User {
-  username: string;
-  email: string;
-  token: string;
-}
 
 export default function Main() {
   const { toggle } = useSidebarStore();
@@ -79,6 +74,7 @@ export default function Main() {
         },
         {
           headers: { "Content-Type": "application/json" },
+          withCredentials: true,
         }
       );
 
@@ -144,6 +140,7 @@ export default function Main() {
         try {
           const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/audio`, formData, {
             headers: { "Content-Type": "multipart/form-data" },
+            withCredentials: true,
           });
 
           if (res.status !== 200) throw new Error("Lỗi chuyển đổi âm thanh");

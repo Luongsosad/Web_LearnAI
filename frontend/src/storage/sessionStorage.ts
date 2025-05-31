@@ -1,11 +1,12 @@
 interface User {
+  id: number;
   username: string;
   email: string;
-  token: string;
+  role: string;
 }
 
 export class SessionStorage {
-  private static key = "username";
+  private static key = 'user';
 
   // Lưu dữ liệu người dùng vào sessionStorage
   static saveUser(user: User): void {
@@ -18,7 +19,7 @@ export class SessionStorage {
       const storedUser = sessionStorage.getItem(this.key);
       return storedUser ? JSON.parse(storedUser) : null;
     } catch (err) {
-      console.error("Error parsing sessionStorage data:", err);
+      console.error('Error parsing sessionStorage data:', err);
       return null;
     }
   }

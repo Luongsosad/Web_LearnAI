@@ -9,7 +9,7 @@ import {
   Headphones,
   HelpCircle,
   Library,
-  User,
+  UserIcon,
   LogOut,
   SidebarClose,
   Home
@@ -17,12 +17,8 @@ import {
 import { SessionStorage } from "@/storage/sessionStorage";
 import { useSidebarStore } from "@/storage/sidebarState";
 
-
-interface User {
-  username: string;
-  email: string;
-  token: string;
-}
+import axios, { AxiosError } from 'axios';
+import User from '@/types/User';
 
 export default function Sidebar() {
   const router = useRouter();
@@ -31,19 +27,55 @@ export default function Sidebar() {
 
   const { isOpen, toggle } = useSidebarStore();
 
+  const getProfile = async () => {
+    try {
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/a/profile`,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      if (res.status !== 200) throw new Error("Lỗi API");
+
+      if (res.data.user) {
+        SessionStorage.saveUser(res.data.user);
+        setUser(res.data.user);
+      }
+    } catch (err) {
+      const error = err as AxiosError<{ message: string }>;
+      console.log(error);
+
+      SessionStorage.clearUser();
+      return;
+    }
+  }
+
   useEffect(() => {
     setHasMounted(true);
-    // Lấy người dùng từ sessionStorage
-    const storedUser = SessionStorage.getUser();
-    setUser(storedUser);
+    getProfile();
   }, []);
 
-  const handleLogout = () => {
-    SessionStorage.clearUser();
-    setUser(null);
-    window.location.href = "/";
-    toggle();
+  const handleLogout = async () => {
+    try {
+      await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/logout`,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+    } catch (err) {
+      console.error('Đăng xuất thất bại:', err);
+      // Có thể hiện thông báo nếu muốn
+    } finally {
+      SessionStorage.clearUser();
+      setUser(null);
+      router.push('/login');
+      toggle();
+    }
   };
+
 
   const handleNav = (path: string) => {
     if (!user?.username) {
@@ -97,7 +129,7 @@ export default function Sidebar() {
           {user ? (
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
-                <User className="w-5 h-5 text-gray-300" />
+                <UserIcon className="w-5 h-5 text-gray-300" />
                 <span className="text-sm">{user.username}</span>
               </div>
               <button onClick={handleLogout}>
