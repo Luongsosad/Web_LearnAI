@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Mail, Lock, UserCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import axios, { AxiosError } from 'axios';
-import User from '@/types/User';
 import { SessionStorage } from '@/storage/sessionStorage';
 
 export default function Register() {

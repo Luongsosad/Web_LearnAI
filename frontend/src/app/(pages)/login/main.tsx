@@ -1,10 +1,9 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Mail, Lock, UserCircle, LogOut } from 'lucide-react';
+import { Mail, Lock, UserCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import axios, { AxiosError } from 'axios';
 import { SessionStorage } from '@/storage/sessionStorage';
-import User from '@/types/User';
 
 export default function Login() {
   const router = useRouter();
@@ -30,7 +29,7 @@ export default function Login() {
 
       if (res.status !== 200) throw new Error("Lỗi API");
       window.location.href = `/`;
-      
+
     } catch (err) {
       const error = err as AxiosError<{ message: string }>;
       setError(error.response?.data?.message || 'Đăng nhập thất bại');
