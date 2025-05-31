@@ -54,8 +54,16 @@ async function login(req, res) {
 function logout(req, res) {
     req.logout((err) => {
         if (err) return res.status(500).json({ message: 'Logout error' });
-        res.clearCookie('access_token');
-        res.clearCookie('refresh_token');
+        res.clearCookie('access_token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+        });
+        res.clearCookie('refresh_token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+        });
         console.log('Logged out successfully')
         req.session.destroy(() => {
             res.status(200).json({ message: 'Logged out successfully' });
