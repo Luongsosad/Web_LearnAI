@@ -6,11 +6,13 @@ import { generateAccessToken, generateRefreshToken } from '../utils/auth.js';
 
 dotenv.config();
 
+const url = process.env.GOOGLE_CALLBACK_URL || "/auth/google/callback";
+
 // Cấu hình strategy Google
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: '/auth/google/callback'
+    callbackURL: `${url}`
 }, async (accessToken, refreshToken, profile, cb) => {
     try {
         const user = await findOrCreateGoogleUser(
