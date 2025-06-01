@@ -40,7 +40,7 @@ export const authenticateToken = async (req, res, next) => {
             console.log("Tạo lại access token");
             // Set lại access token mới vào cookie
             res.cookie('access_token', newAccessToken, {
-                httpOnly: true,
+                httpOnly: process.env.NODE_ENV !== 'production',
                 secure: process.env.NODE_ENV === 'production',
                 sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
                 maxAge: 15 * 60 * 1000, // 15 phút

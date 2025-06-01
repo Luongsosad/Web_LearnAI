@@ -24,7 +24,7 @@ export function setTokenCookies(res, user) {
         const isProduction = process.env.NODE_ENV === 'production';
 
         res.cookie('access_token', accessToken, {
-            httpOnly: true,
+            httpOnly: !isProduction,
             secure: isProduction, // Đảm bảo secure: true trong production
             sameSite: isProduction ? 'none' : 'lax', // 'none' yêu cầu secure
             maxAge: 15 * 60 * 1000, // 15 phút
@@ -32,7 +32,7 @@ export function setTokenCookies(res, user) {
         });
 
         res.cookie('refresh_token', refreshToken, {
-            httpOnly: true,
+            httpOnly: !isProduction,
             secure: isProduction,
             sameSite: isProduction ? 'none' : 'lax',
             maxAge: 15 * 24 * 60 * 60 * 1000, // 15 ngày
