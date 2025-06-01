@@ -5,6 +5,8 @@ import axios from "axios";
 import { SessionStorage } from "@/storage/sessionStorage";
 import { useSidebarStore } from "@/storage/sidebarState";
 import User from '@/types/User';
+import LoadedOverlay from '@/components/LoadedOverlay'
+import { useRouter } from "next/navigation";
 
 type Message = {
   role: "user" | "bot";
@@ -24,10 +26,21 @@ export default function Main() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
+  // Lấy dữ liệu từ sessionStorage khi component mount
   useEffect(() => {
-    const storedUser = SessionStorage.getUser();
-    setUser(storedUser);
+    async function fetchUser() {
+      const user = await SessionStorage.getUser(
+        (loading) => setLoading(loading),
+        (user) => setUser(user)
+      )
+      if (!user) {
+        router.push("/login");
+      }
+    }
+    fetchUser();
   }, []);
 
   const handleInput = (e: React.FormEvent<HTMLTextAreaElement>) => {
@@ -332,6 +345,8 @@ export default function Main() {
           </div>
         </div>
       </div>
+
+      {loading && <LoadedOverlay />}
     </div>
   );
 }

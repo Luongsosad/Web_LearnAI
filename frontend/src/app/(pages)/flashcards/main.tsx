@@ -6,6 +6,9 @@ import FlagCard from './tabFlagCard';
 import Test from './tabTest';
 import { useSidebarStore } from "@/storage/sidebarState";
 import LoadedOverlay from '@/components/LoadedOverlay'
+import { useRouter } from "next/navigation";
+import { SessionStorage } from "@/storage/sessionStorage";
+import User from '@/types/User';
 
 interface Word {
   STT: number;
@@ -29,11 +32,27 @@ interface VocabularyData {
 
 export default function Vocabulary() {
   const { toggle } = useSidebarStore();
+  const router = useRouter();
   const [vocabularyData, setVocabularyData] = useState<VocabularyData>({ TOEIC_Vocabulary: [] });
   const [selectedTest, setSelectedTest] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [tab, setTab] = useState(0); // 0: Chọn loại từ vựng, 1: Chọn chủ đề, 2: Danh sách từ vựng, 3: Test, 4: Flag Card
+  const [user, setUser] = useState<User | null>(null);
+
+  // Lấy dữ liệu từ sessionStorage khi component mount
+  useEffect(() => {
+    async function fetchUser() {
+      const user = await SessionStorage.getUser(
+        (loading) => setLoading(loading),
+        (user) => setUser(user)
+      )
+      if (!user) {
+        router.push("/login");
+      }
+    }
+    fetchUser();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -54,7 +73,6 @@ export default function Vocabulary() {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
@@ -107,7 +125,7 @@ export default function Vocabulary() {
   return (
     <div className="w-full flex flex-col h-screen text-white overflow-hidden p-4 md:p-0">
       {loading && <LoadedOverlay />}
-
+      {user && <></>}
       <div className="fixed top-0 left-0 w-full bg-[#111111]">
         <div className="flex items-center justify-between px-4 py-3 border-b border-gray-700">
           <button className="text-gray-200 hover:text-white" onClick={() => toggle()}>

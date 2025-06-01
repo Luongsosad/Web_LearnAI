@@ -15,7 +15,7 @@ function route(app) {
     app.use('/audio', authenticateToken, audioRoute);
 
     app.get("/ping", (req, res) => {
-        res.send("Hello! This is website: Laerning by AI.");
+        res.send("Hello! This is website: Learning by AI.");
     });
 }
 

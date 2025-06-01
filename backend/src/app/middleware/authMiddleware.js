@@ -33,7 +33,7 @@ export const authenticateToken = async (req, res, next) => {
 
      // Kiểm tra refresh token
     if (!refreshToken) {
-        return res.status(401).json({ message: 'No refresh token provided' });
+        return res.status(200).json({ success: false, message: 'No refresh token provided' }); // Bình thường nhưng fail
     }
 
     // Kiểm tra refresh token

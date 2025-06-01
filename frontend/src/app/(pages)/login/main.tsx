@@ -4,14 +4,14 @@ import { Mail, Lock, UserCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import axios, { AxiosError } from 'axios';
 import { SessionStorage } from '@/storage/sessionStorage';
-
 import { EmailLoginStorage } from '@/storage/localStorage';
-import LoadedOverlay from '@/components/LoadedOverlay'
-import Notify from '@/components/Notify'
+import LoadedOverlay from '@/components/LoadedOverlay';
+import Notify from '@/components/Notify';
 
 export default function Login() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false); // ✅ Biến riêng để disable
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
@@ -21,46 +21,42 @@ export default function Login() {
   const handleLogin = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     setError('');
+    setIsDisabled(true);
     try {
       setLoading(true);
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
+        { email, password },
         {
-          email, password
-        },
-        {
-          headers: { "Content-Type": "application/json" },
+          headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
         }
       );
 
-      if (res.status !== 200) throw new Error("Lỗi API");
-      // Lưu email vào localStorage
+      if (res.status !== 200) throw new Error('Lỗi API');
       EmailLoginStorage.saveEmail(email);
-      setMessage("Đăng nhập thành công!")
+      setMessage('Đăng nhập thành công!');
       setTimeout(() => {
-        window.location.href = `/`;
+        window.location.href = '/';
       }, 2000);
-
     } catch (err) {
       const error = err as AxiosError<{ message: string }>;
       setError(error.response?.data?.message || 'Đăng nhập thất bại');
-    }
-    finally {
+      setIsDisabled(false); // ✅ Cho phép nhập lại khi thất bại
+    } finally {
       setLoading(false);
     }
-
-
   };
 
   // Hàm đăng nhập Google
   const handleGoogleLogin = (): void => {
+    setIsDisabled(true);
     window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;
   };
 
   // Kiểm tra trạng thái người dùng
   useEffect(() => {
-    const user = SessionStorage.getUser();
+    const user = SessionStorage.hasUser();
     if (user) {
       window.location.href = `/`;
     }
@@ -89,6 +85,7 @@ export default function Login() {
               className="bg-transparent w-full outline-none text-base"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              disabled={isDisabled}
             />
           </div>
 
@@ -100,12 +97,18 @@ export default function Login() {
               className="bg-transparent w-full outline-none text-base"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              disabled={isDisabled}
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg flex justify-center items-center"
+            className={`w-full py-2 rounded-lg flex justify-center items-center ${
+              isDisabled
+                ? 'bg-gray-600 cursor-not-allowed'
+                : 'bg-blue-500 hover:bg-blue-600'
+            }`}
+            disabled={isDisabled}
           >
             Đăng nhập
           </button>
@@ -116,7 +119,12 @@ export default function Login() {
         <div className="flex justify-between space-x-4 mt-4">
           <button
             onClick={handleGoogleLogin}
-            className="flex-1 flex items-center justify-center bg-red-500 hover:bg-red-600 py-2 rounded-lg text-sm"
+            className={`flex-1 flex items-center justify-center py-2 rounded-lg text-sm ${
+              isDisabled
+                ? 'bg-gray-600 cursor-not-allowed'
+                : 'bg-red-500 hover:bg-red-600'
+            }`}
+            disabled={isDisabled}
           >
             <Mail className="w-4 h-4 mr-2" />
             Google
@@ -128,6 +136,7 @@ export default function Login() {
           <button
             onClick={() => router.push('/register')}
             className="text-blue-400 hover:underline"
+            disabled={isDisabled}
           >
             Đăng ký ngay
           </button>

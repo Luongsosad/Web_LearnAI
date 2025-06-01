@@ -4,6 +4,8 @@ import { Plus, Settings2, Mic, Send, Copy, RefreshCw, History, Sidebar, X, Volum
 import axios from "axios";
 import { SessionStorage } from "@/storage/sessionStorage";
 import { useSidebarStore } from "@/storage/sidebarState";
+import LoadedOverlay from '@/components/LoadedOverlay'
+import { useRouter } from "next/navigation";
 
 type Message = {
   role: "user" | "bot";
@@ -21,6 +23,7 @@ interface User {
 
 export default function Main() {
   const { toggle } = useSidebarStore();
+    const router = useRouter();
   const cancelAudioRef = useRef(false);
   const [user, setUser] = useState<User | null>(null);
   const [topic, setTopic] = useState("");
@@ -37,6 +40,7 @@ export default function Main() {
   const playAudioRef = useRef<HTMLAudioElement | null>(null);
   const [showTranslated, setShowTranslated] = useState(false);
   const [message, setMessage] = useState<Message | null>(null);
+  const [loading, setLoading] = useState(false);
 
   // Danh sách gợi ý chủ đề
   const suggestedTopics = [
@@ -49,9 +53,18 @@ export default function Main() {
     "Tìm hiểu về văn hóa",
   ];
 
+  // Lấy dữ liệu từ sessionStorage khi component mount
   useEffect(() => {
-    const storedUser = SessionStorage.getUser();
-    setUser(storedUser);
+    async function fetchUser() {
+      const user = await SessionStorage.getUser(
+        (loading) => setLoading(loading),
+        (user) => setUser(user)
+      )
+      if (!user) {
+        router.push("/login");
+      }
+    }
+    fetchUser();
   }, []);
 
   const copyToClipboard = (content: string) => {
@@ -496,6 +509,7 @@ export default function Main() {
           </div>
         </div>
       </div>
+      {loading && <LoadedOverlay />}
     </div>
   );
 }

@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { SessionStorage } from "@/storage/sessionStorage";
 import { useSidebarStore } from "@/storage/sidebarState";
 import User from '@/types/User';
-import axios, { AxiosError } from 'axios';
 import LoadedOverlay from '@/components/LoadedOverlay'
 import Notify from '@/components/Notify'
 
@@ -16,42 +15,11 @@ export default function Main() {
   const [user, setUser] = useState<User | null>(null);
   const [message, setMessage] = useState<string | null>(null);
 
-  const getProfile = async () => {
-    try {
-      setLoading(true);
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/a/profile`,
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-      if (res.status !== 200) throw new Error("Lỗi API");
-
-      if (res.data.user) {
-        SessionStorage.saveUser(res.data.user);
-        setUser(res.data.user);
-      }
-    } catch (err) {
-      const error = err as AxiosError<{ message: string }>;
-      console.log(error);
-
-      SessionStorage.clearUser();
-      return;
-    }
-    finally {
-      setLoading(false);
-    }
-  }
-
-  // Lấy dữ liệu từ sessionStorage khi component mount
   useEffect(() => {
-    const storedUser = SessionStorage.getUser();
-    if (!storedUser) {
-      getProfile();
-    } else {
-      setUser(storedUser);
-    }
+    SessionStorage.getUser(
+      (loading) => setLoading(loading),
+      (user) => setUser(user)
+    )
   }, []);
 
   const handleServiceClick = (path: string) => {

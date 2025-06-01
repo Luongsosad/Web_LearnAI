@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Notify from '@/components/Notify'
 import {
   LucideIcon,
   MessageCircle,
@@ -17,46 +18,30 @@ import {
 import { SessionStorage } from "@/storage/sessionStorage";
 import { useSidebarStore } from "@/storage/sidebarState";
 
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import User from '@/types/User';
 
 export default function Sidebar() {
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [hasMounted, setHasMounted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
 
   const { isOpen, toggle } = useSidebarStore();
 
-  const getProfile = async () => {
-    try {
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_URL}/a/profile`,
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
-      if (res.status !== 200) throw new Error("Lỗi API");
-
-      if (res.data.user) {
-        SessionStorage.saveUser(res.data.user);
-        setUser(res.data.user);
-      }
-    } catch (err) {
-      const error = err as AxiosError<{ message: string }>;
-      console.log(error);
-
-      SessionStorage.clearUser();
-      return;
-    }
-  }
-
   useEffect(() => {
     setHasMounted(true);
-    getProfile();
+    SessionStorage.getUser(
+      (loading) => setLoading(loading),
+      (user) => setUser(user)
+    )
   }, []);
 
   const handleLogout = async () => {
+    setIsLoggingOut(true); // disable nút
     try {
       await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/logout`,
@@ -67,14 +52,15 @@ export default function Sidebar() {
       );
     } catch (err) {
       console.error('Đăng xuất thất bại:', err);
-      // Có thể hiện thông báo nếu muốn
     } finally {
       SessionStorage.clearUser();
       setUser(null);
+      setIsLoggingOut(false);
       router.push('/login');
       toggle();
     }
   };
+
 
 
   const handleNav = (path: string) => {
@@ -97,6 +83,8 @@ export default function Sidebar() {
           }`}
       />
 
+      {loading && <></>}
+
       {/* Sidebar luôn render, chỉ translateX để ẩn hiện */}
       <div
         className={`fixed top-0 left-0 h-screen w-64 flex flex-col justify-between bg-[#121212] text-white border-r border-gray-700 z-50 shadow-lg transition-transform duration-300 ease-in-out
@@ -118,10 +106,19 @@ export default function Sidebar() {
             <NavItem icon={Home} label="Trang chủ" onClick={() => handleNav("/")} />
             <NavItem icon={MessageCircle} label="Chat AI" onClick={() => handleNav("/chat")} />
             <NavItem icon={Headphones} label="Giao tiếp" onClick={() => handleNav("/conversation")} />
-            <NavItem icon={Mic} label="Phát âm" onClick={() => handleNav("/pronunciation")} />
+            <NavItem icon={Mic} label="Phát âm" onClick={() => {
+              // handleNav("/pronunciation");
+              setMessage("Tính năng đang phát triển!");
+            }} />
             <NavItem icon={BookOpen} label="Flashcard" onClick={() => handleNav("/flashcards")} />
-            <NavItem icon={Library} label="Truyện song ngữ" onClick={() => handleNav("/bilingual-stories")} />
-            <NavItem icon={HelpCircle} label="Trắc nghiệm" onClick={() => handleNav("/quiz")} />
+            <NavItem icon={Library} label="Truyện song ngữ" onClick={() => {
+              // handleNav("/bilingual-stories");
+              setMessage("Tính năng đang phát triển!");
+            }} />
+            <NavItem icon={HelpCircle} label="Trắc nghiệm" onClick={() => {
+              // handleNav("/quiz");
+              setMessage("Tính năng đang phát triển!");
+            }} />
           </div>
         </div>
 
@@ -132,9 +129,10 @@ export default function Sidebar() {
                 <UserIcon className="w-5 h-5 text-gray-300" />
                 <span className="text-sm">{user.username}</span>
               </div>
-              <button onClick={handleLogout}>
-                <LogOut className="w-4 h-4 text-red-400 hover:text-red-500" />
+              <button onClick={handleLogout} disabled={isLoggingOut}>
+                <LogOut className={`w-4 h-4 ${isLoggingOut ? "text-gray-500" : "text-red-400 hover:text-red-500"}`} />
               </button>
+
             </div>
           ) : (
             <button
@@ -149,7 +147,12 @@ export default function Sidebar() {
           )}
         </div>
       </div>
-
+      <Notify
+        message={message}
+        type="success"
+        duration={2000}
+        onClose={() => setMessage(null)}
+      />
     </>
   );
 }
