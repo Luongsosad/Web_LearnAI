@@ -51,12 +51,17 @@ export class SessionStorage {
         return res.data.user;
       }
       return null;
-    } catch (err) {
-      console.error('Error fetching user data:', (err as any).message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error('Error fetching user data:', err.message);
+      } else {
+        console.error('Error fetching user data:', err);
+      }
       this.clearUser();
       if (setUser) setUser(null);
       return null;
-    } finally {
+    }
+    finally {
       if (setLoading) setLoading(false);
     }
   }
