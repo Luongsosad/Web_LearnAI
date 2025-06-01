@@ -2,6 +2,10 @@ import { createUser, findUserByEmail } from '../models/userModels.js';
 import { hashPassword, comparePassword } from '../utils/auth.js';
 import { setTokenCookies } from '../utils/token.js';
 
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 // Đăng ký user thường
 async function register(req, res) {
     const { username, email, password } = req.body;

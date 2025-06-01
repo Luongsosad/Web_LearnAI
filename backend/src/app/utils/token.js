@@ -1,9 +1,17 @@
 import { generateAccessToken, generateRefreshToken } from './auth.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // Hàm thiết lập cookies cho token (dùng trong Google callback)
 export function setTokenCookies(res, user) {
     const accessToken = generateAccessToken(user);
     const refreshToken = generateRefreshToken(user);
+
+    console.log(accessToken);
+    console.log(refreshToken);
+
+    console.log(process.env.NODE_ENV)
 
     res.cookie('access_token', accessToken, {
         httpOnly: true,
