@@ -3,6 +3,10 @@ import jwt from 'jsonwebtoken';
 import { verifyRefreshToken } from '../models/userModels.js';
 import { generateAccessToken } from '../utils/auth.js';
 
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 export const authenticateToken = async (req, res, next) => {
     const accessToken = req.cookies.access_token;
     const refreshToken = req.cookies.refresh_token;
@@ -40,7 +44,7 @@ export const authenticateToken = async (req, res, next) => {
             console.log("Tạo lại access token");
             // Set lại access token mới vào cookie
             res.cookie('access_token', newAccessToken, {
-                httpOnly: process.env.NODE_ENV !== 'production',
+                httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
                 sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
                 maxAge: 15 * 60 * 1000, // 15 phút

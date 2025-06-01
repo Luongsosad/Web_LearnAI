@@ -59,12 +59,12 @@ function logout(req, res) {
     req.logout((err) => {
         if (err) return res.status(500).json({ message: 'Logout error' });
         res.clearCookie('access_token', {
-            httpOnly: process.env.NODE_ENV !== 'production',
+            httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         });
         res.clearCookie('refresh_token', {
-            httpOnly: process.env.NODE_ENV !== 'production',
+            httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         });
