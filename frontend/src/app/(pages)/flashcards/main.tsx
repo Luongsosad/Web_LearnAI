@@ -5,6 +5,7 @@ import axios from "axios";
 import FlagCard from './tabFlagCard';
 import Test from './tabTest';
 import { useSidebarStore } from "@/storage/sidebarState";
+import LoadedOverlay from '@/components/LoadedOverlay'
 
 interface Word {
   STT: number;
@@ -105,11 +106,7 @@ export default function Vocabulary() {
 
   return (
     <div className="w-full flex flex-col h-screen text-white overflow-hidden p-4 md:p-0">
-      {loading && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="loader"></div>
-        </div>
-      )}
+      {loading && <LoadedOverlay />}
 
       <div className="fixed top-0 left-0 w-full bg-[#111111]">
         <div className="flex items-center justify-between px-4 py-3 border-b border-gray-700">
@@ -273,15 +270,6 @@ export default function Vocabulary() {
       </div>
 
       <style jsx>{`
-				.loader {
-					border: 6px solid #f3f3f3;
-					border-top: 6px solid #3498db;
-					border-radius: 50%;
-					width: 50px;
-					height: 50px;
-					animation: spin 1s linear infinite;
-				}
-
 				@keyframes spin {
 					0% {
 						transform: rotate(0deg);

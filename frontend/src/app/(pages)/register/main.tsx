@@ -3,10 +3,13 @@ import React, { useState } from 'react';
 import { Mail, Lock, UserCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import axios, { AxiosError } from 'axios';
-import { SessionStorage } from '@/storage/sessionStorage';
+import { EmailLoginStorage } from '@/storage/localStorage';
+import LoadedOverlay from '@/components/LoadedOverlay'
+import Notify from '@/components/Notify'
 
 export default function Register() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [step, setStep] = useState<number>(1);
   const [email, setEmail] = useState<string>('');
   const [username, setUsername] = useState<string>('');
@@ -14,6 +17,7 @@ export default function Register() {
   const [code, setCode] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [resendCooldown, setResendCooldown] = useState<number>(0);
+  const [message, setMessage] = useState<string | null>(null);
 
   const handleContinue = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
@@ -22,66 +26,88 @@ export default function Register() {
       setError('Vui lòng nhập email');
       return;
     }
-    // try {
-    //   await axios.post<ApiResponse>(
-    //     `${process.env.NEXT_PUBLIC_API_URL}/auth/send-verification-code`,
-    //     { email },
-    //     { withCredentials: true }
-    //   );
-    //   setStep(2);
-    //   setResendCooldown(90);
-    // } catch (err) {
-    //   const error = err as AxiosError<{ message: string }>;
-    //   setError(error.response?.data?.message || 'Không thể gửi mã xác nhận');
-    // }
-
-    setStep(2);
-    setResendCooldown(90);
+    try {
+      setLoading(true);
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/send-code`,
+        { email },
+        {
+          headers: { "Content-Type": "application/json" }
+          , withCredentials: true,
+        }
+      );
+      setStep(2);
+      setResendCooldown(90);
+      setMessage("Mã xác thực đã được gửi!");
+    } catch (err) {
+      const error = err as AxiosError<{ message: string }>;
+      setError(error.response?.data?.message || 'Không thể gửi mã xác nhận');
+    }
+    finally {
+      setLoading(false);
+    }
   };
 
   const handleResendCode = async (): Promise<void> => {
     if (resendCooldown > 0) return;
     setError('');
     try {
+      setLoading(true);
       await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/send-verification-code`,
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/resend-code`,
         { email },
-        { headers: { "Content-Type": "application/json" }, }
+        {
+          headers: { "Content-Type": "application/json" }
+          , withCredentials: true,
+        }
+
       );
       setResendCooldown(90);
-      alert('Mã xác nhận đã được gửi lại!');
+      setMessage("Mã xác nhận đã được gửi lại!");
     } catch (err) {
       const error = err as AxiosError<{ message: string }>;
       setError(error.response?.data?.message || 'Không thể gửi lại mã xác nhận');
+    }
+    finally {
+      setLoading(false);
     }
   };
 
   const handleRegister = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     setError('');
-    if (!username || !password) { //|| !code
+    if (!username || !password || !code) {
       setError('Vui lòng nhập đầy đủ thông tin');
       return;
     }
-    console.log(username, email, password)
+    console.log(username, email, password, code)
     try {
+      setLoading(true);
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/register`,
-        { username, email, password },
+        { username, email, password, code },
         {
           headers: { "Content-Type": "application/json" },
+          withCredentials: true,
         }
       );
 
       if (res.status !== 201) throw new Error("Lỗi API");
-      if (res.data.user) {
-        SessionStorage.saveUser(res.data.user);
-        window.location.href = `/login`;
-      }
+      // Lưu email vào localStorage
+      EmailLoginStorage.saveEmail(email);
+      setMessage("Đăng ký thành công!");
+      // đợi 2s rồi chuyển trang
+      setTimeout(() => {
+        router.push(`/login`);
+      }, 2500);
+
     } catch (err) {
       const error = err as AxiosError<{ message: string }>;
       console.log(error)
       setError(error.response?.data?.message || 'Đăng ký thất bại');
+    }
+    finally {
+      setLoading(false);
     }
   };
 
@@ -116,7 +142,7 @@ export default function Register() {
                 <input
                   type="email"
                   placeholder="Gmail"
-                  className="bg-transparent w-full outline-none text-sm"
+                  className="bg-transparent w-full outline-none text-base"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -135,7 +161,7 @@ export default function Register() {
                 <input
                   type="text"
                   placeholder="Tên người dùng"
-                  className="bg-transparent w-full outline-none text-sm"
+                  className="bg-transparent w-full outline-none text-base"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                 />
@@ -145,7 +171,7 @@ export default function Register() {
                 <input
                   type="password"
                   placeholder="Mật khẩu"
-                  className="bg-transparent w-full outline-none text-sm"
+                  className="bg-transparent w-full outline-none text-base"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -156,7 +182,7 @@ export default function Register() {
                   <input
                     type="text"
                     placeholder="Mã xác nhận"
-                    className="bg-transparent w-full outline-none text-sm"
+                    className="bg-transparent w-full outline-none text-base"
                     value={code}
                     onChange={(e) => setCode(e.target.value)}
                   />
@@ -204,6 +230,16 @@ export default function Register() {
           </div>
         </div>
       </div>
+
+      {loading && <LoadedOverlay />}
+      <Notify
+        message={message}
+        type="success"
+        duration={2000}
+        onClose={() => setMessage(null)}
+
+      />
+
     </div>
   );
 }

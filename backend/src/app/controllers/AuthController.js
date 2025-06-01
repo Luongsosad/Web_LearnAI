@@ -1,6 +1,7 @@
 import { createUser, findUserByEmail } from '../models/userModels.js';
 import { hashPassword, comparePassword } from '../utils/auth.js';
 import { setTokenCookies } from '../utils/token.js';
+import { sendVerificationEmail } from '../utils/email.js';
 
 import dotenv from 'dotenv';
 
@@ -8,9 +9,17 @@ dotenv.config();
 
 // Đăng ký user thường
 async function register(req, res) {
-    const { username, email, password } = req.body;
-    if (!username || !email || !password) {
+    const { username, email, password, code } = req.body;
+    if (!username || !email || !password || !code) {
         return res.status(400).json({ message: 'Missing required fields' });
+    }
+    const storedCode = req.cookies.verify_code;
+
+    if (!storedCode) {
+        return res.status(400).json({ message: 'Code expired or not found' });
+    }
+    if (storedCode !== code) {
+        return res.status(400).json({ message: 'Incorrect verification code' });
     }
     try {
         const existingUser = await findUserByEmail(email);
@@ -75,4 +84,32 @@ function logout(req, res) {
     });
 }
 
-export { register, login, logout };
+async function sendCode(req, res) {
+    const { email } = req.body;
+    if (!email) return res.status(400).json({ message: 'Email is required' });
+
+    const code = Math.floor(100000 + Math.random() * 900000).toString(); // 6 số
+    try {
+        const existingUser = await findUserByEmail(email);
+        if (existingUser) {
+            return res.status(400).json({ message: 'Email already exists' });
+        }
+        await sendVerificationEmail(email, code);
+        res.cookie('verify_code', code, {
+            httpOnly: true,
+            maxAge: 90 * 1000, // 1' 30 phút
+            sameSite:  process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+            secure: process.env.NODE_ENV === 'production',
+        });
+        return res.status(200).json({ message: 'Verification code sent' });
+    } catch (err) {
+        return res.status(500).json({ message: 'Failed to send email' });
+    }
+}
+
+async function resendCode(req, res) {
+    return sendCode(req, res); // Gọi lại hàm trên
+}
+
+
+export { register, login, logout, sendCode, resendCode };

@@ -1,6 +1,6 @@
 import express from 'express';
 import passport from 'passport';
-import { register, login, logout } from '../controllers/AuthController.js';
+import { register, login, logout, sendCode, resendCode } from '../controllers/AuthController.js';
 import { setTokenCookies } from '../utils/token.js';
 
 import dotenv from 'dotenv';
@@ -12,6 +12,9 @@ const authRoute = express.Router();
 authRoute.post('/register', register);
 authRoute.post('/login', login);
 authRoute.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+authRoute.post('/send-code', sendCode);
+authRoute.post('/resend-code', resendCode);
+
 
 authRoute.get('/google/callback',
     passport.authenticate('google', { failureRedirect: '/login' }),

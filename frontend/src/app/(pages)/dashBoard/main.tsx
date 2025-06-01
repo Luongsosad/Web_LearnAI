@@ -6,14 +6,19 @@ import { SessionStorage } from "@/storage/sessionStorage";
 import { useSidebarStore } from "@/storage/sidebarState";
 import User from '@/types/User';
 import axios, { AxiosError } from 'axios';
+import LoadedOverlay from '@/components/LoadedOverlay'
+import Notify from '@/components/Notify'
 
 export default function Main() {
   const { toggle } = useSidebarStore();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState<User | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
 
   const getProfile = async () => {
     try {
+      setLoading(true);
       const res = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/a/profile`,
         {
@@ -33,6 +38,9 @@ export default function Main() {
 
       SessionStorage.clearUser();
       return;
+    }
+    finally {
+      setLoading(false);
     }
   }
 
@@ -59,13 +67,13 @@ export default function Main() {
     <div className="flex flex-col max-h-screen text-white w-full">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 p-3 bg-[#121111] border-b border-gray-700">
-        <div className="md:w-[40%]">
+        <div className="flex justify-center">
           <button className="text-gray-200 hover:text-white" onClick={() => toggle()}>
             <Sidebar size={24} />
           </button>
         </div>
         <h1 className="text-xl font-bold">Learning by AI</h1>
-        <div className="flex space-x-4 md:w-[40%] justify-end">
+        <div className="flex space-x-4 justify-end">
           {user?.username ? (
             <div className="flex items-center space-x-4">
               <span className="text-gray-300 truncate overflow-hidden whitespace-nowrap max-w-[100px] md:whitespace-normal md:overflow-visible md:max-w-none md:truncate-0">
@@ -118,7 +126,10 @@ export default function Main() {
             {/* Pronunciation Practice */}
             <div
               className="flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
-              onClick={() => handleServiceClick("/pronunciation")}
+              onClick={() => {
+                // handleServiceClick("/pronunciation");
+                setMessage("Tính năng đang phát triển!");
+              }}
             >
               <Mic className="w-6 h-6 text-blue-400 mr-4" />
               <div>
@@ -142,7 +153,10 @@ export default function Main() {
             {/* Bilingual Stories */}
             <div
               className="flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
-              onClick={() => handleServiceClick("/bilingual-stories")}
+              onClick={() => {
+                // handleServiceClick("/bilingual-stories");
+                setMessage("Tính năng đang phát triển!");
+              }}
             >
               <Library className="w-6 h-6 text-purple-400 mr-4" />
               <div>
@@ -154,7 +168,10 @@ export default function Main() {
             {/* Quiz */}
             <div
               className="flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
-              onClick={() => handleServiceClick("/quiz")}
+              onClick={() => {
+                // handleServiceClick("/quiz");
+                setMessage("Tính năng đang phát triển!");
+              }}
             >
               <HelpCircle className="w-6 h-6 text-green-400 mr-4" />
               <div>
@@ -170,6 +187,13 @@ export default function Main() {
           <p className="text-sm text-gray-500">© 2025 Learning By AI. All rights reserved.</p>
         </div>
       </div>
+      {loading && <LoadedOverlay />}
+      <Notify
+        message={message}
+        type="info"
+        duration={2000}
+        onClose={() => setMessage(null)}
+      />
     </div>
   );
 }

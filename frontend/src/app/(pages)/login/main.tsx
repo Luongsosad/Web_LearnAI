@@ -5,17 +5,24 @@ import { useRouter } from 'next/navigation';
 import axios, { AxiosError } from 'axios';
 import { SessionStorage } from '@/storage/sessionStorage';
 
+import { EmailLoginStorage } from '@/storage/localStorage';
+import LoadedOverlay from '@/components/LoadedOverlay'
+import Notify from '@/components/Notify'
+
 export default function Login() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const [message, setMessage] = useState<string | null>(null);
 
   // Hàm đăng nhập thường
   const handleLogin = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     setError('');
     try {
+      setLoading(true);
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
         {
@@ -28,11 +35,19 @@ export default function Login() {
       );
 
       if (res.status !== 200) throw new Error("Lỗi API");
-      window.location.href = `/`;
+      // Lưu email vào localStorage
+      EmailLoginStorage.saveEmail(email);
+      setMessage("Đăng nhập thành công!")
+      setTimeout(() => {
+        window.location.href = `/`;
+      }, 2000);
 
     } catch (err) {
       const error = err as AxiosError<{ message: string }>;
       setError(error.response?.data?.message || 'Đăng nhập thất bại');
+    }
+    finally {
+      setLoading(false);
     }
 
 
@@ -48,6 +63,10 @@ export default function Login() {
     const user = SessionStorage.getUser();
     if (user) {
       window.location.href = `/`;
+    }
+    const email = EmailLoginStorage.getEmail();
+    if (email) {
+      setEmail(email);
     }
   }, [router]);
 
@@ -67,7 +86,7 @@ export default function Login() {
             <input
               type="email"
               placeholder="Gmail"
-              className="bg-transparent w-full outline-none text-sm"
+              className="bg-transparent w-full outline-none text-base"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -78,7 +97,7 @@ export default function Login() {
             <input
               type="password"
               placeholder="Mật khẩu"
-              className="bg-transparent w-full outline-none text-sm"
+              className="bg-transparent w-full outline-none text-base"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -114,6 +133,13 @@ export default function Login() {
           </button>
         </div>
       </div>
+      {loading && <LoadedOverlay />}
+      <Notify
+        message={message}
+        type="success"
+        duration={2000}
+        onClose={() => setMessage(null)}
+      />
     </div>
   );
 }

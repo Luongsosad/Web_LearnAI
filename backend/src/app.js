@@ -18,14 +18,12 @@ const port = process.env.PORT || 6868; // Sử dụng PORT từ .env hoặc mặ
 // Middleware log request
 app.use(morgan('dev'));
 
-app.use(
-    cors({
-        origin: [process.env.FRONTEND_URL || 'https://learning-by-ai.vercel.app'], 
-        methods: ['GET', 'POST', 'OPTIONS'], 
-        allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'], 
-        credentials: true 
-    })
-);
+app.use(cors({
+  origin: [process.env.FRONTEND_URL], // Thêm các domain bạn muốn
+  methods: ['GET', 'POST'], // Chỉ cho phép GET và POST
+  allowedHeaders: ['Content-Type'], // Chỉ cho phép header Content-Type
+  credentials: true
+}));
 
 // Middleware session
 app.use(session({
