@@ -3,27 +3,45 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Hàm thiết lập cookies cho token (dùng trong Google callback)
 export function setTokenCookies(res, user) {
-    const accessToken = generateAccessToken(user);
-    const refreshToken = generateRefreshToken(user);
+    try {
+        if (!process.env.JWT_SECRET) {
+            console.error('JWT_SECRET is not defined');
+            throw new Error('JWT_SECRET is not defined');
+        }
 
-    console.log(accessToken);
-    console.log(refreshToken);
+        const accessToken = generateAccessToken(user);
+        const refreshToken = generateRefreshToken(user);
 
-    console.log(process.env.NODE_ENV)
+        if (!accessToken || !refreshToken) {
+            console.error('Token generation failed:', { user });
+            throw new Error('Failed to generate tokens');
+        }
 
-    res.cookie('access_token', accessToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-        maxAge: 15 * 60 * 1000 // 15 phút
-    });
+        console.log('Generated tokens:', { accessToken, refreshToken });
+        console.log('Environment:', process.env.NODE_ENV);
 
-    res.cookie('refresh_token', refreshToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-        maxAge: 15 * 24 * 60 * 60 * 1000 // 15 ngày
-    });
+        const isProduction = process.env.NODE_ENV === 'production';
+
+        res.cookie('access_token', accessToken, {
+            httpOnly: true,
+            secure: isProduction, // Đảm bảo secure: true trong production
+            sameSite: isProduction ? 'none' : 'lax', // 'none' yêu cầu secure
+            maxAge: 15 * 60 * 1000, // 15 phút
+            path: '/' // Đảm bảo cookie áp dụng cho toàn bộ domain
+        });
+
+        res.cookie('refresh_token', refreshToken, {
+            httpOnly: true,
+            secure: isProduction,
+            sameSite: isProduction ? 'none' : 'lax',
+            maxAge: 15 * 24 * 60 * 60 * 1000, // 15 ngày
+            path: '/'
+        });
+
+        console.log('Cookies set successfully');
+    } catch (error) {
+        console.error('Error in setTokenCookies:', error);
+        throw error;
+    }
 }
