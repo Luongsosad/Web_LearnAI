@@ -1,11 +1,5 @@
 import axios from 'axios';
-
-interface User {
-  id: number;
-  username: string;
-  email: string;
-  role: string;
-}
+import User from '@/types/User';
 
 export class SessionStorage {
   private static key = 'user';
@@ -48,6 +42,8 @@ export class SessionStorage {
       if (res.data.user) {
         this.saveUser(res.data.user);
         if (setUser) setUser(res.data.user);
+        console.log("Đã đăng nhập!");
+        console.log("Dữ liệu người dùng:", res.data.user);
         return res.data.user;
       }
       return null;

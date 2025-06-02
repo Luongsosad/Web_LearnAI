@@ -7,6 +7,7 @@ import { useSidebarStore } from "@/storage/sidebarState";
 import User from '@/types/User';
 import LoadedOverlay from '@/components/LoadedOverlay'
 import Notify from '@/components/Notify'
+import PlanBadge from "@/components/PlanBadge";
 
 export default function Main() {
   const { toggle } = useSidebarStore();
@@ -69,31 +70,45 @@ export default function Main() {
           <div className="grid gap-3 md:grid-cols-1">
             {/* Chat with AI */}
             <div
-              className="flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
-              onClick={() => handleServiceClick("/chat")}
+              className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
+              onClick={() => {
+                if (user && user.plan_id >= 1) {
+                  handleServiceClick("/chat");
+                } else {
+                  setMessage("Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!");
+                }
+              }}
             >
               <MessageCircle className="w-6 h-6 text-red-400 mr-4" />
               <div>
                 <h3 className="text-lg font-semibold text-white">Trò chuyện với AI</h3>
                 <p className="text-gray-400 text-sm">Trao đổi với AI để học tiếng Anh thông minh hơn.</p>
               </div>
+              <PlanBadge level={1} />
             </div>
 
             {/* AI Voice Conversation */}
             <div
-              className="flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
-              onClick={() => handleServiceClick("/conversation")}
+              className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
+              onClick={() => {
+                if (user && user.plan_id >= 2) {
+                  handleServiceClick("/conversation");
+                } else {
+                  setMessage("Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!");
+                }
+              }}
             >
               <Headphones className="w-6 h-6 text-orange-400 mr-4" />
               <div>
                 <h3 className="text-lg font-semibold text-white">Luyện giao tiếp với AI</h3>
                 <p className="text-gray-400 text-sm">Luyện nói tiếng Anh trực tiếp với AI qua hội thoại.</p>
               </div>
+              <PlanBadge level={2} />
             </div>
 
             {/* Pronunciation Practice */}
             <div
-              className="flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
+              className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
                 // handleServiceClick("/pronunciation");
                 setMessage("Tính năng đang phát triển!");
@@ -104,23 +119,31 @@ export default function Main() {
                 <h3 className="text-lg font-semibold text-white">Kiểm tra phát âm</h3>
                 <p className="text-gray-400 text-sm">Ghi âm và so sánh phát âm của bạn với người bản xứ.</p>
               </div>
+              <PlanBadge level={3} />
             </div>
 
             {/* Flashcards */}
             <div
-              className="flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
-              onClick={() => handleServiceClick("/flashcards")}
+              className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
+              onClick={() => {
+                if (user && user.plan_id >= 1) {
+                  handleServiceClick("/flashcards");
+                } else {
+                  setMessage("Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!");
+                }
+              }}
             >
               <BookOpen className="w-6 h-6 text-yellow-400 mr-4" />
               <div>
                 <h3 className="text-lg font-semibold text-white">Thẻ ghi nhớ</h3>
                 <p className="text-gray-400 text-sm">Ôn tập từ vựng hiệu quả qua hệ thống flashcard.</p>
               </div>
+              <PlanBadge level={1} />
             </div>
 
             {/* Bilingual Stories */}
             <div
-              className="flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
+              className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
                 // handleServiceClick("/bilingual-stories");
                 setMessage("Tính năng đang phát triển!");
@@ -131,11 +154,12 @@ export default function Main() {
                 <h3 className="text-lg font-semibold text-white">Đọc truyện song ngữ</h3>
                 <p className="text-gray-400 text-sm">Cải thiện kỹ năng đọc với truyện song ngữ Anh-Việt.</p>
               </div>
+              <PlanBadge level={2} />
             </div>
 
             {/* Quiz */}
             <div
-              className="flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
+              className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
                 // handleServiceClick("/quiz");
                 setMessage("Tính năng đang phát triển!");
@@ -146,6 +170,7 @@ export default function Main() {
                 <h3 className="text-lg font-semibold text-white">Bài tập trắc nghiệm</h3>
                 <p className="text-gray-400 text-sm">Kiểm tra kiến thức của bạn với các câu hỏi trắc nghiệm.</p>
               </div>
+              <PlanBadge level={3} />
             </div>
           </div>
         </div>

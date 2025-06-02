@@ -28,6 +28,7 @@ export default function Main() {
   const audioChunksRef = useRef<Blob[]>([]);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   // Lấy dữ liệu từ sessionStorage khi component mount
   useEffect(() => {
@@ -36,9 +37,17 @@ export default function Main() {
         (loading) => setLoading(loading),
         (user) => setUser(user)
       )
+
       if (!user) {
         router.push("/login");
       }
+
+      if (user?.plan_id && user?.plan_id >= 1) {
+        setIsAuthorized(true); // cho phép hiển thị giao diện
+      } else {
+        router.push("/"); // chuyển về trang chủ nếu không hợp lệ
+      }
+
     }
     fetchUser();
   }, []);
@@ -211,6 +220,8 @@ export default function Main() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isThinking, isProcessingAudio]);
+
+  if (!isAuthorized) return null;
 
   return (
     <div className="w-full flex flex-col h-screen text-white overflow-hidden">

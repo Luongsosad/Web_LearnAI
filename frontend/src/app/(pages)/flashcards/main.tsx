@@ -39,6 +39,7 @@ export default function Vocabulary() {
   const [loading, setLoading] = useState(false);
   const [tab, setTab] = useState(0); // 0: Chọn loại từ vựng, 1: Chọn chủ đề, 2: Danh sách từ vựng, 3: Test, 4: Flag Card
   const [user, setUser] = useState<User | null>(null);
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   // Lấy dữ liệu từ sessionStorage khi component mount
   useEffect(() => {
@@ -47,9 +48,17 @@ export default function Vocabulary() {
         (loading) => setLoading(loading),
         (user) => setUser(user)
       )
+
       if (!user) {
         router.push("/login");
       }
+
+      if (user?.plan_id && user?.plan_id >= 1) {
+        setIsAuthorized(true); // cho phép hiển thị giao diện
+      } else {
+        router.push("/"); // chuyển về trang chủ nếu không hợp lệ
+      }
+
     }
     fetchUser();
   }, []);
@@ -121,6 +130,8 @@ export default function Vocabulary() {
       fetchAudioForCategory();
     }
   }, [selectedTest, selectedCategory]);
+
+  if (!isAuthorized) return null;
 
   return (
     <div className="w-full flex flex-col h-screen text-white overflow-hidden p-4 md:p-0">

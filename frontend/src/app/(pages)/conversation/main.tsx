@@ -23,7 +23,7 @@ interface User {
 
 export default function Main() {
   const { toggle } = useSidebarStore();
-    const router = useRouter();
+  const router = useRouter();
   const cancelAudioRef = useRef(false);
   const [user, setUser] = useState<User | null>(null);
   const [topic, setTopic] = useState("");
@@ -41,6 +41,7 @@ export default function Main() {
   const [showTranslated, setShowTranslated] = useState(false);
   const [message, setMessage] = useState<Message | null>(null);
   const [loading, setLoading] = useState(false);
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   // Danh sách gợi ý chủ đề
   const suggestedTopics = [
@@ -60,9 +61,17 @@ export default function Main() {
         (loading) => setLoading(loading),
         (user) => setUser(user)
       )
+
       if (!user) {
         router.push("/login");
       }
+
+      if (user?.plan_id && user?.plan_id >= 2) {
+        setIsAuthorized(true); // cho phép hiển thị giao diện
+      } else {
+        router.push("/"); // chuyển về trang chủ nếu không hợp lệ
+      }
+
     }
     fetchUser();
   }, []);
@@ -86,7 +95,7 @@ export default function Main() {
 
     try {
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/chat/communicate`,
+        `${process.env.NEXT_PUBLIC_API_URL}/communicate`,
         {
           prompt: inputPrompt,
           history: messages.slice(-20),
@@ -284,6 +293,8 @@ export default function Main() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isThinking, isProcessingAudio]);
+
+  if (!isAuthorized) return null;
 
   return (
     <div className="w-full flex flex-col h-screen text-white overflow-hidden">

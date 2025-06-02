@@ -18,7 +18,7 @@ async function comparePassword(password, hashedPassword) {
 // Tạo access token
 function generateAccessToken(user) {
     return jwt.sign(
-        { id: user.id, email: user.email, role: user.role },
+        { id: user.id, email: user.email, role: user.role, plan_id: user.plan_id },
         process.env.JWT_SECRET,
         { expiresIn: '15m' } // Access token sống 15 phút
     );

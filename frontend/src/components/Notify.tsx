@@ -38,7 +38,7 @@ export default function Notify({ message, type = 'info', duration = 2000, onClos
     };
 
     return (
-        <div className={`fixed w-[240px] text-center top-12 left-1/2 -translate-x-1/2 z-[9999] px-4 py-2 text-white rounded-lg shadow-lg ${getColor()} animate-fade-in`}>
+        <div className={`fixed text-sm w-[240px] text-center top-12 left-1/2 -translate-x-1/2 z-[9999] px-4 py-2 text-white rounded-lg shadow-lg ${getColor()} animate-fade-in`}>
             {message}
         </div>
     );
