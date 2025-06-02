@@ -35,20 +35,19 @@ export default function Main() {
   return (
     <div className="flex flex-col max-h-screen text-white w-full">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 p-3 bg-[#121111] border-b border-gray-700">
-        <div className="flex justify-center">
+      <div className="relative flex items-center justify-between px-4 py-3.5 bg-[#121111] border-b border-gray-700">
+        <div className="flex justify-start">
           <button className="text-gray-200 hover:text-white" onClick={() => toggle()}>
             <Sidebar size={24} />
           </button>
         </div>
-        <h1 className="text-xl font-bold">Learning by AI</h1>
+        <h1 className="text-xl font-bold absolute left-1/2 transform -translate-x-1/2">Learning by AI</h1>
         <div className="flex space-x-4 justify-end">
           {user?.username ? (
             <div className="flex items-center space-x-4">
-              <span className="text-gray-300 truncate overflow-hidden whitespace-nowrap max-w-[100px] md:whitespace-normal md:overflow-visible md:max-w-none md:truncate-0">
+              <span className="text-gray-300 truncate overflow-hidden whitespace-nowrap max-w-[70px] md:whitespace-normal md:overflow-visible md:max-w-none md:truncate-0">
                 {user.username || "bạn"}
               </span>
-
             </div>
           ) : (
             <button
@@ -59,7 +58,6 @@ export default function Main() {
             </button>
           )}
         </div>
-
       </div>
 
       {/* Main Content */}

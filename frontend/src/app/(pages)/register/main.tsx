@@ -6,6 +6,9 @@ import axios, { AxiosError } from 'axios';
 import { EmailLoginStorage } from '@/storage/localStorage';
 import LoadedOverlay from '@/components/LoadedOverlay';
 import Notify from '@/components/Notify';
+import User from '@/types/User';
+import { SessionStorage } from '@/storage/sessionStorage';
+
 
 export default function Register() {
   const router = useRouter();
@@ -19,6 +22,23 @@ export default function Register() {
   const [error, setError] = useState<string>('');
   const [resendCooldown, setResendCooldown] = useState<number>(0);
   const [message, setMessage] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    async function fetchUser() {
+      const user = await SessionStorage.getUser(
+        (loading) => setLoading(loading),
+        (user) => setUser(user)
+      );
+      if (user) {
+        router.push("/");
+      }
+      else {
+        setLoading(false);
+      }
+    }
+    fetchUser();
+  }, [router]);
 
   const handleContinue = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
@@ -144,9 +164,8 @@ export default function Register() {
             </div>
             <button
               type="submit"
-              className={`w-full py-2 rounded-lg flex justify-center items-center ${
-                isDisabled ? 'bg-gray-600 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'
-              }`}
+              className={`w-full py-2 rounded-lg flex justify-center items-center ${isDisabled ? 'bg-gray-600 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'
+                }`}
               disabled={isDisabled}
             >
               Tiếp tục
@@ -192,20 +211,18 @@ export default function Register() {
                 type="button"
                 onClick={handleResendCode}
                 disabled={resendCooldown > 0 || isDisabled}
-                className={`w-[150px] py-2 rounded-lg text-sm ${
-                  resendCooldown > 0 || isDisabled
+                className={`w-[150px] py-2 rounded-lg text-sm ${resendCooldown > 0 || isDisabled
                     ? 'bg-gray-600 cursor-not-allowed'
                     : 'bg-gray-600 hover:bg-gray-500'
-                }`}
+                  }`}
               >
                 Gửi lại mã {resendCooldown > 0 ? `(${resendCooldown}s)` : ''}
               </button>
             </div>
             <button
               type="submit"
-              className={`w-full py-2 rounded-lg flex justify-center items-center ${
-                isDisabled ? 'bg-gray-600 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'
-              }`}
+              className={`w-full py-2 rounded-lg flex justify-center items-center ${isDisabled ? 'bg-gray-600 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'
+                }`}
               disabled={isDisabled}
             >
               Đăng ký
@@ -218,9 +235,8 @@ export default function Register() {
         <div className="flex justify-between space-x-4 mt-4">
           <button
             onClick={handleGoogleLogin}
-            className={`flex-1 flex items-center justify-center py-2 rounded-lg text-sm ${
-              isDisabled ? 'bg-gray-600 cursor-not-allowed' : 'bg-red-500 hover:bg-red-600'
-            }`}
+            className={`flex-1 flex items-center justify-center py-2 rounded-lg text-sm ${isDisabled ? 'bg-gray-600 cursor-not-allowed' : 'bg-red-500 hover:bg-red-600'
+              }`}
             disabled={isDisabled}
           >
             <Mail className="w-4 h-4 mr-2" />
@@ -241,6 +257,7 @@ export default function Register() {
       </div>
 
       {loading && <LoadedOverlay />}
+      {user && <></>}
       <Notify
         message={message}
         type="success"

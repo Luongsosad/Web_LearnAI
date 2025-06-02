@@ -7,6 +7,7 @@ import { SessionStorage } from '@/storage/sessionStorage';
 import { EmailLoginStorage } from '@/storage/localStorage';
 import LoadedOverlay from '@/components/LoadedOverlay';
 import Notify from '@/components/Notify';
+import User from '@/types/User';
 
 export default function Login() {
   const router = useRouter();
@@ -16,6 +17,28 @@ export default function Login() {
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    async function fetchUser() {
+      const user = await SessionStorage.getUser(
+        (loading) => setLoading(loading),
+        (user) => setUser(user)
+      );
+      if (user) {
+        router.push("/");
+      }
+      else {
+        setLoading(false);
+      }
+    }
+    fetchUser();
+    const email = EmailLoginStorage.getEmail();
+    if (email) {
+      setEmail(email);
+    }
+  }, [router]);
+
 
   // Hàm đăng nhập thường
   const handleLogin = async (e: React.FormEvent): Promise<void> => {
@@ -54,18 +77,6 @@ export default function Login() {
     window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;
   };
 
-  // Kiểm tra trạng thái người dùng
-  useEffect(() => {
-    const user = SessionStorage.hasUser();
-    if (user) {
-      window.location.href = `/`;
-    }
-    const email = EmailLoginStorage.getEmail();
-    if (email) {
-      setEmail(email);
-    }
-  }, [router]);
-
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-[#111111] text-white px-4">
       <div className="w-full max-w-md bg-[#171717] p-6 rounded-xl shadow-lg border border-[#262626]">
@@ -103,11 +114,10 @@ export default function Login() {
 
           <button
             type="submit"
-            className={`w-full py-2 rounded-lg flex justify-center items-center ${
-              isDisabled
-                ? 'bg-gray-600 cursor-not-allowed'
-                : 'bg-blue-500 hover:bg-blue-600'
-            }`}
+            className={`w-full py-2 rounded-lg flex justify-center items-center ${isDisabled
+              ? 'bg-gray-600 cursor-not-allowed'
+              : 'bg-blue-500 hover:bg-blue-600'
+              }`}
             disabled={isDisabled}
           >
             Đăng nhập
@@ -119,11 +129,10 @@ export default function Login() {
         <div className="flex justify-between space-x-4 mt-4">
           <button
             onClick={handleGoogleLogin}
-            className={`flex-1 flex items-center justify-center py-2 rounded-lg text-sm ${
-              isDisabled
-                ? 'bg-gray-600 cursor-not-allowed'
-                : 'bg-red-500 hover:bg-red-600'
-            }`}
+            className={`flex-1 flex items-center justify-center py-2 rounded-lg text-sm ${isDisabled
+              ? 'bg-gray-600 cursor-not-allowed'
+              : 'bg-red-500 hover:bg-red-600'
+              }`}
             disabled={isDisabled}
           >
             <Mail className="w-4 h-4 mr-2" />
@@ -143,6 +152,7 @@ export default function Login() {
         </div>
       </div>
       {loading && <LoadedOverlay />}
+      {user && <></>}
       <Notify
         message={message}
         type="success"

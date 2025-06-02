@@ -3,7 +3,8 @@ import React from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import Main from './main'
-function Edit() {
+
+function Login() {
     useEffect(() => {
         const awake = async () => {
             try {
@@ -23,4 +24,4 @@ function Edit() {
     );
 }
 
-export default Edit;
+export default Login;
