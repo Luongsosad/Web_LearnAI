@@ -53,9 +53,11 @@ export default function PlansPage() {
             return;
         }
         try {
+            console.log(`Nâng cấp lên gói ${plans[planId].name}...`);
             // setMessage(`Nâng cấp lên ${plans[planId].name} thành công!`);
             setMessage(`Gói dịch vụ đang được hoàn thiện! Hãy thử lại sau!`);
         } catch (error) {
+            console.error("Lỗi khi nâng cấp gói dịch vụ:", error);
             setMessage("Lỗi khi nâng cấp gói dịch vụ!");
         }
     };
