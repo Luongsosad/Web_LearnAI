@@ -77,7 +77,7 @@ const Test: React.FC<TestProps> = ({ selectedTest, selectedCategory, category_id
 
 	return (
 		<div className="flex flex-col gap-4">
-			<h2 className="text-[16px] font-semibold">Nội dung: {selectedTest} - {selectedCategory} | {questions && `${questions.length}`}</h2>
+			<h2 className="text-[16px] font-semibold">Nội dung: {selectedTest} - {selectedCategory} | {currentQuestionIndex && `${currentQuestionIndex + 1}`} - {questions && `${questions.length}`}</h2>
 			<div className="p-4 bg-[#323232] rounded-lg max-h-screen custom-scroll pb-[170px] md:pb-[10px]">
 				<p><strong>Câu hỏi:</strong> {currentQuestion.english_sentence}</p>
 

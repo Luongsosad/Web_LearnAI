@@ -372,7 +372,7 @@ export default function Vocabulary() {
             ) : tab === 3 ? (
               <FlagCard
                 vocabularyData={{ [selectedTest!.name]: [{ Category: selectedTopic!.name, Words: words.filter((word) => word.topic_id === selectedTopic?.id) }] }}
-                setVocabularyData={(updatedData) => {
+                setVocabularyData={() => {
                   // Update words if needed
                 }}
                 selectedTest={selectedTest!.name}
