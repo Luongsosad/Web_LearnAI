@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { ArrowLeft, Lamp, Sidebar, Volume2, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
-import FlagCard from './tabFlagCard';
+import Test from './tabTest';
 import { useSidebarStore } from "@/storage/sidebarState";
 import LoadedOverlay from '@/components/LoadedOverlay';
 import { useRouter } from "next/navigation";
@@ -64,7 +64,7 @@ export default function Vocabulary() {
         return;
       }
 
-      if (user?.plan_id && user?.plan_id >= 1) {
+      if (user?.plan_id && user?.plan_id >= 3) {
         setIsAuthorized(true);
       } else {
         router.push("/");
@@ -206,7 +206,7 @@ export default function Vocabulary() {
           <button className="text-gray-200 hover:text-white" onClick={() => toggle()}>
             <Sidebar size={24} />
           </button>
-          <div className="text-xl font-semibold">Thẻ ghi nhớ</div>
+          <div className="text-xl font-semibold">Bài tập luyện tập</div>
           <button className="text-gray-200 hover:text-white" onClick={() => console.log("Lamp")}>
             <Lamp size={24} />
           </button>
@@ -304,9 +304,9 @@ export default function Vocabulary() {
               <div className="flex gap-2 mb-1">
                 <button
                   onClick={() => setTab(3)}
-                  className="p-2 bg-purple-500 hover:bg-purple-600 rounded-lg text-white w-fit"
+                  className="p-2 bg-green-500 hover:bg-green-600 rounded-lg text-white w-fit"
                 >
-                  Chế độ Flash Card
+                  Chế độ kiểm tra
                 </button>
               </div>
             )}
@@ -370,13 +370,11 @@ export default function Vocabulary() {
                 </div>
               </div>
             ) : tab === 3 ? (
-              <FlagCard
-                vocabularyData={{ [selectedTest!.name]: [{ Category: selectedTopic!.name, Words: words.filter((word) => word.topic_id === selectedTopic?.id) }] }}
-                setVocabularyData={(updatedData) => {
-                  // Update words if needed
-                }}
+              <Test
                 selectedTest={selectedTest!.name}
                 selectedCategory={selectedTopic!.name}
+                category_id={selectedTest!.id}
+                topic_id={selectedTopic!.id}
                 setTab={setTab}
               />
             ) : null}

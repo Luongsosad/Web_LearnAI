@@ -11,8 +11,8 @@ export const authenticateToken = async (req, res, next) => {
     const accessToken = req.cookies.access_token;
     const refreshToken = req.cookies.refresh_token;
 
-    console.log('Access token:', accessToken);
-    console.log('Refresh token:', refreshToken);
+    // console.log('Access token:', accessToken);
+    // console.log('Refresh token:', refreshToken);
 
     // Kiểm tra access token
     if (accessToken) {

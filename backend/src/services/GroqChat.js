@@ -32,7 +32,7 @@ const models = {
   //       Nội dung chính
   //     Câu kết"
   // `,
-   chatUser: `
+  chatUser: `
     
   `,
   communicate: `
@@ -78,14 +78,37 @@ const models = {
     Nếu người dùng nhập nội dung không rõ ràng, thì trả kiểu như sau:
     "Sorry, I didn't catch that. Let's stick to talking about travel. What's your favorite place to visit? (Xin lỗi, tôi không hiểu ý bạn. Hãy tiếp tục nói về du lịch nhé. Nơi yêu thích của bạn là đâu?)"    
   
-    `
+    `,
+  words: `
+    Bạn là trợ lý chuyên tạo câu hỏi kiểm tra từ vựng tiếng Anh. Trả về câu hỏi theo định dạng được yêu cầu trong prompt, bao gồm:
+    - Câu tiếng Anh khuyết từ (dùng "_____" thay cho từ vựng).
+    - Dịch nghĩa sang tiếng Việt.
+    - Đáp án (từ vựng gốc).
+    - Gợi ý (phát âm hoặc một phần nghĩa).
+    - Hai câu tham khảo sử dụng từ vựng.
+    Yêu cầu:
+    - Không dùng markdown, chỉ trả về văn bản thuần.
+    - Đảm bảo định dạng chính xác, mỗi phần cách nhau bằng dấu xuống dòng.
+    - Câu tiếng Anh và câu tham khảo phải đúng ngữ pháp, tự nhiên.
+    Ví dụ:
+    Câu tiếng Anh: You must _____ by the rules to avoid penalties.
+    Dịch nghĩa: Bạn phải tuân thủ các quy tắc để tránh bị phạt.
+    Đáp án: abide by
+    Gợi ý: /əˈbaɪd baɪ/, nghĩa là tuân theo
+    Câu tham khảo:
+    1. Employees are expected to abide by the company's code of conduct.
+    2. If you don't abide by the terms, your account may be suspended.
+      `,
+  wordsUser: `
+  Trả về đúng định dạng được yêu cầu trong prompt, không thêm nội dung thừa.
+    `,
 
 }
 
 // Hàm gọi Groq API để tạo kịch bản
 export async function generateScript(prompt, history = [], model = 'chat') {
   try {
-    console.log(models[model+'User'])
+    // console.log(models[model + 'User'])
     const messages = [
       {
         role: 'system',
@@ -98,13 +121,16 @@ export async function generateScript(prompt, history = [], model = 'chat') {
       })),
       {
         role: 'user',
-        content: `Viết nội dung với yêu cầu: "${prompt}". Vietnamese! ${models[model+'User']}`,
+        content: `Viết nội dung với yêu cầu: "${prompt}". Vietnamese! ${models[model + 'User']}`,
       },
     ];
 
     // Gọi Groq API
     const completion = await groq.chat.completions.create({
-      model: 'llama3-70b-8192',
+      // model: 'llama3-70b-8192',
+      // model: 'meta-llama/llama-4-scout-17b-16e-instruct',
+      // model: 'llama-guard-3-8b',
+      model: 'gemma2-9b-it',
       messages,
       temperature: 0.7,
     });
