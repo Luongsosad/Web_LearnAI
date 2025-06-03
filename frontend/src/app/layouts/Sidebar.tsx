@@ -129,7 +129,11 @@ export default function Sidebar() {
               setMessage("Tính năng đang phát triển!");
             }} />
             <NavItem icon={HelpCircle} label="Trắc nghiệm" onClick={() => {
-              setMessage("Tính năng đang phát triển!");
+              if (user && user.plan_id >= 3) {
+                handleNav("/quiz");
+              } else {
+                setMessage("Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!");
+              }
             }} />
           </div>
         </div>

@@ -160,7 +160,7 @@ export default function Main() {
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
                 if (user && user.plan_id >= 3) {
-                  handleServiceClick("/flashcards");
+                  handleServiceClick("/quiz");
                 } else {
                   setMessage("Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!");
                 }
