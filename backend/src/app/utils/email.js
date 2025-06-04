@@ -32,4 +32,24 @@ async function sendVerificationEmail(to, code) {
     await transporter.sendMail(mailOptions);
 }
 
-export { sendVerificationEmail };
+async function sendEmailOrder(to, name, transactionId, amount) {
+    const mailOptions = {
+        from: `"${process.env.EMAIL_NAME}" <${process.env.EMAIL_USER}>`,
+        to,
+        subject: 'Hóa đơn thanh toán gói dịch vụ',
+        html: `
+            <h2>Hóa đơn thanh toán</h2>
+            <p>Cảm ơn bạn đã mua gói <strong>${name}</strong>!</p>
+            <p><strong>Mã giao dịch:</strong> ${transactionId}</p>
+            <p><strong>Số tiền:</strong> $${amount}</p>
+            <p><strong>Trạng thái:</strong> Đang chờ duyệt</p>
+            <p>Hóa đơn sẽ được kích hoạt sau khi admin xác nhận thanh toán.</p>
+            <hr>
+            <p>Trân trọng,<br><strong>LearningAI Team</strong></p>
+        `,
+    };
+
+    await transporter.sendMail(mailOptions);
+}
+
+export { sendVerificationEmail, sendEmailOrder };

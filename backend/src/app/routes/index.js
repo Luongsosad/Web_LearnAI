@@ -5,6 +5,7 @@ import { authRoute } from './auth.route.js';
 import { accountRoute } from './account.route.js';
 import { communicateRoute } from './communicate.route.js';
 import { wordRoute } from './word.route.js';
+import { orderRoute } from './order.route.js';
 
 import { authenticateToken } from '../middleware/authMiddleware.js';
 import { checkPlan } from '../middleware/checkPlan.js';
@@ -12,6 +13,7 @@ import { checkPlan } from '../middleware/checkPlan.js';
 function route(app) {
     app.use('/auth', authRoute);
 
+    app.use('/order', authenticateToken, orderRoute); 
     app.use('/chat', authenticateToken, checkPlan([1, 2, 3]), chatRoute); // Free, Basic và Pro
     app.use('/w', authenticateToken, checkPlan([1, 2, 3]), wordRoute); // Free, Basic và Pro
     app.use('/a', authenticateToken, accountRoute); // Account
