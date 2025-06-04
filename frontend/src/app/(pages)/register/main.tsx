@@ -6,7 +6,7 @@ import axios, { AxiosError } from 'axios';
 import { EmailLoginStorage } from '@/storage/localStorage';
 import LoadedOverlay from '@/components/LoadedOverlay';
 import Notify from '@/components/Notify';
-import User from '@/types/User';
+import { User } from '@/types/User';
 import { SessionStorage } from '@/storage/sessionStorage';
 
 

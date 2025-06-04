@@ -22,7 +22,7 @@ import { SessionStorage } from "@/storage/sessionStorage";
 import { useSidebarStore } from "@/storage/sidebarState";
 
 import axios from 'axios';
-import User from '@/types/User';
+import { User } from '@/types/User';
 
 export default function Sidebar() {
   const router = useRouter();

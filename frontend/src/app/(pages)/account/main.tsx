@@ -3,21 +3,54 @@ import React, { useState, useEffect } from "react";
 import { Sidebar } from "lucide-react";
 import { SessionStorage } from "@/storage/sessionStorage";
 import { useSidebarStore } from "@/storage/sidebarState";
-import User from "@/types/User";
+import { User } from "@/types/User";
 import LoadedOverlay from "@/components/LoadedOverlay";
 import Notify from "@/components/Notify";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function AccountPage() {
     const { toggle } = useSidebarStore();
+    const router = useRouter();
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState<User | null>(null);
+    const [userDetails, setUserDetails] = useState<User | null>(null);
     const [message, setMessage] = useState<string | null>(null);
+    const [isAuthorized, setIsAuthorized] = useState(false);
+    const [selectedOrderId, setSelectedOrderId] = useState<number | null>(null);
 
     useEffect(() => {
-        SessionStorage.getUser(
-            (loading) => setLoading(loading),
-            (user) => setUser(user)
-        );
+        async function fetchUser() {
+            const user = await SessionStorage.getUser(
+                (loading) => setLoading(loading),
+                (user) => setUser(user)
+            );
+
+            if (!user) {
+                router.push("/login");
+            }
+            setIsAuthorized(true);
+        }
+        fetchUser();
+    }, []);
+
+    useEffect(() => {
+        const fetchWords = async () => {
+            try {
+                setLoading(true);
+                const res = await axios.get(
+                    `${process.env.NEXT_PUBLIC_API_URL}/a/profile-detail`,
+                    { withCredentials: true }
+                );
+                setUserDetails(res.data.user);
+                console.log("User details:", res.data.user);
+            } catch (err) {
+                console.error("Error fetching profile:", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchWords();
     }, []);
 
     const plans = [
@@ -44,10 +77,20 @@ export default function AccountPage() {
         },
     ];
 
+    const closeModal = () => {
+        setSelectedOrderId(null);
+    };
+
+    const selectedOrder = userDetails?.orders?.find(
+        (order) => order.id === selectedOrderId
+    );
+
+    if (!isAuthorized) return null;
+
     return (
         <div className="flex flex-col max-h-screen text-white w-full">
             {/* Header */}
-            <div className="fixed top-0 left-0 w-full bg-[#111111]">
+            <div className="fixed top-0 left-0 w-full bg-[#111111] z-10">
                 <div className="relative flex items-center justify-between px-4 py-3.5 border-b border-gray-700">
                     <div className="flex justify-start">
                         <button className="text-gray-200 hover:text-white" onClick={() => toggle()}>
@@ -58,9 +101,7 @@ export default function AccountPage() {
                     <div className="flex space-x-4 justify-end">
                         {user?.username && (
                             <div className="flex items-center space-x-4">
-                                <span className="text-gray-300 truncate overflow-hidden whitespace-nowrap max-w-[70px] md:whitespace-normal md:overflow-visible md:max-w-none md:truncate-0">
-                                    {user.username || "bạn"}
-                                </span>
+                                <span className="text-gray-300 truncate max-w-[70px] md:max-w-none">{user.username}</span>
                             </div>
                         )}
                     </div>
@@ -72,24 +113,53 @@ export default function AccountPage() {
             <div className="custom-scroll w-full md:w-[768px] mx-auto mt-[82px]">
                 <div className="flex-1 p-5">
                     <h2 className="text-xl font-semibold text-gray-300 mb-4">Thông tin tài khoản</h2>
-                    {user ? (
-                        <div className="bg-[#1c1c1c] p-6 rounded-xl">
+                    {userDetails ? (
+                        <div className="bg-[#1c1c1c] p-4 rounded-xl">
                             <div className="grid gap-4">
                                 {/* Username */}
                                 <div>
                                     <label className="text-gray-400">Tên người dùng</label>
-                                    <p className="text-white">{user.username}</p>
+                                    <p className="text-white">{userDetails.username}</p>
                                 </div>
                                 {/* Email */}
                                 <div>
                                     <label className="text-gray-400">Email</label>
-                                    <p className="text-white">{user.email}</p>
+                                    <p className="text-white">{userDetails.email}</p>
                                 </div>
                                 {/* Plan ID */}
                                 <div>
                                     <label className="text-gray-400">Gói dịch vụ</label>
-                                    <p className="text-white">{user.plan_id ? `${plans[user.plan_id - 1].name}` : "Chưa có gói"}</p>
+                                    <p className="text-white">
+                                        {userDetails.plan_id
+                                            ? `${plans[userDetails.plan_id - 1]?.name ?? "Không xác định"}`
+                                            : "Chưa có gói"}
+                                    </p>
                                 </div>
+
+                                {/* Order List */}
+                                {userDetails.orders && userDetails.orders.length > 0 && (
+                                    <div>
+                                        <label className="text-gray-400">Danh sách đơn hàng</label>
+                                        <div className="space-y-3 mt-2">
+                                            {userDetails.orders.map((order) => (
+                                                <div key={order.id} className="bg-[#2a2a2a] p-3 rounded-lg flex justify-between text-sm items-center">
+                                                    <div>
+                                                        {/* <p><strong>ID:</strong> {order.id}</p> */}
+                                                        <p><strong>Plan:</strong> {plans[order.plan_id - 1]?.name}</p>
+                                                        <p><strong>Trạng thái:</strong> <span className="capitalize">{order.status}</span></p>
+                                                        <p><strong>Giá:</strong> ${order.amount}</p>
+                                                    </div>
+                                                    <button
+                                                        className="px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded-md text-sm"
+                                                        onClick={() => setSelectedOrderId(order.id)}
+                                                    >
+                                                        Xem chi tiết
+                                                    </button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     ) : (
@@ -102,6 +172,42 @@ export default function AccountPage() {
                     <p className="text-sm text-gray-500">© 2025 Learning By AI. All rights reserved.</p>
                 </div>
             </div>
+
+            {/* Modal chi tiết đơn hàng */}
+            {selectedOrder && (
+                <div className="fixed inset-0 z-50 bg-black bg-opacity-70 flex items-center justify-center">
+                    <div className="bg-[#1c1c1c] rounded-xl p-6 w-[90%] max-w-md text-white relative">
+                        <h3 className="text-lg font-semibold mb-4">Chi tiết đơn hàng</h3>
+                        <div className="space-y-2 text-sm">
+                            {/* <p><strong>ID:</strong> {selectedOrder.id}</p> */}
+                            <p><strong>Trạng thái:</strong> <span className="capitalize">{selectedOrder.status}</span></p>
+                            <p><strong>Gói dịch vụ:</strong> {plans[selectedOrder.plan_id - 1]?.name}</p>
+                            <p><strong>Transaction ID:</strong> {selectedOrder.transaction_id}</p>
+                            <p><strong>Email:</strong> {selectedOrder.email}</p>
+                            <p><strong>Ngày tạo:</strong> {new Date(selectedOrder.created_at).toLocaleString()}</p>
+                            <p><strong>Giá:</strong> ${selectedOrder.amount}</p>
+                            {/* {selectedOrder.image && (
+                                <div className="mt-3">
+                                    <p><strong>Hình ảnh:</strong></p>
+                                    <img
+                                        src={selectedOrder.image}
+                                        alt="Order Image"
+                                        className="mt-1 max-h-48 rounded-md border border-gray-600"
+                                    />
+                                </div>
+                            )} */}
+                        </div>
+                        <button
+                            className="absolute top-2 right-3 text-gray-400 hover:text-white text-4xl"
+                            onClick={closeModal}
+                        >
+                            ×
+                        </button>
+                    </div>
+                </div>
+            )}
+
+
             {loading && <LoadedOverlay />}
             <Notify
                 message={message}

@@ -39,6 +39,42 @@ async function findUserById(id) {
     }
 }
 
+async function findUserWithOrdersById(id) {
+    const query = `
+        SELECT 
+            u.id, u.username, u.email, u.role, u.plan_id, u.plan_expires_at, u.avatar,
+            COALESCE(
+                JSONB_AGG(
+                    CASE 
+                        WHEN o.id IS NOT NULL THEN JSONB_BUILD_OBJECT(
+                            'id', o.id,
+                            'plan_id', o.plan_id,
+                            'transaction_id', o.transaction_id,
+                            'amount', o.amount,
+                            'email', o.email,
+                            'image', o.image,
+                            'status', o.status,
+                            'created_at', o.created_at
+                        )
+                    END
+                ) FILTER (WHERE o.id IS NOT NULL),
+                '[]'
+            ) AS orders
+        FROM users u
+        LEFT JOIN orders o ON u.id = o.user_id
+        WHERE u.id = $1
+        GROUP BY u.id;
+    `;
+
+    try {
+        const res = await pool.query(query, [id]);
+        return res.rows[0]; // hoặc null nếu không tìm thấy
+    } catch (err) {
+        throw new Error('Error finding user with orders: ' + err.message);
+    }
+}
+
+
 // Model để tìm hoặc tạo user từ Google
 async function findOrCreateGoogleUser(googleId, displayName, email) {
     let user;
@@ -76,4 +112,4 @@ async function verifyRefreshToken(refreshToken) {
     }
 }
 
-export { createUser, findUserByEmail, findUserById, findOrCreateGoogleUser, verifyRefreshToken };
+export { createUser, findUserByEmail, findUserById, findOrCreateGoogleUser, verifyRefreshToken, findUserWithOrdersById };

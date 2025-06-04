@@ -5,10 +5,21 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { SessionStorage } from "@/storage/sessionStorage";
 import { useSidebarStore } from "@/storage/sidebarState";
-import User from "@/types/User";
+import { User } from "@/types/User";
 import LoadedOverlay from "@/components/LoadedOverlay";
 import Notify from "@/components/Notify";
 import PlanBadge from "@/components/PlanBadge";
+
+interface Transaction {
+  transactionId: string;
+    amount: number;
+    bankAccount: string;
+    accountHolder: string;
+    bank: string;
+    planName: string;
+    qrCode: string;
+    expiresAt: number;
+}
 
 export default function PlansPage() {
   const { toggle } = useSidebarStore();
@@ -17,27 +28,30 @@ export default function PlansPage() {
   const [user, setUser] = useState<User | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<"plans" | "checkout">("plans");
-  const [transaction, setTransaction] = useState<{
-    transactionId: string;
-    amount: number;
-    bankAccount: string;
-    accountHolder: string;
-    bank: string;
-    planName: string;
-    qrCode: string;
-    expiresAt: number;
-  } | null>(null);
+  const [transaction, setTransaction] = useState<Transaction | null>(null);
   const [email, setEmail] = useState("");
   const [selectedPlan, setSelectedPlan] = useState<number | null>(null);
   const [transactionImage, setTransactionImage] = useState<File | null>(null);
   const [timeLeft, setTimeLeft] = useState<string>("");
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   useEffect(() => {
-    SessionStorage.getUser(
-      (loading) => setLoading(loading),
-      (user) => setUser(user)
-    );
+    async function fetchUser() {
+      const user = await SessionStorage.getUser(
+        (loading) => setLoading(loading),
+        (user) => setUser(user)
+      )
 
+      if (!user) {
+        router.push("/login");
+      }
+      setIsAuthorized(true);
+
+    }
+    fetchUser();
+  }, []);
+
+  useEffect(() => {
     // Check session for existing transaction
     const storedTransaction = SessionStorage.getTransaction();
     if (storedTransaction && storedTransaction.expiresAt > Date.now()) {
@@ -197,6 +211,8 @@ export default function PlansPage() {
     setActiveTab("plans");
     setMessage("Đã hủy giao dịch thanh toán.");
   };
+
+  if (!isAuthorized) return null;
 
   return (
     <div className="flex flex-col max-h-screen text-white w-full">

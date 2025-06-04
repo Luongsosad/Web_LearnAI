@@ -6,6 +6,7 @@ import { SessionStorage } from "@/storage/sessionStorage";
 import { useSidebarStore } from "@/storage/sidebarState";
 import LoadedOverlay from '@/components/LoadedOverlay'
 import { useRouter } from "next/navigation";
+import { User } from "@/types/User";
 
 type Message = {
   role: "user" | "bot";
@@ -13,13 +14,6 @@ type Message = {
   translatedContent?: string;
   audioUrl?: string;
 };
-
-interface User {
-  id: number;
-  username: string;
-  email: string;
-  role: string;
-}
 
 export default function Main() {
   const { toggle } = useSidebarStore();

@@ -8,7 +8,7 @@ import { useSidebarStore } from "@/storage/sidebarState";
 import LoadedOverlay from '@/components/LoadedOverlay'
 import { useRouter } from "next/navigation";
 import { SessionStorage } from "@/storage/sessionStorage";
-import User from '@/types/User';
+import { User } from '@/types/User';
 
 interface Word {
   STT: number;

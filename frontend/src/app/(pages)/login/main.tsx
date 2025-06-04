@@ -7,7 +7,7 @@ import { SessionStorage } from '@/storage/sessionStorage';
 import { EmailLoginStorage } from '@/storage/localStorage';
 import LoadedOverlay from '@/components/LoadedOverlay';
 import Notify from '@/components/Notify';
-import User from '@/types/User';
+import { User } from '@/types/User';
 
 export default function Login() {
   const router = useRouter();

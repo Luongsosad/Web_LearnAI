@@ -1,4 +1,4 @@
-import { findUserByEmail } from '../models/userModels.js';
+import { findUserByEmail, findUserWithOrdersById } from '../models/userModels.js';
 
 // Đăng nhập user thường
 async function GetProfile(req, res) {
@@ -16,4 +16,19 @@ async function GetProfile(req, res) {
     }
 }
 
-export { GetProfile };
+async function GetProfileDetail(req, res) {
+    const _user = req.user;
+
+    try {
+        const user = await findUserWithOrdersById(_user.id);
+        if (!user) {
+            return res.status(401).json({ message: 'No User' });
+        }
+
+        return res.status(200).json({ message: 'Logged in successfully', user: user });
+    } catch (err) {
+        return res.status(500).json({ message: err.message });
+    }
+}
+
+export { GetProfile, GetProfileDetail };

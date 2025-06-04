@@ -4,7 +4,7 @@ import { MessageCircle, BookOpen, HelpCircle, Mic, Headphones, Library, Sidebar 
 import { useRouter } from "next/navigation";
 import { SessionStorage } from "@/storage/sessionStorage";
 import { useSidebarStore } from "@/storage/sidebarState";
-import User from '@/types/User';
+import { User } from '@/types/User';
 import LoadedOverlay from '@/components/LoadedOverlay'
 import Notify from '@/components/Notify'
 import PlanBadge from "@/components/PlanBadge";
