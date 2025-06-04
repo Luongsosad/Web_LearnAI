@@ -4,7 +4,7 @@ import { Plus, Settings2, Mic, Send, Copy, RefreshCw, Sidebar, X, History } from
 import axios from "axios";
 import { SessionStorage } from "@/storage/sessionStorage";
 import { useSidebarStore } from "@/storage/sidebarState";
-import User from '@/types/User';
+import { User } from '@/types/User';
 import LoadedOverlay from '@/components/LoadedOverlay'
 import { useRouter } from "next/navigation";
 
