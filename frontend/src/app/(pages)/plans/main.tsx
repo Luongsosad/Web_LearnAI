@@ -150,9 +150,9 @@ export default function PlansPage() {
       SessionStorage.setTransaction(transactionData);
       setTransaction(transactionData);
       setActiveTab("checkout");
-    } catch (error: any) {
+    } catch (error) {
       console.error("Lỗi khi nâng cấp gói dịch vụ:", error);
-      setMessage(error.response?.data?.error || "Lỗi khi khởi tạo thanh toán!");
+      setMessage("Lỗi khi khởi tạo thanh toán!");
     } finally {
       setLoading(false);
     }
@@ -195,9 +195,9 @@ export default function PlansPage() {
       setTransactionImage(null);
       setActiveTab("plans");
       setMessage(response.data.message || "Thanh toán thành công! Hóa đơn đã được gửi đến email của bạn.");
-    } catch (error: any) {
+    } catch (error) {
       console.error("Lỗi khi hoàn tất thanh toán:", error);
-      setMessage(error.response?.data?.error || "Lỗi khi hoàn tất thanh toán!");
+      setMessage("Lỗi khi hoàn tất thanh toán!");
     } finally {
       setLoading(false);
     }
