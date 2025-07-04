@@ -1,68 +1,36 @@
+// eslint.config.mjs
 import tseslint from 'typescript-eslint';
 import prettier from 'eslint-plugin-prettier';
-import js from '@eslint/js';
 import globals from 'globals';
-import reactHooks from 'eslint-plugin-react-hooks'; // 👈 Thêm dòng này
+import reactHooks from 'eslint-plugin-react-hooks';
 import { defineConfig } from 'eslint/config';
 
 export default defineConfig([
   {
+    files: ['**/*.{js,ts,jsx,tsx}'],
     ignores: [
       '.next/**/*',
       'node_modules/**/*',
-      // Configuration files
-      'eslint.config.mjs',
-
-      'commitlint.config.js',
-
-      // Build outputs
       'dist/**/*',
       'build/**/*',
-
-      // Dependencies
-      'node_modules/**/*',
-
-      // Test files (uncomment the line below if you want to ignore test files)
-      // 'test/**/*',
-
-      // Database files
-      'prisma/migrations/**/*',
-
-      // Uploads and static files
-      'uploads/**/*',
       'public/**/*',
       'static/**/*',
-
-      // Logs and temporary files
-      '*.log',
+      'uploads/**/*',
+      'coverage/**/*',
+      'prisma/migrations/**/*',
       'logs/**/*',
       'tmp/**/*',
       'temp/**/*',
-
-      // Environment and config files
+      '.vscode/**/*',
+      '.idea/**/*',
       '.env*',
-      'docker-compose*.yml',
+      '*.log',
       'Dockerfile*',
-
-      // Documentation
-      'docs/**/*',
-
-      // Package manager files
+      'docker-compose*.yml',
       'package-lock.json',
       'yarn.lock',
       'bun.lock',
-
-      // IDE and OS files
-      '.vscode/**/*',
-      '.idea/**/*',
-      '.DS_Store',
-      'Thumbs.db',
-
-      // Coverage reports
-      'coverage/**/*',
-      '.nyc_output/**/*',
     ],
-    files: ['**/*.{js,ts,jsx,tsx}'],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
@@ -78,10 +46,10 @@ export default defineConfig([
     plugins: {
       '@typescript-eslint': tseslint.plugin,
       prettier,
-      'react-hooks': reactHooks, // 👈 Thêm plugin react-hooks
+      'react-hooks': reactHooks,
     },
     rules: {
-      // Tắt hết các cảnh báo liên quan đến any/unsafe
+      // Tắt tất cả rule warn/any
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-floating-promises': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
@@ -90,10 +58,10 @@ export default defineConfig([
       '@typescript-eslint/no-unsafe-call': 'off',
       '@typescript-eslint/no-unsafe-return': 'off',
 
-      // Tắt console warning
+      // Tắt warning console
       'no-console': 'off',
 
-      // Tắt unused vars (hoặc giữ lại nếu bạn muốn cảnh báo cho biến không dùng)
+      // Tắt unused vars hoặc điều chỉnh để bỏ qua biến bắt đầu bằng _
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
@@ -102,11 +70,11 @@ export default defineConfig([
         },
       ],
 
-      // Nếu bạn dùng React Hooks:
+      // React hooks rules
       'react-hooks/rules-of-hooks': 'off',
       'react-hooks/exhaustive-deps': 'off',
 
-      // Tắt warning từ Prettier nếu có
+      // Tắt prettier
       'prettier/prettier': 'off',
     },
   },
