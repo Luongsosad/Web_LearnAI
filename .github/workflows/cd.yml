@@ -7,13 +7,19 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: amondnet/vercel-action@v25
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           working-directory: ./frontend
+          prod: true  # Deploy production (main branch)
 
       - name: Log deploy success
         if: success()
@@ -21,4 +27,4 @@ jobs:
 
       - name: Log deploy failure
         if: failure()
-        run: echo "❌ Frontend deploy failed!" 
+        run: echo "❌ Frontend deploy failed!"
