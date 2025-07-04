@@ -9,7 +9,8 @@
     "start": "nodemon --inspect ./src/app.js",
     "lint": "eslint . --ext .ts,.js,.jsx,.tsx",
     "format": "prettier --check .",
-    "format:fix": "prettier --write ."
+    "format:fix": "prettier --write .",
+    "build": "npm run build"
   },
   "author": "Nguyễn Vĩnh Lương",
   "license": "ISC",

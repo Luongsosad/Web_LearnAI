@@ -12,6 +12,17 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
+      - name: Show working directory content
+        run: ls -la ./frontend
+
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Build Next.js app
+        working-directory: ./frontend
+        run: npm run build
+
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
