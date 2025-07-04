@@ -17,9 +17,9 @@ jobs:
       - name: Show working directory content
         run: ls -la ./frontend
 
-      # - name: Install dependencies
-      #   working-directory: ./frontend
-      #   run: npm ci
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm ci
 
       - name: Build Next.js app
         working-directory: ./frontend
