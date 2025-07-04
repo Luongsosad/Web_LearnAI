@@ -7,7 +7,8 @@ on:
     branches: [main, develop, feature-*]
 
 jobs:
-  build-and-test:
+  build:
+    name: Build Backend & Frontend
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -24,6 +25,25 @@ jobs:
         working-directory: ./backend
         run: npm ci
 
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+  test:
+    name: Lint & Test Backend/Frontend
+    needs: build 
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
       - name: Run backend lint
         working-directory: ./backend
         run: npm run lint || echo "No lint script"
@@ -31,10 +51,6 @@ jobs:
       - name: Run backend tests
         working-directory: ./backend
         run: npm test || echo "No test script"
-
-      - name: Install frontend dependencies
-        working-directory: ./frontend
-        run: npm ci
 
       - name: Run frontend lint
         working-directory: ./frontend

@@ -5,7 +5,8 @@ on:
     branches: [main]
 
 jobs:
-  deploy-backend:
+  deploy:
+    name: Deploy Backend to Render
     runs-on: ubuntu-latest
 
     steps:
