@@ -22,7 +22,7 @@ jobs:
 
       - name: Log deploy success
         if: success()
-        run: echo "✅ Frontend deployed successfully!"
+        run: echo "✅ Frontend deployed successfully! - Running"
 
       - name: Log deploy failure
         if: failure()
