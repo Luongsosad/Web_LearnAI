@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
 interface SidebarState {
   isOpen: boolean;
@@ -9,20 +9,21 @@ interface SidebarState {
 export const useSidebarStore = create<SidebarState>((set) => {
   // đọc từ sessionStorage khi khởi tạo
   let initial = false;
-  if (typeof window !== "undefined") {
-    const stored = sessionStorage.getItem("isOpen");
-    initial = stored === "true";
+  if (typeof window !== 'undefined') {
+    const stored = sessionStorage.getItem('isOpen');
+    initial = stored === 'true';
   }
 
   return {
     isOpen: initial,
-    toggle: () => set((state) => {
-      const newValue = !state.isOpen;
-      sessionStorage.setItem("isOpen", newValue.toString());
-      return { isOpen: newValue };
-    }),
+    toggle: () =>
+      set((state) => {
+        const newValue = !state.isOpen;
+        sessionStorage.setItem('isOpen', newValue.toString());
+        return { isOpen: newValue };
+      }),
     setOpen: (value) => {
-      sessionStorage.setItem("isOpen", value.toString());
+      sessionStorage.setItem('isOpen', value.toString());
       set({ isOpen: value });
     },
   };

@@ -1,13 +1,13 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import { ArrowLeft, Lamp, Sidebar, Volume2, ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import axios from "axios";
+'use client';
+import React, { useState, useEffect } from 'react';
+import { ArrowLeft, Lamp, Sidebar, Volume2, ChevronDown } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import axios from 'axios';
 import FlagCard from './tabFlagCard';
-import { useSidebarStore } from "@/storage/sidebarState";
+import { useSidebarStore } from '@/storage/sidebarState';
 import LoadedOverlay from '@/components/LoadedOverlay';
-import { useRouter } from "next/navigation";
-import { SessionStorage } from "@/storage/sessionStorage";
+import { useRouter } from 'next/navigation';
+import { SessionStorage } from '@/storage/sessionStorage';
 import { User } from '@/types/User';
 
 interface Word {
@@ -60,14 +60,14 @@ export default function Vocabulary() {
       );
 
       if (!user) {
-        router.push("/login");
+        router.push('/login');
         return;
       }
 
       if (user?.plan_id && user?.plan_id >= 1) {
         setIsAuthorized(true);
       } else {
-        router.push("/");
+        router.push('/');
       }
       setLoading(false);
     }
@@ -83,10 +83,10 @@ export default function Vocabulary() {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/w/categories`, {
           withCredentials: true,
         });
-        console.log("Fetched categories:", res.data);
+        console.log('Fetched categories:', res.data);
         setCategories(res.data);
       } catch (err) {
-        console.error("Error fetching categories:", err);
+        console.error('Error fetching categories:', err);
       } finally {
         setLoading(false);
       }
@@ -98,7 +98,7 @@ export default function Vocabulary() {
   useEffect(() => {
     if (tab === 1 && selectedTest && topics.length === 0) {
       if (topics.length > 0) return; // Skip if topics already exist
-      console.log("Fetching topics for category:", selectedTest.name);
+      console.log('Fetching topics for category:', selectedTest.name);
       const fetchTopics = async () => {
         try {
           setLoading(true);
@@ -108,7 +108,7 @@ export default function Vocabulary() {
           );
           setTopics(res.data);
         } catch (err) {
-          console.error("Error fetching topics:", err);
+          console.error('Error fetching topics:', err);
         } finally {
           setLoading(false);
         }
@@ -160,7 +160,7 @@ export default function Vocabulary() {
             return [...mergedWords, ...newWords];
           });
         } catch (err) {
-          console.error("Error fetching words:", err);
+          console.error('Error fetching words:', err);
         } finally {
           setLoading(false);
         }
@@ -177,7 +177,7 @@ export default function Vocabulary() {
         `${process.env.NEXT_PUBLIC_API_URL}/audio/voice`,
         { text: word.word },
         {
-          headers: { "Content-Type": "application/json" },
+          headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
         }
       );
@@ -187,7 +187,7 @@ export default function Vocabulary() {
     } catch (error) {
       console.error(`Error fetching audio for "${word.word}":`, error);
     }
-    return "";
+    return '';
   };
 
   // Handle word click to expand/collapse
@@ -207,7 +207,7 @@ export default function Vocabulary() {
             <Sidebar size={24} />
           </button>
           <div className="text-xl font-semibold">Thẻ ghi nhớ</div>
-          <button className="text-gray-200 hover:text-white" onClick={() => console.log("Lamp")}>
+          <button className="text-gray-200 hover:text-white" onClick={() => console.log('Lamp')}>
             <Lamp size={24} />
           </button>
         </div>
@@ -247,9 +247,7 @@ export default function Vocabulary() {
               </button>
               <h2 className="text-xl font-semibold">{selectedTest?.name}</h2>
             </div>
-            <div className="text-gray-400">
-              Tổng số chủ đề: {topics.length}
-            </div>
+            <div className="text-gray-400">Tổng số chủ đề: {topics.length}</div>
             <h2 className="text-xl font-semibold text-gray-400">Danh sách chủ đề</h2>
             <div className="overflow-hidden custom-scroll overflow-y-auto max-h-screen w-full flex-col">
               <div className="mb-[400px]">
@@ -296,8 +294,10 @@ export default function Vocabulary() {
             {tab === 2 && (
               <div className="text-gray-400">
                 Tổng số từ: {words.filter((word) => word.topic_id === selectedTopic?.id).length} |
-                Đã thuộc: {words.filter((word) => word.topic_id === selectedTopic?.id && word.view).length} |
-                Chưa thuộc: {words.filter((word) => word.topic_id === selectedTopic?.id && !word.view).length}
+                Đã thuộc:{' '}
+                {words.filter((word) => word.topic_id === selectedTopic?.id && word.view).length} |
+                Chưa thuộc:{' '}
+                {words.filter((word) => word.topic_id === selectedTopic?.id && !word.view).length}
               </div>
             )}
             {tab === 2 && (
@@ -330,7 +330,9 @@ export default function Vocabulary() {
                                 const audioUrl = await fetchAudio(word);
                                 if (audioUrl) {
                                   const audio = new Audio(audioUrl);
-                                  audio.play().catch((err) => console.error("Lỗi phát âm thanh:", err));
+                                  audio
+                                    .play()
+                                    .catch((err) => console.error('Lỗi phát âm thanh:', err));
                                 }
                               }}
                               aria-label="Phát âm thanh"
@@ -350,17 +352,27 @@ export default function Vocabulary() {
                           {expandedWordId === word.id && (
                             <motion.div
                               initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
+                              animate={{ height: 'auto', opacity: 1 }}
                               exit={{ height: 0, opacity: 0 }}
                               transition={{ duration: 0.3 }}
                               className="overflow-hidden"
                             >
                               <div className="mt-2">
-                                <div><strong>Phiên âm:</strong> {word.pronunciation}</div>
-                                <div><strong>Nghĩa:</strong> {word.meaning}</div>
-                                <div><strong>Loại từ:</strong> {word.type}</div>
-                                <div><strong>Ví dụ:</strong> {word.example}</div>
-                                <div><strong>Cấp độ:</strong> {word.level}</div>
+                                <div>
+                                  <strong>Phiên âm:</strong> {word.pronunciation}
+                                </div>
+                                <div>
+                                  <strong>Nghĩa:</strong> {word.meaning}
+                                </div>
+                                <div>
+                                  <strong>Loại từ:</strong> {word.type}
+                                </div>
+                                <div>
+                                  <strong>Ví dụ:</strong> {word.example}
+                                </div>
+                                <div>
+                                  <strong>Cấp độ:</strong> {word.level}
+                                </div>
                               </div>
                             </motion.div>
                           )}
@@ -371,7 +383,14 @@ export default function Vocabulary() {
               </div>
             ) : tab === 3 ? (
               <FlagCard
-                vocabularyData={{ [selectedTest!.name]: [{ Category: selectedTopic!.name, Words: words.filter((word) => word.topic_id === selectedTopic?.id) }] }}
+                vocabularyData={{
+                  [selectedTest!.name]: [
+                    {
+                      Category: selectedTopic!.name,
+                      Words: words.filter((word) => word.topic_id === selectedTopic?.id),
+                    },
+                  ],
+                }}
                 setVocabularyData={() => {
                   // Update words if needed
                 }}

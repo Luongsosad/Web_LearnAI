@@ -1,14 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
 import { sendEmailOrder } from '../utils/email.js';
-import {
-  findPlanById,
-  getAllPlans,
-  createOrder,
-  updateOrderStatus,
-  updateUserPlan,
-} from '../models/orderModels.js';
+import { findPlanById, createOrder, updateOrderStatus } from '../models/orderModels.js';
 
 import dotenv from 'dotenv';
+import process from 'process';
 
 dotenv.config();
 
@@ -23,7 +18,6 @@ async function payment(req, res) {
   }
 
   try {
-
     // Lấy thông tin gói dịch vụ
     const planResult = await findPlanById(planId);
     console.log('Plan result:', planResult);
@@ -55,7 +49,7 @@ async function payment(req, res) {
     console.error('Lỗi khi khởi tạo thanh toán:', error);
     res.status(500).json({ error: 'Lỗi server khi khởi tạo thanh toán' });
   }
-};
+}
 
 // API hoàn tất thanh toán
 async function submit_payment(req, res) {
@@ -108,5 +102,4 @@ async function updateStatusOrder(req, res) {
   }
 }
 
-
-export { payment, submit_payment };
+export { payment, submit_payment, updateStatusOrder };

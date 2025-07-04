@@ -1,0 +1,23 @@
+{
+  "name": "web_learnai",
+  "version": "1.0.0",
+  "description": "**Learning by AI** là một ứng dụng học tiếng Anh thông minh, tích hợp các công nghệ AI hiện đại để giúp người dùng rèn luyện từ vựng, kỹ năng nghe – nói, đọc hiểu, và trò chuyện giao tiếp. Ứng dụng kết hợp học bằng Flashcard, trò chuyện với AI, đọc truyện song ngữ và theo dõi tiến độ học.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install",
+    "lint:fe": "cd frontend && npm run lint",
+    "lint:be": "cd backend && npm run lint",
+    "format:fe": "cd frontend && npm run format",
+    "format:be": "cd backend && npm run format",
+    "check-all": "npm run lint:fe && npm run lint:be && npm run format:fe && npm run format:be"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "husky": "^9.1.7"
+  }
+}

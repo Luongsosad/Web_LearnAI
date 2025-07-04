@@ -2,6 +2,7 @@ import { Groq } from 'groq-sdk';
 import { promises as fs } from 'fs';
 import dotenv from 'dotenv';
 
+import process from 'process';
 // Khởi tạo biến môi trường
 dotenv.config({ path: './src/app/config/.env' });
 
@@ -17,9 +18,19 @@ export async function generateTextFromAudio(audioFile) {
       throw new Error('Không có file âm thanh được cung cấp');
     }
 
-    const supportedFormats = ['audio/wav', 'audio/mp3', 'audio/flac', 'audio/mpeg', 'audio/m4a', 'audio/ogg', 'audio/webm'];
+    const supportedFormats = [
+      'audio/wav',
+      'audio/mp3',
+      'audio/flac',
+      'audio/mpeg',
+      'audio/m4a',
+      'audio/ogg',
+      'audio/webm',
+    ];
     if (!audioFile.mimetype || !supportedFormats.includes(audioFile.mimetype)) {
-      throw new Error(`Định dạng âm thanh không được hỗ trợ: ${audioFile.mimetype || 'không xác định'}`);
+      throw new Error(
+        `Định dạng âm thanh không được hỗ trợ: ${audioFile.mimetype || 'không xác định'}`
+      );
     }
 
     const stats = await fs.stat(audioFile.filepath);
@@ -47,7 +58,7 @@ export async function generateTextFromAudio(audioFile) {
       // language: 'vi', // Bỏ comment nếu cần chỉ định ngôn ngữ tiếng Việt
     });
 
-    console.log(transcription)
+    console.log(transcription);
 
     return {
       text: transcription.text,

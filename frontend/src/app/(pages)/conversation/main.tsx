@@ -1,15 +1,29 @@
-"use client";
-import React, { useRef, useState, useEffect } from "react";
-import { Plus, Settings2, Mic, Send, Copy, RefreshCw, History, Sidebar, X, Volume2, Edit2, Languages, Check } from "lucide-react";
-import axios from "axios";
-import { SessionStorage } from "@/storage/sessionStorage";
-import { useSidebarStore } from "@/storage/sidebarState";
-import LoadedOverlay from '@/components/LoadedOverlay'
-import { useRouter } from "next/navigation";
-import { User } from "@/types/User";
+'use client';
+import React, { useRef, useState, useEffect } from 'react';
+import {
+  Plus,
+  Settings2,
+  Mic,
+  Send,
+  Copy,
+  RefreshCw,
+  History,
+  Sidebar,
+  X,
+  Volume2,
+  Edit2,
+  Languages,
+  Check,
+} from 'lucide-react';
+import axios from 'axios';
+import { SessionStorage } from '@/storage/sessionStorage';
+import { useSidebarStore } from '@/storage/sidebarState';
+import LoadedOverlay from '@/components/LoadedOverlay';
+import { useRouter } from 'next/navigation';
+import { User } from '@/types/User';
 
 type Message = {
-  role: "user" | "bot";
+  role: 'user' | 'bot';
   content: string;
   translatedContent?: string;
   audioUrl?: string;
@@ -20,7 +34,7 @@ export default function Main() {
   const router = useRouter();
   const cancelAudioRef = useRef(false);
   const [user, setUser] = useState<User | null>(null);
-  const [topic, setTopic] = useState("");
+  const [topic, setTopic] = useState('');
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [isThinking, setIsThinking] = useState(false);
@@ -39,13 +53,13 @@ export default function Main() {
 
   // Danh sách gợi ý chủ đề
   const suggestedTopics = [
-    "Ước mơ và mục tiêu",
-    "Sở thích và đam mê",
-    "Thảo luận về công nghệ",
-    "Giao tiếp hàng ngày",
-    "Chuẩn bị phỏng vấn",
-    "Chia sẻ kinh nghiệm du lịch",
-    "Tìm hiểu về văn hóa",
+    'Ước mơ và mục tiêu',
+    'Sở thích và đam mê',
+    'Thảo luận về công nghệ',
+    'Giao tiếp hàng ngày',
+    'Chuẩn bị phỏng vấn',
+    'Chia sẻ kinh nghiệm du lịch',
+    'Tìm hiểu về văn hóa',
   ];
 
   // Lấy dữ liệu từ sessionStorage khi component mount
@@ -54,26 +68,25 @@ export default function Main() {
       const user = await SessionStorage.getUser(
         (loading) => setLoading(loading),
         (user) => setUser(user)
-      )
+      );
 
       if (!user) {
-        router.push("/login");
+        router.push('/login');
       }
 
       if (user?.plan_id && user?.plan_id >= 2) {
         setIsAuthorized(true); // cho phép hiển thị giao diện
       } else {
-        router.push("/"); // chuyển về trang chủ nếu không hợp lệ
+        router.push('/'); // chuyển về trang chủ nếu không hợp lệ
       }
-
     }
     fetchUser();
   }, []);
 
   const copyToClipboard = (content: string) => {
     navigator.clipboard.writeText(content).then(
-      () => console.log("Đã sao chép nội dung!"),
-      (err) => console.error("Lỗi khi sao chép:", err)
+      () => console.log('Đã sao chép nội dung!'),
+      (err) => console.error('Lỗi khi sao chép:', err)
     );
   };
 
@@ -95,18 +108,18 @@ export default function Main() {
           history: messages.slice(-20),
         },
         {
-          headers: { "Content-Type": "application/json" },
+          headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
         }
       );
 
-      if (res.status !== 200) throw new Error("Lỗi API");
+      if (res.status !== 200) throw new Error('Lỗi API');
 
       const botMessage: Message = {
-        role: "bot",
-        content: res.data.script || "Không có phản hồi.",
-        translatedContent: res.data.translatedScript || "",
-        audioUrl: res.data.audioUrl || "",
+        role: 'bot',
+        content: res.data.script || 'Không có phản hồi.',
+        translatedContent: res.data.translatedScript || '',
+        audioUrl: res.data.audioUrl || '',
       };
 
       if (res.data.audioUrl) {
@@ -115,12 +128,12 @@ export default function Main() {
 
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
-      console.error("Lỗi khi gọi API:", error);
+      console.error('Lỗi khi gọi API:', error);
       const botMessage: Message = {
-        role: "bot",
+        role: 'bot',
         content: isRegenerate
-          ? "Lỗi khi tạo lại phản hồi, vui lòng thử lại."
-          : "Lỗi khi lấy phản hồi, vui lòng thử lại.",
+          ? 'Lỗi khi tạo lại phản hồi, vui lòng thử lại.'
+          : 'Lỗi khi lấy phản hồi, vui lòng thử lại.',
       };
       setMessages((prev) => [...prev, botMessage]);
     } finally {
@@ -131,21 +144,21 @@ export default function Main() {
   const regenerateMessage = () => {
     if (playAudioRef.current) {
       playAudioRef.current.pause();
-      playAudioRef.current.src = "";
+      playAudioRef.current.src = '';
       playAudioRef.current = null;
       setAudioCurrent(null);
     }
     const lastUserMessage = messages
       .slice()
       .reverse()
-      .find((msg) => msg.role === "user");
+      .find((msg) => msg.role === 'user');
     if (lastUserMessage) {
       sendMessage(lastUserMessage.content, true);
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && !e.shiftKey && !isRecording && topic.trim() !== "") {
+    if (e.key === 'Enter' && !e.shiftKey && !isRecording && topic.trim() !== '') {
       e.preventDefault();
       handleTopic(topic.trim());
       sendMessage();
@@ -153,22 +166,22 @@ export default function Main() {
   };
 
   const handleTopic = (topic: string) => {
-    const userMessage: Message = { role: "user", content: topic };
+    const userMessage: Message = { role: 'user', content: topic };
     setMessages((prev) => [...prev, userMessage]);
-    setTopic("");
+    setTopic('');
     setSelectedTopic(topic);
-  }
+  };
 
   const translateMessage = async (message: Message) => {
     if (!message.content) return;
     setMessage(message);
     setShowTranslated(true);
-  }
+  };
 
   const startRecording = async () => {
     if (playAudioRef.current) {
       playAudioRef.current.pause();
-      playAudioRef.current.src = "";
+      playAudioRef.current.src = '';
       playAudioRef.current = null;
       setAudioCurrent(null);
     }
@@ -188,23 +201,23 @@ export default function Main() {
         }
         setIsProcessingAudio(true);
 
-        const audioBlob = new Blob(audioChunksRef.current, { type: "audio/webm" });
+        const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
         const formData = new FormData();
-        formData.append("audioFile", audioBlob, "recording.webm");
+        formData.append('audioFile', audioBlob, 'recording.webm');
 
         try {
           const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/audio`, formData, {
-            headers: { "Content-Type": "multipart/form-data" },
+            headers: { 'Content-Type': 'multipart/form-data' },
             withCredentials: true,
           });
 
-          if (res.status !== 200) throw new Error("Lỗi chuyển đổi âm thanh");
+          if (res.status !== 200) throw new Error('Lỗi chuyển đổi âm thanh');
 
-          const transcribedText = res.data.text || "";
+          const transcribedText = res.data.text || '';
           if (transcribedText) {
             setIsProcessingAudio(false);
             const userMessage: Message = {
-              role: "user",
+              role: 'user',
               content: transcribedText,
               audioUrl: URL.createObjectURL(audioBlob),
             };
@@ -213,14 +226,14 @@ export default function Main() {
           } else {
             setMessages((prev) => [
               ...prev,
-              { role: "bot", content: "Không thể chuyển đổi âm thanh thành văn bản." },
+              { role: 'bot', content: 'Không thể chuyển đổi âm thanh thành văn bản.' },
             ]);
           }
         } catch (error) {
-          console.error("Lỗi khi gửi âm thanh:", error);
+          console.error('Lỗi khi gửi âm thanh:', error);
           setMessages((prev) => [
             ...prev,
-            { role: "bot", content: "Lỗi khi xử lý âm thanh, vui lòng thử lại." },
+            { role: 'bot', content: 'Lỗi khi xử lý âm thanh, vui lòng thử lại.' },
           ]);
         } finally {
           setIsProcessingAudio(false);
@@ -230,10 +243,10 @@ export default function Main() {
       mediaRecorderRef.current.start();
       setIsRecording(true);
     } catch (error) {
-      console.error("Lỗi khi truy cập micro:", error);
+      console.error('Lỗi khi truy cập micro:', error);
       setMessages((prev) => [
         ...prev,
-        { role: "bot", content: "Lỗi khi truy cập micro, vui lòng kiểm tra quyền truy cập." },
+        { role: 'bot', content: 'Lỗi khi truy cập micro, vui lòng kiểm tra quyền truy cập.' },
       ]);
     }
   };
@@ -259,25 +272,25 @@ export default function Main() {
   const changeTopic = () => {
     setMessages([]); // Xóa lịch sử tin nhắn
     setSelectedTopic(null); // Reset chủ đề
-    setTopic(""); // Xóa nội dung ô input
+    setTopic(''); // Xóa nội dung ô input
     audioChunksRef.current = []; // Xóa dữ liệu audio
   };
 
   const playAudio = (audioUrl?: string) => {
     if (playAudioRef.current) {
       playAudioRef.current.pause();
-      playAudioRef.current.src = "";
+      playAudioRef.current.src = '';
       playAudioRef.current = null;
       setAudioCurrent(null);
     }
     if (!audioUrl) {
-      console.error("Không có URL âm thanh để phát");
+      console.error('Không có URL âm thanh để phát');
       return;
     }
     const audio = new Audio(audioUrl);
     playAudioRef.current = audio; // Lưu audio mới vào ref
     setAudioCurrent(audioUrl);
-    audio.play().catch((err) => console.error("Lỗi phát âm thanh:", err));
+    audio.play().catch((err) => console.error('Lỗi phát âm thanh:', err));
     audio.onended = () => {
       setAudioCurrent(null);
       playAudioRef.current = null;
@@ -285,7 +298,7 @@ export default function Main() {
   };
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isThinking, isProcessingAudio]);
 
   if (!isAuthorized) return null;
@@ -298,7 +311,7 @@ export default function Main() {
             <Sidebar size={24} />
           </button>
           <div className="text-xl font-semibold">Communicate with AI</div>
-          <button className="text-gray-200 hover:text-white" onClick={() => console.log("History")}>
+          <button className="text-gray-200 hover:text-white" onClick={() => console.log('History')}>
             <History size={24} />
           </button>
         </div>
@@ -308,7 +321,9 @@ export default function Main() {
       <div className="mt-[82px] mb-[100px] flex-1 flex flex-col px-4 py-4 overflow-y-auto h-full space-y-4 custom-scroll bg-[#111111] pb-7">
         {messages.length === 0 ? (
           <div className="flex flex-col justify-center h-[360px] items-center text-center text-gray-400 flex-grow">
-            <h1 className="text-2xl font-medium mb-2">Chào {user?.username ? user.username : "bạn"}?</h1>
+            <h1 className="text-2xl font-medium mb-2">
+              Chào {user?.username ? user.username : 'bạn'}?
+            </h1>
             <h1 className="text-2xl font-medium">Chọn chủ đề để bắt đầu nói chuyện nào?</h1>
             <div className="mt-4">
               <h3 className="text-lg font-semibold text-gray-300 mb-2">Gợi ý chủ đề:</h3>
@@ -332,12 +347,17 @@ export default function Main() {
           messages.map((msg, idx) => (
             <div
               key={idx}
-              className={`flex-col whitespace-pre-line flex items-start ${msg.role === "user"
-                ? "rounded-3xl p-3 pt-2 pb-2 max-w-[70%] bg-[#323232d9] self-end text-white"
-                : "p-1 self-start text-gray-300"
-                }`}
+              className={`flex-col whitespace-pre-line flex items-start ${
+                msg.role === 'user'
+                  ? 'rounded-3xl p-3 pt-2 pb-2 max-w-[70%] bg-[#323232d9] self-end text-white'
+                  : 'p-1 self-start text-gray-300'
+              }`}
             >
-              <div className={`flex-1 whitespace-pre-line ${msg.role === "user" ? 'break-words' : ''}`}>{msg.content}</div>
+              <div
+                className={`flex-1 whitespace-pre-line ${msg.role === 'user' ? 'break-words' : ''}`}
+              >
+                {msg.content}
+              </div>
               <div className="flex gap-2">
                 {msg.audioUrl && (
                   <button
@@ -357,9 +377,8 @@ export default function Main() {
                     <Languages size={16} />
                   </button>
                 )}
-
               </div>
-              {msg.role === "bot" && idx === messages.length - 1 && (
+              {msg.role === 'bot' && idx === messages.length - 1 && (
                 <div className="flex gap-2 mt-2">
                   <button
                     onClick={() => copyToClipboard(msg.content)}
@@ -381,14 +400,10 @@ export default function Main() {
           ))
         )}
         {isThinking && (
-          <div className="p-1 self-start text-gray-400 italic">
-            Đang suy nghĩ câu trả lời...
-          </div>
+          <div className="p-1 self-start text-gray-400 italic">Đang suy nghĩ câu trả lời...</div>
         )}
         {isProcessingAudio && (
-          <div className="p-1 self-start text-gray-400 italic">
-            Đang xử lý âm thanh...
-          </div>
+          <div className="p-1 self-start text-gray-400 italic">Đang xử lý âm thanh...</div>
         )}
         <div ref={messagesEndRef} />
       </div>
@@ -496,17 +511,18 @@ export default function Main() {
                 className="text-white"
                 disabled={isRecording}
               >
-                <Mic
-                  size={20}
-                  className={isRecording ? "text-gray-500" : "text-white"}
-                />
+                <Mic size={20} className={isRecording ? 'text-gray-500' : 'text-white'} />
               </button>
               {!selectedTopic && (
-                <button onClick={() => {
-                  if (topic.trim() === "") return;
-                  handleTopic(topic.trim());
-                  sendMessage()
-                }} aria-label="Gửi tin nhắn" className="flex gap-3">
+                <button
+                  onClick={() => {
+                    if (topic.trim() === '') return;
+                    handleTopic(topic.trim());
+                    sendMessage();
+                  }}
+                  aria-label="Gửi tin nhắn"
+                  className="flex gap-3"
+                >
                   <Send size={20} className="text-white" />
                 </button>
               )}

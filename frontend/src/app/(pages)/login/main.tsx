@@ -26,9 +26,8 @@ export default function Login() {
         (user) => setUser(user)
       );
       if (user) {
-        router.push("/");
-      }
-      else {
+        router.push('/');
+      } else {
         setLoading(false);
       }
     }
@@ -38,7 +37,6 @@ export default function Login() {
       setEmail(email);
     }
   }, [router]);
-
 
   // Hàm đăng nhập thường
   const handleLogin = async (e: React.FormEvent): Promise<void> => {
@@ -114,10 +112,9 @@ export default function Login() {
 
           <button
             type="submit"
-            className={`w-full py-2 rounded-lg flex justify-center items-center ${isDisabled
-              ? 'bg-gray-600 cursor-not-allowed'
-              : 'bg-blue-500 hover:bg-blue-600'
-              }`}
+            className={`w-full py-2 rounded-lg flex justify-center items-center ${
+              isDisabled ? 'bg-gray-600 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'
+            }`}
             disabled={isDisabled}
           >
             Đăng nhập
@@ -129,10 +126,9 @@ export default function Login() {
         <div className="flex justify-between space-x-4 mt-4">
           <button
             onClick={handleGoogleLogin}
-            className={`flex-1 flex items-center justify-center py-2 rounded-lg text-sm ${isDisabled
-              ? 'bg-gray-600 cursor-not-allowed'
-              : 'bg-red-500 hover:bg-red-600'
-              }`}
+            className={`flex-1 flex items-center justify-center py-2 rounded-lg text-sm ${
+              isDisabled ? 'bg-gray-600 cursor-not-allowed' : 'bg-red-500 hover:bg-red-600'
+            }`}
             disabled={isDisabled}
           >
             <Mail className="w-4 h-4 mr-2" />
@@ -153,12 +149,7 @@ export default function Login() {
       </div>
       {loading && <LoadedOverlay />}
       {user && <></>}
-      <Notify
-        message={message}
-        type="success"
-        duration={2000}
-        onClose={() => setMessage(null)}
-      />
+      <Notify message={message} type="success" duration={2000} onClose={() => setMessage(null)} />
     </div>
   );
 }

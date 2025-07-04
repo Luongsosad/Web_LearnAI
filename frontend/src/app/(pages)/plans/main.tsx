@@ -1,24 +1,24 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import { Sidebar } from "lucide-react";
-import { useRouter } from "next/navigation";
-import axios from "axios";
-import { SessionStorage } from "@/storage/sessionStorage";
-import { useSidebarStore } from "@/storage/sidebarState";
-import { User } from "@/types/User";
-import LoadedOverlay from "@/components/LoadedOverlay";
-import Notify from "@/components/Notify";
-import PlanBadge from "@/components/PlanBadge";
+'use client';
+import React, { useState, useEffect } from 'react';
+import { Sidebar } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
+import { SessionStorage } from '@/storage/sessionStorage';
+import { useSidebarStore } from '@/storage/sidebarState';
+import { User } from '@/types/User';
+import LoadedOverlay from '@/components/LoadedOverlay';
+import Notify from '@/components/Notify';
+import PlanBadge from '@/components/PlanBadge';
 
 interface Transaction {
   transactionId: string;
-    amount: number;
-    bankAccount: string;
-    accountHolder: string;
-    bank: string;
-    planName: string;
-    qrCode: string;
-    expiresAt: number;
+  amount: number;
+  bankAccount: string;
+  accountHolder: string;
+  bank: string;
+  planName: string;
+  qrCode: string;
+  expiresAt: number;
 }
 
 export default function PlansPage() {
@@ -27,12 +27,12 @@ export default function PlansPage() {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [message, setMessage] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<"plans" | "checkout">("plans");
+  const [activeTab, setActiveTab] = useState<'plans' | 'checkout'>('plans');
   const [transaction, setTransaction] = useState<Transaction | null>(null);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   const [selectedPlan, setSelectedPlan] = useState<number | null>(null);
   const [transactionImage, setTransactionImage] = useState<File | null>(null);
-  const [timeLeft, setTimeLeft] = useState<string>("");
+  const [timeLeft, setTimeLeft] = useState<string>('');
   const [isAuthorized, setIsAuthorized] = useState(false);
 
   useEffect(() => {
@@ -40,13 +40,12 @@ export default function PlansPage() {
       const user = await SessionStorage.getUser(
         (loading) => setLoading(loading),
         (user) => setUser(user)
-      )
+      );
 
       if (!user) {
-        router.push("/login");
+        router.push('/login');
       }
       setIsAuthorized(true);
-
     }
     fetchUser();
   }, []);
@@ -56,12 +55,12 @@ export default function PlansPage() {
     const storedTransaction = SessionStorage.getTransaction();
     if (storedTransaction && storedTransaction.expiresAt > Date.now()) {
       setTransaction(storedTransaction);
-      setActiveTab("checkout");
+      setActiveTab('checkout');
     } else if (storedTransaction) {
       // Clear expired transaction
       SessionStorage.clearTransaction();
-      setMessage("Giao dịch đã hết hạn, vui lòng thử lại!");
-      setActiveTab("plans");
+      setMessage('Giao dịch đã hết hạn, vui lòng thử lại!');
+      setActiveTab('plans');
     }
   }, []);
 
@@ -74,13 +73,13 @@ export default function PlansPage() {
         if (timeRemaining <= 0) {
           SessionStorage.clearTransaction();
           setTransaction(null);
-          setActiveTab("plans");
-          setMessage("Giao dịch đã hết hạn!");
+          setActiveTab('plans');
+          setMessage('Giao dịch đã hết hạn!');
           clearInterval(interval);
         } else {
           const minutes = Math.floor(timeRemaining / 1000 / 60);
           const seconds = Math.floor((timeRemaining / 1000) % 60);
-          setTimeLeft(`${minutes}:${seconds < 10 ? "0" : ""}${seconds}`);
+          setTimeLeft(`${minutes}:${seconds < 10 ? '0' : ''}${seconds}`);
         }
       }, 1000);
       return () => clearInterval(interval);
@@ -90,33 +89,33 @@ export default function PlansPage() {
   const plans = [
     {
       id: 1,
-      name: "Free",
+      name: 'Free',
       price: 0,
       duration_days: null,
       max_quota: 50,
-      description: "Gói miễn phí - Miễn phí truy cập chat, flashcard",
+      description: 'Gói miễn phí - Miễn phí truy cập chat, flashcard',
     },
     {
       id: 2,
-      name: "Premium Basic",
+      name: 'Premium Basic',
       price: 5.99,
       duration_days: 30,
       max_quota: 500,
-      description: "Gói cơ bản – Truy cập chat, flashcard, giao tiếp và đọc sách",
+      description: 'Gói cơ bản – Truy cập chat, flashcard, giao tiếp và đọc sách',
     },
     {
       id: 3,
-      name: "Premium Pro",
+      name: 'Premium Pro',
       price: 9.99,
       duration_days: 30,
       max_quota: 2000,
-      description: "Gói nâng cao – Truy cập tất cả tính năng của ứng dụng",
+      description: 'Gói nâng cao – Truy cập tất cả tính năng của ứng dụng',
     },
   ];
 
   const handleUpgradePlan = async (planId: number) => {
     if (!user?.username) {
-      router.push("/login");
+      router.push('/login');
       return;
     }
 
@@ -129,7 +128,7 @@ export default function PlansPage() {
         `${process.env.NEXT_PUBLIC_API_URL}/order/payment`,
         { planId, userId: user.id },
         {
-          headers: { "Content-Type": "application/json" },
+          headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
         }
       );
@@ -149,10 +148,10 @@ export default function PlansPage() {
       // Store transaction in session
       SessionStorage.setTransaction(transactionData);
       setTransaction(transactionData);
-      setActiveTab("checkout");
+      setActiveTab('checkout');
     } catch (error) {
-      console.error("Lỗi khi nâng cấp gói dịch vụ:", error);
-      setMessage("Lỗi khi khởi tạo thanh toán!");
+      console.error('Lỗi khi nâng cấp gói dịch vụ:', error);
+      setMessage('Lỗi khi khởi tạo thanh toán!');
     } finally {
       setLoading(false);
     }
@@ -160,11 +159,11 @@ export default function PlansPage() {
 
   const handlePaymentComplete = async () => {
     if (!email || !selectedPlan) {
-      setMessage("Vui lòng nhập email!");
+      setMessage('Vui lòng nhập email!');
       return;
     }
     if (!transactionImage) {
-      setMessage("Vui lòng tải lên hình ảnh giao dịch!");
+      setMessage('Vui lòng tải lên hình ảnh giao dịch!');
       return;
     }
 
@@ -173,18 +172,18 @@ export default function PlansPage() {
 
       // Prepare FormData for file upload
       const formData = new FormData();
-      formData.append("transactionId", transaction?.transactionId || "");
-      formData.append("email", email);
-      formData.append("planId", selectedPlan.toString());
-      formData.append("userId", user?.id.toString() || "");
-      formData.append("transactionImage", transactionImage);
+      formData.append('transactionId', transaction?.transactionId || '');
+      formData.append('email', email);
+      formData.append('planId', selectedPlan.toString());
+      formData.append('userId', user?.id.toString() || '');
+      formData.append('transactionImage', transactionImage);
 
       // Call API to send bill and save order using axios
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/order/complete-payment`,
         formData,
         {
-          headers: { "Content-Type": "multipart/form-data" },
+          headers: { 'Content-Type': 'multipart/form-data' },
           withCredentials: true,
         }
       );
@@ -193,11 +192,13 @@ export default function PlansPage() {
       SessionStorage.clearTransaction();
       setTransaction(null);
       setTransactionImage(null);
-      setActiveTab("plans");
-      setMessage(response.data.message || "Thanh toán thành công! Hóa đơn đã được gửi đến email của bạn.");
+      setActiveTab('plans');
+      setMessage(
+        response.data.message || 'Thanh toán thành công! Hóa đơn đã được gửi đến email của bạn.'
+      );
     } catch (error) {
-      console.error("Lỗi khi hoàn tất thanh toán:", error);
-      setMessage("Lỗi khi hoàn tất thanh toán!");
+      console.error('Lỗi khi hoàn tất thanh toán:', error);
+      setMessage('Lỗi khi hoàn tất thanh toán!');
     } finally {
       setLoading(false);
     }
@@ -208,8 +209,8 @@ export default function PlansPage() {
     SessionStorage.clearTransaction();
     setTransaction(null);
     setTransactionImage(null);
-    setActiveTab("plans");
-    setMessage("Đã hủy giao dịch thanh toán.");
+    setActiveTab('plans');
+    setMessage('Đã hủy giao dịch thanh toán.');
   };
 
   if (!isAuthorized) return null;
@@ -225,13 +226,13 @@ export default function PlansPage() {
             </button>
           </div>
           <div className="text-xl font-semibold absolute left-1/2 transform -translate-x-1/2">
-            {activeTab === "plans" ? "Gói dịch vụ" : "Thanh toán"}
+            {activeTab === 'plans' ? 'Gói dịch vụ' : 'Thanh toán'}
           </div>
           <div className="flex space-x-4 justify-end">
             {user?.username && (
               <div className="flex items-center space-x-4">
                 <span className="text-gray-300 truncate overflow-hidden whitespace-nowrap max-w-[70px] md:whitespace-normal md:overflow-visible md:max-w-none md:truncate-0">
-                  {user.username || "bạn"}
+                  {user.username || 'bạn'}
                 </span>
               </div>
             )}
@@ -242,7 +243,7 @@ export default function PlansPage() {
 
       {/* Main Content */}
       <div className="custom-scroll w-full md:w-[768px] mx-auto mt-[72px]">
-        {activeTab === "plans" ? (
+        {activeTab === 'plans' ? (
           <div className="flex-1 p-5">
             <h2 className="text-xl font-semibold text-gray-300 mb-4">Gói dịch vụ</h2>
             <div className="grid gap-4 md:grid-cols-1">
@@ -333,12 +334,7 @@ export default function PlansPage() {
         </div>
       </div>
       {loading && <LoadedOverlay />}
-      <Notify
-        message={message}
-        type="info"
-        duration={2000}
-        onClose={() => setMessage(null)}
-      />
+      <Notify message={message} type="info" duration={2000} onClose={() => setMessage(null)} />
     </div>
   );
 }

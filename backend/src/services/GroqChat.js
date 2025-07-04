@@ -1,6 +1,7 @@
 import { Groq } from 'groq-sdk';
 import dotenv from 'dotenv';
 
+import process from 'process';
 // Khởi tạo biến môi trường
 dotenv.config({ path: './src/app/config/.env' });
 
@@ -102,8 +103,7 @@ const models = {
   wordsUser: `
   Trả về đúng định dạng được yêu cầu trong prompt, không thêm nội dung thừa.
     `,
-
-}
+};
 
 // Hàm gọi Groq API để tạo kịch bản
 export async function generateScript(prompt, history = [], model = 'chat') {
@@ -142,4 +142,3 @@ export async function generateScript(prompt, history = [], model = 'chat') {
     return { script: 'Lỗi khi tạo kịch bản.' };
   }
 }
-

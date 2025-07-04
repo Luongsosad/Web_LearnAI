@@ -34,7 +34,6 @@ body {
   overflow-y: auto;
 }
 
-
 .custom-scroll::-webkit-scrollbar {
   display: none;
   /* Chrome, Safari */

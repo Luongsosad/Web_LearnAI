@@ -5,8 +5,6 @@ const upload = multer();
 
 const orderRoute = express.Router();
 
-
-
 // API khởi tạo thanh toán
 orderRoute.post('/payment', payment);
 

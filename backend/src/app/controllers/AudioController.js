@@ -51,7 +51,7 @@ export const synthesizeTTS = async (req, res) => {
     }
     const { text } = req.body;
 
-    // Kiểm tra prompt    
+    // Kiểm tra prompt
     if (!text || typeof text !== 'string' || text.trim() === '') {
       return res.status(400).json({ error: 'Thiếu nội dung.' });
     }
@@ -59,7 +59,6 @@ export const synthesizeTTS = async (req, res) => {
     const Audio = await synthesizeGradioSpeech(text);
 
     return res.status(200).json({ audioUrl: Audio });
-
   } catch (error) {
     console.error('Lỗi controller:', error.message);
     return res.status(500).json({ error: 'Lỗi server khi xử lý phiên âm.' });

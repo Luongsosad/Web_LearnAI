@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import dotenv from 'dotenv';
 
+import process from 'process';
 // Khởi tạo biến môi trường
 dotenv.config({ path: './src/app/config/.env' });
 
