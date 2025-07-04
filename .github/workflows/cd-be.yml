@@ -1,4 +1,4 @@
-name: CD Backend to Render
+name: CD Backend
 
 on:
   push:
@@ -26,13 +26,9 @@ jobs:
         working-directory: ./backend
         run: npm ci
 
-      - name: Deploy to Render
-        uses: renderinc/action-deploy@v1
-        with:
-          service-id: ${{ secrets.RENDER_SERVICE_ID }}
-          api-key: ${{ secrets.RENDER_API_KEY }}
-          clear-cache: false
-          wait-for-success: true
+      - name: Trigger Render Deployment via Deploy Hook
+        run: |
+          curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
 
       - name: Log deploy success
         if: success()
