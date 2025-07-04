@@ -19,7 +19,6 @@ jobs:
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           working-directory: ./frontend
-          prod: true  # Deploy production (main branch)
 
       - name: Log deploy success
         if: success()
