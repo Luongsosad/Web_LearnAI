@@ -1,0 +1,43 @@
+name: CD Backend to Render
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy-backend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Show working directory content
+        run: ls -la ./backend
+
+      - name: Install dependencies
+        working-directory: ./backend
+        run: npm ci
+
+      - name: Deploy to Render
+        uses: renderinc/action-deploy@v1
+        with:
+          service-id: ${{ secrets.RENDER_SERVICE_ID }}
+          api-key: ${{ secrets.RENDER_API_KEY }}
+          clear-cache: false
+          wait-for-success: true
+
+      - name: Log deploy success
+        if: success()
+        run: echo "✅ Backend deployed successfully!"
+
+      - name: Log deploy failure
+        if: failure()
+        run: echo "❌ Backend deploy failed!"
