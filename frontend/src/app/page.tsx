@@ -1,7 +1,7 @@
-import DashBoard from './(pages)/dashBoard/main'
+import DashBoard from './(pages)/dashBoard/main';
 export default function Home() {
   return (
-    <div className='h-screen'>
+    <div className="h-screen">
       <DashBoard />
     </div>
   );

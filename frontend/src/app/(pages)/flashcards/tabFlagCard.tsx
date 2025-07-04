@@ -1,8 +1,8 @@
-"use client";
-import React, { useState, useEffect, useRef } from "react";
-import { Volume2 } from "lucide-react";
-import { useSwipeable } from "react-swipeable";
-import { motion, AnimatePresence } from "framer-motion";
+'use client';
+import React, { useState, useEffect, useRef } from 'react';
+import { Volume2 } from 'lucide-react';
+import { useSwipeable } from 'react-swipeable';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Word {
   id: number;
@@ -34,14 +34,20 @@ interface FlagCardProps {
   setTab: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function FlagCard({ vocabularyData, setVocabularyData, selectedTest, selectedCategory, setTab }: FlagCardProps) {
+export default function FlagCard({
+  vocabularyData,
+  setVocabularyData,
+  selectedTest,
+  selectedCategory,
+  setTab,
+}: FlagCardProps) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [shuffledWords, setShuffledWords] = useState<Word[]>([]);
   const [learnedCount, setLearnedCount] = useState(0);
   const [viewedCount, setViewedCount] = useState(0);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const playAudioRef = useRef<HTMLAudioElement | null>(null);
-  const [swipeDirection, setSwipeDirection] = useState<"Left" | "Right" | null>(null);
+  const [swipeDirection, setSwipeDirection] = useState<'Left' | 'Right' | null>(null);
 
   useEffect(() => {
     const category = vocabularyData[selectedTest]?.find((cat) => cat.Category === selectedCategory);
@@ -86,22 +92,24 @@ export default function FlagCard({ vocabularyData, setVocabularyData, selectedTe
   };
 
   const toggleFlipCard = (index: number) => {
-    setFlippedCards((prev) => (prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]));
+    setFlippedCards((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
   };
 
   const playAudio = (audioUrl?: string) => {
     if (playAudioRef.current) {
       playAudioRef.current.pause();
-      playAudioRef.current.src = "";
+      playAudioRef.current.src = '';
       playAudioRef.current = null;
     }
     if (!audioUrl) {
-      console.error("Không có URL âm thanh để phát");
+      console.error('Không có URL âm thanh để phát');
       return;
     }
     const audio = new Audio(audioUrl);
     playAudioRef.current = audio;
-    audio.play().catch((err) => console.error("Lỗi phát âm thanh:", err));
+    audio.play().catch((err) => console.error('Lỗi phát âm thanh:', err));
     audio.onended = () => {
       playAudioRef.current = null;
     };
@@ -109,11 +117,11 @@ export default function FlagCard({ vocabularyData, setVocabularyData, selectedTe
 
   const handlers = useSwipeable({
     onSwipedLeft: () => {
-      setSwipeDirection("Left");
+      setSwipeDirection('Left');
       handleMarkLearned();
     },
     onSwipedRight: () => {
-      setSwipeDirection("Right");
+      setSwipeDirection('Right');
       handleMarkNotLearned();
     },
     trackMouse: true,
@@ -130,13 +138,15 @@ export default function FlagCard({ vocabularyData, setVocabularyData, selectedTe
           <motion.div
             key={currentWordIndex}
             initial={{ x: 0, opacity: 1 }}
-            exit={{ x: swipeDirection === "Left" ? -300 : 300, opacity: 0 }}
+            exit={{ x: swipeDirection === 'Left' ? -300 : 300, opacity: 0 }}
             transition={{ duration: 0.3 }}
             className="p-6 bg-[#323232] rounded-lg shadow-lg cursor-pointer max-w-sm mx-auto"
             onClick={() => toggleFlipCard(currentWordIndex)}
             {...handlers}
           >
-            <div className={`card min-w-[300px] min-h-[360px] ${flippedCards.includes(currentWordIndex) ? "flipped" : ""}`}>
+            <div
+              className={`card min-w-[300px] min-h-[360px] ${flippedCards.includes(currentWordIndex) ? 'flipped' : ''}`}
+            >
               <div className="card-front">
                 <div className="text-2xl font-semibold text-center">
                   {shuffledWords[currentWordIndex].word}
@@ -159,11 +169,21 @@ export default function FlagCard({ vocabularyData, setVocabularyData, selectedTe
                   <div className="text-xl font-semibold">
                     {shuffledWords[currentWordIndex].word}
                   </div>
-                  <div><strong>Phiên âm:</strong> {shuffledWords[currentWordIndex].pronunciation}</div>
-                  <div><strong>Nghĩa:</strong> {shuffledWords[currentWordIndex].meaning}</div>
-                  <div><strong>Loại từ:</strong> {shuffledWords[currentWordIndex].type}</div>
-                  <div><strong>Ví dụ:</strong> {shuffledWords[currentWordIndex].example}</div>
-                  <div><strong>Cấp độ:</strong> {shuffledWords[currentWordIndex].level}</div>
+                  <div>
+                    <strong>Phiên âm:</strong> {shuffledWords[currentWordIndex].pronunciation}
+                  </div>
+                  <div>
+                    <strong>Nghĩa:</strong> {shuffledWords[currentWordIndex].meaning}
+                  </div>
+                  <div>
+                    <strong>Loại từ:</strong> {shuffledWords[currentWordIndex].type}
+                  </div>
+                  <div>
+                    <strong>Ví dụ:</strong> {shuffledWords[currentWordIndex].example}
+                  </div>
+                  <div>
+                    <strong>Cấp độ:</strong> {shuffledWords[currentWordIndex].level}
+                  </div>
                 </div>
               </div>
             </div>
@@ -201,7 +221,8 @@ export default function FlagCard({ vocabularyData, setVocabularyData, selectedTe
           perspective: 1000px;
         }
 
-        .card-front, .card-back {
+        .card-front,
+        .card-back {
           position: absolute;
           width: 100%;
           height: 100%;

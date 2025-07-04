@@ -1,0 +1,60 @@
+name: PR Lint
+
+on:
+  pull_request:
+    branches: [main, develop, feature-*]
+
+jobs:
+  lint-backend:
+    name: Lint Backend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Install backend dependencies
+        working-directory: ./backend
+        run: npm ci
+
+      - name: Run backend lint
+        working-directory: ./backend
+        run: npm run lint
+
+      - name: Log backend lint success
+        if: success()
+        run: echo "✅ Backend lint passed!"
+
+      - name: Log backend lint failure
+        if: failure()
+        run: echo "❌ Backend lint failed!"
+
+  lint-frontend:
+    name: Lint Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Run frontend lint
+        working-directory: ./frontend
+        run: npm run lint
+
+      - name: Log frontend lint success
+        if: success()
+        run: echo "✅ Frontend lint passed!"
+
+      - name: Log frontend lint failure
+        if: failure()
+        run: echo "❌ Frontend lint failed!" 

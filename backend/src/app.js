@@ -1,4 +1,3 @@
-import path from 'path'; // Xử lý đường dẫn tệp
 import express from 'express'; // Web framework cho Node.js
 import morgan from 'morgan'; // Module ghi log
 import session from 'express-session';
@@ -6,6 +5,7 @@ import bodyParser from 'body-parser'; // Xử lý dữ liệu từ các yêu c�
 import cors from 'cors'; // Middleware CORS
 import passport from './app/config/passport.js';
 import cookieParser from 'cookie-parser';
+import process from 'process';
 
 import pool from './app/config/database.js';
 // Load biến môi trường từ file .env
@@ -18,19 +18,23 @@ const port = process.env.PORT || 6868; // Sử dụng PORT từ .env hoặc mặ
 // Middleware log request
 app.use(morgan('dev'));
 
-app.use(cors({
-  origin: [process.env.FRONTEND_URL], // Thêm các domain bạn muốn
-  methods: ['GET', 'POST'], // Chỉ cho phép GET và POST
-  allowedHeaders: ['Content-Type'], // Chỉ cho phép header Content-Type
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: [process.env.FRONTEND_URL], // Thêm các domain bạn muốn
+    methods: ['GET', 'POST'], // Chỉ cho phép GET và POST
+    allowedHeaders: ['Content-Type'], // Chỉ cho phép header Content-Type
+    credentials: true,
+  })
+);
 
 // Middleware session
-app.use(session({
+app.use(
+  session({
     secret: 'your-secret-key',
     resave: false,
-    saveUninitialized: true
-}));
+    saveUninitialized: true,
+  })
+);
 
 // Middleware để parse dữ liệu JSON
 app.use(bodyParser.json());
@@ -51,11 +55,11 @@ console.log(`PORT: ${process.env.PORT}`);
 
 // Kiểm tra kết nối với PostgreSQL
 pool.connect((err, client, release) => {
-    if (err) {
-        return console.error('Kết nối đến PostgreSQL thất bại!', err);
-    }
-    console.log('Kết nối đến PostgreSQL thành công!');
-    release();
+  if (err) {
+    return console.error('Kết nối đến PostgreSQL thất bại!', err);
+  }
+  console.log('Kết nối đến PostgreSQL thành công!');
+  release();
 });
 
 // Route init

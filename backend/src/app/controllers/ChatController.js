@@ -1,4 +1,3 @@
-import { Transcriptions } from 'groq-sdk/resources/audio/transcriptions.mjs';
 import { generateScript } from '../../services/GroqChat.js';
 
 export const synthesizeChat = async (req, res) => {

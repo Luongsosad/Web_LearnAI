@@ -1,13 +1,21 @@
-"use client";
-import React, { useState, useEffect } from "react";
-import { MessageCircle, BookOpen, HelpCircle, Mic, Headphones, Library, Sidebar } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { SessionStorage } from "@/storage/sessionStorage";
-import { useSidebarStore } from "@/storage/sidebarState";
-import User from '@/types/User';
-import LoadedOverlay from '@/components/LoadedOverlay'
-import Notify from '@/components/Notify'
-import PlanBadge from "@/components/PlanBadge";
+'use client';
+import React, { useState, useEffect } from 'react';
+import {
+  MessageCircle,
+  BookOpen,
+  HelpCircle,
+  Mic,
+  Headphones,
+  Library,
+  Sidebar,
+} from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { SessionStorage } from '@/storage/sessionStorage';
+import { useSidebarStore } from '@/storage/sidebarState';
+import { User } from '@/types/User';
+import LoadedOverlay from '@/components/LoadedOverlay';
+import Notify from '@/components/Notify';
+import PlanBadge from '@/components/PlanBadge';
 
 export default function Main() {
   const { toggle } = useSidebarStore();
@@ -20,17 +28,16 @@ export default function Main() {
     SessionStorage.getUser(
       (loading) => setLoading(loading),
       (user) => setUser(user)
-    )
+    );
   }, []);
 
   const handleServiceClick = (path: string) => {
     if (!user?.username) {
-      router.push("/login");
+      router.push('/login');
     } else {
       router.push(path);
     }
   };
-
 
   return (
     <div className="flex flex-col max-h-screen text-white w-full">
@@ -41,17 +48,19 @@ export default function Main() {
             <Sidebar size={24} />
           </button>
         </div>
-        <h1 className="text-xl font-bold absolute left-1/2 transform -translate-x-1/2">Learning by AI</h1>
+        <h1 className="text-xl font-bold absolute left-1/2 transform -translate-x-1/2">
+          Learning by AI
+        </h1>
         <div className="flex space-x-4 justify-end">
           {user?.username ? (
             <div className="flex items-center space-x-4">
               <span className="text-gray-300 truncate overflow-hidden whitespace-nowrap max-w-[70px] md:whitespace-normal md:overflow-visible md:max-w-none md:truncate-0">
-                {user.username || "bạn"}
+                {user.username || 'bạn'}
               </span>
             </div>
           ) : (
             <button
-              onClick={() => router.push("/login")}
+              onClick={() => router.push('/login')}
               className="p-[2px] hover:bg-gray-700 rounded-3xl bg-red-400 pl-5 pr-5"
             >
               Sign In
@@ -63,7 +72,9 @@ export default function Main() {
       {/* Main Content */}
       <div className="custom-scroll w-full md:w-[768px] mx-auto">
         <div className="flex-1 p-5">
-          <h2 className="text-xl font-semibold text-gray-300 mb-2">Chào mừng bạn đến với ứng dụng Learning By AI</h2>
+          <h2 className="text-xl font-semibold text-gray-300 mb-2">
+            Chào mừng bạn đến với ứng dụng Learning By AI
+          </h2>
           <p className="text-gray-400 mb-3">Khám phá các tính năng học tập thông minh:</p>
           <div className="grid gap-3 md:grid-cols-1">
             {/* Chat with AI */}
@@ -71,16 +82,18 @@ export default function Main() {
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
                 if (user && user.plan_id >= 1) {
-                  handleServiceClick("/chat");
+                  handleServiceClick('/chat');
                 } else {
-                  setMessage("Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!");
+                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
                 }
               }}
             >
               <MessageCircle className="w-6 h-6 text-red-400 mr-4" />
               <div>
                 <h3 className="text-lg font-semibold text-white">Trò chuyện với AI</h3>
-                <p className="text-gray-400 text-sm">Trao đổi với AI để học tiếng Anh thông minh hơn.</p>
+                <p className="text-gray-400 text-sm">
+                  Trao đổi với AI để học tiếng Anh thông minh hơn.
+                </p>
               </div>
               <PlanBadge level={1} />
             </div>
@@ -90,16 +103,18 @@ export default function Main() {
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
                 if (user && user.plan_id >= 2) {
-                  handleServiceClick("/conversation");
+                  handleServiceClick('/conversation');
                 } else {
-                  setMessage("Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!");
+                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
                 }
               }}
             >
               <Headphones className="w-6 h-6 text-orange-400 mr-4" />
               <div>
                 <h3 className="text-lg font-semibold text-white">Luyện giao tiếp với AI</h3>
-                <p className="text-gray-400 text-sm">Luyện nói tiếng Anh trực tiếp với AI qua hội thoại.</p>
+                <p className="text-gray-400 text-sm">
+                  Luyện nói tiếng Anh trực tiếp với AI qua hội thoại.
+                </p>
               </div>
               <PlanBadge level={2} />
             </div>
@@ -109,13 +124,15 @@ export default function Main() {
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
                 // handleServiceClick("/pronunciation");
-                setMessage("Tính năng đang phát triển!");
+                setMessage('Tính năng đang phát triển!');
               }}
             >
               <Mic className="w-6 h-6 text-blue-400 mr-4" />
               <div>
                 <h3 className="text-lg font-semibold text-white">Kiểm tra phát âm</h3>
-                <p className="text-gray-400 text-sm">Ghi âm và so sánh phát âm của bạn với người bản xứ.</p>
+                <p className="text-gray-400 text-sm">
+                  Ghi âm và so sánh phát âm của bạn với người bản xứ.
+                </p>
               </div>
               <PlanBadge level={3} />
             </div>
@@ -125,16 +142,18 @@ export default function Main() {
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
                 if (user && user.plan_id >= 1) {
-                  handleServiceClick("/flashcards");
+                  handleServiceClick('/flashcards');
                 } else {
-                  setMessage("Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!");
+                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
                 }
               }}
             >
               <BookOpen className="w-6 h-6 text-yellow-400 mr-4" />
               <div>
                 <h3 className="text-lg font-semibold text-white">Thẻ ghi nhớ</h3>
-                <p className="text-gray-400 text-sm">Ôn tập từ vựng hiệu quả qua hệ thống flashcard.</p>
+                <p className="text-gray-400 text-sm">
+                  Ôn tập từ vựng hiệu quả qua hệ thống flashcard.
+                </p>
               </div>
               <PlanBadge level={1} />
             </div>
@@ -144,13 +163,15 @@ export default function Main() {
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
                 // handleServiceClick("/bilingual-stories");
-                setMessage("Tính năng đang phát triển!");
+                setMessage('Tính năng đang phát triển!');
               }}
             >
               <Library className="w-6 h-6 text-purple-400 mr-4" />
               <div>
                 <h3 className="text-lg font-semibold text-white">Đọc truyện song ngữ</h3>
-                <p className="text-gray-400 text-sm">Cải thiện kỹ năng đọc với truyện song ngữ Anh-Việt.</p>
+                <p className="text-gray-400 text-sm">
+                  Cải thiện kỹ năng đọc với truyện song ngữ Anh-Việt.
+                </p>
               </div>
               <PlanBadge level={2} />
             </div>
@@ -160,16 +181,18 @@ export default function Main() {
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
                 if (user && user.plan_id >= 3) {
-                  handleServiceClick("/quiz");
+                  handleServiceClick('/quiz');
                 } else {
-                  setMessage("Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!");
+                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
                 }
               }}
             >
               <HelpCircle className="w-6 h-6 text-green-400 mr-4" />
               <div>
                 <h3 className="text-lg font-semibold text-white">Bài tập luyện tập</h3>
-                <p className="text-gray-400 text-sm">Kiểm tra kiến thức của bạn với các câu hỏi điền khuyết đa dạng.</p>
+                <p className="text-gray-400 text-sm">
+                  Kiểm tra kiến thức của bạn với các câu hỏi điền khuyết đa dạng.
+                </p>
               </div>
               <PlanBadge level={3} />
             </div>
@@ -182,12 +205,7 @@ export default function Main() {
         </div>
       </div>
       {loading && <LoadedOverlay />}
-      <Notify
-        message={message}
-        type="info"
-        duration={2000}
-        onClose={() => setMessage(null)}
-      />
+      <Notify message={message} type="info" duration={2000} onClose={() => setMessage(null)} />
     </div>
   );
 }

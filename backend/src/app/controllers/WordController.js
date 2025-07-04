@@ -4,10 +4,9 @@ import {
   getTopicsByCategoryId as getTopicsByCategoryIdModel,
   createTopic as createTopicModel,
   getWordsByTopicId as getWordsByTopicIdModel,
-  createWord as createWordModel
+  createWord as createWordModel,
 } from '../models/wordModels.js';
 import { generateScript } from '../../services/GroqChat.js';
-
 
 export const generateQuestions = async (req, res) => {
   const { category_id, topic_id } = req.query;
@@ -27,10 +26,12 @@ export const generateQuestions = async (req, res) => {
     }
 
     // Chuyển danh sách từ vựng thành mảng chuỗi (chỉ lấy word) và giữ word_id
-    const wordList = words.map((word) => ({
-      id: word.id,
-      word: word.word,
-    })).sort(() => Math.random() - 0.5);
+    const wordList = words
+      .map((word) => ({
+        id: word.id,
+        word: word.word,
+      }))
+      .sort(() => Math.random() - 0.5);
 
     // Tạo câu hỏi cho từng từ
     const questions = await Promise.all(
@@ -59,29 +60,60 @@ export const generateQuestions = async (req, res) => {
         // console.log(`Kết quả cho từ "${word}":`, script);
 
         // Regex để parse kết quả, linh hoạt hơn
-        const regex = /Câu tiếng Anh:\s*(.*?)\n\s*Dịch nghĩa:\s*(.*?)\n\s*(?:Đáp án:\s*(.*?)\n\s*)?Gợi ý:\s*(.*?)\n\s*Câu tham khảo:\s*\n\s*1\.\s*(.*?)\n\s*2\.\s*(.*)/s;
+        const regex =
+          /Câu tiếng Anh:\s*(.*?)\n\s*Dịch nghĩa:\s*(.*?)\n\s*(?:Đáp án:\s*(.*?)\n\s*)?Gợi ý:\s*(.*?)\n\s*Câu tham khảo:\s*\n\s*1\.\s*(.*?)\n\s*2\.\s*(.*)/s;
         let match = script.match(regex);
 
         let english_sentence, vietnamese_translation, answer, hint, ref_sentence1, ref_sentence2;
 
         if (match) {
-          [, english_sentence, vietnamese_translation, answer, hint, ref_sentence1, ref_sentence2] = match;
+          [, english_sentence, vietnamese_translation, answer, hint, ref_sentence1, ref_sentence2] =
+            match;
           answer = answer?.trim() || word; // Dùng word nếu Đáp án thiếu
         } else {
           // Logic dự phòng: parse từng dòng
           console.warn(`Regex thất bại cho từ "${word}", thử parse từng dòng`);
-          const lines = script.split('\n').map(line => line.trim()).filter(line => line);
+          const lines = script
+            .split('\n')
+            .map((line) => line.trim())
+            .filter((line) => line);
 
-          english_sentence = lines.find(line => line.startsWith('Câu tiếng Anh:'))?.replace('Câu tiếng Anh:', '').trim() || '';
-          vietnamese_translation = lines.find(line => line.startsWith('Dịch nghĩa:'))?.replace('Dịch nghĩa:', '').trim() || '';
-          answer = lines.find(line => line.startsWith('Đáp án:'))?.replace('Đáp án:', '').trim() || word;
-          hint = lines.find(line => line.startsWith('Gợi ý:'))?.replace('Gợi ý:', '').trim() || '';
+          english_sentence =
+            lines
+              .find((line) => line.startsWith('Câu tiếng Anh:'))
+              ?.replace('Câu tiếng Anh:', '')
+              .trim() || '';
+          vietnamese_translation =
+            lines
+              .find((line) => line.startsWith('Dịch nghĩa:'))
+              ?.replace('Dịch nghĩa:', '')
+              .trim() || '';
+          answer =
+            lines
+              .find((line) => line.startsWith('Đáp án:'))
+              ?.replace('Đáp án:', '')
+              .trim() || word;
+          hint =
+            lines
+              .find((line) => line.startsWith('Gợi ý:'))
+              ?.replace('Gợi ý:', '')
+              .trim() || '';
 
-          const refIndex = lines.findIndex(line => line.startsWith('Câu tham khảo:'));
-          ref_sentence1 = lines[refIndex + 1]?.startsWith('1.') ? lines[refIndex + 1].replace('1.', '').trim() : '';
-          ref_sentence2 = lines[refIndex + 2]?.startsWith('2.') ? lines[refIndex + 2].replace('2.', '').trim() : '';
+          const refIndex = lines.findIndex((line) => line.startsWith('Câu tham khảo:'));
+          ref_sentence1 = lines[refIndex + 1]?.startsWith('1.')
+            ? lines[refIndex + 1].replace('1.', '').trim()
+            : '';
+          ref_sentence2 = lines[refIndex + 2]?.startsWith('2.')
+            ? lines[refIndex + 2].replace('2.', '').trim()
+            : '';
 
-          if (!english_sentence || !vietnamese_translation || !hint || !ref_sentence1 || !ref_sentence2) {
+          if (
+            !english_sentence ||
+            !vietnamese_translation ||
+            !hint ||
+            !ref_sentence1 ||
+            !ref_sentence2
+          ) {
             console.error(`Lỗi parse dự phòng cho từ "${word}":`, script);
             return {
               word_id: id,

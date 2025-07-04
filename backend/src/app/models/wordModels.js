@@ -54,5 +54,5 @@ export {
   getTopicsByCategoryId,
   createTopic,
   getWordsByTopicId,
-  createWord
+  createWord,
 };

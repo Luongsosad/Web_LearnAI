@@ -6,7 +6,7 @@ import {
   createTopic,
   getWordsByTopicId,
   createWord,
-  generateQuestions
+  generateQuestions,
 } from '../controllers/WordController.js';
 
 const wordRoute = express.Router();

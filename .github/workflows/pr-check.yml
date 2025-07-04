@@ -1,0 +1,28 @@
+name: 'Lint PR'
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - edited
+      - reopened
+
+jobs:
+  main:
+    name: Validate PR title
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    steps:
+      - name: Check PR title with semantic rules
+        uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Log success
+        if: success()
+        run: echo "✅ PR title is valid and semantic!"
+
+      - name: Log failure
+        if: failure()
+        run: echo "❌ PR title is invalid or not semantic!" 
