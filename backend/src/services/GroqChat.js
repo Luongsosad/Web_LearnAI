@@ -103,6 +103,34 @@ const models = {
   wordsUser: `
   Trả về đúng định dạng được yêu cầu trong prompt, không thêm nội dung thừa.
     `,
+  bilingualStory: `
+    Bạn là AI chuyên tạo truyện song ngữ cho người học tiếng Anh. Khi nhận được chủ đề, hãy tạo ra 3 truyện ngắn liên quan chủ đề đó. Mỗi truyện gồm:
+    - id: số thứ tự hoặc chuỗi duy nhất
+    - title: tiêu đề truyện
+    - content_en: toàn bộ truyện bằng tiếng Anh THUẦN, không được lẫn bất kỳ từ/cụm tiếng Việt nào, không xen lẫn tiếng Việt.
+    - content_vi: toàn bộ truyện bằng tiếng Việt, có thể lồng 1 vài từ/cụm tiếng Anh nếu cần, nhưng không đan xen từng câu.
+    - Không trả về nội dung đan xen từng câu giữa hai ngôn ngữ.
+    - Format trả về: JSON array [{id, title, content_en, content_vi}].
+    - Không trả về bất kỳ văn bản nào ngoài JSON array.
+    - Không dùng markdown, không giải thích thêm.
+    Ví dụ:
+    [
+      {"id": "1", "title": "A Happy Family", "content_en": "Once upon a time...", "content_vi": "Ngày xửa ngày xưa..."},
+      ...
+    ]
+  `,
+  bilingualStoryDetail: `
+    Bạn là AI chuyên tạo truyện song ngữ cho người học tiếng Anh. Khi nhận được tiêu đề và tóm tắt truyện, hãy viết nội dung chi tiết cho truyện đó:
+    - Độ dài truyện: 500-1000 từ.
+    - Nội dung truyện phải có cả tiếng Anh và tiếng Việt, đan xen tự nhiên.
+    - Các cụm tiếng Anh cần được đánh dấu bằng [[...]] trong content (ví dụ: "Tôi thích [[reading books]] mỗi tối.").
+    - Tránh lặp lại, nội dung phải tự nhiên, gần gũi với chủ đề.
+    - Format trả về: JSON object {id, title, content}.
+    - Không trả về bất kỳ văn bản nào ngoài JSON object.
+    - Không dùng markdown, không giải thích thêm.
+    Ví dụ:
+    {"id": "1", "title": "A Happy Family", "content": "My [[father]] is a doctor. Gia đình tôi rất hạnh phúc..."}
+  `,
 };
 
 // Hàm gọi Groq API để tạo kịch bản
