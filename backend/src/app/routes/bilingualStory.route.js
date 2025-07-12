@@ -1,5 +1,5 @@
 import express from 'express';
-import { getBilingualStories, getWordInfo } from '../controllers/BilingualStoryController.js';
+import { getBilingualStories, getWordInfo, getMultipleWordInfo } from '../controllers/BilingualStoryController.js';
 
 const router = express.Router();
 
@@ -7,5 +7,7 @@ const router = express.Router();
 router.get('/', getBilingualStories);
 // Lấy thông tin từ/cụm tiếng Anh (phát âm, nghĩa, audio)
 router.get('/word-info', getWordInfo);
+// Lấy thông tin nhiều từ/cụm tiếng Anh cùng lúc
+router.post('/multiple-word-info', getMultipleWordInfo);
 
 export { router as bilingualStoryRoute };
