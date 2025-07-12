@@ -1,5 +1,9 @@
 import express from 'express';
-import { getBilingualStories, getWordInfo, getMultipleWordInfo } from '../controllers/BilingualStoryController.js';
+import {
+  getBilingualStories,
+  getWordInfo,
+  getMultipleWordInfo,
+} from '../controllers/BilingualStoryController.js';
 
 const router = express.Router();
 

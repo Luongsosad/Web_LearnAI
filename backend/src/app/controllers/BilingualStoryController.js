@@ -72,7 +72,6 @@ async function getWordInfo(req, res) {
     console.log('WordInfo:', w);
   }
 
-
   res.json({ wordInfo: words });
 }
 
@@ -82,9 +81,9 @@ async function getMultipleWordInfo(req, res) {
   if (!words || !Array.isArray(words) || words.length === 0) {
     return res.status(400).json({ error: 'Thiếu danh sách từ hoặc không đúng định dạng.' });
   }
-  
+
   console.log('Multiple words:', words);
-  
+
   try {
     const wordInfoPromises = words.map(async (word) => {
       console.log('Processing word:', word);
@@ -97,7 +96,7 @@ async function getMultipleWordInfo(req, res) {
           console.error('Lỗi sinh audio cho từ:', word, e);
           audio = '';
         }
-        
+
         let wordData = [];
         try {
           wordData = JSON.parse(script);
@@ -105,7 +104,7 @@ async function getMultipleWordInfo(req, res) {
           console.error('Lỗi parse JSON cho từ:', word, script);
           return { word, error: 'Dữ liệu không hợp lệ' };
         }
-        
+
         if (wordData.length > 0) {
           wordData[0].audio = audio;
           return { word, data: wordData[0] };
@@ -117,7 +116,7 @@ async function getMultipleWordInfo(req, res) {
         return { word, error: 'Lỗi xử lý' };
       }
     });
-    
+
     const results = await Promise.all(wordInfoPromises);
     res.json({ wordInfoList: results });
   } catch (err) {

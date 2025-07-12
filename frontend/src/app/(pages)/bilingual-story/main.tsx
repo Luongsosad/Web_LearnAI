@@ -1,7 +1,7 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import axios from "axios"
+import { useState } from 'react';
+import axios from 'axios';
 import {
   BookOpen,
   Globe,
@@ -16,191 +16,197 @@ import {
   SidebarIcon,
   Lamp,
   Computer,
-} from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Separator } from "@/components/ui/separator"
-import LoadedOverlay from "@/components/LoadedOverlay"
-import { useSidebarStore } from "@/storage/sidebarState"
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Separator } from '@/components/ui/separator';
+import LoadedOverlay from '@/components/LoadedOverlay';
+import { useSidebarStore } from '@/storage/sidebarState';
 
 interface Story {
-  id: string
-  title: string
-  content_en: string
-  content_vi: string
-  audio_en: string
+  id: string;
+  title: string;
+  content_en: string;
+  content_vi: string;
+  audio_en: string;
 }
 
 interface WordInfo {
-  word: string
-  pronunciation: string
-  meaning: string
-  type: string
-  audio: string
+  word: string;
+  pronunciation: string;
+  meaning: string;
+  type: string;
+  audio: string;
 }
 
 const TOPICS = [
-  { id: "family", name: "Gia đình", icon: Users, color: "bg-rose-500 hover:bg-rose-600" },
-  { id: "school", name: "Trường học", icon: GraduationCap, color: "bg-blue-500 hover:bg-blue-600" },
-  { id: "travel", name: "Du lịch", icon: Plane, color: "bg-emerald-500 hover:bg-emerald-600" },
-  { id: "friendship", name: "Tình bạn", icon: Heart, color: "bg-pink-500 hover:bg-pink-600" },
-  { id: "adventure", name: "Phiêu lưu", icon: Compass, color: "bg-orange-500 hover:bg-orange-600" },
-  { id: "technology", name: "Công nghệ", icon: Computer, color: "bg-purple-500 hover:bg-purple-600" },
-]
+  { id: 'family', name: 'Gia đình', icon: Users, color: 'bg-rose-500 hover:bg-rose-600' },
+  { id: 'school', name: 'Trường học', icon: GraduationCap, color: 'bg-blue-500 hover:bg-blue-600' },
+  { id: 'travel', name: 'Du lịch', icon: Plane, color: 'bg-emerald-500 hover:bg-emerald-600' },
+  { id: 'friendship', name: 'Tình bạn', icon: Heart, color: 'bg-pink-500 hover:bg-pink-600' },
+  { id: 'adventure', name: 'Phiêu lưu', icon: Compass, color: 'bg-orange-500 hover:bg-orange-600' },
+  {
+    id: 'technology',
+    name: 'Công nghệ',
+    icon: Computer,
+    color: 'bg-purple-500 hover:bg-purple-600',
+  },
+];
 
 export default function BilingualStoryMain() {
-  const { toggle } = useSidebarStore()
-  const [selectedTopic, setSelectedTopic] = useState<string | null>(null)
-  const [stories, setStories] = useState<Story[]>([])
-  const [selectedStory, setSelectedStory] = useState<Story | null>(null)
-  const [tab, setTab] = useState<"en" | "vi">("en")
-  const [loading, setLoading] = useState(false)
-  const [popup, setPopup] = useState<WordInfo | null>(null)
-  
+  const { toggle } = useSidebarStore();
+  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+  const [stories, setStories] = useState<Story[]>([]);
+  const [selectedStory, setSelectedStory] = useState<Story | null>(null);
+  const [tab, setTab] = useState<'en' | 'vi'>('en');
+  const [loading, setLoading] = useState(false);
+  const [popup, setPopup] = useState<WordInfo | null>(null);
+
   // State để lưu trữ thông tin từ vựng theo chủ đề và truyện
   const [wordInfoCache, setWordInfoCache] = useState<{
-    [key: string]: { [word: string]: WordInfo }
-  }>({})
-  const [preparingData, setPreparingData] = useState(false)
+    [key: string]: { [word: string]: WordInfo };
+  }>({});
+  const [preparingData, setPreparingData] = useState(false);
 
   const fetchStories = async (topicId: string) => {
-    setLoading(true)
-    setSelectedTopic(topicId)
-    setStories([])
-    setSelectedStory(null)
-    setTab("en")
+    setLoading(true);
+    setSelectedTopic(topicId);
+    setStories([]);
+    setSelectedStory(null);
+    setTab('en');
     try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/bilingual-story?topic=${topicId}`, {
-        withCredentials: true,
-      })
-      setStories(res.data.stories)
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/bilingual-story?topic=${topicId}`,
+        {
+          withCredentials: true,
+        }
+      );
+      setStories(res.data.stories);
     } catch (error) {
-      console.error('Lỗi khi lấy truyện:', error)
-      alert("Lỗi khi lấy truyện")
+      console.error('Lỗi khi lấy truyện:', error);
+      alert('Lỗi khi lấy truyện');
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   // Hàm trích xuất từ vựng từ nội dung truyện
   const extractWordsFromContent = (content: string): string[] => {
-    const wordMatches = content.match(/\[\[(.*?)\]\]/g)
-    if (!wordMatches) return []
-    return wordMatches.map(match => match.replace(/\[\[|\]\]/g, ''))
-  }
+    const wordMatches = content.match(/\[\[(.*?)\]\]/g);
+    if (!wordMatches) return [];
+    return wordMatches.map((match) => match.replace(/\[\[|\]\]/g, ''));
+  };
 
   // Hàm chuẩn bị dữ liệu từ vựng cho truyện
   const prepareWordData = async (story: Story, topicId: string) => {
-    console.log("hhh")
-    const cacheKey = `${topicId}-${story.id}`
-    console.log("cacheKey", cacheKey)
-    console.log("wordInfoCache", wordInfoCache)
+    console.log('hhh');
+    const cacheKey = `${topicId}-${story.id}`;
+    console.log('cacheKey', cacheKey);
+    console.log('wordInfoCache', wordInfoCache);
     // Kiểm tra cache trước
     if (wordInfoCache[cacheKey]) {
-      return wordInfoCache[cacheKey]
+      return wordInfoCache[cacheKey];
     }
     // console.log("prepareWordData", story.content_vi)
 
-    setPreparingData(true)
-    
+    setPreparingData(true);
+
     try {
-      const words = extractWordsFromContent(story.content_vi)
+      const words = extractWordsFromContent(story.content_vi);
       if (words.length === 0) {
-        setWordInfoCache(prev => ({
+        setWordInfoCache((prev) => ({
           ...prev,
-          [cacheKey]: {}
-        }))
-        return {}
+          [cacheKey]: {},
+        }));
+        return {};
       }
 
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/bilingual-story/multiple-word-info`,
         { words },
         { withCredentials: true }
-      )
+      );
 
       // console.log("res.data.wordInfoList", res.data.wordInfoList)
 
-      const wordInfoMap: { [word: string]: WordInfo } = {}
+      const wordInfoMap: { [word: string]: WordInfo } = {};
       res.data.wordInfoList.forEach((item: any) => {
         if (item.data && !item.error) {
-          wordInfoMap[item.word] = item.data
+          wordInfoMap[item.word] = item.data;
         }
-      })
+      });
 
-      setWordInfoCache(prev => ({
+      setWordInfoCache((prev) => ({
         ...prev,
-        [cacheKey]: wordInfoMap
-      }))
+        [cacheKey]: wordInfoMap,
+      }));
 
-      return wordInfoMap
+      return wordInfoMap;
     } catch (error) {
-      console.error('Lỗi khi chuẩn bị dữ liệu từ vựng:', error)
-      return {}
+      console.error('Lỗi khi chuẩn bị dữ liệu từ vựng:', error);
+      return {};
     } finally {
-      setPreparingData(false)
+      setPreparingData(false);
     }
-  }
+  };
 
   const handleStorySelect = async (story: Story) => {
-    if (!selectedTopic) return
-    
-    setSelectedStory(story)
-    setTab("en")
-    
+    if (!selectedTopic) return;
+
+    setSelectedStory(story);
+    setTab('en');
+
     // Chuẩn bị dữ liệu từ vựng
-    await prepareWordData(story, selectedTopic)
-  }
+    await prepareWordData(story, selectedTopic);
+  };
 
   const handleWordClick = async (word: string) => {
-    if (!selectedTopic || !selectedStory) return
-    
-    const cacheKey = `${selectedTopic}-${selectedStory.id}`
-    const cachedWordInfo = wordInfoCache[cacheKey]?.[word]
-    
+    if (!selectedTopic || !selectedStory) return;
+
+    const cacheKey = `${selectedTopic}-${selectedStory.id}`;
+    const cachedWordInfo = wordInfoCache[cacheKey]?.[word];
+
     if (cachedWordInfo) {
-      setPopup(cachedWordInfo)
-      return
+      setPopup(cachedWordInfo);
+      return;
     }
 
     // Nếu không có trong cache, gọi API để lấy thông tin cụ thể
-    setLoading(true)
+    setLoading(true);
     try {
       const res = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/bilingual-story/word-info?word=${encodeURIComponent(word)}`,
-        { withCredentials: true },
-      )
-      
+        { withCredentials: true }
+      );
+
       if (res.data.wordInfo && res.data.wordInfo.length > 0) {
-        const wordInfo = res.data.wordInfo[0]
-        setPopup(wordInfo)
-        
+        const wordInfo = res.data.wordInfo[0];
+        setPopup(wordInfo);
+
         // Cập nhật cache
-        setWordInfoCache(prev => ({
+        setWordInfoCache((prev) => ({
           ...prev,
           [cacheKey]: {
             ...prev[cacheKey],
-            [word]: wordInfo
-          }
-        }))
+            [word]: wordInfo,
+          },
+        }));
       }
     } catch (error) {
-      console.error('Lỗi khi lấy thông tin từ:', error)
-      alert("Lỗi khi lấy thông tin từ")
+      console.error('Lỗi khi lấy thông tin từ:', error);
+      alert('Lỗi khi lấy thông tin từ');
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  const selectedTopicData = TOPICS.find((t) => t.id === selectedTopic)
+  const selectedTopicData = TOPICS.find((t) => t.id === selectedTopic);
 
   return (
-    <div
-      className={`min-h-screen transition-colors duration-300"}`}
-    >
+    <div className={`min-h-screen transition-colors duration-300"}`}>
       {loading && <LoadedOverlay />}
       {preparingData && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
@@ -220,7 +226,7 @@ export default function BilingualStoryMain() {
             <SidebarIcon size={24} />
           </button>
           <div className="text-xl font-semibold">Truyện Song Ngữ</div>
-          <button className="text-gray-200 hover:text-white" onClick={() => { }}>
+          <button className="text-gray-200 hover:text-white" onClick={() => {}}>
             <Lamp size={24} />
           </button>
         </div>
@@ -241,7 +247,7 @@ export default function BilingualStoryMain() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {TOPICS &&
                 TOPICS.map((topic) => {
-                  const IconComponent = topic.icon
+                  const IconComponent = topic.icon;
                   return (
                     <Card
                       key={topic.id}
@@ -262,7 +268,7 @@ export default function BilingualStoryMain() {
                         </div>
                       </CardContent>
                     </Card>
-                  )
+                  );
                 })}
             </div>
           </div>
@@ -275,8 +281,8 @@ export default function BilingualStoryMain() {
               <Button
                 variant="ghost"
                 onClick={() => {
-                  setSelectedTopic(null)
-                  setStories([])
+                  setSelectedTopic(null);
+                  setStories([]);
                 }}
                 className="gap-2 text-xl font-semibold p-0"
               >
@@ -314,7 +320,9 @@ export default function BilingualStoryMain() {
                             <CardTitle className="text-xl group-hover:text-primary transition-colors">
                               {story.title}
                             </CardTitle>
-                            <CardDescription>Câu chuyện số {index + 1} • Chế độ song ngữ</CardDescription>
+                            <CardDescription>
+                              Câu chuyện số {index + 1} • Chế độ song ngữ
+                            </CardDescription>
                           </div>
                           <Badge variant="outline">
                             <BookOpen className="h-3 w-3 mr-1" />
@@ -340,16 +348,14 @@ export default function BilingualStoryMain() {
               <Button
                 variant="ghost"
                 onClick={() => {
-                  setSelectedStory(null)
-                  setTab("en")
+                  setSelectedStory(null);
+                  setTab('en');
                 }}
                 className="gap-2 text-xl font-semibold p-0"
               >
                 <ArrowLeft className="h-4 w-4" />
                 Danh sách truyện
               </Button>
-
-
             </div>
             <Card>
               <CardHeader>
@@ -357,7 +363,7 @@ export default function BilingualStoryMain() {
                   <BookOpen className="h-5 w-5 text-primary" />
                   <h2 className="text-xl text-center font-bold">{selectedStory.title}</h2>
                 </div>
-                <Tabs value={tab} onValueChange={(value) => setTab(value as "en" | "vi")}>
+                <Tabs value={tab} onValueChange={(value) => setTab(value as 'en' | 'vi')}>
                   <TabsList className="grid w-full grid-cols-2">
                     <TabsTrigger
                       value="en"
@@ -373,7 +379,6 @@ export default function BilingualStoryMain() {
                       <Home className="h-4 w-4" />
                       Tiếng Việt
                     </TabsTrigger>
-
                   </TabsList>
                 </Tabs>
               </CardHeader>
@@ -443,20 +448,20 @@ export default function BilingualStoryMain() {
         </Dialog>
       </main>
     </div>
-  )
+  );
 }
 
 function renderStoryContent(content: string, onWordClick: (word: string) => void) {
-  if (!content) return null
+  if (!content) return null;
 
-  const parts = content.split(/(\[\[.*?\]\])/g)
+  const parts = content.split(/(\[\[.*?\]\])/g);
   return (
     <div className="leading-relaxed">
       {parts &&
         parts.map((part, idx) => {
-          const match = part.match(/^\[\[(.*?)\]\]$/)
+          const match = part.match(/^\[\[(.*?)\]\]$/);
           if (match) {
-            const word = match[1]
+            const word = match[1];
             return (
               <span
                 key={idx}
@@ -465,10 +470,14 @@ function renderStoryContent(content: string, onWordClick: (word: string) => void
               >
                 {word}
               </span>
-            )
+            );
           }
-          return <span className="pt-2 pb-2" key={idx}>{part}</span>
+          return (
+            <span className="pt-2 pb-2" key={idx}>
+              {part}
+            </span>
+          );
         })}
     </div>
-  )
+  );
 }
