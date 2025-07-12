@@ -121,7 +121,7 @@ const models = {
   `,
   bilingualStoryUser: `
     Bạn là AI chuyên tạo truyện song ngữ cho người học tiếng Anh. Khi nhận được tiêu đề và tóm tắt truyện, hãy viết nội dung chi tiết cho truyện đó:
-    - Độ dài truyện: 500-1000 từ.
+    - Độ dài truyện: 300-500 từ.
     - Nội dung truyện phải có cả tiếng Anh và tiếng Việt, đan xen tự nhiên. Nội dung tiếng Việt phải có thêm nhiều từ tiếng anh đan xen vào. 
     - Mỗi câu tiếng Việt nên có 1, 2 từ tiếng Anh đan xen vào.
     - Các cụm tiếng Anh cần được đánh dấu bằng [[...]] trong content (ví dụ: "Tôi thích [[reading books]] mỗi tối.").
