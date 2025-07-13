@@ -147,7 +147,11 @@ export default function Sidebar() {
               icon={Library}
               label="Truyện song ngữ"
               onClick={() => {
-                setMessage('Tính năng đang phát triển!');
+                if (user && user.plan_id >= 2) {
+                  handleNav('/bilingual-story');
+                } else {
+                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
+                }
               }}
             />
             <NavItem

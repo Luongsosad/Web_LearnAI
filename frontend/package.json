@@ -13,8 +13,14 @@
   "dependencies": {
     "@google-cloud/text-to-speech": "^6.1.0",
     "@google/generative-ai": "^0.24.1",
+    "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-separator": "^1.1.7",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tabs": "^1.1.12",
     "@reduxjs/toolkit": "^2.8.2",
     "axios": "^1.9.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "eslint-plugin-prettier": "^5.5.1",
     "formidable": "^3.5.4",
     "framer-motion": "^12.15.0",
@@ -27,6 +33,7 @@
     "react-redux": "^9.2.0",
     "react-swipeable": "^7.0.2",
     "swipeable": "^1.0.5",
+    "tailwind-merge": "^3.3.1",
     "zustand": "^5.0.5"
   },
   "devDependencies": {
