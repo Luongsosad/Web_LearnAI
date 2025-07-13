@@ -1,4 +1,9 @@
-export const API_BASE_URL = 'https://backend-learnai.onrender.com';
+import Constants from 'expo-constants';
+
+export const API_BASE_URL = Constants.expoConfig?.extra?.API_BASE_URL || 'http://localhost:6789';
+
+
+console.log('API_BASE_URL:', API_BASE_URL);
 
 export const API_ENDPOINTS = {
   // Auth
@@ -10,7 +15,7 @@ export const API_ENDPOINTS = {
   PROFILE: `${API_BASE_URL}/a/profile`,
   
   // Chat
-  CHAT: `${API_BASE_URL}/chat/chat`,
+  CHAT: `${API_BASE_URL}/chat`,
   
   // Flashcards
   FLASHCARDS: `${API_BASE_URL}/w/flashcards`,

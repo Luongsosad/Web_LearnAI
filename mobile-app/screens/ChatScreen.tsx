@@ -5,6 +5,7 @@ import axios from 'axios';
 import { SessionStorage } from '../storage/sessionStorage';
 import LoadedOverlay from '../components/LoadedOverlay';
 import Notify from '../components/Notify';
+import { API_ENDPOINTS } from '@/config/api';
 
 interface Message {
   id: string;
@@ -41,7 +42,7 @@ export default function ChatScreen() {
     setLoading(true);
 
     try {
-      const res = await axios.post('http://localhost:6789/c/chat', {
+      const res = await axios.post(API_ENDPOINTS.CHAT, {
         message: inputText
       }, { withCredentials: true });
 
