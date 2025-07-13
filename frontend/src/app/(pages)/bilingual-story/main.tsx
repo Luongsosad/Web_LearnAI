@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
   BookOpen,
@@ -25,6 +25,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Separator } from '@/components/ui/separator';
 import LoadedOverlay from '@/components/LoadedOverlay';
 import { useSidebarStore } from '@/storage/sidebarState';
+import { SessionStorage } from '@/storage/sessionStorage';
+import { User } from '@/types/User';
+import { useRouter } from 'next/navigation';
 
 interface Story {
   id: string;
@@ -64,12 +67,39 @@ export default function BilingualStoryMain() {
   const [tab, setTab] = useState<'en' | 'vi'>('en');
   const [loading, setLoading] = useState(false);
   const [popup, setPopup] = useState<WordInfo | null>(null);
+  const [_user, setUser] = useState<User | null>(null);
+  const [isAuthorized, setIsAuthorized] = useState(false);
+  const router = useRouter();
 
   // State để lưu trữ thông tin từ vựng theo chủ đề và truyện
   const [wordInfoCache, setWordInfoCache] = useState<{
     [key: string]: { [word: string]: WordInfo };
   }>({});
   const [preparingData, setPreparingData] = useState(false);
+
+  // Check user authorization
+  useEffect(() => {
+    async function fetchUser() {
+      setLoading(true);
+      const user = await SessionStorage.getUser(
+        (loading) => setLoading(loading),
+        (user) => setUser(user)
+      );
+
+      if (!user) {
+        router.push('/login');
+        return;
+      }
+
+      if (user?.plan_id && user?.plan_id >= 2) {
+        setIsAuthorized(true);
+      } else {
+        router.push('/');
+      }
+      setLoading(false);
+    }
+    fetchUser();
+  }, [router]);
 
   const fetchStories = async (topicId: string) => {
     setLoading(true);
@@ -204,6 +234,8 @@ export default function BilingualStoryMain() {
   };
 
   const selectedTopicData = TOPICS.find((t) => t.id === selectedTopic);
+
+  if (!isAuthorized) return null;
 
   return (
     <div className={`min-h-screen transition-colors duration-300"}`}>

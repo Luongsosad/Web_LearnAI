@@ -162,8 +162,11 @@ export default function Main() {
             <div
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
-                // handleServiceClick("/bilingual-stories");
-                setMessage('Tính năng đang phát triển!');
+                if (user && user.plan_id >= 2) {
+                  handleServiceClick('/bilingual-story');
+                } else {
+                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
+                }
               }}
             >
               <Library className="w-6 h-6 text-purple-400 mr-4" />
