@@ -20,7 +20,7 @@ app.use(morgan('dev'));
 
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL], // Thêm các domain bạn muốn
+    origin: process.env.FRONTEND_URL.split(',').map((url) => url.trim()), // Thêm các domain bạn muốn
     methods: ['GET', 'POST'], // Chỉ cho phép GET và POST
     allowedHeaders: ['Content-Type'], // Chỉ cho phép header Content-Type
     credentials: true,

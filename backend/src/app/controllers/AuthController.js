@@ -55,6 +55,7 @@ async function login(req, res) {
     return res.status(400).json({ message: 'Missing required fields' });
   }
   try {
+    console.log(email, password);
     const user = await findUserByEmail(email);
     if (!user || !user.password) {
       return res.status(400).json({ message: 'Invalid credentials' });
