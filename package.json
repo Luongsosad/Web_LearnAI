@@ -8,8 +8,8 @@
     "prepare": "husky install",
     "lint:fe": "cd frontend && npm run lint",
     "lint:be": "cd backend && npm run lint",
-    "format:fe": "cd frontend && npm run format",
-    "format:be": "cd backend && npm run format",
+    "format:fe": "cd frontend && npm run format:fix && npm run format",
+    "format:be": "cd backend && npm run format:fix && npm run format",
     "check-all": "npm run lint:fe && npm run lint:be && npm run format:fe && npm run format:be"
   },
   "keywords": [],

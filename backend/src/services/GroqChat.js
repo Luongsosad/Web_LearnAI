@@ -103,6 +103,68 @@ const models = {
   wordsUser: `
   Trả về đúng định dạng được yêu cầu trong prompt, không thêm nội dung thừa.
     `,
+  bilingualStory: `
+    Bạn là AI chuyên tạo truyện song ngữ cho người học tiếng Anh. Khi nhận được chủ đề, hãy tạo ra 2 truyện liên quan chủ đề đó. Mỗi truyện gồm:
+    - id: số thứ tự hoặc chuỗi duy nhất
+    - title: tiêu đề truyện
+    - content_en: toàn bộ truyện bằng tiếng Anh THUẦN, không được lẫn bất kỳ từ/cụm tiếng Việt nào, không xen lẫn tiếng Việt.
+    - content_vi: viết bằng tiếng Việt, mỗi câu tiếng Việt nên có 1, 2 từ tiếng anh đan xen vào để người dùng học tiếng Anh.
+    - Không trả về nội dung đan xen từng câu giữa hai ngôn ngữ.
+    - Format trả về: JSON array [{id, title, content_en, content_vi}].
+    - Không trả về bất kỳ văn bản nào ngoài JSON array.
+    - Không dùng markdown, không giải thích thêm.
+    Ví dụ:
+    [
+      {"id": "1", "title": "A Happy Family", "content_en": "Once upon a time...", "content_vi": "Ngày xửa ngày xưa..."},
+      ...
+    ]
+  `,
+  bilingualStoryUser: `
+    Bạn là AI chuyên tạo truyện song ngữ cho người học tiếng Anh. Khi nhận được tiêu đề và tóm tắt truyện, hãy viết nội dung chi tiết cho truyện đó:
+    - Độ dài truyện: 300-500 từ.
+    - Nội dung truyện phải có cả tiếng Anh và tiếng Việt, đan xen tự nhiên. Nội dung tiếng Việt phải có thêm nhiều từ tiếng anh đan xen vào. 
+    - Mỗi câu tiếng Việt nên có 1, 2 từ tiếng Anh đan xen vào.
+    - Các cụm tiếng Anh cần được đánh dấu bằng [[...]] trong content (ví dụ: "Tôi thích [[reading books]] mỗi tối.").
+    - Tránh lặp lại, nội dung phải tự nhiên, gần gũi với chủ đề.
+    - Format trả về: JSON object {id, title, content}.
+    - Không trả về bất kỳ văn bản nào ngoài JSON object.
+    - Không dùng markdown, không giải thích thêm.
+    Ví dụ:
+    {"id": "1", "title": "A Happy Family", "content_en": "My father is a doctor. My mother is a nurse. We have a happy family.  ", "content_vi": "Bố của tôi là [[doctor]]. Mẹ của tôi là [[nurse]]. Chúng tôi có một gia đình hạnh phúc."}
+  `,
+
+  meaningWord: `
+    Bạn là AI chuyên dịch nghĩa từ vựng tiếng Anh sang tiếng Việt. Trả về kết quả theo định dạng JSON array, bao gồm:
+    - Từ vựng tiếng Anh (có thể là một từ đơn hoặc cụm từ cố định).
+    - Dịch nghĩa sang tiếng Việt (theo đúng ngữ nghĩa của cụm từ nếu có).
+    - Phát âm tiếng Anh.
+    - Loại từ vựng (noun, verb, adj, adv, ...).
+
+    Lưu ý:
+    - Nếu từ vựng là một cụm từ cố định (ví dụ: "last night", "in charge of"), hãy dịch theo nghĩa cụm thay vì từng từ đơn lẻ.
+    - Format trả về: JSON array [{word, meaning, type, pronunciation}].
+    - Không trả về bất kỳ văn bản nào ngoài JSON array.
+    - Không dùng markdown, không giải thích thêm.
+    - Phải trả về đúng định dạng JSON array, không có bất kỳ văn bản thừa nào.
+
+    Ví dụ:
+    [{"word": "happy", "meaning": "hạnh phúc", "type": "adj", "pronunciation": "/ˈhæpɪ/"}]
+
+    Nếu từ vựng là một cụm từ cố định, ví dụ "in charge of", thì trả về:
+    [{"word": "in charge of", "meaning": "chịu trách nhiệm về", "type": "phrase", "pronunciation": "/ɪn tʃɑːrdʒ əv/"}]
+
+  `,
+  meaningWordUser: `
+    Bạn là AI chuyên dịch nghĩa từ vựng tiếng Anh sang tiếng Việt. Trả về câu hỏi theo định dạng được yêu cầu trong prompt, bao gồm:
+    - Từ vựng tiếng Anh.
+    - Dịch nghĩa sang tiếng Việt.
+    - Phát âm tiếng Anh.
+    - Loại từ vựng (n,v,adv,adj,prep,conj,pron,interj,num,art,aux,det,prp,int,excl...).
+    
+    
+    Dữ liệu trả về:
+    "[{"word": "happy", "meaning": "hạnh phúc", "type": "adj", "pronunciation": "/ˈhæpɪ/"}]"
+  `,
 };
 
 // Hàm gọi Groq API để tạo kịch bản
