@@ -35,7 +35,7 @@ export const generatePracticeSentences = async (req, res) => {
     - Chỉ trả về JSON array, không có văn bản thêm`;
 
     const result = await generateScript(prompt, [], 'listen');
-    
+
     // Parse the JSON response
     let sentences;
     try {
@@ -52,18 +52,30 @@ export const generatePracticeSentences = async (req, res) => {
       console.log('TTS ENGLISH:', sentence.text);
       try {
         // Tạo audio tuần tự thay vì Promise.all
-        const normalAudio = await synthesizeGradioSpeech(sentence.text, 'en-US-AvaNeural (en-US, Female)', 1.0, 1, 2);
+        const normalAudio = await synthesizeGradioSpeech(
+          sentence.text,
+          'en-US-AvaNeural (en-US, Female)',
+          1.0,
+          1,
+          2
+        );
         console.log('Normal audio generated:', normalAudio ? 'success' : 'failed');
-        
-        const fastAudio = await synthesizeGradioSpeech(sentence.text, 'en-US-AvaNeural (en-US, Female)', 12, 1, 2);
+
+        const fastAudio = await synthesizeGradioSpeech(
+          sentence.text,
+          'en-US-AvaNeural (en-US, Female)',
+          12,
+          1,
+          2
+        );
         console.log('Fast audio generated:', fastAudio ? 'success' : 'failed');
-        
+
         sentencesWithAudio.push({
           ...sentence,
           audioUrl: normalAudio || '',
           fastAudioUrl: fastAudio || '',
           userAnswer: '',
-          isCorrect: false
+          isCorrect: false,
         });
       } catch (audioError) {
         console.error(`Error generating audio for sentence ${i + 1}:`, audioError);
@@ -72,7 +84,7 @@ export const generatePracticeSentences = async (req, res) => {
           audioUrl: '',
           fastAudioUrl: '',
           userAnswer: '',
-          isCorrect: false
+          isCorrect: false,
         });
       }
     }
@@ -101,11 +113,17 @@ export const generateAudioWithSpeed = async (req, res) => {
     const pitchMap = {
       slow: -10,
       normal: 1,
-      fast: 12
+      fast: 12,
     };
 
     const rate = pitchMap[speed];
-    const audioUrl = await synthesizeGradioSpeech(text, 'en-US-AvaNeural (en-US, Female)', rate, 1, 2);
+    const audioUrl = await synthesizeGradioSpeech(
+      text,
+      'en-US-AvaNeural (en-US, Female)',
+      rate,
+      1,
+      2
+    );
 
     if (!audioUrl) {
       return res.status(500).json({ error: 'Không thể tạo âm thanh.' });
@@ -128,17 +146,17 @@ export const checkUserAnswer = async (req, res) => {
 
   try {
     // Check if user answer contains any of the correct words
-    const isCorrect = correctWords.some(word => 
+    const isCorrect = correctWords.some((word) =>
       userAnswer?.toLowerCase().includes(word.toLowerCase())
     );
 
-    return res.status(200).json({ 
+    return res.status(200).json({
       isCorrect,
       correctWords,
-      userAnswer: userAnswer || ''
+      userAnswer: userAnswer || '',
     });
   } catch (error) {
     console.error('Lỗi controller:', error);
     return res.status(500).json({ error: 'Lỗi server khi kiểm tra câu trả lời.' });
   }
-}; 
+};

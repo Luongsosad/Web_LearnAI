@@ -1,5 +1,9 @@
 import express from 'express';
-import { generatePracticeSentences, generateAudioWithSpeed, checkUserAnswer } from '../controllers/ListenPracticeController.js';
+import {
+  generatePracticeSentences,
+  generateAudioWithSpeed,
+  checkUserAnswer,
+} from '../controllers/ListenPracticeController.js';
 
 const router = express.Router();
 
@@ -12,4 +16,4 @@ router.post('/audio', generateAudioWithSpeed);
 // Check user answer
 router.post('/check', checkUserAnswer);
 
-export { router as listenPracticeRoute }; 
+export { router as listenPracticeRoute };
