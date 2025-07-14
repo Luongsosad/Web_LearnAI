@@ -17,6 +17,7 @@ import {
   MoreVertical,
   Settings,
   CreditCard,
+  Volume2,
 } from 'lucide-react';
 import { SessionStorage } from '@/storage/sessionStorage';
 import { useSidebarStore } from '@/storage/sidebarState';
@@ -160,6 +161,17 @@ export default function Sidebar() {
               onClick={() => {
                 if (user && user.plan_id >= 3) {
                   handleNav('/quiz');
+                } else {
+                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
+                }
+              }}
+            />
+            <NavItem
+              icon={Volume2}
+              label="Luyện nghe"
+              onClick={() => {
+                if (user && user.plan_id >= 1) {
+                  handleNav('/listen-practice');
                 } else {
                   setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
                 }

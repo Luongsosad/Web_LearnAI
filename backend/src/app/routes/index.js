@@ -7,6 +7,7 @@ import { communicateRoute } from './communicate.route.js';
 import { wordRoute } from './word.route.js';
 import { orderRoute } from './order.route.js';
 import { bilingualStoryRoute } from './bilingualStory.route.js';
+import { listenPracticeRoute } from './listenPractice.route.js';
 
 import { authenticateToken } from '../middleware/authMiddleware.js';
 import { checkPlan } from '../middleware/checkPlan.js';
@@ -22,6 +23,7 @@ function route(app) {
   app.use('/audio', authenticateToken, checkPlan([1, 2, 3]), audioRoute); // Free, Basic và Pro
   app.use('/communicate', authenticateToken, checkPlan([2, 3]), communicateRoute); // Basic và Pro
   app.use('/bilingual-story', bilingualStoryRoute);
+  app.use('/listen-practice', authenticateToken, checkPlan([1, 2, 3]), listenPracticeRoute); // Free, Basic, Pro
 
   app.get('/ping', (req, res) => {
     res.send('Hello guy! This is website: Learning by AI.');
