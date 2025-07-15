@@ -3,6 +3,9 @@ name: CD Frontend
 on:
   push:
     branches: [main]
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/cd-fe.yml'
 
 jobs:
   deploy:
