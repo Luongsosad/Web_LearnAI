@@ -8,6 +8,7 @@ import {
   Headphones,
   Library,
   Sidebar,
+  Volume2,
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { SessionStorage } from '@/storage/sessionStorage';
@@ -114,6 +115,27 @@ export default function Main() {
                 <h3 className="text-lg font-semibold text-white">Luyện giao tiếp với AI</h3>
                 <p className="text-gray-400 text-sm">
                   Luyện nói tiếng Anh trực tiếp với AI qua hội thoại.
+                </p>
+              </div>
+              <PlanBadge level={2} />
+            </div>
+
+            {/* Listen Practice */}
+            <div
+              className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
+              onClick={() => {
+                if (user && user.plan_id >= 2) {
+                  handleServiceClick('/listen-practice');
+                } else {
+                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
+                }
+              }}
+            >
+              <Volume2 className="w-6 h-6 text-pink-400 mr-4" />
+              <div>
+                <h3 className="text-lg font-semibold text-white">Luyện nghe với AI</h3>
+                <p className="text-gray-400 text-sm">
+                  Luyện tập nghe chép chính tả với đa dạng câu từ.
                 </p>
               </div>
               <PlanBadge level={2} />
