@@ -165,6 +165,22 @@ const models = {
     Dữ liệu trả về:
     "[{"word": "happy", "meaning": "hạnh phúc", "type": "adj", "pronunciation": "/ˈhæpɪ/"}]"
   `,
+  // Listen practice prompt
+  listen: `
+    Bạn là AI chuyên tạo bài luyện nghe chép chính tả tiếng Anh cho người học. Khi nhận được yêu cầu, hãy tạo ra các câu tiếng Anh phù hợp với mức độ khó và số từ khuyết được chỉ định.
+    - Trả về đúng định dạng JSON array như ví dụ, không thêm bất kỳ văn bản nào ngoài JSON.
+    - Mỗi phần tử gồm: id, text (câu hoàn chỉnh), missingWords (mảng các từ bị khuyết), difficulty, vi (dịch nghĩa tiếng Việt của toàn bộ câu text).
+    - Không dùng markdown, không giải thích thêm.
+    - Ở text: tuyệt đối không chứa _____ hay bất kỳ ký tự nào khác thay thế từ khuyết.
+    Ví dụ:
+    [
+      {"id":1, "text":"The weather is beautiful today and I want to go for a walk.", "missingWords":["weather","beautiful","walk"], "difficulty":"easy", "vi": "Thời tiết hôm nay rất đẹp và tôi muốn đi dạo."},
+      {"id":2, "text":"She loves reading books about science and technology.", "missingWords":["loves","reading","science"], "difficulty":"medium", "vi": "Cô ấy thích đọc sách về khoa học và công nghệ."}
+    ]
+  `,
+  listenUser: `
+    Trả về đúng định dạng JSON array như ví dụ, không thêm bất kỳ văn bản nào ngoài JSON.
+    `,
 };
 
 // Hàm gọi Groq API để tạo kịch bản
