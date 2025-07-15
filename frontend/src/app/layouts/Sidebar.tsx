@@ -127,6 +127,17 @@ export default function Sidebar() {
               }}
             />
             <NavItem
+              icon={Volume2}
+              label="Luyện nghe"
+              onClick={() => {
+                if (user && user.plan_id >= 2) {
+                  handleNav('/listen-practice');
+                } else {
+                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
+                }
+              }}
+            />
+            <NavItem
               icon={Mic}
               label="Phát âm"
               onClick={() => {
@@ -161,17 +172,6 @@ export default function Sidebar() {
               onClick={() => {
                 if (user && user.plan_id >= 3) {
                   handleNav('/quiz');
-                } else {
-                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
-                }
-              }}
-            />
-            <NavItem
-              icon={Volume2}
-              label="Luyện nghe"
-              onClick={() => {
-                if (user && user.plan_id >= 1) {
-                  handleNav('/listen-practice');
                 } else {
                   setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
                 }

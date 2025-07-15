@@ -209,6 +209,7 @@ export default function ListenPracticeMain() {
     if (currentSentenceIndex < sentences.length - 1) {
       setCurrentSentenceIndex(currentSentenceIndex + 1);
       setIsPlaying(false);
+      setShowResults(false);
     }
   };
 
@@ -216,6 +217,7 @@ export default function ListenPracticeMain() {
     if (currentSentenceIndex > 0) {
       setCurrentSentenceIndex(currentSentenceIndex - 1);
       setIsPlaying(false);
+      setShowResults(false);
     }
   };
 
@@ -294,7 +296,7 @@ export default function ListenPracticeMain() {
           <button className="text-gray-200 hover:text-white" onClick={() => toggle()}>
             <Sidebar size={24} />
           </button>
-          <div className="text-xl font-semibold">Luyện Nghe Chép Chính Tả</div>
+          <div className="text-xl font-semibold">Listen with AI</div>
           <div className="w-6"></div>
         </div>
         <div className="text-center text-sm text-gray-400 mt-1 mb-1">Learning by AI</div>
@@ -326,11 +328,10 @@ export default function ListenPracticeMain() {
                       key={difficulty}
                       variant={settings.difficulty === difficulty ? 'default' : 'outline'}
                       onClick={() => setSettings({ ...settings, difficulty })}
-                      className={`h-12 border-2 ${
-                        settings.difficulty === difficulty
+                      className={`h-12 border-2 ${settings.difficulty === difficulty
                           ? 'border-blue-500 bg-blue-600 text-white'
                           : 'border-gray-600 hover:border-gray-400'
-                      }`}
+                        }`}
                     >
                       {difficulty === 'easy' && 'Dễ'}
                       {difficulty === 'medium' && 'Trung bình'}
@@ -347,11 +348,10 @@ export default function ListenPracticeMain() {
                   <Button
                     variant={settings.wordCount === '3-7' ? 'default' : 'outline'}
                     onClick={() => setSettings({ ...settings, wordCount: '3-7' })}
-                    className={`w-full h-12 border-2 ${
-                      settings.wordCount === '3-7'
+                    className={`w-full h-12 border-2 ${settings.wordCount === '3-7'
                         ? 'border-blue-500 bg-blue-600 text-white'
                         : 'border-gray-600 hover:border-gray-400'
-                    }`}
+                      }`}
                   >
                     3-7 từ mỗi câu
                   </Button>
@@ -359,11 +359,10 @@ export default function ListenPracticeMain() {
                     <Button
                       variant={settings.wordCount === 'percentage' ? 'default' : 'outline'}
                       onClick={() => setSettings({ ...settings, wordCount: 'percentage' })}
-                      className={`w-full h-12 border-2 ${
-                        settings.wordCount === 'percentage'
+                      className={`w-full h-12 border-2 ${settings.wordCount === 'percentage'
                           ? 'border-blue-500 bg-blue-600 text-white'
                           : 'border-gray-600 hover:border-gray-400'
-                      }`}
+                        }`}
                     >
                       Theo phần trăm
                     </Button>
@@ -588,30 +587,22 @@ export default function ListenPracticeMain() {
               animate={{ opacity: 1, y: 0 }}
               className="space-y-6"
             >
-              <div className="text-center space-y-2">
-                <h2 className="text-2xl font-bold">Kết quả</h2>
-                <p className="text-lg">Câu {currentSentenceIndex + 1}</p>
+              <div className="flex items-center">
+                <h2 className="text-2xl font-bold">Kết quả: </h2>
+                <div className="text-xl ml-4">Câu {currentSentenceIndex + 1} -</div>
                 <div
-                  className={`text-2xl font-bold ${sentences[currentSentenceIndex]?.isCorrect ? 'text-green-500' : 'text-red-500'}`}
+                  className={`text-xl font-bold ml-2 ${sentences[currentSentenceIndex]?.isCorrect ? 'text-green-500' : 'text-red-500'}`}
                 >
                   {sentences[currentSentenceIndex]?.isCorrect ? 'Đúng' : 'Sai'}
                 </div>
               </div>
 
-              {/* Khi show results, luôn hiện dịch nghĩa */}
-              {showResults && (
-                <div className="text-base text-green-400 mt-2 mb-2 text-center">
-                  {sentences[currentSentenceIndex]?.vi}
-                </div>
-              )}
-
               <div className="space-y-4">
                 <div
-                  className={`p-4 rounded-lg border ${
-                    sentences[currentSentenceIndex]?.isCorrect
+                  className={`p-4 rounded-lg border ${sentences[currentSentenceIndex]?.isCorrect
                       ? 'border-green-500 bg-green-900/20'
                       : 'border-red-500 bg-red-900/20'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center space-x-2 mb-2">
                     {sentences[currentSentenceIndex]?.isCorrect ? (
@@ -622,6 +613,12 @@ export default function ListenPracticeMain() {
                     <span className="text-sm">Câu {currentSentenceIndex + 1}</span>
                   </div>
                   <p className="text-sm text-gray-300">{sentences[currentSentenceIndex]?.text}</p>
+                  {/* Khi show results, luôn hiện dịch nghĩa */}
+                  {showResults && (
+                    <div className="text-sm text-green-400 mt-1 mb-1">
+                      Dịch nghĩa: {sentences[currentSentenceIndex]?.vi}
+                    </div>
+                  )}
                   <p className="text-xs text-gray-400 mt-1">
                     Câu trả lời: {sentences[currentSentenceIndex]?.userAnswer || '(không trả lời)'}
                   </p>
