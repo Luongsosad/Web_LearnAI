@@ -328,10 +328,11 @@ export default function ListenPracticeMain() {
                       key={difficulty}
                       variant={settings.difficulty === difficulty ? 'default' : 'outline'}
                       onClick={() => setSettings({ ...settings, difficulty })}
-                      className={`h-12 border-2 ${settings.difficulty === difficulty
+                      className={`h-12 border-2 ${
+                        settings.difficulty === difficulty
                           ? 'border-blue-500 bg-blue-600 text-white'
                           : 'border-gray-600 hover:border-gray-400'
-                        }`}
+                      }`}
                     >
                       {difficulty === 'easy' && 'Dễ'}
                       {difficulty === 'medium' && 'Trung bình'}
@@ -348,10 +349,11 @@ export default function ListenPracticeMain() {
                   <Button
                     variant={settings.wordCount === '3-7' ? 'default' : 'outline'}
                     onClick={() => setSettings({ ...settings, wordCount: '3-7' })}
-                    className={`w-full h-12 border-2 ${settings.wordCount === '3-7'
+                    className={`w-full h-12 border-2 ${
+                      settings.wordCount === '3-7'
                         ? 'border-blue-500 bg-blue-600 text-white'
                         : 'border-gray-600 hover:border-gray-400'
-                      }`}
+                    }`}
                   >
                     3-7 từ mỗi câu
                   </Button>
@@ -359,10 +361,11 @@ export default function ListenPracticeMain() {
                     <Button
                       variant={settings.wordCount === 'percentage' ? 'default' : 'outline'}
                       onClick={() => setSettings({ ...settings, wordCount: 'percentage' })}
-                      className={`w-full h-12 border-2 ${settings.wordCount === 'percentage'
+                      className={`w-full h-12 border-2 ${
+                        settings.wordCount === 'percentage'
                           ? 'border-blue-500 bg-blue-600 text-white'
                           : 'border-gray-600 hover:border-gray-400'
-                        }`}
+                      }`}
                     >
                       Theo phần trăm
                     </Button>
@@ -599,10 +602,11 @@ export default function ListenPracticeMain() {
 
               <div className="space-y-4">
                 <div
-                  className={`p-4 rounded-lg border ${sentences[currentSentenceIndex]?.isCorrect
+                  className={`p-4 rounded-lg border ${
+                    sentences[currentSentenceIndex]?.isCorrect
                       ? 'border-green-500 bg-green-900/20'
                       : 'border-red-500 bg-red-900/20'
-                    }`}
+                  }`}
                 >
                   <div className="flex items-center space-x-2 mb-2">
                     {sentences[currentSentenceIndex]?.isCorrect ? (
