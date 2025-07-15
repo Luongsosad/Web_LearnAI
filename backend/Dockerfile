@@ -16,7 +16,7 @@ COPY . .
 # Expose port (Render sẽ tự động map port này)
 EXPOSE 6789
 
-# docker run -d -p 6789:6789 --name backend-test -e GOOGLE_CLIENT_ID=dummy -e GOOGLE_CLIENT_SECRET=dummy backend-test
+# docker run -d -p 6789:6789 --name backend-test backend-test
 # docker logs backend-test
 # docker stop backend-test
 # docker rm backend-test
