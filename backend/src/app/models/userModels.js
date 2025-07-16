@@ -86,7 +86,7 @@ async function findOrCreateGoogleUser(googleId, displayName, email) {
       const createQuery = `
                 INSERT INTO users (username, email, google_id, plan_id, created_at)
                 VALUES ($1, $2, $3, 1, NOW())
-                RETURNING id, username, email, google_id, role, created_at
+                RETURNING id, username, email, google_id, plan_id, role, created_at
             `;
       const values = [displayName, email, googleId];
       const createRes = await pool.query(createQuery, values);
