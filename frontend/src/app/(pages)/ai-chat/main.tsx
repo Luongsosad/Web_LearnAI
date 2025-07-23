@@ -101,7 +101,7 @@ export default function Main() {
       const errorMessage = isRegenerate
         ? 'Lỗi khi tạo lại phản hồi, vui lòng thử lại.'
         : 'Lỗi khi lấy phản hồi, vui lòng thử lại.';
-      
+
       const botMessage: Message = {
         role: 'bot',
         content: errorMessage,
@@ -150,8 +150,8 @@ export default function Main() {
       {/* Header */}
       <div className="fixed top-0 left-0 w-full bg-gray-900 border-b border-gray-700 z-20">
         <div className="flex items-center justify-between px-4 py-3">
-          <button 
-            className="text-gray-200 hover:text-white p-2 hover:bg-gray-800 rounded-lg transition-colors" 
+          <button
+            className="text-gray-200 hover:text-white p-2 hover:bg-gray-800 rounded-lg transition-colors"
             onClick={() => toggle()}
           >
             <Sidebar size={24} />
@@ -159,25 +159,20 @@ export default function Main() {
           <div className="text-xl font-semibold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
             AI Assistant
           </div>
-          <button 
-            className="text-gray-200 hover:text-white p-2 hover:bg-gray-800 rounded-lg transition-colors" 
+          <button
+            className="text-gray-200 hover:text-white p-2 hover:bg-gray-800 rounded-lg transition-colors"
             onClick={() => console.log('History')}
           >
             <History size={24} />
           </button>
         </div>
-        <div className="text-center text-sm text-gray-400 pb-2">
-          Trò chuyện thông minh với AI
-        </div>
+        <div className="text-center text-sm text-gray-400 pb-2">Trò chuyện thông minh với AI</div>
       </div>
 
       {/* Main Content */}
       <div className="mt-[100px] mb-[140px] flex-1 flex flex-col overflow-y-auto">
         {messages.length === 0 ? (
-          <WelcomeScreen 
-            username={user?.username} 
-            onQuickStart={handleQuickStart} 
-          />
+          <WelcomeScreen username={user?.username} onQuickStart={handleQuickStart} />
         ) : (
           <div className="flex-1 flex flex-col px-4 py-4 space-y-4">
             {messages.map((msg, idx) => (
@@ -190,13 +185,7 @@ export default function Main() {
                 onRegenerate={regenerateMessage}
               />
             ))}
-            {isThinking && (
-              <MessageBubble
-                role="bot"
-                content=""
-                isThinking={true}
-              />
-            )}
+            {isThinking && <MessageBubble role="bot" content="" isThinking={true} />}
             <div ref={messagesEndRef} />
           </div>
         )}
@@ -248,4 +237,4 @@ export default function Main() {
       {loading && <LoadedOverlay />}
     </div>
   );
-} 
+}

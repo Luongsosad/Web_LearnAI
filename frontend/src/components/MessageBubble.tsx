@@ -17,7 +17,7 @@ export default function MessageBubble({
   isLast = false,
   onCopy,
   onRegenerate,
-  isThinking = false
+  isThinking = false,
 }: MessageBubbleProps) {
   const [copied, setCopied] = React.useState(false);
 
@@ -41,8 +41,14 @@ export default function MessageBubble({
           <div className="flex items-center space-x-2">
             <div className="flex space-x-1">
               <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
-              <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-              <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+              <div
+                className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"
+                style={{ animationDelay: '0.1s' }}
+              ></div>
+              <div
+                className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"
+                style={{ animationDelay: '0.2s' }}
+              ></div>
             </div>
             <span className="text-sm text-gray-400">AI đang suy nghĩ...</span>
           </div>
@@ -73,7 +79,7 @@ export default function MessageBubble({
         <div className="whitespace-pre-line break-words text-gray-100 leading-relaxed">
           {content}
         </div>
-        
+
         {isLast && (onCopy || onRegenerate) && (
           <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-700">
             <div className="flex items-center space-x-2">
@@ -96,7 +102,7 @@ export default function MessageBubble({
                 </button>
               )}
             </div>
-            
+
             {onRegenerate && (
               <button
                 onClick={onRegenerate}
@@ -111,4 +117,4 @@ export default function MessageBubble({
       </div>
     </div>
   );
-} 
+}

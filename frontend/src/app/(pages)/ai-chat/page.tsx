@@ -28,4 +28,4 @@ function AIChat() {
   );
 }
 
-export default AIChat; 
+export default AIChat;

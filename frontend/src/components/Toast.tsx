@@ -16,26 +16,26 @@ const toastStyles = {
     bg: 'bg-green-500',
     border: 'border-green-600',
     icon: <CheckCircle size={20} className="text-white" />,
-    text: 'text-green-100'
+    text: 'text-green-100',
   },
   error: {
     bg: 'bg-red-500',
     border: 'border-red-600',
     icon: <XCircle size={20} className="text-white" />,
-    text: 'text-red-100'
+    text: 'text-red-100',
   },
   warning: {
     bg: 'bg-yellow-500',
     border: 'border-yellow-600',
     icon: <AlertCircle size={20} className="text-white" />,
-    text: 'text-yellow-100'
+    text: 'text-yellow-100',
   },
   info: {
     bg: 'bg-blue-500',
     border: 'border-blue-600',
     icon: <AlertCircle size={20} className="text-white" />,
-    text: 'text-blue-100'
-  }
+    text: 'text-blue-100',
+  },
 };
 
 export default function Toast({ type, message, duration = 3000, onClose }: ToastProps) {
@@ -58,15 +58,13 @@ export default function Toast({ type, message, duration = 3000, onClose }: Toast
         isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
       }`}
     >
-      <div className={`${styles.bg} ${styles.border} border rounded-lg shadow-lg p-4 min-w-[300px]`}>
+      <div
+        className={`${styles.bg} ${styles.border} border rounded-lg shadow-lg p-4 min-w-[300px]`}
+      >
         <div className="flex items-center space-x-3">
-          <div className="flex-shrink-0">
-            {styles.icon}
-          </div>
+          <div className="flex-shrink-0">{styles.icon}</div>
           <div className="flex-1">
-            <p className={`${styles.text} text-sm font-medium`}>
-              {message}
-            </p>
+            <p className={`${styles.text} text-sm font-medium`}>{message}</p>
           </div>
           <button
             onClick={() => {
@@ -81,4 +79,4 @@ export default function Toast({ type, message, duration = 3000, onClose }: Toast
       </div>
     </div>
   );
-} 
+}

@@ -8,21 +8,21 @@ interface VoiceIndicatorProps {
   level?: number; // 0-100
 }
 
-export default function VoiceIndicator({ 
-  isListening, 
-  isMuted = false, 
-  level = 0 
+export default function VoiceIndicator({
+  isListening,
+  isMuted = false,
+  level = 0,
 }: VoiceIndicatorProps) {
   const getWaveformBars = () => {
     const bars = [];
     const barCount = 8;
     const maxHeight = 24;
-    
+
     for (let i = 0; i < barCount; i++) {
-      const height = isListening 
+      const height = isListening
         ? Math.max(2, (level / 100) * maxHeight * (0.3 + Math.random() * 0.7))
         : 2;
-      
+
       bars.push(
         <div
           key={i}
@@ -31,12 +31,12 @@ export default function VoiceIndicator({
           }`}
           style={{
             height: `${height}px`,
-            animationDelay: `${i * 50}ms`
+            animationDelay: `${i * 50}ms`,
           }}
         />
       );
     }
-    
+
     return bars;
   };
 
@@ -46,28 +46,21 @@ export default function VoiceIndicator({
       <div className="relative">
         {isListening ? (
           <div className="relative">
-            <Mic 
-              size={24} 
-              className={`${
-                isMuted ? 'text-gray-500' : 'text-red-500'
-              } animate-pulse`} 
+            <Mic
+              size={24}
+              className={`${isMuted ? 'text-gray-500' : 'text-red-500'} animate-pulse`}
             />
             {!isMuted && (
               <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-400 rounded-full animate-ping" />
             )}
           </div>
         ) : (
-          <MicOff 
-            size={24} 
-            className="text-gray-400" 
-          />
+          <MicOff size={24} className="text-gray-400" />
         )}
       </div>
 
       {/* Waveform */}
-      <div className="flex items-end space-x-1 h-6">
-        {getWaveformBars()}
-      </div>
+      <div className="flex items-end space-x-1 h-6">{getWaveformBars()}</div>
 
       {/* Status Text */}
       <div className="text-sm font-medium">
@@ -81,12 +74,7 @@ export default function VoiceIndicator({
       </div>
 
       {/* Mute Indicator */}
-      {isMuted && (
-        <Volume2 
-          size={16} 
-          className="text-yellow-400" 
-        />
-      )}
+      {isMuted && <Volume2 size={16} className="text-yellow-400" />}
     </div>
   );
-} 
+}

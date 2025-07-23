@@ -13,7 +13,7 @@ export default function FloatingVoiceButton({
   isListening,
   onToggle,
   onClose,
-  showCloseButton = false
+  showCloseButton = false,
 }: FloatingVoiceButtonProps) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -29,7 +29,7 @@ export default function FloatingVoiceButton({
             <X size={20} />
           </button>
         )}
-        
+
         {/* Voice Button */}
         <button
           onClick={onToggle}
@@ -49,13 +49,13 @@ export default function FloatingVoiceButton({
           ) : (
             <Mic size={24} />
           )}
-          
+
           {/* Ripple Effect */}
           {isListening && (
             <div className="absolute inset-0 rounded-full bg-red-400 animate-ping opacity-20" />
           )}
         </button>
-        
+
         {/* Tooltip */}
         {isHovered && (
           <div className="bg-gray-800 text-white text-sm px-3 py-2 rounded-lg shadow-lg whitespace-nowrap">
@@ -65,4 +65,4 @@ export default function FloatingVoiceButton({
       </div>
     </div>
   );
-} 
+}

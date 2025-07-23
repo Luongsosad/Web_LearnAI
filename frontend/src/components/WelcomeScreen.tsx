@@ -10,28 +10,31 @@ interface WelcomeScreenProps {
 const quickStartPrompts = [
   {
     icon: <Languages size={20} />,
-    title: "Học tiếng Anh",
-    description: "Giúp tôi học tiếng Anh từ cơ bản",
-    prompt: "Bạn có thể giúp tôi học tiếng Anh từ cơ bản không? Hãy bắt đầu với những câu chào hỏi đơn giản."
+    title: 'Học tiếng Anh',
+    description: 'Giúp tôi học tiếng Anh từ cơ bản',
+    prompt:
+      'Bạn có thể giúp tôi học tiếng Anh từ cơ bản không? Hãy bắt đầu với những câu chào hỏi đơn giản.',
   },
   {
     icon: <BookOpen size={20} />,
-    title: "Giải thích khái niệm",
-    description: "Giải thích một khái niệm phức tạp",
-    prompt: "Bạn có thể giải thích khái niệm 'machine learning' một cách đơn giản và dễ hiểu không?"
+    title: 'Giải thích khái niệm',
+    description: 'Giải thích một khái niệm phức tạp',
+    prompt:
+      "Bạn có thể giải thích khái niệm 'machine learning' một cách đơn giản và dễ hiểu không?",
   },
   {
     icon: <Lightbulb size={20} />,
-    title: "Tư vấn sáng tạo",
-    description: "Tìm ý tưởng mới cho dự án",
-    prompt: "Tôi đang tìm ý tưởng cho một dự án startup. Bạn có thể gợi ý một số ý tưởng thú vị không?"
+    title: 'Tư vấn sáng tạo',
+    description: 'Tìm ý tưởng mới cho dự án',
+    prompt:
+      'Tôi đang tìm ý tưởng cho một dự án startup. Bạn có thể gợi ý một số ý tưởng thú vị không?',
   },
   {
     icon: <MessageCircle size={20} />,
-    title: "Trò chuyện thông thường",
-    description: "Chỉ muốn nói chuyện vui vẻ",
-    prompt: "Xin chào! Bạn có thể kể cho tôi nghe một câu chuyện thú vị không?"
-  }
+    title: 'Trò chuyện thông thường',
+    description: 'Chỉ muốn nói chuyện vui vẻ',
+    prompt: 'Xin chào! Bạn có thể kể cho tôi nghe một câu chuyện thú vị không?',
+  },
 ];
 
 export default function WelcomeScreen({ username, onQuickStart }: WelcomeScreenProps) {
@@ -47,12 +50,8 @@ export default function WelcomeScreen({ username, onQuickStart }: WelcomeScreenP
         <h1 className="text-3xl font-bold text-white mb-2">
           Chào {username ? username : 'bạn'}! 👋
         </h1>
-        <p className="text-xl text-gray-300 mb-1">
-          Tôi là AI Assistant của bạn
-        </p>
-        <p className="text-gray-400">
-          Hãy bắt đầu cuộc trò chuyện hoặc chọn một chủ đề bên dưới
-        </p>
+        <p className="text-xl text-gray-300 mb-1">Tôi là AI Assistant của bạn</p>
+        <p className="text-gray-400">Hãy bắt đầu cuộc trò chuyện hoặc chọn một chủ đề bên dưới</p>
       </div>
 
       {/* Quick Start Cards */}
@@ -71,9 +70,7 @@ export default function WelcomeScreen({ username, onQuickStart }: WelcomeScreenP
                 <h3 className="text-white font-semibold mb-1 group-hover:text-blue-400 transition-colors">
                   {item.title}
                 </h3>
-                <p className="text-gray-400 text-sm">
-                  {item.description}
-                </p>
+                <p className="text-gray-400 text-sm">{item.description}</p>
               </div>
             </div>
           </button>
@@ -91,7 +88,7 @@ export default function WelcomeScreen({ username, onQuickStart }: WelcomeScreenP
             Sử dụng giọng nói để trò chuyện với AI một cách tự nhiên
           </p>
         </div>
-        
+
         <div className="text-center">
           <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-3">
             <Sparkles size={24} className="text-white" />
@@ -101,7 +98,7 @@ export default function WelcomeScreen({ username, onQuickStart }: WelcomeScreenP
             AI hiểu ngữ cảnh và đưa ra câu trả lời chính xác, hữu ích
           </p>
         </div>
-        
+
         <div className="text-center">
           <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-3">
             <MessageCircle size={24} className="text-white" />
@@ -121,4 +118,4 @@ export default function WelcomeScreen({ username, onQuickStart }: WelcomeScreenP
       </div>
     </div>
   );
-} 
+}

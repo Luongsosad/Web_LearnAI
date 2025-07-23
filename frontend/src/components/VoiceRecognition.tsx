@@ -14,7 +14,7 @@ export default function VoiceRecognition({
   onTranscript,
   isListening,
   onListeningChange,
-  language = 'vi-VN'
+  language = 'vi-VN',
 }: VoiceRecognitionProps) {
   const [isSupported, setIsSupported] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -28,7 +28,7 @@ export default function VoiceRecognition({
       setIsSupported(true);
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       recognitionRef.current = new SpeechRecognition();
-      
+
       const recognition = recognitionRef.current;
       recognition.continuous = true;
       recognition.interimResults = true;
@@ -122,11 +122,7 @@ export default function VoiceRecognition({
               : 'bg-blue-500 hover:bg-blue-600 text-white shadow-lg shadow-blue-500/50'
           }`}
         >
-          {isListening ? (
-            <MicOff size={24} className="animate-pulse" />
-          ) : (
-            <Mic size={24} />
-          )}
+          {isListening ? <MicOff size={24} className="animate-pulse" /> : <Mic size={24} />}
           {isListening && (
             <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-400 rounded-full animate-ping" />
           )}
@@ -146,11 +142,7 @@ export default function VoiceRecognition({
 
       {/* Voice Indicator */}
       <div className="flex justify-center">
-        <VoiceIndicator 
-          isListening={isListening} 
-          isMuted={isMuted}
-          level={audioLevel}
-        />
+        <VoiceIndicator isListening={isListening} isMuted={isMuted} level={audioLevel} />
       </div>
 
       {/* Interim Transcript */}
@@ -167,4 +159,4 @@ export default function VoiceRecognition({
       </div>
     </div>
   );
-} 
+}

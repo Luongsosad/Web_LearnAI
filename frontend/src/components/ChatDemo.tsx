@@ -18,21 +18,25 @@ export default function ChatDemo() {
   return (
     <div className="min-h-screen bg-gray-900 text-white p-8">
       <div className="max-w-4xl mx-auto space-y-8">
-        <h1 className="text-3xl font-bold text-center mb-8">
-          Chat Interface Demo
-        </h1>
+        <h1 className="text-3xl font-bold text-center mb-8">Chat Interface Demo</h1>
 
         {/* Toast Demo */}
         <div className="bg-gray-800 p-6 rounded-lg">
           <h2 className="text-xl font-semibold mb-4">Toast Notifications</h2>
           <div className="flex flex-wrap gap-2">
-            <Button onClick={() => success('Thành công!')} className="bg-green-500 hover:bg-green-600">
+            <Button
+              onClick={() => success('Thành công!')}
+              className="bg-green-500 hover:bg-green-600"
+            >
               Success Toast
             </Button>
             <Button onClick={() => error('Có lỗi xảy ra!')} className="bg-red-500 hover:bg-red-600">
               Error Toast
             </Button>
-            <Button onClick={() => warning('Cảnh báo!')} className="bg-yellow-500 hover:bg-yellow-600">
+            <Button
+              onClick={() => warning('Cảnh báo!')}
+              className="bg-yellow-500 hover:bg-yellow-600"
+            >
               Warning Toast
             </Button>
             <Button onClick={() => info('Thông tin!')} className="bg-blue-500 hover:bg-blue-600">
@@ -46,24 +50,23 @@ export default function ChatDemo() {
           <h2 className="text-xl font-semibold mb-4">Voice Recognition</h2>
           <div className="space-y-4">
             <div className="flex items-center space-x-4">
-              <Button 
+              <Button
                 onClick={() => setShowVoiceModal(!showVoiceModal)}
                 className="bg-blue-500 hover:bg-blue-600"
               >
                 {showVoiceModal ? 'Đóng Voice Modal' : 'Mở Voice Modal'}
               </Button>
-              <Button 
+              <Button
                 onClick={() => setIsListening(!isListening)}
-                className={isListening ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'}
+                className={
+                  isListening ? 'bg-red-500 hover:bg-red-600' : 'bg-green-500 hover:bg-green-600'
+                }
               >
                 {isListening ? 'Dừng Listening' : 'Bắt đầu Listening'}
               </Button>
             </div>
-            
-            <VoiceIndicator 
-              isListening={isListening} 
-              level={isListening ? 50 : 0}
-            />
+
+            <VoiceIndicator isListening={isListening} level={isListening ? 50 : 0} />
           </div>
         </div>
 
@@ -78,7 +81,7 @@ export default function ChatDemo() {
                 language="vi-VN"
               />
               <div className="mt-4 text-center">
-                <Button 
+                <Button
                   onClick={() => setShowVoiceModal(false)}
                   className="bg-gray-600 hover:bg-gray-700"
                 >
@@ -110,4 +113,4 @@ export default function ChatDemo() {
       </div>
     </div>
   );
-} 
+}

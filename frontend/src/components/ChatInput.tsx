@@ -18,8 +18,8 @@ export default function ChatInput({
   onSend,
   onVoiceToggle,
   isRecording,
-  placeholder = "Nhập tin nhắn hoặc nói chuyện với AI...",
-  disabled = false
+  placeholder = 'Nhập tin nhắn hoặc nói chuyện với AI...',
+  disabled = false,
 }: ChatInputProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [isFocused, setIsFocused] = useState(false);
@@ -54,9 +54,11 @@ export default function ChatInput({
 
   return (
     <div className="w-full bg-gray-900 border-t border-gray-700 p-4">
-      <div className={`relative max-w-4xl mx-auto transition-all duration-300 ${
-        isFocused ? 'ring-2 ring-blue-500/50' : ''
-      }`}>
+      <div
+        className={`relative max-w-4xl mx-auto transition-all duration-300 ${
+          isFocused ? 'ring-2 ring-blue-500/50' : ''
+        }`}
+      >
         {/* Main Input Container */}
         <div className="bg-gray-800 rounded-2xl border border-gray-600 p-4 shadow-lg">
           {/* Text Input Area */}
@@ -76,7 +78,7 @@ export default function ChatInput({
                 style={{ minHeight: '20px', maxHeight: '120px' }}
               />
             </div>
-            
+
             {/* Action Buttons */}
             <div className="flex items-center space-x-2">
               {/* Attachment Button */}
@@ -86,7 +88,7 @@ export default function ChatInput({
               >
                 <Paperclip size={20} />
               </button>
-              
+
               {/* Emoji Button */}
               <button
                 className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-full transition-all duration-200"
@@ -94,7 +96,7 @@ export default function ChatInput({
               >
                 <Smile size={20} />
               </button>
-              
+
               {/* Voice Button */}
               <button
                 onClick={onVoiceToggle}
@@ -108,7 +110,7 @@ export default function ChatInput({
               >
                 <Mic size={20} />
               </button>
-              
+
               {/* Send Button */}
               <button
                 onClick={handleSend}
@@ -124,22 +126,19 @@ export default function ChatInput({
               </button>
             </div>
           </div>
-          
+
           {/* Voice Status Indicator */}
           {isRecording && (
             <div className="mt-3 flex items-center justify-center space-x-2 text-red-400 text-sm">
               <div className="w-2 h-2 bg-red-400 rounded-full animate-ping"></div>
               <span>Đang ghi âm...</span>
-              <button
-                onClick={onVoiceToggle}
-                className="p-1 hover:bg-red-500/20 rounded-full"
-              >
+              <button onClick={onVoiceToggle} className="p-1 hover:bg-red-500/20 rounded-full">
                 <X size={14} />
               </button>
             </div>
           )}
         </div>
-        
+
         {/* Quick Actions */}
         <div className="mt-3 flex items-center justify-center space-x-4 text-xs text-gray-500">
           <span>Nhấn Enter để gửi</span>
@@ -151,4 +150,4 @@ export default function ChatInput({
       </div>
     </div>
   );
-} 
+}

@@ -15,9 +15,9 @@ export function useToast() {
   const addToast = useCallback((type: ToastType, message: string, duration?: number) => {
     const id = Math.random().toString(36).substr(2, 9);
     const newToast: Toast = { id, type, message, duration };
-    
-    setToasts(prev => [...prev, newToast]);
-    
+
+    setToasts((prev) => [...prev, newToast]);
+
     // Auto remove after duration
     if (duration !== 0) {
       setTimeout(() => {
@@ -27,24 +27,36 @@ export function useToast() {
   }, []);
 
   const removeToast = useCallback((id: string) => {
-    setToasts(prev => prev.filter(toast => toast.id !== id));
+    setToasts((prev) => prev.filter((toast) => toast.id !== id));
   }, []);
 
-  const success = useCallback((message: string, duration?: number) => {
-    addToast('success', message, duration);
-  }, [addToast]);
+  const success = useCallback(
+    (message: string, duration?: number) => {
+      addToast('success', message, duration);
+    },
+    [addToast]
+  );
 
-  const error = useCallback((message: string, duration?: number) => {
-    addToast('error', message, duration);
-  }, [addToast]);
+  const error = useCallback(
+    (message: string, duration?: number) => {
+      addToast('error', message, duration);
+    },
+    [addToast]
+  );
 
-  const warning = useCallback((message: string, duration?: number) => {
-    addToast('warning', message, duration);
-  }, [addToast]);
+  const warning = useCallback(
+    (message: string, duration?: number) => {
+      addToast('warning', message, duration);
+    },
+    [addToast]
+  );
 
-  const info = useCallback((message: string, duration?: number) => {
-    addToast('info', message, duration);
-  }, [addToast]);
+  const info = useCallback(
+    (message: string, duration?: number) => {
+      addToast('info', message, duration);
+    },
+    [addToast]
+  );
 
   return {
     toasts,
@@ -53,6 +65,6 @@ export function useToast() {
     success,
     error,
     warning,
-    info
+    info,
   };
-} 
+}
