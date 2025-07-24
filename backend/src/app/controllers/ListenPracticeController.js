@@ -55,7 +55,7 @@ export const generatePracticeSentences = async (req, res) => {
         const normalAudio = await synthesizeGradioSpeech(
           sentence.text,
           'en-US-AvaNeural (en-US, Female)',
-          1.0,
+          0,
           1,
           2
         );
@@ -64,7 +64,7 @@ export const generatePracticeSentences = async (req, res) => {
         const fastAudio = await synthesizeGradioSpeech(
           sentence.text,
           'en-US-AvaNeural (en-US, Female)',
-          12,
+          5,
           1,
           2
         );
