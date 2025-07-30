@@ -224,7 +224,7 @@ export default function ListenPracticeMain() {
   // Handle keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (currentStep === 'practice' && !showResults) {
+      if (currentStep === 'practice') {
         if (e.ctrlKey && !e.altKey) {
           e.preventDefault();
           playAudio('normal');
@@ -536,7 +536,7 @@ export default function ListenPracticeMain() {
                                   onKeyDown={(e) => handleKeyDown(e, missingWordIndex)}
                                   placeholder="___"
                                   style={{
-                                    width: `${Math.max(cleanWord.length * 12, 80)}px`,
+                                    width: `${Math.max(cleanWord.length * 15, 80)}px`,
                                   }}
                                   className="px-2 py-1 text-center bg-transparent border-b-2 border-blue-500 focus:outline-none focus:border-blue-400"
                                 />
