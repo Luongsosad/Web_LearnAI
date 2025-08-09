@@ -1,16 +1,14 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Sidebar } from 'lucide-react';
 import { SessionStorage } from '@/storage/sessionStorage';
-import { useSidebarStore } from '@/storage/sidebarState';
 import { User } from '@/types/User';
 import LoadedOverlay from '@/components/LoadedOverlay';
 import Notify from '@/components/Notify';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import Header from '@/components/shared/header';
 
 export default function AccountPage() {
-  const { toggle } = useSidebarStore();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState<User | null>(null);
@@ -87,28 +85,7 @@ export default function AccountPage() {
   return (
     <div className="flex flex-col max-h-screen text-white w-full">
       {/* Header */}
-      <div className="fixed top-0 left-0 w-full bg-[#111111] z-10">
-        <div className="relative flex items-center justify-between px-4 py-3.5 border-b border-gray-700">
-          <div className="flex justify-start">
-            <button className="text-gray-200 hover:text-white" onClick={() => toggle()}>
-              <Sidebar size={24} />
-            </button>
-          </div>
-          <div className="text-xl font-semibold absolute left-1/2 transform -translate-x-1/2">
-            Tài khoản
-          </div>
-          <div className="flex space-x-4 justify-end">
-            {user?.username && (
-              <div className="flex items-center space-x-4">
-                <span className="text-gray-300 truncate max-w-[70px] md:max-w-none">
-                  {user.username}
-                </span>
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="text-center text-sm text-gray-400 mt-1 mb-1">Learning by AI</div>
-      </div>
+      <Header user={user} title="Tài khoản" />
 
       {/* Main Content */}
       <div className="custom-scroll w-full md:w-[768px] mx-auto mt-[82px]">
