@@ -4,6 +4,7 @@ import prettier from 'eslint-plugin-prettier';
 import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
 import { defineConfig } from 'eslint/config';
+import react from 'eslint-plugin-react';
 
 export default defineConfig([
   {
@@ -47,6 +48,7 @@ export default defineConfig([
       '@typescript-eslint': tseslint.plugin,
       prettier,
       'react-hooks': reactHooks,
+      react,
     },
     rules: {
       // Tắt tất cả rule warn/any
