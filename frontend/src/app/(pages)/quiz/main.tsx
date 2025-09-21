@@ -47,17 +47,17 @@ export default function Vocabulary() {
   const [tab, setTab] = useState(0); // 0: Categories, 1: Topics, 2: Words, 3: Test, 4: Flag Card
   const [expandedWordId, setExpandedWordId] = useState<number | null>(null);
   const [isAuthorized, setIsAuthorized] = useState(false);
-  
-    const { user } = useAuth();
-  
-    useEffect(() => {
-      if (!user) {
-        router.push('/login');
-      } else if (user?.plan_id && user?.plan_id >= 3) {
-        setLoading(false);
-        setIsAuthorized(true);
-      }
-    }, [user]);
+
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    } else if (user?.plan_id && user?.plan_id >= 3) {
+      setLoading(false);
+      setIsAuthorized(true);
+    }
+  }, [user]);
 
   // Fetch categories when component mounts, only if categories are empty
   useEffect(() => {

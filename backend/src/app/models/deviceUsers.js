@@ -30,18 +30,12 @@ export async function getDeviceUserToken(userId, deviceId) {
 
 // Xóa thiết bị theo id
 export async function deleteDeviceUser(deviceId, userId) {
-  await pool.query(
-    'DELETE FROM device_users WHERE id = $1 AND user_id = $2',
-    [deviceId, userId]
-  );
+  await pool.query('DELETE FROM device_users WHERE id = $1 AND user_id = $2', [deviceId, userId]);
 }
 
 // Xóa toàn bộ thiết bị của user
 export async function deleteAllDeviceUsers(userId) {
-  await pool.query(
-    'DELETE FROM device_users WHERE user_id = $1',
-    [userId]
-  );
+  await pool.query('DELETE FROM device_users WHERE user_id = $1', [userId]);
 }
 
 // Kiểm tra refreshToken có tồn tại cho user
@@ -55,9 +49,5 @@ export async function findDeviceByDeviceId(userId, deviceId) {
 
 // Cập nhật last_active
 export async function updateDeviceLastActive(deviceId) {
-  await pool.query(
-    'UPDATE device_users SET last_active = now() WHERE id = $1',
-    [deviceId]
-  );
+  await pool.query('UPDATE device_users SET last_active = now() WHERE id = $1', [deviceId]);
 }
-

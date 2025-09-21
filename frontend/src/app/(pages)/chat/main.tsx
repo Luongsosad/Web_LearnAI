@@ -27,17 +27,17 @@ export default function Main() {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   const [isAuthorized, setIsAuthorized] = useState(false);
-  
-    const { user } = useAuth();
-  
-    useEffect(() => {
-      if (!user) {
-        router.push('/login');
-      } else if (user?.plan_id && user?.plan_id >= 1) {
-        setLoading(false);
-        setIsAuthorized(true);
-      }
-    }, [user]);
+
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    } else if (user?.plan_id && user?.plan_id >= 1) {
+      setLoading(false);
+      setIsAuthorized(true);
+    }
+  }, [user]);
 
   const handleInput = (e: React.FormEvent<HTMLTextAreaElement>) => {
     const textarea = textareaRef.current;

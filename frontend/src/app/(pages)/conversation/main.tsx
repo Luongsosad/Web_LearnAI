@@ -59,17 +59,17 @@ export default function Main() {
     'Chia sẻ kinh nghiệm du lịch',
     'Tìm hiểu về văn hóa',
   ];
-  
-    const { user } = useAuth();
-  
-    useEffect(() => {
-      if (!user) {
-        router.push('/login');
-      } else if (user?.plan_id && user?.plan_id >= 2) {
-        setLoading(false);
-        setIsAuthorized(true);
-      }
-    }, [user]);
+
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    } else if (user?.plan_id && user?.plan_id >= 2) {
+      setLoading(false);
+      setIsAuthorized(true);
+    }
+  }, [user]);
 
   const copyToClipboard = (content: string) => {
     navigator.clipboard.writeText(content).then(

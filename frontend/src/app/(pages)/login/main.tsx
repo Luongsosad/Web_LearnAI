@@ -11,7 +11,7 @@ import { useAuth } from '@/contexts/auth.context';
 export default function Login() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-  const [isDisabled, setIsDisabled] = useState(false); 
+  const [isDisabled, setIsDisabled] = useState(false);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');

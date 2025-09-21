@@ -10,9 +10,12 @@ export async function listDevices(req, res) {
   // Hàm xác định loại thiết bị
   function getDeviceType(deviceInfo) {
     const info = deviceInfo.toLowerCase();
-    if (info.includes('mobile') || info.includes('android') || info.includes('iphone')) return 'Mobile';
-    if (info.includes('windows') || info.includes('macintosh') || info.includes('linux')) return 'Desktop App';
-    if (info.includes('chrome') || info.includes('firefox') || info.includes('safari')) return 'Web';
+    if (info.includes('mobile') || info.includes('android') || info.includes('iphone'))
+      return 'Mobile';
+    if (info.includes('windows') || info.includes('macintosh') || info.includes('linux'))
+      return 'Desktop App';
+    if (info.includes('chrome') || info.includes('firefox') || info.includes('safari'))
+      return 'Web';
     return 'Unknown';
   }
 

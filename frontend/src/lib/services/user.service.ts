@@ -1,4 +1,4 @@
-'use server'
+'use server';
 
 import { cookies } from 'next/headers';
 
@@ -13,11 +13,11 @@ export async function getUser() {
         'Content-Type': 'application/json',
         'x-access-token': accessToken || '',
         'x-refresh-token': refreshToken || '',
-      }
+      },
     });
 
     const data = await res.json();
-    
+
     return data.user || null;
   } catch (error) {
     console.error('Error fetching user:', error);

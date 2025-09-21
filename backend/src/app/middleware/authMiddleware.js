@@ -1,9 +1,7 @@
 // middleware/authMiddleware.js
 import jwt from 'jsonwebtoken';
 import { verifyRefreshToken } from '../models/userModels.js';
-import {
-  findDeviceByDeviceId
-} from '../models/deviceUsers.js';
+import { findDeviceByDeviceId } from '../models/deviceUsers.js';
 import { generateAccessToken } from '../utils/auth.js';
 import process from 'process';
 
@@ -12,8 +10,12 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const authenticateToken = async (req, res, next) => {
-  const accessToken = req.cookies.access_token ? req.cookies.access_token : req.headers['x-access-token'];
-  const refreshToken = req.cookies.refresh_token ? req.cookies.refresh_token : req.headers['x-refresh-token'];
+  const accessToken = req.cookies.access_token
+    ? req.cookies.access_token
+    : req.headers['x-access-token'];
+  const refreshToken = req.cookies.refresh_token
+    ? req.cookies.refresh_token
+    : req.headers['x-refresh-token'];
 
   // console.log('Access token:', accessToken);
   // console.log('Refresh token:', refreshToken);

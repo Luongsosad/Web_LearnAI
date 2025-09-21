@@ -12,7 +12,7 @@ export default async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   console.log(accessToken);
-  if (!deviceId){
+  if (!deviceId) {
     if (!['/login', '/register'].includes(pathname)) {
       console.log('No device id, redirect to login');
       cookieStore.delete('access_token');
