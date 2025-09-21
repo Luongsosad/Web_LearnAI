@@ -1,4 +1,5 @@
 import { chatRoute } from './chat.route.js';
+import { devicesRoute } from './devices.route.js';
 import { audioRoute } from './audio.route.js';
 import { dataRoute } from './data.route.js';
 import { authRoute } from './auth.route.js';
@@ -14,6 +15,8 @@ import { checkPlan } from '../middleware/checkPlan.js';
 
 function route(app) {
   app.use('/auth', authRoute);
+
+  app.use('/devices', devicesRoute);
 
   app.use('/order', authenticateToken, orderRoute);
   app.use('/chat', authenticateToken, checkPlan([1, 2, 3]), chatRoute); // Free, Basic và Pro

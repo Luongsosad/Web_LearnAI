@@ -3,35 +3,31 @@ import React, { useState, useEffect } from 'react';
 import { Mail, Lock, UserCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import axios, { AxiosError } from 'axios';
-import { SessionStorage } from '@/storage/sessionStorage';
-import { EmailLoginStorage } from '@/storage/localStorage';
+import { EmailLoginStorage } from '@/lib/storage/localStorage';
 import LoadedOverlay from '@/components/LoadedOverlay';
 import Notify from '@/components/Notify';
-import { User } from '@/types/User';
+import { useAuth } from '@/contexts/auth.context';
 
 export default function Login() {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [isDisabled, setIsDisabled] = useState(false); // ✅ Biến riêng để disable
+  const [loading, setLoading] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(false); 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [message, setMessage] = useState<string | null>(null);
-  const [user, setUser] = useState<User | null>(null);
+
+  const { user } = useAuth();
 
   useEffect(() => {
-    async function fetchUser() {
-      const user = await SessionStorage.getUser(
-        (loading) => setLoading(loading),
-        (user) => setUser(user)
-      );
-      if (user) {
-        router.push('/');
-      } else {
-        setLoading(false);
-      }
+    if (user) {
+      router.push('/');
+    } else {
+      setLoading(false);
     }
-    fetchUser();
+  }, [user]);
+
+  useEffect(() => {
     const email = EmailLoginStorage.getEmail();
     if (email) {
       setEmail(email);

@@ -1,14 +1,22 @@
 import { createUser, findUserByEmail } from '../models/userModels.js';
-import { hashPassword, comparePassword } from '../utils/auth.js';
+import { hashPassword, comparePassword, generateRefreshToken } from '../utils/auth.js';
 import { setTokenCookies } from '../utils/token.js';
 import { sendVerificationEmail } from '../utils/email.js';
 import process from 'process';
 import jwt from 'jsonwebtoken';
 import { generateAccessToken } from '../utils/auth.js';
+import {
+  addDeviceUser,
+  deleteDeviceUser,
+  findDeviceByDeviceId,
+  getDeviceUsers,
+} from '../models/deviceUsers.js';
 
 import dotenv from 'dotenv';
 
 dotenv.config();
+
+const MAX_DEVICES = 5; // Giới hạn số thiết bị đăng nhập
 
 // Đăng ký user thường
 async function register(req, res) {
@@ -64,9 +72,40 @@ async function login(req, res) {
     if (!isMatch) {
       return res.status(400).json({ message: 'User or Password wrong' });
     }
-    req.login(user, (err) => {
+    req.login(user, async (err) => {
       if (err) return res.status(500).json({ message: 'Login error' });
-      setTokenCookies(res, user);
+      // Tạo accessToken và refreshToken
+      const { refreshToken, deviceId } = generateRefreshToken(user);
+      const accessToken = generateAccessToken(user, deviceId);
+      // Kiểm tra số lượng thiết bị
+      const devices = await getDeviceUsers(user.id);
+      if (devices.length >= MAX_DEVICES) {
+        return res
+          .status(403)
+          .json({ message: 'Đã đạt giới hạn thiết bị đăng nhập. Vui lòng đăng xuất thiết bị cũ.' });
+      }
+      // Lưu device info + refreshToken vào DB
+      const deviceInfo = req.headers['user-agent'] + ' | ' + req.ip;
+      await addDeviceUser(user.id, deviceId, deviceInfo, refreshToken);
+      // Set cookies
+      res.cookie('device_id', deviceId, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+        maxAge: 15 * 24 * 60 * 60 * 1000 + 15 * 60 * 1000, // 15 ngày + 15 phút
+      });
+      res.cookie('access_token', accessToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+        maxAge: 15 * 60 * 1000,
+      });
+      res.cookie('refresh_token', refreshToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+        maxAge: 15 * 24 * 60 * 60 * 1000,
+      });
       return res.status(200).json({
         message: 'Logged in successfully',
         user: { id: user.id, username: user.username, email: user.email, role: user.role },
@@ -79,18 +118,32 @@ async function login(req, res) {
 
 // Đăng xuất
 function logout(req, res) {
-  req.logout((err) => {
+  req.logout(async (err) => {
     if (err) return res.status(500).json({ message: 'Logout error' });
-    res.clearCookie('access_token', {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-    });
-    res.clearCookie('refresh_token', {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
-    });
+    // Xóa device khỏi DB theo refreshToken hiện tại
+    try {
+      const refreshToken = req.cookies['refresh_token'];
+      if (refreshToken) {
+        const user = await new Promise((resolve, reject) => {
+          jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET, (err, user) => {
+            if (err) reject(err);
+            else resolve(user);
+          });
+        });
+        console.log('user: ', user);
+        const device = await findDeviceByDeviceId(user.id, user.deviceId);
+        if (device && device.id) {
+          await deleteDeviceUser(device.id, user.id);
+        } else {
+          console.log('No device found for this refreshToken, nothing to delete.');
+        }
+      }
+    } catch (e) {
+      console.error('Device delete error:', e);
+    }
+    res.clearCookie('device_id');
+    res.clearCookie('access_token');
+    res.clearCookie('refresh_token');
     console.log('Logged out successfully');
     req.session.destroy(() => {
       res.status(200).json({ message: 'Logged out successfully' });

@@ -6,11 +6,20 @@ import { jwtVerify } from 'jose';
 export default async function middleware(request: NextRequest) {
   console.log('Middleware');
   const cookieStore = await cookies();
+  const deviceId = request.cookies.get('device_id')?.value;
   let accessToken = request.cookies.get('access_token')?.value;
   const refreshToken = request.cookies.get('refresh_token')?.value;
   const pathname = request.nextUrl.pathname;
 
   console.log(accessToken);
+  if (!deviceId){
+    if (!['/login', '/register'].includes(pathname)) {
+      console.log('No device id, redirect to login');
+      cookieStore.delete('access_token');
+      cookieStore.delete('refresh_token');
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
+  }
 
   return; // test
 
@@ -115,6 +124,7 @@ export const config = {
   //   "/"
   // ],
   matcher: [
+    '/account/:path*',
     '/chat/:path*',
     '/conversation/:path*',
     '/pronunciation/:path*',

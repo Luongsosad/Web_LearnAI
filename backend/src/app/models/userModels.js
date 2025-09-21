@@ -106,7 +106,7 @@ async function verifyRefreshToken(refreshToken) {
     if (!user) {
       throw new Error('User not found');
     }
-    return user;
+    return { ...user, ...decoded };
   } catch (err) {
     throw new Error('Invalid refresh token: ' + err.message);
   }
