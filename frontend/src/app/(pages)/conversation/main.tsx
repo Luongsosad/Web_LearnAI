@@ -16,11 +16,10 @@ import {
   Check,
 } from 'lucide-react';
 import axios from 'axios';
-import { SessionStorage } from '@/storage/sessionStorage';
-import { useSidebarStore } from '@/storage/sidebarState';
+import { useSidebarStore } from '@/lib/storage/sidebarState';
 import LoadedOverlay from '@/components/LoadedOverlay';
 import { useRouter } from 'next/navigation';
-import { User } from '@/types/User';
+import { useAuth } from '@/contexts/auth.context';
 
 type Message = {
   role: 'user' | 'bot';
@@ -33,7 +32,6 @@ export default function Main() {
   const { toggle } = useSidebarStore();
   const router = useRouter();
   const cancelAudioRef = useRef(false);
-  const [user, setUser] = useState<User | null>(null);
   const [topic, setTopic] = useState('');
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -48,7 +46,7 @@ export default function Main() {
   const playAudioRef = useRef<HTMLAudioElement | null>(null);
   const [showTranslated, setShowTranslated] = useState(false);
   const [message, setMessage] = useState<Message | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [isAuthorized, setIsAuthorized] = useState(false);
 
   // Danh sách gợi ý chủ đề
@@ -62,26 +60,16 @@ export default function Main() {
     'Tìm hiểu về văn hóa',
   ];
 
-  // Lấy dữ liệu từ sessionStorage khi component mount
+  const { user } = useAuth();
+
   useEffect(() => {
-    async function fetchUser() {
-      const user = await SessionStorage.getUser(
-        (loading) => setLoading(loading),
-        (user) => setUser(user)
-      );
-
-      if (!user) {
-        router.push('/login');
-      }
-
-      if (user?.plan_id && user?.plan_id >= 2) {
-        setIsAuthorized(true); // cho phép hiển thị giao diện
-      } else {
-        router.push('/'); // chuyển về trang chủ nếu không hợp lệ
-      }
+    if (!user) {
+      router.push('/login');
+    } else if (user?.plan_id && user?.plan_id >= 2) {
+      setLoading(false);
+      setIsAuthorized(true);
     }
-    fetchUser();
-  }, []);
+  }, [user]);
 
   const copyToClipboard = (content: string) => {
     navigator.clipboard.writeText(content).then(

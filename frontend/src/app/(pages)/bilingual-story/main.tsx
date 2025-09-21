@@ -24,10 +24,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
 import LoadedOverlay from '@/components/LoadedOverlay';
-import { useSidebarStore } from '@/storage/sidebarState';
-import { SessionStorage } from '@/storage/sessionStorage';
-import { User } from '@/types/User';
+import { useSidebarStore } from '@/lib/storage/sidebarState';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/contexts/auth.context';
 
 interface Story {
   id: string;
@@ -65,10 +64,8 @@ export default function BilingualStoryMain() {
   const [stories, setStories] = useState<Story[]>([]);
   const [selectedStory, setSelectedStory] = useState<Story | null>(null);
   const [tab, setTab] = useState<'en' | 'vi'>('en');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [popup, setPopup] = useState<WordInfo | null>(null);
-  const [_user, setUser] = useState<User | null>(null);
-  const [isAuthorized, setIsAuthorized] = useState(false);
   const router = useRouter();
 
   // State để lưu trữ thông tin từ vựng theo chủ đề và truyện
@@ -76,30 +73,18 @@ export default function BilingualStoryMain() {
     [key: string]: { [word: string]: WordInfo };
   }>({});
   const [preparingData, setPreparingData] = useState(false);
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
-  // Check user authorization
+  const { user } = useAuth();
+
   useEffect(() => {
-    async function fetchUser() {
-      setLoading(true);
-      const user = await SessionStorage.getUser(
-        (loading) => setLoading(loading),
-        (user) => setUser(user)
-      );
-
-      if (!user) {
-        router.push('/login');
-        return;
-      }
-
-      if (user?.plan_id && user?.plan_id >= 2) {
-        setIsAuthorized(true);
-      } else {
-        router.push('/');
-      }
+    if (!user) {
+      router.push('/login');
+    } else if (user?.plan_id && user?.plan_id >= 2) {
       setLoading(false);
+      setIsAuthorized(true);
     }
-    fetchUser();
-  }, [router]);
+  }, [user]);
 
   const fetchStories = async (topicId: string) => {
     setLoading(true);

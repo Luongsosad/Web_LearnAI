@@ -11,26 +11,23 @@ import {
   Volume2,
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { SessionStorage } from '@/storage/sessionStorage';
-import { useSidebarStore } from '@/storage/sidebarState';
-import { User } from '@/types/User';
+import { useSidebarStore } from '@/lib/storage/sidebarState';
 import LoadedOverlay from '@/components/LoadedOverlay';
 import Notify from '@/components/Notify';
 import PlanBadge from '@/components/PlanBadge';
+import { useAuth } from '@/contexts/auth.context';
 
 export default function Main() {
   const { toggle } = useSidebarStore();
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState<string | null>(null);
 
+  const { user } = useAuth();
+
   useEffect(() => {
-    SessionStorage.getUser(
-      (loading) => setLoading(loading),
-      (user) => setUser(user)
-    );
-  }, []);
+    setLoading(false);
+  }, [user]);
 
   const handleServiceClick = (path: string) => {
     if (!user?.username) {

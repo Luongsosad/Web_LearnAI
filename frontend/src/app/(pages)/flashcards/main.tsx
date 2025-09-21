@@ -4,11 +4,10 @@ import { ArrowLeft, Lamp, Sidebar, Volume2, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 import FlagCard from './tabFlagCard';
-import { useSidebarStore } from '@/storage/sidebarState';
+import { useSidebarStore } from '@/lib/storage/sidebarState';
 import LoadedOverlay from '@/components/LoadedOverlay';
 import { useRouter } from 'next/navigation';
-import { SessionStorage } from '@/storage/sessionStorage';
-import { User } from '@/types/User';
+import { useAuth } from '@/contexts/auth.context';
 
 interface Word {
   id: number;
@@ -44,35 +43,21 @@ export default function Vocabulary() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [topics, setTopics] = useState<Topic[]>([]);
   const [words, setWords] = useState<Word[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState(0); // 0: Categories, 1: Topics, 2: Words, 3: Test, 4: Flag Card
-  const [user, setUser] = useState<User | null>(null);
-  const [isAuthorized, setIsAuthorized] = useState(false);
   const [expandedWordId, setExpandedWordId] = useState<number | null>(null);
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
-  // Check user authorization
+  const { user } = useAuth();
+
   useEffect(() => {
-    async function fetchUser() {
-      setLoading(true);
-      const user = await SessionStorage.getUser(
-        (loading) => setLoading(loading),
-        (user) => setUser(user)
-      );
-
-      if (!user) {
-        router.push('/login');
-        return;
-      }
-
-      if (user?.plan_id && user?.plan_id >= 1) {
-        setIsAuthorized(true);
-      } else {
-        router.push('/');
-      }
+    if (!user) {
+      router.push('/login');
+    } else if (user?.plan_id && user?.plan_id >= 1) {
       setLoading(false);
+      setIsAuthorized(true);
     }
-    fetchUser();
-  }, [router]);
+  }, [user]);
 
   // Fetch categories when component mounts, only if categories are empty
   useEffect(() => {

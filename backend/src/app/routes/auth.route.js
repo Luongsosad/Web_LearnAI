@@ -8,10 +8,12 @@ import {
   sendCode,
   resendCode,
 } from '../controllers/AuthController.js';
+import { listDevices, logoutDevice, logoutAllDevices } from '../controllers/DeviceController.js';
 import { setTokenCookies } from '../utils/token.js';
 
 import process from 'process';
 import dotenv from 'dotenv';
+import { verifyRefreshToken } from '../models/userModels.js';
 
 dotenv.config();
 
@@ -24,16 +26,34 @@ authRoute.get('/google', passport.authenticate('google', { scope: ['profile', 'e
 authRoute.post('/send-code', sendCode);
 authRoute.post('/resend-code', resendCode);
 
+// Quản lý thiết bị đăng nhập
+authRoute.get('/devices', listDevices); // Lấy danh sách thiết bị
+authRoute.post('/devices/logout', logoutDevice); // Đăng xuất thiết bị cụ thể
+authRoute.post('/devices/logout-all', logoutAllDevices); // Đăng xuất toàn bộ thiết bị
+
 authRoute.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
-  (req, res) => {
-    setTokenCookies(res, req.user);
+  async (req, res) => {
+    const { refreshToken } = await setTokenCookies(res, req.user);
+    // Lưu device info + refreshToken vào DB
+    try {
+      const { addDeviceUser, getDeviceUsers } = await import('../models/deviceUsers.js');
+      const MAX_DEVICES = 5;
+      const deviceInfo = req.headers['user-agent'] + ' | ' + req.ip;
+      const devices = await getDeviceUsers(req.user.id);
+      const user = await verifyRefreshToken(refreshToken);
+      if (devices.length < MAX_DEVICES) {
+        await addDeviceUser(req.user.id, user.deviceId, deviceInfo, refreshToken);
+      }
+    } catch (err) {
+      console.error('Device save error:', err);
+    }
     res.redirect(`${process.env.FRONTEND_URL}`); // Hoặc route bạn muốn sau khi đăng nhập
   }
 );
 
 // Route đăng xuất
-authRoute.get('/logout', logout);
+authRoute.post('/logout', logout);
 
 export { authRoute };

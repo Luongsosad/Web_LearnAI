@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { Sidebar } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { SessionStorage } from '@/storage/sessionStorage';
-import { useSidebarStore } from '@/storage/sidebarState';
-import { User } from '@/types/User';
+import { SessionStorage } from '@/lib/storage/sessionStorage';
+import { useSidebarStore } from '@/lib/storage/sidebarState';
 import LoadedOverlay from '@/components/LoadedOverlay';
 import Notify from '@/components/Notify';
 import PlanBadge from '@/components/PlanBadge';
+import { useAuth } from '@/contexts/auth.context';
 
 interface Transaction {
   transactionId: string;
@@ -25,7 +25,6 @@ export default function PlansPage() {
   const { toggle } = useSidebarStore();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'plans' | 'checkout'>('plans');
   const [transaction, setTransaction] = useState<Transaction | null>(null);
@@ -35,20 +34,15 @@ export default function PlansPage() {
   const [timeLeft, setTimeLeft] = useState<string>('');
   const [isAuthorized, setIsAuthorized] = useState(false);
 
-  useEffect(() => {
-    async function fetchUser() {
-      const user = await SessionStorage.getUser(
-        (loading) => setLoading(loading),
-        (user) => setUser(user)
-      );
+  const { user } = useAuth();
 
-      if (!user) {
-        router.push('/login');
-      }
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    } else {
       setIsAuthorized(true);
     }
-    fetchUser();
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     // Check session for existing transaction

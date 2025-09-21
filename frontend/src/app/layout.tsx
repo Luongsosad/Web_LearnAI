@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Sidebar from '@/app/layouts/Sidebar';
+import { AuthProvider } from '@/contexts/auth.context';
+import { getUser } from '@/lib/services/user.service';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -93,18 +95,22 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await getUser();
+
   return (
     <html lang="vi">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-hidden`}>
-        <div className="flex h-screen">
-          <Sidebar /> {/* Bên trái */}
-          <main className="flex-1 overflow-auto">{children}</main> {/* Bên phải */}
-        </div>
+        <AuthProvider user={user}>
+          <div className="flex h-screen">
+            <Sidebar />
+            <main className="flex-1 overflow-auto">{children}</main>
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );

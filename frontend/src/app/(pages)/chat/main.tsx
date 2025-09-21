@@ -2,11 +2,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Plus, Settings2, Mic, Send, Copy, RefreshCw, Sidebar, X, History } from 'lucide-react';
 import axios from 'axios';
-import { SessionStorage } from '@/storage/sessionStorage';
-import { useSidebarStore } from '@/storage/sidebarState';
-import { User } from '@/types/User';
+import { useSidebarStore } from '@/lib/storage/sidebarState';
 import LoadedOverlay from '@/components/LoadedOverlay';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/contexts/auth.context';
 
 type Message = {
   role: 'user' | 'bot';
@@ -16,7 +15,6 @@ type Message = {
 export default function Main() {
   const { toggle } = useSidebarStore();
   const cancelAudioRef = useRef(false);
-  const [user, setUser] = useState<User | null>(null);
   const [text, setText] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [isThinking, setIsThinking] = useState(false);
@@ -26,30 +24,20 @@ export default function Main() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
   const [isAuthorized, setIsAuthorized] = useState(false);
 
-  // Lấy dữ liệu từ sessionStorage khi component mount
+  const { user } = useAuth();
+
   useEffect(() => {
-    async function fetchUser() {
-      const user = await SessionStorage.getUser(
-        (loading) => setLoading(loading),
-        (user) => setUser(user)
-      );
-
-      if (!user) {
-        router.push('/login');
-      }
-
-      if (user?.plan_id && user?.plan_id >= 1) {
-        setIsAuthorized(true); // cho phép hiển thị giao diện
-      } else {
-        router.push('/'); // chuyển về trang chủ nếu không hợp lệ
-      }
+    if (!user) {
+      router.push('/login');
+    } else if (user?.plan_id && user?.plan_id >= 1) {
+      setLoading(false);
+      setIsAuthorized(true);
     }
-    fetchUser();
-  }, []);
+  }, [user]);
 
   const handleInput = (e: React.FormEvent<HTMLTextAreaElement>) => {
     const textarea = textareaRef.current;

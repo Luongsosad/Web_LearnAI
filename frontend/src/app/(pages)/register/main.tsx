@@ -3,11 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { Mail, Lock, UserCircle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import axios, { AxiosError } from 'axios';
-import { EmailLoginStorage } from '@/storage/localStorage';
+import { EmailLoginStorage } from '@/lib/storage/localStorage';
 import LoadedOverlay from '@/components/LoadedOverlay';
 import Notify from '@/components/Notify';
-import { User } from '@/types/User';
-import { SessionStorage } from '@/storage/sessionStorage';
+import { useAuth } from '@/contexts/auth.context';
 
 export default function Register() {
   const router = useRouter();
@@ -21,22 +20,17 @@ export default function Register() {
   const [error, setError] = useState<string>('');
   const [resendCooldown, setResendCooldown] = useState<number>(0);
   const [message, setMessage] = useState<string | null>(null);
-  const [user, setUser] = useState<User | null>(null);
+  const [isAuthorized, setIsAuthorized] = useState(false);
+
+  const { user } = useAuth();
 
   useEffect(() => {
-    async function fetchUser() {
-      const user = await SessionStorage.getUser(
-        (loading) => setLoading(loading),
-        (user) => setUser(user)
-      );
-      if (user) {
-        router.push('/');
-      } else {
-        setLoading(false);
-      }
+    if (!user) {
+      router.push('/login');
+    } else {
+      setIsAuthorized(true);
     }
-    fetchUser();
-  }, [router]);
+  }, [user]);
 
   const handleContinue = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
@@ -133,6 +127,8 @@ export default function Register() {
       return () => clearInterval(timer);
     }
   }, [resendCooldown]);
+
+  if (!isAuthorized) return null;
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen bg-[#111111] text-white px-4">
