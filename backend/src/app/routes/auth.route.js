@@ -35,15 +35,15 @@ authRoute.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   async (req, res) => {
-    const { refreshToken } = await setTokenCookies(res, req.user);
     // Lưu device info + refreshToken vào DB
     try {
       const { addDeviceUser, getDeviceUsers } = await import('../models/deviceUsers.js');
       const MAX_DEVICES = 5;
       const deviceInfo = req.headers['user-agent'] + ' | ' + req.ip;
       const devices = await getDeviceUsers(req.user.id);
-      const user = await verifyRefreshToken(refreshToken);
       if (devices.length < MAX_DEVICES) {
+        const { refreshToken } = await setTokenCookies(res, req.user);
+        const user = await verifyRefreshToken(refreshToken);
         await addDeviceUser(req.user.id, user.deviceId, deviceInfo, refreshToken);
       }
     } catch (err) {
