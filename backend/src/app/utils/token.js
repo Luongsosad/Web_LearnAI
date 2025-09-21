@@ -16,6 +16,7 @@ export function setTokenCookies(res, user) {
 
   res.cookie('device_id', deviceId, {
     httpOnly: true,
+    domain: process.env.NODE_ENV === 'production' ? process.env.DOMAIN : undefined,
     secure: process.env.NODE_ENV === 'production',
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     maxAge: 15 * 24 * 60 * 60 * 1000 + 15 * 60 * 1000, // 15 ngày + 15 phút
@@ -23,6 +24,7 @@ export function setTokenCookies(res, user) {
 
   res.cookie('access_token', accessToken, {
     httpOnly: true,
+    domain: process.env.NODE_ENV === 'production' ? process.env.DOMAIN : undefined,
     secure: process.env.NODE_ENV === 'production',
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     maxAge: 15 * 60 * 1000, // 15 phút
@@ -30,6 +32,7 @@ export function setTokenCookies(res, user) {
 
   res.cookie('refresh_token', refreshToken, {
     httpOnly: true,
+    domain: process.env.NODE_ENV === 'production' ? process.env.DOMAIN : undefined,
     secure: process.env.NODE_ENV === 'production',
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
     maxAge: 15 * 24 * 60 * 60 * 1000, // 15 ngày

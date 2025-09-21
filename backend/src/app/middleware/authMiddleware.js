@@ -59,7 +59,7 @@ export const authenticateToken = async (req, res, next) => {
       const userFromRefresh = await verifyRefreshToken(refreshToken); // Kiểm tra refresh token
 
       const device = await findDeviceByDeviceId(userFromRefresh.id, userFromRefresh.deviceId);
-      if (!device || (device && device.refreshToken !== refreshToken)) {
+      if (!device) {
         console.log('Device not found or refresh token mismatch');
         // Nếu không tồn tại, xoá cookie và chặn truy cập
         res.clearCookie('device_id');
@@ -75,6 +75,7 @@ export const authenticateToken = async (req, res, next) => {
       // Set lại access token mới vào cookie
       res.cookie('access_token', newAccessToken, {
         httpOnly: true,
+        domain: process.env.NODE_ENV === 'production' ? process.env.DOMAIN : undefined,
         secure: process.env.NODE_ENV === 'production',
         sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         maxAge: 15 * 60 * 1000, // 15 phút
