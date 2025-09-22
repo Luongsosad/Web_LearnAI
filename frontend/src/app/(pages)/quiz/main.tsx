@@ -57,8 +57,7 @@ export default function Vocabulary() {
     } else if (user?.plan_id && user?.plan_id >= 3) {
       setLoading(false);
       setIsAuthorized(true);
-    }
-    else {
+    } else {
       router.push(PATH.PLANS);
     }
   }, [user]);

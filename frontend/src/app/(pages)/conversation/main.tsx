@@ -69,8 +69,7 @@ export default function Main() {
     } else if (user?.plan_id && user?.plan_id >= 2) {
       setLoading(false);
       setIsAuthorized(true);
-    }
-    else {
+    } else {
       router.push(PATH.PLANS);
     }
   }, [user]);
