@@ -18,6 +18,7 @@ import LoadedOverlay from '@/components/LoadedOverlay';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/auth.context';
+import { PATH } from '@/lib/contants/path';
 
 interface Sentence {
   id: number;
@@ -68,10 +69,13 @@ export default function ListenPracticeMain() {
 
   useEffect(() => {
     if (!user) {
-      router.push('/login');
-    } else if (user?.plan_id && user?.plan_id >= 1) {
+      router.push(PATH.LOGIN);
+    } else if (user?.plan_id && user?.plan_id >= 2) {
       setLoading(false);
       setIsAuthorized(true);
+    }
+    else {
+      router.push(PATH.PLANS);
     }
   }, [user]);
 

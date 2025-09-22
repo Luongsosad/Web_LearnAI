@@ -7,6 +7,7 @@ import { EmailLoginStorage } from '@/lib/storage/localStorage';
 import LoadedOverlay from '@/components/LoadedOverlay';
 import Notify from '@/components/Notify';
 import { useAuth } from '@/contexts/auth.context';
+import { PATH } from '@/lib/contants/path';
 
 export default function Register() {
   const router = useRouter();
@@ -26,7 +27,7 @@ export default function Register() {
 
   useEffect(() => {
     if (!user) {
-      router.push('/login');
+      router.push(PATH.LOGIN);
     } else {
       setIsAuthorized(true);
     }
@@ -78,7 +79,7 @@ export default function Register() {
       EmailLoginStorage.saveEmail(email);
       setMessage('Đăng ký thành công!');
       setTimeout(() => {
-        router.push('/login');
+        router.push(PATH.LOGIN);
       }, 2500);
     } catch (err) {
       const error = err as AxiosError<{ message: string }>;
@@ -242,7 +243,7 @@ export default function Register() {
         <div className="text-center text-sm mt-4">
           Đã có tài khoản?{' '}
           <button
-            onClick={() => router.push('/login')}
+            onClick={() => router.push(PATH.LOGIN)}
             className="text-blue-400 hover:underline"
             disabled={isDisabled}
           >
