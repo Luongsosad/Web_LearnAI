@@ -2,9 +2,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Sidebar, History } from 'lucide-react';
 import axios from 'axios';
-import { SessionStorage } from '@/storage/sessionStorage';
-import { useSidebarStore } from '@/storage/sidebarState';
-import { User } from '@/types/User';
 import LoadedOverlay from '@/components/LoadedOverlay';
 import { useRouter } from 'next/navigation';
 import MessageBubble from '@/components/MessageBubble';
@@ -14,6 +11,8 @@ import VoiceRecognition from '@/components/VoiceRecognition';
 import FloatingVoiceButton from '@/components/FloatingVoiceButton';
 import Toast from '@/components/Toast';
 import { useToast } from '@/hooks/useToast';
+import { useAuth } from '@/contexts/auth.context';
+import { useSidebarStore } from '@/lib/storage/sidebarState';
 
 type Message = {
   role: 'user' | 'bot';
@@ -23,7 +22,6 @@ type Message = {
 export default function Main() {
   const { toggle } = useSidebarStore();
   const { toasts, removeToast, success, error } = useToast();
-  const [user, setUser] = useState<User | null>(null);
   const [text, setText] = useState('');
   const [messages, setMessages] = useState<Message[]>([]);
   const [isThinking, setIsThinking] = useState(false);
@@ -34,26 +32,16 @@ export default function Main() {
   const router = useRouter();
   const [isAuthorized, setIsAuthorized] = useState(false);
 
-  // Lấy dữ liệu từ sessionStorage khi component mount
+  const { user } = useAuth();
+
   useEffect(() => {
-    async function fetchUser() {
-      const user = await SessionStorage.getUser(
-        (loading) => setLoading(loading),
-        (user) => setUser(user)
-      );
-
-      if (!user) {
-        router.push('/login');
-      }
-
-      if (user?.plan_id && user?.plan_id >= 1) {
-        setIsAuthorized(true); // cho phép hiển thị giao diện
-      } else {
-        router.push('/'); // chuyển về trang chủ nếu không hợp lệ
-      }
+    if (!user) {
+      router.push('/login');
+    } else if (user?.plan_id && user?.plan_id >= 1) {
+      setLoading(false);
+      setIsAuthorized(true);
     }
-    fetchUser();
-  }, []);
+  }, [user]);
 
   const copyToClipboard = (content: string) => {
     navigator.clipboard.writeText(content).then(
@@ -96,7 +84,7 @@ export default function Main() {
         content: res.data.script || 'Không có phản hồi.',
       };
       setMessages((prev) => [...prev, botMessage]);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Lỗi khi gọi API:', error);
       const errorMessage = isRegenerate
         ? 'Lỗi khi tạo lại phản hồi, vui lòng thử lại.'
