@@ -19,43 +19,38 @@ import {
   CreditCard,
   Volume2,
 } from 'lucide-react';
-import { SessionStorage } from '@/storage/sessionStorage';
-import { useSidebarStore } from '@/storage/sidebarState';
 
 import axios from 'axios';
-import { User } from '@/types/User';
+import { useSidebarStore } from '@/lib/storage/sidebarState';
+import { useAuth } from '@/contexts/auth.context';
 
 export default function Sidebar() {
   const router = useRouter();
-  const [user, setUser] = useState<User | null>(null);
   const [hasMounted, setHasMounted] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
   const { isOpen, toggle } = useSidebarStore();
-
+  const { user } = useAuth();
   useEffect(() => {
     setHasMounted(true);
-    SessionStorage.getUser(
-      (loading) => setLoading(loading),
-      (user) => setUser(user)
-    );
   }, []);
 
   const handleLogout = async () => {
     setIsLoggingOut(true);
     try {
-      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
-      });
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/logout`,
+        {},
+        {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+        }
+      );
     } catch (err) {
       console.error('Đăng xuất thất bại:', err);
     } finally {
-      SessionStorage.clearUser();
-      setUser(null);
       setIsLoggingOut(false);
       router.push('/login');
       toggle();
@@ -79,7 +74,6 @@ export default function Sidebar() {
         onClick={toggle}
         className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
       />
-      {loading && <></>}
       <div
         className={`fixed top-0 left-0 h-screen w-64 flex flex-col justify-between bg-[#121212] text-white border-r border-gray-700 z-50 shadow-lg transition-transform duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}

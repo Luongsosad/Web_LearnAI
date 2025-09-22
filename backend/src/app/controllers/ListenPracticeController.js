@@ -23,6 +23,7 @@ export const generatePracticeSentences = async (req, res) => {
     - Mức độ khó: ${difficulty === 'easy' ? 'dễ' : difficulty === 'medium' ? 'trung bình' : 'khó'}
     - Số từ khuyết: ${wordCount === '3-7' ? '3-7 từ mỗi câu' : `${percentage}% từ trong câu`}
     - Mỗi câu phải có độ dài phù hợp với mức độ khó
+    - Chủ đề nên đa dạng, không lặp lại
     - Trả về theo định dạng JSON array với cấu trúc:
     [
       {
@@ -51,11 +52,10 @@ export const generatePracticeSentences = async (req, res) => {
       const sentence = sentences[i];
       console.log('TTS ENGLISH:', sentence.text);
       try {
-        // Tạo audio tuần tự thay vì Promise.all
         const normalAudio = await synthesizeGradioSpeech(
           sentence.text,
           'en-US-AvaNeural (en-US, Female)',
-          0,
+          -2,
           1,
           2
         );
@@ -64,7 +64,7 @@ export const generatePracticeSentences = async (req, res) => {
         const fastAudio = await synthesizeGradioSpeech(
           sentence.text,
           'en-US-AvaNeural (en-US, Female)',
-          5,
+          3,
           1,
           2
         );

@@ -13,12 +13,11 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
-import { useSidebarStore } from '@/storage/sidebarState';
+import { useSidebarStore } from '@/lib/storage/sidebarState';
 import LoadedOverlay from '@/components/LoadedOverlay';
 import { useRouter } from 'next/navigation';
-import { SessionStorage } from '@/storage/sessionStorage';
-import { User } from '@/types/User';
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/contexts/auth.context';
 
 interface Sentence {
   id: number;
@@ -41,9 +40,7 @@ interface PracticeSettings {
 export default function ListenPracticeMain() {
   const { toggle } = useSidebarStore();
   const router = useRouter();
-  const [_user, setUser] = useState<User | null>(null);
-  const [isAuthorized, setIsAuthorized] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // Practice state
   const [currentStep, setCurrentStep] = useState<'setup' | 'practice' | 'results'>('setup');
@@ -65,30 +62,18 @@ export default function ListenPracticeMain() {
   const [showHint, setShowHint] = useState<boolean[]>([]);
 
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
-  // Check user authorization
+  const { user } = useAuth();
+
   useEffect(() => {
-    async function fetchUser() {
-      setLoading(true);
-      const user = await SessionStorage.getUser(
-        (loading) => setLoading(loading),
-        (user) => setUser(user)
-      );
-
-      if (!user) {
-        router.push('/login');
-        return;
-      }
-
-      if (user?.plan_id && user?.plan_id >= 1) {
-        setIsAuthorized(true);
-      } else {
-        router.push('/');
-      }
+    if (!user) {
+      router.push('/login');
+    } else if (user?.plan_id && user?.plan_id >= 1) {
       setLoading(false);
+      setIsAuthorized(true);
     }
-    fetchUser();
-  }, [router]);
+  }, [user]);
 
   // Generate practice sentences
   const generatePractice = async () => {

@@ -1,36 +1,32 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { SessionStorage } from '@/storage/sessionStorage';
-import { User } from '@/types/User';
+import { User } from '@/lib/types/User';
 import LoadedOverlay from '@/components/LoadedOverlay';
 import Notify from '@/components/Notify';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Header from '@/components/shared/header';
+import DeviceManagement from './device-management';
+import { useAuth } from '@/contexts/auth.context';
 
 export default function AccountPage() {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
   const [userDetails, setUserDetails] = useState<User | null>(null);
   const [message, setMessage] = useState<string | null>(null);
-  const [isAuthorized, setIsAuthorized] = useState(false);
   const [selectedOrderId, setSelectedOrderId] = useState<number | null>(null);
+  const [isAuthorized, setIsAuthorized] = useState(false);
+
+  const { user } = useAuth();
 
   useEffect(() => {
-    async function fetchUser() {
-      const user = await SessionStorage.getUser(
-        (loading) => setLoading(loading),
-        (user) => setUser(user)
-      );
-
-      if (!user) {
-        router.push('/login');
-      }
+    if (!user) {
+      router.push('/login');
+    } else {
+      setLoading(false);
       setIsAuthorized(true);
     }
-    fetchUser();
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     const fetchWords = async () => {
@@ -39,6 +35,11 @@ export default function AccountPage() {
         const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/a/profile-detail`, {
           withCredentials: true,
         });
+        console.log('Profile response:', res.data);
+        if (!res.data.user) {
+          router.push('/login');
+          return;
+        }
         setUserDetails(res.data.user);
         console.log('User details:', res.data.user);
       } catch (err) {
@@ -112,6 +113,11 @@ export default function AccountPage() {
                       ? `${plans[userDetails.plan_id - 1]?.name ?? 'Không xác định'}`
                       : 'Chưa có gói'}
                   </p>
+                </div>
+
+                {/* Device Management */}
+                <div>
+                  <DeviceManagement />
                 </div>
 
                 {/* Order List */}
