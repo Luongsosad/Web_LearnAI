@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { Sidebar } from 'lucide-react';
-import { useSidebarStore } from '@/storage/sidebarState';
-import { User } from '@/types/User';
+import { useSidebarStore } from '@/lib/storage/sidebarState';
+import { User } from '@/lib/types/User';
 
 interface HeaderProps {
   title: string;

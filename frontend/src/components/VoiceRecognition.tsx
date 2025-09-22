@@ -19,15 +19,17 @@ export default function VoiceRecognition({
   const [isSupported, setIsSupported] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [audioLevel, _setAudioLevel] = useState(0);
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const recognitionRef = useRef<any>(null);
   const [interimTranscript, setInterimTranscript] = useState('');
 
   useEffect(() => {
     // Kiểm tra hỗ trợ Web Speech API
-    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+    // TypeScript compatibility for SpeechRecognition
+    const SpeechRecognitionClass =
+      (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (SpeechRecognitionClass) {
       setIsSupported(true);
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-      recognitionRef.current = new SpeechRecognition();
+      recognitionRef.current = new SpeechRecognitionClass();
 
       const recognition = recognitionRef.current;
       recognition.continuous = true;
@@ -39,7 +41,7 @@ export default function VoiceRecognition({
         onListeningChange(true);
       };
 
-      recognition.onresult = (event) => {
+      recognition.onresult = (event: any) => {
         let finalTranscript = '';
         let interimTranscript = '';
 
@@ -60,7 +62,7 @@ export default function VoiceRecognition({
         }
       };
 
-      recognition.onerror = (event) => {
+      recognition.onerror = (event: any) => {
         console.error('Speech recognition error:', event.error);
         if (event.error === 'no-speech') {
           // Tự động restart nếu không có giọng nói
