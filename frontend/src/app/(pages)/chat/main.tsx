@@ -6,6 +6,7 @@ import { useSidebarStore } from '@/lib/storage/sidebarState';
 import LoadedOverlay from '@/components/LoadedOverlay';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/auth.context';
+import { PATH } from '@/lib/contants/path';
 
 type Message = {
   role: 'user' | 'bot';
@@ -32,10 +33,12 @@ export default function Main() {
 
   useEffect(() => {
     if (!user) {
-      router.push('/login');
+      router.push(PATH.LOGIN);
     } else if (user?.plan_id && user?.plan_id >= 1) {
       setLoading(false);
       setIsAuthorized(true);
+    } else {
+      router.push(PATH.PLANS);
     }
   }, [user]);
 
