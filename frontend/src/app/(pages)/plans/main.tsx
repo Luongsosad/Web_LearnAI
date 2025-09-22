@@ -9,6 +9,7 @@ import LoadedOverlay from '@/components/LoadedOverlay';
 import Notify from '@/components/Notify';
 import PlanBadge from '@/components/PlanBadge';
 import { useAuth } from '@/contexts/auth.context';
+import { PATH } from '@/lib/contants/path';
 
 interface Transaction {
   transactionId: string;
@@ -38,7 +39,7 @@ export default function PlansPage() {
 
   useEffect(() => {
     if (!user) {
-      router.push('/login');
+      router.push(PATH.LOGIN);
     } else {
       setIsAuthorized(true);
     }
@@ -109,7 +110,7 @@ export default function PlansPage() {
 
   const handleUpgradePlan = async (planId: number) => {
     if (!user?.username) {
-      router.push('/login');
+      router.push(PATH.LOGIN);
       return;
     }
 

@@ -23,6 +23,7 @@ import {
 import axios from 'axios';
 import { useSidebarStore } from '@/lib/storage/sidebarState';
 import { useAuth } from '@/contexts/auth.context';
+import { PATH } from '@/lib/contants/path';
 
 export default function Sidebar() {
   const router = useRouter();
@@ -52,14 +53,14 @@ export default function Sidebar() {
       console.error('Đăng xuất thất bại:', err);
     } finally {
       setIsLoggingOut(false);
-      router.push('/login');
+      router.push(PATH.LOGIN);
       toggle();
     }
   };
 
   const handleNav = (path: string) => {
     if (!user?.username) {
-      router.push('/login');
+      router.push(PATH.LOGIN);
     } else {
       router.push(path);
     }
@@ -85,7 +86,7 @@ export default function Sidebar() {
               <h2
                 className="text-lg font-bold cursor-pointer"
                 onClick={() => {
-                  router.push('/');
+                  router.push(PATH.HOME);
                   toggle();
                 }}
               >
@@ -97,13 +98,13 @@ export default function Sidebar() {
             </button>
           </div>
           <div className="p-4 space-y-2">
-            <NavItem icon={Home} label="Trang chủ" onClick={() => handleNav('/')} />
+            <NavItem icon={Home} label="Trang chủ" onClick={() => handleNav(PATH.HOME)} />
             <NavItem
               icon={MessageCircle}
               label="Chat AI"
               onClick={() => {
                 if (user && user.plan_id >= 1) {
-                  handleNav('/chat');
+                  handleNav(PATH.CHAT);
                 } else {
                   setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
                 }
@@ -114,7 +115,7 @@ export default function Sidebar() {
               label="Giao tiếp"
               onClick={() => {
                 if (user && user.plan_id >= 2) {
-                  handleNav('/conversation');
+                  handleNav(PATH.CONVERSATION);
                 } else {
                   setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
                 }
@@ -125,7 +126,7 @@ export default function Sidebar() {
               label="Luyện nghe"
               onClick={() => {
                 if (user && user.plan_id >= 2) {
-                  handleNav('/listen-practice');
+                  handleNav(PATH.LISTEN_PRACTICE);
                 } else {
                   setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
                 }
@@ -143,7 +144,7 @@ export default function Sidebar() {
               label="Flashcard"
               onClick={() => {
                 if (user && user.plan_id >= 1) {
-                  handleNav('/flashcards');
+                  handleNav(PATH.FLASHCARDS);
                 } else {
                   setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
                 }
@@ -154,7 +155,7 @@ export default function Sidebar() {
               label="Truyện song ngữ"
               onClick={() => {
                 if (user && user.plan_id >= 2) {
-                  handleNav('/bilingual-story');
+                  handleNav(PATH.BILINGUAL_STORY);
                 } else {
                   setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
                 }
@@ -165,7 +166,7 @@ export default function Sidebar() {
               label="Trắc nghiệm"
               onClick={() => {
                 if (user && user.plan_id >= 3) {
-                  handleNav('/quiz');
+                  handleNav(PATH.QUIZ);
                 } else {
                   setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
                 }
@@ -223,9 +224,9 @@ export default function Sidebar() {
                       onMouseLeave={() => setShowMenu(false)} // Ẩn menu khi rời chuột
                     >
                       {[
-                        { label: 'Tài khoản', path: '/account', icon: UserIcon },
-                        { label: 'Mua gói dịch vụ', path: '/plans', icon: CreditCard },
-                        { label: 'Cài đặt', path: '/settings', icon: Settings },
+                        { label: 'Tài khoản', path: PATH.ACCOUNT, icon: UserIcon },
+                        { label: 'Mua gói dịch vụ', path: PATH.PLANS, icon: CreditCard },
+                        { label: 'Cài đặt', path: PATH.SETTINGS, icon: Settings },
                       ].map(({ label, path, icon: Icon }) => (
                         <button
                           key={label}
@@ -263,7 +264,7 @@ export default function Sidebar() {
             <button
               onClick={() => {
                 toggle();
-                router.push('/login');
+                router.push(PATH.LOGIN);
               }}
               className="bg-red-500 hover:bg-red-600 transition px-4 py-2 text-sm rounded w-full text-white font-medium"
             >

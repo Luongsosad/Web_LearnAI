@@ -16,6 +16,7 @@ import LoadedOverlay from '@/components/LoadedOverlay';
 import Notify from '@/components/Notify';
 import PlanBadge from '@/components/PlanBadge';
 import { useAuth } from '@/contexts/auth.context';
+import { PATH } from '@/lib/contants/path';
 
 export default function Main() {
   const { toggle } = useSidebarStore();
@@ -31,7 +32,7 @@ export default function Main() {
 
   const handleServiceClick = (path: string) => {
     if (!user?.username) {
-      router.push('/login');
+      router.push(PATH.LOGIN);
     } else {
       router.push(path);
     }
@@ -58,7 +59,7 @@ export default function Main() {
             </div>
           ) : (
             <button
-              onClick={() => router.push('/login')}
+              onClick={() => router.push(PATH.LOGIN)}
               className="p-[2px] hover:bg-gray-700 rounded-3xl bg-red-400 pl-5 pr-5"
             >
               Sign In
@@ -80,7 +81,7 @@ export default function Main() {
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
                 if (user && user.plan_id >= 1) {
-                  handleServiceClick('/chat');
+                  handleServiceClick(PATH.CHAT);
                 } else {
                   setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
                 }
@@ -101,7 +102,7 @@ export default function Main() {
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
                 if (user && user.plan_id >= 2) {
-                  handleServiceClick('/conversation');
+                  handleServiceClick(PATH.CONVERSATION);
                 } else {
                   setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
                 }
@@ -122,7 +123,7 @@ export default function Main() {
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
                 if (user && user.plan_id >= 2) {
-                  handleServiceClick('/listen-practice');
+                  handleServiceClick(PATH.LISTEN_PRACTICE);
                 } else {
                   setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
                 }
@@ -161,7 +162,7 @@ export default function Main() {
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
                 if (user && user.plan_id >= 1) {
-                  handleServiceClick('/flashcards');
+                  handleServiceClick(PATH.FLASHCARDS);
                 } else {
                   setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
                 }
@@ -182,7 +183,7 @@ export default function Main() {
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
                 if (user && user.plan_id >= 2) {
-                  handleServiceClick('/bilingual-story');
+                  handleServiceClick(PATH.BILINGUAL_STORY);
                 } else {
                   setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
                 }
@@ -203,7 +204,7 @@ export default function Main() {
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
                 if (user && user.plan_id >= 3) {
-                  handleServiceClick('/quiz');
+                  handleServiceClick(PATH.QUIZ);
                 } else {
                   setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
                 }

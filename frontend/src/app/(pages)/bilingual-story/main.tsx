@@ -27,6 +27,7 @@ import LoadedOverlay from '@/components/LoadedOverlay';
 import { useSidebarStore } from '@/lib/storage/sidebarState';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/auth.context';
+import { PATH } from '@/lib/contants/path';
 
 interface Story {
   id: string;
@@ -79,10 +80,12 @@ export default function BilingualStoryMain() {
 
   useEffect(() => {
     if (!user) {
-      router.push('/login');
+      router.push(PATH.LOGIN);
     } else if (user?.plan_id && user?.plan_id >= 2) {
       setLoading(false);
       setIsAuthorized(true);
+    } else {
+      router.push(PATH.PLANS);
     }
   }, [user]);
 

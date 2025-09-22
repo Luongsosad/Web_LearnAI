@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import DeviceManagement from './device-management';
 import { useAuth } from '@/contexts/auth.context';
+import { PATH } from '@/lib/contants/path';
 
 export default function AccountPage() {
   const { toggle } = useSidebarStore();
@@ -23,7 +24,7 @@ export default function AccountPage() {
 
   useEffect(() => {
     if (!user) {
-      router.push('/login');
+      router.push(PATH.LOGIN);
     } else {
       setLoading(false);
       setIsAuthorized(true);
@@ -39,7 +40,7 @@ export default function AccountPage() {
         });
         console.log('Profile response:', res.data);
         if (!res.data.user) {
-          router.push('/login');
+          router.push(PATH.LOGIN);
           return;
         }
         setUserDetails(res.data.user);
