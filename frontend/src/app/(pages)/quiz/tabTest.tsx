@@ -76,6 +76,30 @@ const Test: React.FC<TestProps> = ({
     setCurrentQuestionIndex((prev) => (prev + 1) % questions.length);
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Enter' && !feedback) {
+        handleAnswerSubmit();
+      } else if (event.key === 'Tab') {
+        event.preventDefault(); // Prevent default tab behavior
+        const inputElement = document.querySelector('input[type="text"]');
+        if (inputElement) {
+          (inputElement as HTMLElement).focus();
+        }
+      } else if (event.key === 'ArrowRight') {
+        handleNextQuestion();
+      } else if (event.key === 'ArrowLeft') {
+        setTab(2); // Assuming '2' is the tab for going back
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [feedback, handleAnswerSubmit, handleNextQuestion, setTab]);
+
   if (loading) return <LoadedOverlay />;
   if (questions.length === 0) return <div>Không có câu hỏi nào!</div>;
 
