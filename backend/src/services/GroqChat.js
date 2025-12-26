@@ -208,7 +208,7 @@ export async function generateScript(prompt, history = [], model = 'chat') {
       // model: 'llama3-70b-8192',
       // model: 'meta-llama/llama-4-scout-17b-16e-instruct',
       // model: 'llama-guard-3-8b',
-      model: 'gemma2-9b-it',
+      model: 'llama-3.1-8b-instant',
       messages,
       temperature: 0.7,
     });
