@@ -21,7 +21,7 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
-  return; // test
+  // return; // test
 
   // Try to refresh the access token if it doesn't exist
   if (!accessToken && refreshToken) {
