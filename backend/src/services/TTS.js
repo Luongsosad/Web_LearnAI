@@ -29,14 +29,15 @@ export async function synthesizeGradioSpeech(
       rate,
       pitch,
     });
-    // console.log(result) // mô tả script không ổn lắm
+    // console.log('Audio response:', result.data?.filter((item) => item !== null)[0]);
     // Lọc bỏ giá trị null và lấy URL file âm thanh
     const audioData = result.data?.filter((item) => item !== null)[0];
     if (!audioData || !audioData.url) {
       throw new Error('Audio URL not found');
     }
 
-    return audioData.url;
+    const mimeType = audioData.mime_type || 'audio/mpeg';
+    return { url: audioData.url, mimeType };
   } catch (err) {
     console.error('Gradio TTS error:', err);
     return null;

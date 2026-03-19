@@ -97,17 +97,24 @@ export default function FlagCard({
     );
   };
 
-  const playAudio = (audioUrl?: string) => {
+  const playAudio = (audioUrl?: string | any) => {
     if (playAudioRef.current) {
       playAudioRef.current.pause();
       playAudioRef.current.src = '';
       playAudioRef.current = null;
     }
+    let url = '';
     if (!audioUrl) {
       console.error('Không có URL âm thanh để phát');
       return;
     }
-    const audio = new Audio(audioUrl);
+    if (typeof audioUrl === 'string') url = audioUrl;
+    else if (typeof audioUrl === 'object') url = audioUrl.url || audioUrl.audioUrl || '';
+    if (!url) {
+      console.error('Invalid audio URL:', audioUrl);
+      return;
+    }
+    const audio = new Audio(url);
     playAudioRef.current = audio;
     audio.play().catch((err) => console.error('Lỗi phát âm thanh:', err));
     audio.onended = () => {

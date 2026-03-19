@@ -44,9 +44,13 @@ export const synthesizeCommunicate = async (req, res) => {
 
     const Audio = await synthesizeGradioSpeech(englishText);
 
+    // Ensure frontend receives a string URL (not an object)
+    const audioUrl = Audio?.url || '';
+    const audioMime = Audio?.mimeType || 'audio/mpeg';
+
     return res
       .status(200)
-      .json({ script: englishText, translatedScript: vietnameseTranslation, audioUrl: Audio });
+      .json({ script: englishText, translatedScript: vietnameseTranslation, audioUrl, audioMime });
   } catch (error) {
     console.error('Lỗi controller:', error);
     return res.status(500).json({ error: 'Lỗi server khi tạo kịch bản.' });
