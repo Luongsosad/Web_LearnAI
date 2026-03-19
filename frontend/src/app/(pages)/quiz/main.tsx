@@ -169,8 +169,10 @@ export default function Vocabulary() {
           withCredentials: true,
         }
       );
-      if (res.status === 200 && res.data.audioUrl) {
-        return res.data.audioUrl;
+      if (res.status === 200) {
+        const raw = res.data.audioUrl || res.data.url || res.data; // handle variations
+        if (typeof raw === 'string') return raw;
+        if (raw && typeof raw === 'object') return raw.url || raw.audioUrl || '';
       }
     } catch (error) {
       console.error(`Error fetching audio for "${word.word}":`, error);
@@ -317,10 +319,18 @@ export default function Vocabulary() {
                                 e.stopPropagation();
                                 const audioUrl = await fetchAudio(word);
                                 if (audioUrl) {
-                                  const audio = new Audio(audioUrl);
-                                  audio
-                                    .play()
-                                    .catch((err) => console.error('Lỗi phát âm thanh:', err));
+                                  let _url = '';
+                                  if (typeof audioUrl === 'string') _url = audioUrl;
+                                  else if (audioUrl && typeof audioUrl === 'object')
+                                    _url = audioUrl.url || audioUrl.audioUrl || '';
+                                  if (!_url) {
+                                    console.error('Invalid audio URL:', audioUrl);
+                                  } else {
+                                    const audio = new Audio(_url);
+                                    audio
+                                      .play()
+                                      .catch((err) => console.error('Lỗi phát âm thanh:', err));
+                                  }
                                 }
                               }}
                               aria-label="Phát âm thanh"

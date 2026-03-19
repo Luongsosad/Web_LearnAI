@@ -284,7 +284,15 @@ export default function Vocabulary() {
                           <div className="font-semibold">{word['Từ vựng']}</div>
                           <button
                             onClick={() => {
-                              const audio = new Audio(word.Audio);
+                              let url = '';
+                              if (typeof word.Audio === 'string') url = word.Audio;
+                              else if (word.Audio && typeof word.Audio === 'object')
+                                url = word.Audio.url || word.Audio.audioUrl || '';
+                              if (!url) {
+                                console.error('Invalid audio for word:', word.Audio);
+                                return;
+                              }
+                              const audio = new Audio(url);
                               audio.play().catch((err) => console.error('Lỗi phát âm thanh:', err));
                             }}
                             aria-label="Phát âm thanh"

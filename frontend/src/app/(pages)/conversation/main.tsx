@@ -106,15 +106,24 @@ export default function Main() {
 
       if (res.status !== 200) throw new Error('Lỗi API');
 
+      // Normalize audioUrl (backend may return object or string)
+      const rawAudio = res.data.audioUrl;
+      const normalizedAudioUrl = (() => {
+        if (!rawAudio) return '';
+        if (typeof rawAudio === 'string') return rawAudio;
+        if (typeof rawAudio === 'object') return rawAudio.url || rawAudio.audioUrl || '';
+        return '';
+      })();
+
       const botMessage: Message = {
         role: 'bot',
         content: res.data.script || 'Không có phản hồi.',
         translatedContent: res.data.translatedScript || '',
-        audioUrl: res.data.audioUrl || '',
+        audioUrl: normalizedAudioUrl,
       };
 
-      if (res.data.audioUrl) {
-        playAudio(res.data.audioUrl);
+      if (normalizedAudioUrl) {
+        playAudio(normalizedAudioUrl);
       }
 
       setMessages((prev) => [...prev, botMessage]);
@@ -267,20 +276,28 @@ export default function Main() {
     audioChunksRef.current = []; // Xóa dữ liệu audio
   };
 
-  const playAudio = (audioUrl?: string) => {
+  const playAudio = (audioUrl?: string | any) => {
     if (playAudioRef.current) {
       playAudioRef.current.pause();
       playAudioRef.current.src = '';
       playAudioRef.current = null;
       setAudioCurrent(null);
     }
+    // Normalize audioUrl
     if (!audioUrl) {
       console.error('Không có URL âm thanh để phát');
       return;
     }
-    const audio = new Audio(audioUrl);
+    let url = '';
+    if (typeof audioUrl === 'string') url = audioUrl;
+    else if (typeof audioUrl === 'object') url = audioUrl.url || audioUrl.audioUrl || '';
+    if (!url) {
+      console.error('Invalid audio URL:', audioUrl);
+      return;
+    }
+    const audio = new Audio(url);
     playAudioRef.current = audio; // Lưu audio mới vào ref
-    setAudioCurrent(audioUrl);
+    setAudioCurrent(url);
     audio.play().catch((err) => console.error('Lỗi phát âm thanh:', err));
     audio.onended = () => {
       setAudioCurrent(null);

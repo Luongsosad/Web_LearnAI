@@ -106,7 +106,14 @@ export default function FlagCard({
       console.error('Không có URL âm thanh để phát');
       return;
     }
-    const audio = new Audio(audioUrl);
+    let url = '';
+    if (typeof audioUrl === 'string') url = audioUrl;
+    else if (typeof audioUrl === 'object') url = audioUrl.url || audioUrl.audioUrl || '';
+    if (!url) {
+      console.error('Invalid audio URL:', audioUrl);
+      return;
+    }
+    const audio = new Audio(url);
     playAudioRef.current = audio;
     audio.play().catch((err) => console.error('Lỗi phát âm thanh:', err));
     audio.onended = () => {

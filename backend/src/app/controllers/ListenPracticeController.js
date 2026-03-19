@@ -72,8 +72,9 @@ export const generatePracticeSentences = async (req, res) => {
 
         sentencesWithAudio.push({
           ...sentence,
-          audioUrl: normalAudio || '',
-          fastAudioUrl: fastAudio || '',
+          // Return plain string URLs for the frontend (frontend expects a string)
+          audioUrl: normalAudio?.url || '',
+          fastAudioUrl: fastAudio?.url || '',
           userAnswer: '',
           isCorrect: false,
         });
@@ -129,7 +130,10 @@ export const generateAudioWithSpeed = async (req, res) => {
       return res.status(500).json({ error: 'Không thể tạo âm thanh.' });
     }
 
-    return res.status(200).json({ audioUrl });
+    // Return field name `audioUrl` so frontend code (which reads `res.data.audioUrl`) works
+    return res
+      .status(200)
+      .json({ audioUrl: audioUrl.url, mimeType: audioUrl.mimeType || 'audio/mpeg' });
   } catch (error) {
     console.error('Lỗi controller:', error);
     return res.status(500).json({ error: 'Lỗi server khi tạo âm thanh.' });

@@ -16,7 +16,12 @@ const getBilingualStories = async (req, res) => {
     let stories = [];
     try {
       stories = JSON.parse(script);
-    } catch {
+      // If AI returned a single object, wrap it into an array for iteration
+      if (!Array.isArray(stories) && stories && typeof stories === 'object') {
+        stories = [stories];
+      }
+    } catch (e) {
+      console.error('Error parsing bilingual story script:', e);
       return res.status(500).json({ error: 'AI trả về dữ liệu không hợp lệ.', raw: script });
     }
     // Sinh audio cho content_en của từng truyện
@@ -26,9 +31,11 @@ const getBilingualStories = async (req, res) => {
         let englishText = story.content_en;
         console.log('TTS ENGLISH:', englishText);
         if (englishText.length > 500) englishText = englishText.slice(0, 500);
-        audio_en = englishText
+        // synthesizeGradioSpeech returns an object { url, mimeType }
+        const ttsResult = englishText
           ? await synthesizeGradioSpeech(englishText, 'en-US-AvaNeural (en-US, Female)')
-          : '';
+          : null;
+        audio_en = ttsResult?.url || (typeof ttsResult === 'string' ? ttsResult : '') || '';
         if (!audio_en) {
           console.error('TTS EN failed:', englishText);
           audio_en = '';
@@ -55,7 +62,8 @@ async function getWordInfo(req, res) {
   console.log('Response:', script);
   let audio = '';
   try {
-    audio = await synthesizeGradioSpeech(word, 'en-US-AvaNeural (en-US, Female)');
+    const audioResult = await synthesizeGradioSpeech(word, 'en-US-AvaNeural (en-US, Female)');
+    audio = audioResult?.url || (typeof audioResult === 'string' ? audioResult : '') || '';
     console.log('Audio:', audio);
   } catch (e) {
     console.error('Lỗi sinh audio:', e);
@@ -91,7 +99,8 @@ async function getMultipleWordInfo(req, res) {
         const { script } = await generateScript(word, [], 'meaningWord');
         let audio = '';
         try {
-          audio = await synthesizeGradioSpeech(word, 'en-US-AvaNeural (en-US, Female)');
+          const audioResult = await synthesizeGradioSpeech(word, 'en-US-AvaNeural (en-US, Female)');
+          audio = audioResult?.url || (typeof audioResult === 'string' ? audioResult : '') || '';
         } catch (e) {
           console.error('Lỗi sinh audio cho từ:', word, e);
           audio = '';

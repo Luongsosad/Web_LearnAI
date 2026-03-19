@@ -10,6 +10,8 @@
     "lint": "eslint . --ext .ts,.js,.jsx,.tsx",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
     "build": "npm run build"
   },
   "author": "Nguyễn Vĩnh Lương",
@@ -23,6 +25,7 @@
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.36.4",
     "express": "^5.1.0",
     "express-session": "^1.18.1",
     "formidable": "^3.5.4",
@@ -40,6 +43,7 @@
     "uuid": "^11.1.0"
   },
   "devDependencies": {
+    "drizzle-kit": "^0.31.10",
     "eslint": "^9.30.1",
     "prettier": "^3.6.2"
   }

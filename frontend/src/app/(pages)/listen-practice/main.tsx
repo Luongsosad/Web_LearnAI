@@ -161,6 +161,17 @@ export default function ListenPracticeMain() {
       }
 
       if (audioRef.current && audioUrl) {
+        // Defensive: log and normalize audioUrl if backend accidentally returns an object
+        console.log('ListenPractice playAudio - raw audioUrl:', audioUrl);
+        if (typeof audioUrl !== 'string') {
+          if (audioUrl && typeof (audioUrl as any).url === 'string') {
+            audioUrl = (audioUrl as any).url;
+          } else {
+            console.error('Invalid audioUrl format:', audioUrl);
+            throw new Error('Invalid audio URL');
+          }
+        }
+
         audioRef.current.src = audioUrl;
         audioRef.current.playbackRate = speed === 'fast' ? 1.4 : 1.0;
         await audioRef.current.play();

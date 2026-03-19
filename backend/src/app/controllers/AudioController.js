@@ -58,7 +58,11 @@ export const synthesizeTTS = async (req, res) => {
 
     const Audio = await synthesizeGradioSpeech(text);
 
-    return res.status(200).json({ audioUrl: Audio });
+    // Normalize to string URL for frontend compatibility
+    const audioUrl = Audio?.url || (typeof Audio === 'string' ? Audio : '') || '';
+    const mimeType = Audio?.mimeType || 'audio/mpeg';
+
+    return res.status(200).json({ audioUrl, mimeType });
   } catch (error) {
     console.error('Lỗi controller:', error.message);
     return res.status(500).json({ error: 'Lỗi server khi xử lý phiên âm.' });
