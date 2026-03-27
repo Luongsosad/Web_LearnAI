@@ -111,6 +111,17 @@ export default function Sidebar() {
               }}
             />
             <NavItem
+              icon={MessageCircle}
+              label="AI Chat (New)"
+              onClick={() => {
+                if (user && user.plan_id >= 1) {
+                  handleNav('/ai-chat');
+                } else {
+                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
+                }
+              }}
+            />
+            <NavItem
               icon={Headphones}
               label="Giao tiếp"
               onClick={() => {

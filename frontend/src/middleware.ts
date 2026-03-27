@@ -126,6 +126,7 @@ export const config = {
   matcher: [
     '/account/:path*',
     '/chat/:path*',
+    '/ai-chat/:path*',
     '/conversation/:path*',
     '/pronunciation/:path*',
     '/flashcards/:path*',
