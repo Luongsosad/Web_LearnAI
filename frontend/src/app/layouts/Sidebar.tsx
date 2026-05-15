@@ -274,7 +274,12 @@ export default function Sidebar() {
           )}
         </div>
       </div>
-      <Notify message={message} type={messageType} duration={2000} onClose={() => setMessage(null)} />
+      <Notify
+        message={message}
+        type={messageType}
+        duration={2000}
+        onClose={() => setMessage(null)}
+      />
     </>
   );
 }

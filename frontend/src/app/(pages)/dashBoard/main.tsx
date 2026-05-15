@@ -221,7 +221,12 @@ export default function Main() {
         </div>
       </div>
       {loading && <LoadedOverlay />}
-      <Notify message={message} type={messageType} duration={2000} onClose={() => setMessage(null)} />
+      <Notify
+        message={message}
+        type={messageType}
+        duration={2000}
+        onClose={() => setMessage(null)}
+      />
     </div>
   );
 }
