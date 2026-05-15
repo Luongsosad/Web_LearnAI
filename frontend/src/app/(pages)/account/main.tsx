@@ -109,7 +109,7 @@ export default function AccountPage() {
             )}
           </div>
         </div>
-        <div className="text-center text-sm text-gray-400 mt-1 mb-1">Learning by AI</div>
+        <div className="text-center text-sm text-gray-400 mt-1 mb-1">Luolingo</div>
       </div>
 
       {/* Main Content */}
@@ -187,7 +187,7 @@ export default function AccountPage() {
 
         {/* Footer */}
         <div className="p-4 border-t border-[#5a595941] text-center">
-          <p className="text-sm text-gray-500">© 2025 Learning By AI. All rights reserved.</p>
+          <p className="text-sm text-gray-500">© 2025 Luolingo. All rights reserved.</p>
         </div>
       </div>
 
