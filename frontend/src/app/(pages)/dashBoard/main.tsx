@@ -60,9 +60,7 @@ export default function Main() {
             <Sidebar size={24} />
           </button>
         </div>
-        <h1 className="text-xl font-bold absolute left-1/2 transform -translate-x-1/2">
-          Learning by AI
-        </h1>
+        <h1 className="text-xl font-bold absolute left-1/2 transform -translate-x-1/2">Luolingo</h1>
         <div className="flex space-x-4 justify-end">
           {user?.username ? (
             <div className="flex items-center space-x-4">
@@ -85,7 +83,7 @@ export default function Main() {
       <div className="custom-scroll w-full md:w-[768px] mx-auto">
         <div className="flex-1 p-5">
           <h2 className="text-xl font-semibold text-gray-300 mb-2">
-            Chào mừng bạn đến với ứng dụng Learning By AI
+            Chào mừng bạn đến với ứng dụng Luolingo
           </h2>
           <p className="text-gray-400 mb-3">Khám phá các tính năng học tập thông minh:</p>
           <div className="grid gap-3 md:grid-cols-1">
@@ -217,7 +215,7 @@ export default function Main() {
 
         {/* Footer */}
         <div className="p-4 border-t border-[#5a595941] text-center">
-          <p className="text-sm text-gray-500">© 2025 Learning By AI. All rights reserved.</p>
+          <p className="text-sm text-gray-500">© 2025 Luolingo. All rights reserved.</p>
         </div>
       </div>
       {loading && <LoadedOverlay />}

@@ -110,7 +110,7 @@ export default function Sidebar() {
                   toggle();
                 }}
               >
-                Learning by AI
+                Luolingo
               </h2>
             </div>
             <button className="text-gray-200 hover:text-white" onClick={() => toggle()}>

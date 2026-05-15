@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = process.env.NEXT_PUBLIC_BASE_URL || 'https://learning-by-ai.vercel.app';
+  const base = process.env.NEXT_PUBLIC_BASE_URL || 'https://luolingo.id.vn';
   const routes = [
     '',
     '/login',

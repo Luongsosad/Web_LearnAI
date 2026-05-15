@@ -16,20 +16,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://learning-by-ai.vercel.app'),
+  metadataBase: new URL('https://luolingo.id.vn/'),
   title: {
-    default: 'Learning By AI',
-    template: '%s | Learning By AI',
+    default: 'Luolingo',
+    template: '%s | Luolingo',
   },
   description:
-    'Learning By AI - Ứng dụng học tiếng Anh thông minh: Trò chuyện với AI, luyện giao tiếp, luyện nghe, kiểm tra phát âm, thẻ ghi nhớ, đọc truyện song ngữ, bài tập luyện tập.',
+    'Luolingo - Ứng dụng học tiếng Anh thông minh: Trò chuyện với AI, luyện giao tiếp, luyện nghe, kiểm tra phát âm, thẻ ghi nhớ, đọc truyện song ngữ, bài tập luyện tập.',
   keywords: [
-    'Learning By AI',
-    'Learning By AI - Ứng dụng học tiếng Anh thông minh',
+    'Luolingo',
+    'Luolingo - Ứng dụng học tiếng Anh thông minh',
     'Learning AI',
     'Learn AI',
     'Learn English',
-    'learning by ai',
+    'luolingo',
     'learn ai',
     'learning ai',
     'learn english by ai',
@@ -50,19 +50,19 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    url: 'https://learning-by-ai.vercel.app/',
-    siteName: 'Learning By AI',
-    title: 'Learning By AI',
+    url: 'https://luolingo.id.vn/',
+    siteName: 'Luolingo',
+    title: 'Luolingo',
     description:
       'Học tiếng Anh hiệu quả với AI: trò chuyện, giao tiếp, nghe, phát âm, flashcards, truyện song ngữ và bài tập.',
     locale: 'vi_VN',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Learning By AI',
+    title: 'Luolingo',
     description:
       'Học tiếng Anh hiệu quả với AI: trò chuyện, giao tiếp, nghe, phát âm, flashcards, truyện song ngữ và bài tập.',
-    creator: '@learning-by-ai',
+    creator: '@luolingo',
   },
   robots: {
     index: true,
@@ -78,10 +78,10 @@ export const metadata: Metadata = {
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION_CODE,
   },
-  authors: [{ name: 'Learning By AI' }],
-  creator: 'Learning By AI',
-  publisher: 'Learning By AI',
-  applicationName: 'Learning By AI',
+  authors: [{ name: 'Luolingo' }],
+  creator: 'Luolingo',
+  publisher: 'Luolingo',
+  applicationName: 'Luolingo',
   category: 'education',
 };
 
