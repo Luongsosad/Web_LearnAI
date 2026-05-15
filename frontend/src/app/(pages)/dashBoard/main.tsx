@@ -23,6 +23,7 @@ export default function Main() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState<string | null>(null);
+  const [messageType, setMessageType] = useState<'success' | 'error' | 'info'>('success');
 
   const { user } = useAuth();
 
@@ -30,12 +31,24 @@ export default function Main() {
     setLoading(false);
   }, [user]);
 
-  const handleServiceClick = (path: string) => {
-    if (!user?.username) {
-      router.push(PATH.LOGIN);
-    } else {
-      router.push(path);
+  const notifyLoginRequired = () => {
+    setMessage('Bạn cần đăng nhập/đăng ký để trải nghiệm dịch vụ này.');
+    setMessageType('error');
+  };
+
+  const handleFeatureAccess = (path: string, minPlan: number) => {
+    if (!user) {
+      notifyLoginRequired();
+      return;
     }
+
+    if (user.plan_id < minPlan) {
+      setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
+      setMessageType('error');
+      return;
+    }
+
+    router.push(path);
   };
 
   return (
@@ -80,11 +93,7 @@ export default function Main() {
             <div
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
-                if (user && user.plan_id >= 1) {
-                  handleServiceClick(PATH.CHAT);
-                } else {
-                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
-                }
+                handleFeatureAccess(PATH.CHAT, 1);
               }}
             >
               <MessageCircle className="w-6 h-6 text-red-400 mr-4" />
@@ -101,11 +110,7 @@ export default function Main() {
             <div
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
-                if (user && user.plan_id >= 2) {
-                  handleServiceClick(PATH.CONVERSATION);
-                } else {
-                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
-                }
+                handleFeatureAccess(PATH.CONVERSATION, 2);
               }}
             >
               <Headphones className="w-6 h-6 text-orange-400 mr-4" />
@@ -122,11 +127,7 @@ export default function Main() {
             <div
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
-                if (user && user.plan_id >= 2) {
-                  handleServiceClick(PATH.LISTEN_PRACTICE);
-                } else {
-                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
-                }
+                handleFeatureAccess(PATH.LISTEN_PRACTICE, 2);
               }}
             >
               <Volume2 className="w-6 h-6 text-pink-400 mr-4" />
@@ -143,8 +144,12 @@ export default function Main() {
             <div
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
-                // handleServiceClick("/pronunciation");
+                if (!user) {
+                  notifyLoginRequired();
+                  return;
+                }
                 setMessage('Tính năng đang phát triển!');
+                setMessageType('info');
               }}
             >
               <Mic className="w-6 h-6 text-blue-400 mr-4" />
@@ -161,11 +166,7 @@ export default function Main() {
             <div
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
-                if (user && user.plan_id >= 1) {
-                  handleServiceClick(PATH.FLASHCARDS);
-                } else {
-                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
-                }
+                handleFeatureAccess(PATH.FLASHCARDS, 1);
               }}
             >
               <BookOpen className="w-6 h-6 text-yellow-400 mr-4" />
@@ -182,11 +183,7 @@ export default function Main() {
             <div
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
-                if (user && user.plan_id >= 2) {
-                  handleServiceClick(PATH.BILINGUAL_STORY);
-                } else {
-                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
-                }
+                handleFeatureAccess(PATH.BILINGUAL_STORY, 2);
               }}
             >
               <Library className="w-6 h-6 text-purple-400 mr-4" />
@@ -203,11 +200,7 @@ export default function Main() {
             <div
               className="relative flex items-center bg-[#1c1c1c] p-4 rounded-xl hover:bg-[#2a2a2a] cursor-pointer"
               onClick={() => {
-                if (user && user.plan_id >= 3) {
-                  handleServiceClick(PATH.QUIZ);
-                } else {
-                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
-                }
+                handleFeatureAccess(PATH.QUIZ, 3);
               }}
             >
               <HelpCircle className="w-6 h-6 text-green-400 mr-4" />
@@ -228,7 +221,7 @@ export default function Main() {
         </div>
       </div>
       {loading && <LoadedOverlay />}
-      <Notify message={message} type="info" duration={2000} onClose={() => setMessage(null)} />
+      <Notify message={message} type={messageType} duration={2000} onClose={() => setMessage(null)} />
     </div>
   );
 }

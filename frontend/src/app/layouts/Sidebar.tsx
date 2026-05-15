@@ -29,6 +29,7 @@ export default function Sidebar() {
   const router = useRouter();
   const [hasMounted, setHasMounted] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [messageType, setMessageType] = useState<'success' | 'error' | 'info'>('success');
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
@@ -37,6 +38,29 @@ export default function Sidebar() {
   useEffect(() => {
     setHasMounted(true);
   }, []);
+
+  const notifyLoginRequired = () => {
+    setMessage('Bạn cần đăng nhập/đăng ký để trải nghiệm dịch vụ này.');
+    setMessageType('error');
+    // router.push(PATH.LOGIN);
+    // toggle();
+  };
+
+  const handleFeatureAccess = (path: string, minPlan: number) => {
+    if (!user) {
+      notifyLoginRequired();
+      return;
+    }
+
+    if (user.plan_id < minPlan) {
+      setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
+      setMessageType('error');
+      return;
+    }
+
+    router.push(path);
+    toggle();
+  };
 
   const handleLogout = async () => {
     setIsLoggingOut(true);
@@ -53,17 +77,13 @@ export default function Sidebar() {
       console.error('Đăng xuất thất bại:', err);
     } finally {
       setIsLoggingOut(false);
-      router.push(PATH.LOGIN);
+      window.location.href = PATH.HOME; // Đảm bảo tải lại trang để cập nhật trạng thái đăng nhập
       toggle();
     }
   };
 
   const handleNav = (path: string) => {
-    if (!user?.username) {
-      router.push(PATH.LOGIN);
-    } else {
-      router.push(path);
-    }
+    router.push(path);
     toggle();
   };
 
@@ -103,73 +123,54 @@ export default function Sidebar() {
               icon={MessageCircle}
               label="Chat AI"
               onClick={() => {
-                if (user && user.plan_id >= 1) {
-                  handleNav(PATH.CHAT);
-                } else {
-                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
-                }
+                handleFeatureAccess(PATH.CHAT, 1);
               }}
             />
             <NavItem
               icon={Headphones}
               label="Giao tiếp"
               onClick={() => {
-                if (user && user.plan_id >= 2) {
-                  handleNav(PATH.CONVERSATION);
-                } else {
-                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
-                }
+                handleFeatureAccess(PATH.CONVERSATION, 2);
               }}
             />
             <NavItem
               icon={Volume2}
               label="Luyện nghe"
               onClick={() => {
-                if (user && user.plan_id >= 2) {
-                  handleNav(PATH.LISTEN_PRACTICE);
-                } else {
-                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
-                }
+                handleFeatureAccess(PATH.LISTEN_PRACTICE, 2);
               }}
             />
             <NavItem
               icon={Mic}
               label="Phát âm"
               onClick={() => {
+                if (!user) {
+                  notifyLoginRequired();
+                  return;
+                }
                 setMessage('Tính năng đang phát triển!');
+                setMessageType('info');
               }}
             />
             <NavItem
               icon={BookOpen}
               label="Flashcard"
               onClick={() => {
-                if (user && user.plan_id >= 1) {
-                  handleNav(PATH.FLASHCARDS);
-                } else {
-                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
-                }
+                handleFeatureAccess(PATH.FLASHCARDS, 1);
               }}
             />
             <NavItem
               icon={Library}
               label="Truyện song ngữ"
               onClick={() => {
-                if (user && user.plan_id >= 2) {
-                  handleNav(PATH.BILINGUAL_STORY);
-                } else {
-                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
-                }
+                handleFeatureAccess(PATH.BILINGUAL_STORY, 2);
               }}
             />
             <NavItem
               icon={HelpCircle}
               label="Trắc nghiệm"
               onClick={() => {
-                if (user && user.plan_id >= 3) {
-                  handleNav(PATH.QUIZ);
-                } else {
-                  setMessage('Bạn cần nâng cấp gói dịch vụ để sử dụng tính năng này!');
-                }
+                handleFeatureAccess(PATH.QUIZ, 3);
               }}
             />
           </div>
@@ -273,7 +274,7 @@ export default function Sidebar() {
           )}
         </div>
       </div>
-      <Notify message={message} type="success" duration={2000} onClose={() => setMessage(null)} />
+      <Notify message={message} type={messageType} duration={2000} onClose={() => setMessage(null)} />
     </>
   );
 }

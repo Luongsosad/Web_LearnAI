@@ -26,12 +26,12 @@ export default function Register() {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (!user) {
-      router.push(PATH.LOGIN);
+    if (user) {
+      router.push(PATH.HOME);
     } else {
       setIsAuthorized(true);
     }
-  }, [user]);
+  }, [user, router]);
 
   const handleContinue = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
